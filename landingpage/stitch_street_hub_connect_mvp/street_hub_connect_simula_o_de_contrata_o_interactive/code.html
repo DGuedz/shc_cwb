@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="pt-BR"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Street Hub Connect - B2B Artist Catalog</title>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Narrow:ital,wght@0,400..700;1,400..700&amp;family=Inter:wght@400..700&amp;family=JetBrains+Mono:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Framer Motion -->
+<script src="https://unpkg.com/framer-motion@10.16.4/dist/framer-motion.js"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-container-lowest": "#0e0e0e",
+                        "surface-container": "#20201f",
+                        "surface-container-low": "#1c1b1b",
+                        "primary-fixed-dim": "#c6c6c7",
+                        "on-surface": "#e5e2e1",
+                        "surface": "#131313",
+                        "tertiary-fixed-dim": "#c9c6c5",
+                        "on-tertiary-fixed-variant": "#474646",
+                        "inverse-on-surface": "#313030",
+                        "primary-container": "#e2e2e2",
+                        "on-tertiary-fixed": "#1c1b1b",
+                        "on-surface-variant": "#c4c7c8",
+                        "surface-bright": "#393939",
+                        "on-secondary-container": "#00311f",
+                        "on-primary": "#2f3131",
+                        "outline-variant": "#444748",
+                        "on-error-container": "#ffdad6",
+                        "surface-container-high": "#2a2a2a",
+                        "on-primary-fixed-variant": "#454747",
+                        "secondary-container": "#00a572",
+                        "background": "#131313",
+                        "secondary-fixed-dim": "#4edea3",
+                        "tertiary-fixed": "#e5e2e1",
+                        "surface-container-highest": "#353535",
+                        "on-secondary-fixed-variant": "#005236",
+                        "surface-dim": "#131313",
+                        "primary": "#ffffff",
+                        "surface-tint": "#c6c6c7",
+                        "on-secondary-fixed": "#002113",
+                        "error": "#ffb4ab",
+                        "primary-fixed": "#e2e2e2",
+                        "on-primary-fixed": "#1a1c1c",
+                        "on-error": "#690005",
+                        "tertiary-container": "#e5e2e1",
+                        "surface-variant": "#353535",
+                        "on-primary-container": "#636565",
+                        "inverse-primary": "#5d5f5f",
+                        "error-container": "#93000a",
+                        "secondary": "#4edea3",
+                        "on-tertiary": "#313030",
+                        "on-background": "#e5e2e1",
+                        "outline": "#8e9192",
+                        "tertiary": "#ffffff",
+                        "on-tertiary-container": "#656464",
+                        "inverse-surface": "#e5e2e1",
+                        "secondary-fixed": "#6ffbbe",
+                        "on-secondary": "#003824",
+                        "emerald-500": "#10B981"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "unit": "4px",
+                        "container-max": "1440px",
+                        "margin-desktop": "32px",
+                        "margin-mobile": "16px",
+                        "gutter": "16px"
+                    },
+                    "fontFamily": {
+                        "headline-lg-mobile": ["Archivo Narrow"],
+                        "data-num": ["JetBrains Mono"],
+                        "label-mono": ["JetBrains Mono"],
+                        "body-md": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "headline-xl": ["Archivo Narrow"],
+                        "headline-lg": ["Archivo Narrow"],
+                        "headline-md": ["Archivo Narrow"]
+                    },
+                    "fontSize": {
+                        "headline-lg-mobile": ["28px", { "lineHeight": "1.1", "letterSpacing": "-0.03em", "fontWeight": "700" }],
+                        "data-num": ["14px", { "lineHeight": "1", "letterSpacing": "0", "fontWeight": "400" }],
+                        "label-mono": ["13px", { "lineHeight": "1", "letterSpacing": "0.02em", "fontWeight": "500" }],
+                        "body-md": ["15px", { "lineHeight": "1.5", "letterSpacing": "0", "fontWeight": "400" }],
+                        "body-lg": ["18px", { "lineHeight": "1.6", "letterSpacing": "-0.01em", "fontWeight": "400" }],
+                        "headline-xl": ["48px", { "lineHeight": "1.1", "letterSpacing": "-0.04em", "fontWeight": "700" }],
+                        "headline-lg": ["32px", { "lineHeight": "1.1", "letterSpacing": "-0.03em", "fontWeight": "700" }],
+                        "headline-md": ["24px", { "lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "600" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body {
+            background-color: #000000;
+            color: #e5e2e1;
+        }
+        /* Custom scrollbar for an industrial look */
+        ::-webkit-scrollbar {
+            width: 8px;
+            background: #000000;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #333;
+            border: 1px solid #000;
+        }
+        /* Utiliy classes to strictly follow rules */
+        .glass-panel {
+            background-color: #0A0A0A;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        @keyframes scan {
+            0% { top: -10%; }
+            100% { top: 110%; }
+        }
+        .scanner-line {
+            position: absolute;
+            width: 100%;
+            height: 2px;
+            background: #10B981;
+            box-shadow: 0 0 10px #10B981;
+            animation: scan 1.5s linear infinite;
+        }
+        @keyframes flicker {
+            0%, 19.999%, 22%, 62.999%, 64%, 64.999%, 70%, 100% { opacity: 1; }
+            20%, 21.999%, 63%, 63.999%, 65%, 69.999% { opacity: 0.4; }
+        }
+        .text-flicker {
+            animation: flicker 3s infinite;
+        }
+    </style>
+</head>
+<body class="font-body-md text-body-md antialiased min-h-screen flex flex-col">
+<!-- Interactive Modal -->
+<div class="fixed inset-0 z-[100] hidden bg-black/90 backdrop-blur-sm flex items-center justify-center" id="simulation-modal">
+<div class="glass-panel max-w-md w-full p-8 relative overflow-hidden border border-emerald-500/30 flex flex-col items-center text-center">
+<div class="flex flex-col items-center gap-4 w-full" id="modal-loading">
+<div class="w-16 h-16 relative border border-white/10 bg-black rounded flex items-center justify-center overflow-hidden">
+<span class="material-symbols-outlined text-outline-variant animate-pulse" style="font-size: 32px;">terminal</span>
+<div class="scanner-line"></div>
+</div>
+<p class="font-label-mono text-emerald-500 text-[14px] uppercase tracking-widest text-flicker">Validando dados no Supabase...</p>
+</div>
+<div class="hidden flex flex-col items-center gap-4 w-full" id="modal-success">
+<div class="w-16 h-16 rounded-full bg-emerald-500/10 flex items-center justify-center mb-2 border border-emerald-500/30">
+<span class="material-symbols-outlined text-emerald-500" style="font-size: 40px; font-weight: 700;">check</span>
+</div>
+<p class="font-label-mono text-primary text-[14px] uppercase tracking-widest leading-relaxed">
+                Conexão Estabelecida.<br/>
+<span class="text-emerald-500/70 text-[12px] mt-2 block">Acordo enviado para o Deals Pipeline.</span>
+</p>
+</div>
+</div>
+</div>
+<!-- TopNavBar -->
+<nav class="fixed top-0 w-full z-50 border-b border-outline-variant bg-surface/90 backdrop-blur-xl h-20 px-margin-mobile md:px-margin-desktop flex justify-between items-center transition-colors duration-0" id="top-nav">
+<div class="flex items-center space-x-8 h-full">
+<a class="font-headline-lg text-headline-lg font-bold tracking-tighter text-primary" href="/">ARTIST_CATALOG</a>
+<div class="hidden md:flex space-x-6 h-full items-center font-label-mono text-label-mono text-on-surface-variant"><a class="h-full flex items-center transition-colors duration-0 hover:text-primary hover:bg-surface-container-high px-2" href="/">Início</a><a class="text-primary border-b-2 border-primary h-full flex items-center pt-[2px] transition-colors duration-0 hover:text-primary hover:bg-surface-container-high px-2" href="#">Artistas</a><a class="h-full flex items-center transition-colors duration-0 hover:text-primary hover:bg-surface-container-high px-2" href="#">Oportunidades</a><a class="h-full flex items-center transition-colors duration-0 hover:text-primary hover:bg-surface-container-high px-2" href="#">Conexões</a><a class="h-full flex items-center transition-colors duration-0 hover:text-primary hover:bg-surface-container-high px-2" href="#">Perfil/Contratos</a></div>
+</div>
+<div class="flex items-center space-x-4">
+<div class="relative hidden md:block">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant" style="font-size: 20px;">search</span>
+<input class="bg-black border border-white/10 text-primary font-label-mono text-label-mono pl-10 pr-4 py-2 focus:outline-none focus:border-white transition-colors" placeholder="Search..." type="text"/>
+</div>
+<button aria-label="Notifications" class="p-2 hover:bg-surface-container-high transition-colors duration-0 rounded-DEFAULT">
+<span class="material-symbols-outlined text-primary">notifications</span>
+</button>
+<button aria-label="Settings" class="p-2 hover:bg-surface-container-high transition-colors duration-0 rounded-DEFAULT">
+<span class="material-symbols-outlined text-primary">settings</span>
+</button>
+<img alt="User profile" class="w-10 h-10 border border-white/10" data-alt="A highly detailed, professional headshot of a music industry executive. High-contrast black and white photography, dramatic lighting, modern studio setting. The subject exudes confidence and control. The aesthetic is raw, unrefined energy mixed with precision." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCwps88BMNzNTliyFDiYN-P-F3RgDSz0uiRCfiwpKjsuyj8eyjRJRBnlmiX0PnnZXtGaX5Lw3SAjEl6h-osa8OptvIdndyrX0IKE7ZxnDd0E_7jCYh_HCgJy0nIbUTbebhz4CnCUqCFPkGQj3XVjmCzbTGfTicOBzvvsbPD79A84VK4ueZWB4gb4eZ1WFI1-4-dZwf74ipf9eFnkGPk7NVA0_QOte9twHCYHWxBLPzVKgYoloLHN5o7f0PqxcilBdIM4VkZD983IPQ"/>
+</div>
+</nav>
+<!-- Main Content Canvas -->
+<main class="flex-grow pt-20 px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto w-full flex flex-col gap-8 pb-16">
+<!-- Hero Header -->
+<header class="mt-12 flex flex-col items-start gap-4 relative">
+<div class="absolute right-0 top-0 border border-white/10 bg-black px-4 py-2 hidden md:flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+<span class="font-label-mono text-label-mono text-emerald-500">HACKATHON MUSICTECH BRASIL</span>
+</div>
+<h1 class="font-headline-xl text-headline-xl md:text-[64px] font-bold text-primary tracking-tighter uppercase max-w-3xl leading-tight">DIRETÓRIO DE TALENTOS</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl border-l-2 border-primary pl-4">
+                Base de artistas independentes validados pela Street Hub. Fomento à economia criativa e curadoria de infraestrutura para o mercado institucional.
+            </p>
+</header>
+<!-- Command Bar (Sticky) -->
+<div class="sticky top-20 z-40 glass-panel p-4 flex flex-col md:flex-row gap-4 items-end" id="command-bar">
+<div class="w-full md:w-1/3 flex flex-col gap-2">
+<label class="font-label-mono text-label-mono text-on-surface-variant uppercase text-[11px]">Buscar Artista</label>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline-variant" style="font-size: 18px;">search</span>
+<input class="w-full bg-black border border-white/10 text-primary font-body-md text-body-md pl-10 pr-4 py-3 focus:outline-none focus:border-white transition-colors h-12" placeholder="Nome, cidade ou tag..." type="text"/>
+</div>
+</div>
+<div class="w-full md:w-1/4 flex flex-col gap-2">
+<label class="font-label-mono text-label-mono text-on-surface-variant uppercase text-[11px]">Gênero Musical</label>
+<select class="w-full bg-black border border-white/10 text-primary font-body-md text-body-md px-4 py-3 focus:outline-none focus:border-white transition-colors appearance-none h-12">
+<option value="">Todos os Gêneros</option>
+<option value="dj">DJ Set</option>
+<option value="rap">Rap / Hip-Hop</option>
+<option value="trap">Trap</option>
+<option value="mpb">Nova MPB</option>
+</select>
+</div>
+<div class="w-full md:w-1/4 flex flex-col gap-2">
+<label class="font-label-mono text-label-mono text-on-surface-variant uppercase text-[11px]">Budget Máximo (R$)</label>
+<div class="relative">
+<span class="font-data-num text-data-num text-outline-variant absolute left-3 top-1/2 -translate-y-1/2">R$</span>
+<input class="w-full bg-black border border-white/10 text-primary font-data-num text-data-num pl-10 pr-4 py-3 focus:outline-none focus:border-white transition-colors h-12" placeholder="5000" step="500" type="number"/>
+</div>
+</div>
+<div class="w-full md:w-auto ml-auto">
+<button class="w-full md:w-auto bg-primary text-black font-label-mono text-label-mono px-8 py-3 hover:bg-surface-tint transition-none flex items-center justify-center gap-2 h-12">
+<span class="material-symbols-outlined" style="font-size: 18px;">filter_list</span>
+                    FILTRAR
+                </button>
+</div>
+</div>
+<!-- Active Filters Chip Area -->
+<div class="flex flex-wrap gap-2 items-center min-h-[32px]">
+<span class="font-label-mono text-label-mono text-on-surface-variant text-[11px] uppercase mr-2">Filtros Ativos:</span>
+<div class="border border-white/10 bg-surface-container-low px-3 py-1 flex items-center gap-2 group cursor-pointer hover:bg-surface-container transition-none">
+<span class="font-label-mono text-label-mono text-primary text-[12px]">Status: Verified</span>
+<span class="material-symbols-outlined text-[14px] text-outline-variant group-hover:text-primary">close</span>
+</div>
+</div>
+<!-- Artist Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="artist-grid">
+<!-- Card 1 -->
+<article class="glass-panel flex flex-col group artist-card transition-all duration-300 hover:-translate-y-1 hover:border-emerald-500/40 hover:shadow-[0_0_15px_rgba(16,185,129,0.1)]">
+<!-- Header -->
+<div class="p-6 border-b border-white/10 flex items-start gap-4">
+<div class="w-16 h-16 shrink-0 relative">
+<img alt="DJ ALX" class="w-full h-full object-cover grayscale brightness-110 contrast-125 border border-white/10" data-alt="A gritty, high-contrast black and white portrait of an underground electronic music producer. The subject wears industrial clothing, standing in a raw warehouse environment. The lighting is harsh and direct, creating deep shadows. The overall mood is intense, serious, and authoritative, fitting an institutional music technology directory." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDdZ1Sah8eecotPsjYv0RSWlr1Cbv37Ogqqqx2JciKqt6Ms6_pmk0JtnxsEKI1SSs8AnKR5wacKszo3J5Pl-mbT4Po0mg9OKOo_K7nKlbcoFd95A7FUG_5OCPcOF-JJNYQ5QOyUeFZhZs70x6cveZHb6chFk1HTXI3XxFYv61HRExO02G9lZ8YubyMzhCjXcWCQThErt68GjKQJFuJ2a-QYbkJUWMWp5168EudUzqcQQKknGKcU7INj5NQkMJNC7kZZcpxNJ88bSYc"/>
+<div class="absolute -bottom-2 -right-2 bg-black border border-white/10 px-1 py-0.5">
+<span class="font-label-mono text-[10px] text-emerald-500 flex items-center gap-1">
+<span class="material-symbols-outlined text-[12px]" style="font-variation-settings: 'FILL' 1;">verified</span>
+</span>
+</div>
+</div>
+<div class="flex flex-col flex-grow">
+<div class="flex justify-between items-start">
+<h3 class="font-headline-md text-headline-md text-primary truncate" title="DJ ALX">DJ ALX</h3>
+<span class="font-data-num text-[11px] text-outline-variant border border-white/10 px-1.5 py-0.5 text-flicker">ID: 8842</span>
+</div>
+<p class="font-body-md text-[14px] text-on-surface-variant flex items-center gap-1 mt-1">
+<span class="material-symbols-outlined text-[14px]">location_on</span>
+                            Curitiba, PR
+                        </p>
+</div>
+</div>
+<!-- Metadata Body -->
+<div class="p-6 flex flex-col gap-4 flex-grow bg-black/40">
+<div class="flex justify-between items-end border-b border-white/10 pb-2">
+<span class="font-label-mono text-[11px] text-outline-variant uppercase">Gênero Principal</span>
+<span class="font-label-mono text-[13px] text-primary">Techno / Industrial</span>
+</div>
+<div class="flex flex-col gap-1 border-b border-white/10 pb-2">
+<span class="font-label-mono text-[11px] text-outline-variant uppercase">Rider Técnico Mínimo</span>
+<span class="font-data-num text-[13px] text-on-surface">2x CDJ 3000, 1x DJM-A9, Monitoração L-Acoustics</span>
+</div>
+<div class="flex justify-between items-end pb-2">
+<span class="font-label-mono text-[11px] text-outline-variant uppercase">Faixa de Cachê (B2B)</span>
+<span class="font-data-num text-[14px] text-emerald-500 text-flicker">R$ 3.500 - 6.000</span>
+</div>
+</div>
+<!-- Footer Action -->
+<div class="p-4 mt-auto border-t border-white/10 bg-[#050505]">
+<button class="w-full bg-transparent border border-white/10 text-primary font-label-mono text-label-mono py-3 hover:bg-white hover:text-black transition-colors duration-0 flex items-center justify-center gap-2 contract-btn relative overflow-hidden group">
+                        INICIAR CONTRATAÇÃO
+                        <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+</button>
+</div>
+</article>
+<!-- Card 2 -->
+<article class="glass-panel flex flex-col group artist-card transition-all duration-300 hover:-translate-y-1 hover:border-emerald-500/40 hover:shadow-[0_0_15px_rgba(16,185,129,0.1)]">
+<div class="p-6 border-b border-white/10 flex items-start gap-4">
+<div class="w-16 h-16 shrink-0 relative">
+<img alt="MC RZ" class="w-full h-full object-cover grayscale brightness-110 contrast-125 border border-white/10" data-alt="A striking, high-contrast black and white portrait of a hip-hop artist or MC. Shot from a slightly low angle to convey authority. The background is a stark, pure black studio setup. The lighting highlights sharp facial features and the texture of functional streetwear. The aesthetic is raw, powerful, and professional." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBLzXpM9lyIME50FgR-pZL_C2VvR2soVANDUco7OGs6IaKErTO8K2ZGWj4QNNcROXPgSrCu3oCs9EK9VCTaIecJkWem4W7Cv8bDFfXcm6sS9gDI5gwjUAMGbbeSF5gXxClFvOQ_0aUSJTPcfRNPJms1l5CYM-kqXuN4SoZ3iqWGST0EbVLBoYcooyKQtnVJGxe1bRXIR9abkODxK4Om0Ng5kGEMAIVqHBkbodP0P-TUgQl4a_vOZC62NRlyoCLtl4941nxN7eN5jY4"/>
+<div class="absolute -bottom-2 -right-2 bg-black border border-white/10 px-1 py-0.5">
+<span class="font-label-mono text-[10px] text-emerald-500 flex items-center gap-1">
+<span class="material-symbols-outlined text-[12px]" style="font-variation-settings: 'FILL' 1;">verified</span>
+</span>
+</div>
+</div>
+<div class="flex flex-col flex-grow">
+<div class="flex justify-between items-start">
+<h3 class="font-headline-md text-headline-md text-primary truncate" title="MC RZ">MC RZ</h3>
+<span class="font-data-num text-[11px] text-outline-variant border border-white/10 px-1.5 py-0.5 text-flicker">ID: 9102</span>
+</div>
+<p class="font-body-md text-[14px] text-on-surface-variant flex items-center gap-1 mt-1">
+<span class="material-symbols-outlined text-[14px]">location_on</span>
+                            São Paulo, SP
+                        </p>
+</div>
+</div>
+<div class="p-6 flex flex-col gap-4 flex-grow bg-black/40">
+<div class="flex justify-between items-end border-b border-white/10 pb-2">
+<span class="font-label-mono text-[11px] text-outline-variant uppercase">Gênero Principal</span>
+<span class="font-label-mono text-[13px] text-primary">Grime / UK Drill</span>
+</div>
+<div class="flex flex-col gap-1 border-b border-white/10 pb-2">
+<span class="font-label-mono text-[11px] text-outline-variant uppercase">Rider Técnico Mínimo</span>
+<span class="font-data-num text-[13px] text-on-surface">1x Shure SM58 sem fio, DJ Setup básico, PA &gt; 2k RMS</span>
+</div>
+<div class="flex justify-between items-end pb-2">
+<span class="font-label-mono text-[11px] text-outline-variant uppercase">Faixa de Cachê (B2B)</span>
+<span class="font-data-num text-[14px] text-emerald-500 text-flicker">R$ 5.000 - 8.500</span>
+</div>
+</div>
+<div class="p-4 mt-auto border-t border-white/10 bg-[#050505]">
+<button class="w-full bg-transparent border border-white/10 text-primary font-label-mono text-label-mono py-3 hover:bg-white hover:text-black transition-colors duration-0 flex items-center justify-center gap-2 contract-btn relative overflow-hidden group">
+                        INICIAR CONTRATAÇÃO
+                        <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+</button>
+</div>
+</article>
+<!-- Card 3 -->
+<article class="glass-panel flex flex-col group artist-card transition-all duration-300 hover:-translate-y-1 hover:border-emerald-500/40 hover:shadow-[0_0_15px_rgba(16,185,129,0.1)]">
+<div class="p-6 border-b border-white/10 flex items-start gap-4">
+<div class="w-16 h-16 shrink-0 relative">
+<img alt="LIA B" class="w-full h-full object-cover grayscale brightness-110 contrast-125 border border-white/10" data-alt="A compelling, high-contrast black and white portrait of an avant-garde singer-songwriter. The setting is minimal, focusing entirely on the subject's expression. Sharp, architectural lighting creates defined borders of light and shadow on the face. The overall aesthetic feels like a technical dossier photo for a premium, mission-critical platform." src="https://lh3.googleusercontent.com/aida-public/AB6AXuChoqxAaaGDJ3WEVULWqUwj-qof_NGF-pOy3lPLPEibrmKDKEwvAe5y1VGCBh4LPCQH-5gyWL__Q6NGdbeTt7xHjpWrvNrC6lSxc7uCJERVXWKYkpXBoMOpTLZwF8dWEQxNOkg5Iisidce11uUaEfLVoLCAHdWkg2QEVHZk_BwnkeE6aTKeFybLuNotSSzZ6fnI2X7G7MaTghdFjk_ApzRvpjNigwGXdVU1MhPeCYwhCfPgizd9nwLVR0AOBwhxlltosKPC2-lyEI8"/>
+<div class="absolute -bottom-2 -right-2 bg-black border border-white/10 px-1 py-0.5">
+<span class="font-label-mono text-[10px] text-emerald-500 flex items-center gap-1">
+<span class="material-symbols-outlined text-[12px]" style="font-variation-settings: 'FILL' 1;">verified</span>
+</span>
+</div>
+</div>
+<div class="flex flex-col flex-grow">
+<div class="flex justify-between items-start">
+<h3 class="font-headline-md text-headline-md text-primary truncate" title="LIA B">LIA B</h3>
+<span class="font-data-num text-[11px] text-outline-variant border border-white/10 px-1.5 py-0.5 text-flicker">ID: 7731</span>
+</div>
+<p class="font-body-md text-[14px] text-on-surface-variant flex items-center gap-1 mt-1">
+<span class="material-symbols-outlined text-[14px]">location_on</span>
+                            Rio de Janeiro, RJ
+                        </p>
+</div>
+</div>
+<div class="p-6 flex flex-col gap-4 flex-grow bg-black/40">
+<div class="flex justify-between items-end border-b border-white/10 pb-2">
+<span class="font-label-mono text-[11px] text-outline-variant uppercase">Gênero Principal</span>
+<span class="font-label-mono text-[13px] text-primary">Neo-Soul / MPB</span>
+</div>
+<div class="flex flex-col gap-1 border-b border-white/10 pb-2">
+<span class="font-label-mono text-[11px] text-outline-variant uppercase">Rider Técnico Mínimo</span>
+<span class="font-data-num text-[13px] text-on-surface">Piano Digital (88 teclas pesadas), 2x DI Activas, Microfone Condensador</span>
+</div>
+<div class="flex justify-between items-end pb-2">
+<span class="font-label-mono text-[11px] text-outline-variant uppercase">Faixa de Cachê (B2B)</span>
+<span class="font-data-num text-[14px] text-emerald-500 text-flicker">R$ 8.000 - 12.000</span>
+</div>
+</div>
+<div class="p-4 mt-auto border-t border-white/10 bg-[#050505]">
+<button class="w-full bg-transparent border border-white/10 text-primary font-label-mono text-label-mono py-3 hover:bg-white hover:text-black transition-colors duration-0 flex items-center justify-center gap-2 contract-btn relative overflow-hidden group">
+                        INICIAR CONTRATAÇÃO
+                        <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+</button>
+</div>
+</article>
+</div>
+</main>
+<script>
+        // Framer Motion Animation Logic
+        document.addEventListener('DOMContentLoaded', () => {
+            const { animate, stagger } = window.Motion;
+
+            // Animate Top Nav
+            animate('#top-nav', { y: [-20, 0], opacity: [0, 1] }, { duration: 0.4, ease: "easeOut" });
+
+            // Animate Header
+            animate('header > *', 
+                { opacity: [0, 1], y: [20, 0] }, 
+                { delay: stagger(0.1), duration: 0.5, ease: "easeOut" }
+            );
+
+            // Animate Command Bar
+            animate('#command-bar', 
+                { opacity: [0, 1], scale: [0.98, 1] }, 
+                { delay: 0.3, duration: 0.4, type: "spring", stiffness: 300, damping: 25 }
+            );
+
+            // Animate Grid Cards with "Lego Snap" physics
+            const cards = document.querySelectorAll('.artist-card');
+            
+            animate(cards, 
+                { 
+                    opacity: [0, 1], 
+                    y: [40, 0],
+                    scale: [0.95, 1]
+                }, 
+                { 
+                    delay: stagger(0.1, { startDelay: 0.4 }),
+                    type: "spring",
+                    stiffness: 400,
+                    damping: 30,
+                    mass: 1.2
+                }
+            );
+
+            // Simulation Logic
+            const modal = document.getElementById('simulation-modal');
+            const loadingState = document.getElementById('modal-loading');
+            const successState = document.getElementById('modal-success');
+            const contractBtns = document.querySelectorAll('.contract-btn');
+
+            contractBtns.forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    
+                    // Button Spring Animation
+                    animate(btn, 
+                        { scale: [1, 0.95, 1] }, 
+                        { type: "spring", stiffness: 500, damping: 15 }
+                    );
+
+                    // State Change
+                    btn.innerHTML = `PROCESSANDO... <span class="material-symbols-outlined animate-spin text-[16px]">sync</span>`;
+                    btn.classList.add('text-emerald-500', 'border-emerald-500/50', 'bg-emerald-500/10');
+                    btn.classList.remove('hover:bg-white', 'hover:text-black', 'text-primary');
+
+                    // Show Modal
+                    setTimeout(() => {
+                        modal.classList.remove('hidden');
+                        
+                        // Process Simulation
+                        setTimeout(() => {
+                            loadingState.classList.add('hidden');
+                            successState.classList.remove('hidden');
+                            
+                            // Success Pop
+                            animate('#modal-success', 
+                                { scale: [0.8, 1], opacity: [0, 1] }, 
+                                { type: "spring", stiffness: 300, damping: 20 }
+                            );
+
+                            // Redirect
+                            setTimeout(() => {
+                                window.location.href = "{{DATA:SCREEN:SCREEN_13}}";
+                            }, 2000);
+
+                        }, 2000); // 2 second processing time
+
+                    }, 400); // Wait for button spring
+                });
+            });
+        });
+    </script>
+</body></html>

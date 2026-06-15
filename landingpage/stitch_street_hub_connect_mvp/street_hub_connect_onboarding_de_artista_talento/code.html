@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Street Hub Connect - Artist Onboarding</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Narrow:wght@600;700&amp;family=Inter:wght@400&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "background": "#131313",
+                        "error-container": "#93000a",
+                        "inverse-primary": "#5d5f5f",
+                        "surface-container-lowest": "#0e0e0e",
+                        "surface-tint": "#c6c6c7",
+                        "surface": "#131313",
+                        "outline-variant": "#444748",
+                        "on-tertiary-fixed": "#1c1b1b",
+                        "on-tertiary": "#313030",
+                        "tertiary-fixed-dim": "#c9c6c5",
+                        "primary": "#ffffff",
+                        "error": "#ffb4ab",
+                        "secondary-fixed": "#6ffbbe",
+                        "surface-dim": "#131313",
+                        "outline": "#8e9192",
+                        "on-surface": "#e5e2e1",
+                        "surface-container-high": "#2a2a2a",
+                        "secondary-container": "#00a572",
+                        "on-primary": "#2f3131",
+                        "surface-variant": "#353535",
+                        "on-primary-container": "#636565",
+                        "primary-fixed": "#e2e2e2",
+                        "on-secondary-fixed": "#002113",
+                        "on-background": "#e5e2e1",
+                        "inverse-on-surface": "#313030",
+                        "surface-bright": "#393939",
+                        "on-tertiary-container": "#656464",
+                        "on-secondary-fixed-variant": "#005236",
+                        "inverse-surface": "#e5e2e1",
+                        "on-error-container": "#ffdad6",
+                        "secondary-fixed-dim": "#4edea3",
+                        "tertiary": "#ffffff",
+                        "primary-fixed-dim": "#c6c6c7",
+                        "on-secondary-container": "#00311f",
+                        "on-secondary": "#003824",
+                        "tertiary-container": "#e5e2e1",
+                        "on-surface-variant": "#c4c7c8",
+                        "surface-container-low": "#1c1b1b",
+                        "on-primary-fixed-variant": "#454747",
+                        "on-error": "#690005",
+                        "primary-container": "#e2e2e2",
+                        "secondary": "#4edea3",
+                        "on-primary-fixed": "#1a1c1c",
+                        "surface-container": "#20201f",
+                        "on-tertiary-fixed-variant": "#474646",
+                        "surface-container-highest": "#353535",
+                        "tertiary-fixed": "#e5e2e1"
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    spacing: {
+                        "unit": "4px",
+                        "margin-desktop": "32px",
+                        "container-max": "1440px",
+                        "margin-mobile": "16px",
+                        "gutter": "16px"
+                    },
+                    fontFamily: {
+                        "body-lg": ["Inter"],
+                        "label-mono": ["JetBrains Mono"],
+                        "headline-md": ["Archivo Narrow"],
+                        "headline-lg-mobile": ["Archivo Narrow"],
+                        "headline-lg": ["Archivo Narrow"],
+                        "data-num": ["JetBrains Mono"],
+                        "headline-xl": ["Archivo Narrow"],
+                        "body-md": ["Inter"]
+                    },
+                    fontSize: {
+                        "body-lg": ["18px", { "lineHeight": "1.6", "letterSpacing": "-0.01em", "fontWeight": "400" }],
+                        "label-mono": ["13px", { "lineHeight": "1", "letterSpacing": "0.02em", "fontWeight": "500" }],
+                        "headline-md": ["24px", { "lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "600" }],
+                        "headline-lg-mobile": ["28px", { "lineHeight": "1.1", "letterSpacing": "-0.03em", "fontWeight": "700" }],
+                        "headline-lg": ["32px", { "lineHeight": "1.1", "letterSpacing": "-0.03em", "fontWeight": "700" }],
+                        "data-num": ["14px", { "lineHeight": "1", "letterSpacing": "0", "fontWeight": "400" }],
+                        "headline-xl": ["48px", { "lineHeight": "1.1", "letterSpacing": "-0.04em", "fontWeight": "700" }],
+                        "body-md": ["15px", { "lineHeight": "1.5", "letterSpacing": "0", "fontWeight": "400" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body {
+            background-color: #000000;
+            color: #ffffff;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+        }
+        
+        .step-panel {
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.3s ease;
+            position: absolute;
+            width: 100%;
+            top: 0;
+            left: 0;
+        }
+        
+        .step-hidden-right {
+            transform: translateX(100%);
+            opacity: 0;
+            pointer-events: none;
+        }
+        
+        .step-hidden-left {
+            transform: translateX(-100%);
+            opacity: 0;
+            pointer-events: none;
+        }
+        
+        .step-active {
+            transform: translateX(0);
+            opacity: 1;
+            pointer-events: auto;
+            position: relative;
+        }
+
+        .brutal-input {
+            background-color: #000000;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: #ffffff;
+            transition: border-color 0.1s;
+        }
+        
+        .brutal-input:focus {
+            outline: none;
+            border-color: #10B981;
+            box-shadow: 0 0 0 1px #10B981;
+        }
+        
+        /* Fixed Grid Blueprint lines */
+        .blueprint-grid {
+            background-image: 
+                linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+            background-size: 32px 32px;
+            pointer-events: none;
+        }
+
+        /* Loading Spinner */
+        .spinner {
+            border: 3px solid rgba(255,255,255,0.3);
+            border-radius: 50%;
+            border-top: 3px solid #10B981;
+            width: 24px;
+            height: 24px;
+            animation: spin 1s linear infinite;
+            display: none;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .btn-loading .spinner { display: block; }
+        .btn-loading .btn-text { display: none; }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col items-center justify-center relative bg-black font-body-lg text-body-lg text-on-background p-margin-mobile md:p-margin-desktop">
+<!-- Blueprint Background Grid -->
+<div class="fixed inset-0 blueprint-grid z-0"></div>
+<!-- Hackathon Badge -->
+<div class="fixed top-margin-mobile right-margin-mobile md:top-margin-desktop md:right-margin-desktop z-50">
+<div class="bg-black border border-white/10 px-3 py-1 font-label-mono text-label-mono text-primary flex items-center gap-2 uppercase tracking-wider">
+<span class="w-2 h-2 rounded-full bg-[#10B981] animate-pulse"></span>
+            HACKATHON MUSICTECH BRASIL
+        </div>
+</div>
+<!-- TopNavBar Semantic Shell Placeholder -->
+<header class="fixed top-0 left-0 w-full z-40 bg-background/80 dark:bg-background/80 backdrop-blur-xl border-b border-outline-variant/10 hidden md:flex justify-between items-center px-margin-desktop h-16 pointer-events-none opacity-50">
+<div class="font-headline-md text-headline-md font-bold tracking-tighter text-primary dark:text-primary">Street Hub Connect</div>
+<nav class="flex gap-8 pointer-events-auto">
+<!-- Navigation hidden per instructions for linear flow, but header anchor present -->
+</nav>
+</header>
+<!-- Main Content Canvas -->
+<main class="w-full max-w-2xl z-10 relative mt-16 md:mt-0">
+<!-- Header -->
+<div class="mb-12 border-b border-white/10 pb-6">
+<h1 class="font-headline-xl text-headline-xl text-primary uppercase tracking-tighter mb-2">Artist Onboarding</h1>
+<p class="font-body-md text-body-md text-outline">INITIALIZE SYSTEM CONFIGURATION FOR NEW ARTIST PROFILE.</p>
+</div>
+<!-- Progress Indicators -->
+<div class="flex gap-2 mb-8" id="progress-dots">
+<div class="h-2 flex-1 bg-white border border-white/10 transition-colors duration-300" data-step-indicator="1"></div>
+<div class="h-2 flex-1 bg-surface-container-highest border border-white/10 transition-colors duration-300" data-step-indicator="2"></div>
+<div class="h-2 flex-1 bg-surface-container-highest border border-white/10 transition-colors duration-300" data-step-indicator="3"></div>
+</div>
+<!-- Form Container -->
+<div class="relative w-full bg-[#0A0A0A] border border-white/10 p-6 md:p-8 overflow-hidden" id="form-container">
+<!-- Step 1: Perfil -->
+<div class="step-panel step-active flex flex-col gap-6" id="step-1">
+<div class="border-b border-white/10 pb-4 mb-2">
+<h2 class="font-headline-md text-headline-md text-primary uppercase">01 // Perfil</h2>
+</div>
+<div class="flex flex-col gap-2">
+<label class="font-label-mono text-label-mono text-outline uppercase">Artist Name</label>
+<input class="brutal-input w-full p-4 font-body-lg text-body-lg" id="artist-name" placeholder="ENTER STAGE NAME" type="text"/>
+</div>
+<div class="flex flex-col gap-2">
+<label class="font-label-mono text-label-mono text-outline uppercase">Musical Genre</label>
+<select class="brutal-input w-full p-4 font-body-lg text-body-lg appearance-none cursor-pointer" id="genre">
+<option disabled="" selected="" value="">SELECT GENRE</option>
+<option value="hiphop">Hip Hop / Rap</option>
+<option value="trap">Trap</option>
+<option value="funk">Funk</option>
+<option value="electronic">Electronic</option>
+<option value="other">Other</option>
+</select>
+</div>
+<div class="flex flex-col gap-2">
+<label class="font-label-mono text-label-mono text-outline uppercase">City/State</label>
+<input class="brutal-input w-full p-4 font-body-lg text-body-lg uppercase" id="location" placeholder="SÃO PAULO / SP" type="text"/>
+</div>
+<div class="mt-4 flex justify-end">
+<button class="bg-primary text-background font-label-mono text-label-mono py-4 px-8 uppercase hover:bg-white/90 transition-none border-none outline-none cursor-pointer" onclick="nextStep(1)">
+                        NEXT SEQUENCE <span class="material-symbols-outlined align-middle ml-2 text-[18px]">arrow_forward</span>
+</button>
+</div>
+</div>
+<!-- Step 2: Business -->
+<div class="step-panel step-hidden-right flex flex-col gap-6" id="step-2">
+<div class="border-b border-white/10 pb-4 mb-2">
+<h2 class="font-headline-md text-headline-md text-primary uppercase">02 // Business</h2>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<div class="flex flex-col gap-2">
+<label class="font-label-mono text-label-mono text-outline uppercase">Minimum Fee (BRL)</label>
+<div class="relative">
+<span class="absolute left-4 top-4 font-data-num text-data-num text-outline">R$</span>
+<input class="brutal-input w-full p-4 pl-12 font-data-num text-data-num" id="min-fee" placeholder="0.00" type="number"/>
+</div>
+</div>
+<div class="flex flex-col gap-2">
+<label class="font-label-mono text-label-mono text-outline uppercase">Ideal Fee (BRL)</label>
+<div class="relative">
+<span class="absolute left-4 top-4 font-data-num text-data-num text-outline">R$</span>
+<input class="brutal-input w-full p-4 pl-12 font-data-num text-data-num" id="ideal-fee" placeholder="0.00" type="number"/>
+</div>
+</div>
+</div>
+<div class="flex flex-col gap-2">
+<label class="font-label-mono text-label-mono text-outline uppercase">Technical Requirements</label>
+<textarea class="brutal-input w-full p-4 font-body-md text-body-md min-h-[120px] resize-y" id="tech-reqs" placeholder="LIST RIDER REQUIREMENTS, BACKLINE, ETC."></textarea>
+</div>
+<div class="mt-4 flex justify-between">
+<button class="bg-transparent border border-white/10 text-primary font-label-mono text-label-mono py-4 px-8 uppercase hover:bg-surface-container-high transition-none cursor-pointer" onclick="prevStep(2)">
+<span class="material-symbols-outlined align-middle mr-2 text-[18px]">arrow_back</span> BACK
+                    </button>
+<button class="bg-primary text-background font-label-mono text-label-mono py-4 px-8 uppercase hover:bg-white/90 transition-none border-none outline-none cursor-pointer" onclick="nextStep(2)">
+                        NEXT SEQUENCE <span class="material-symbols-outlined align-middle ml-2 text-[18px]">arrow_forward</span>
+</button>
+</div>
+</div>
+<!-- Step 3: Mídia -->
+<div class="step-panel step-hidden-right flex flex-col gap-6" id="step-3">
+<div class="border-b border-white/10 pb-4 mb-2">
+<h2 class="font-headline-md text-headline-md text-primary uppercase">03 // Mídia</h2>
+</div>
+<div class="flex flex-col gap-2">
+<label class="font-label-mono text-label-mono text-outline uppercase">Spotify / YouTube URL</label>
+<div class="relative flex items-center">
+<span class="material-symbols-outlined absolute left-4 text-outline">play_circle</span>
+<input class="brutal-input w-full p-4 pl-12 font-body-md text-body-md" id="music-url" placeholder="HTTPS://" type="url"/>
+</div>
+</div>
+<div class="flex flex-col gap-2">
+<label class="font-label-mono text-label-mono text-outline uppercase">Instagram URL</label>
+<div class="relative flex items-center">
+<span class="material-symbols-outlined absolute left-4 text-outline">link</span>
+<input class="brutal-input w-full p-4 pl-12 font-body-md text-body-md" id="social-url" placeholder="HTTPS://INSTAGRAM.COM/" type="url"/>
+</div>
+</div>
+<div class="mt-8 flex justify-between items-center">
+<button class="bg-transparent border border-white/10 text-primary font-label-mono text-label-mono py-4 px-8 uppercase hover:bg-surface-container-high transition-none cursor-pointer" onclick="prevStep(3)">
+<span class="material-symbols-outlined align-middle mr-2 text-[18px]">arrow_back</span> BACK
+                    </button>
+<button class="bg-primary text-background font-headline-md text-headline-md py-4 px-12 uppercase hover:bg-white/90 transition-none border-none outline-none cursor-pointer flex justify-center items-center h-16 w-48" id="submit-btn" onclick="submitForm()">
+<span class="btn-text">CADASTRAR</span>
+<div class="spinner"></div>
+</button>
+</div>
+</div>
+<!-- Success State -->
+<div class="step-panel step-hidden-right flex flex-col items-center justify-center text-center gap-6 py-12" id="step-success">
+<span class="material-symbols-outlined text-[64px] text-[#10B981] mb-4">check_circle</span>
+<h2 class="font-headline-lg text-headline-lg text-primary uppercase tracking-tighter">DADOS PROCESSADOS</h2>
+<p class="font-label-mono text-label-mono text-[#10B981] animate-pulse">REDIRECIONANDO PARA O MATCHBOARD...</p>
+</div>
+</div>
+</main>
+<script>
+        function updateIndicators(step) {
+            const dots = document.querySelectorAll('[data-step-indicator]');
+            dots.forEach((dot, index) => {
+                if (index < step) {
+                    dot.classList.remove('bg-surface-container-highest');
+                    dot.classList.add('bg-white');
+                } else {
+                    dot.classList.remove('bg-white');
+                    dot.classList.add('bg-surface-container-highest');
+                }
+            });
+        }
+
+        function nextStep(currentStep) {
+            const currentPanel = document.getElementById(`step-${currentStep}`);
+            const nextPanel = document.getElementById(`step-${currentStep + 1}`);
+            
+            if (currentPanel && nextPanel) {
+                currentPanel.classList.remove('step-active');
+                currentPanel.classList.add('step-hidden-left');
+                
+                nextPanel.classList.remove('step-hidden-right');
+                nextPanel.classList.add('step-active');
+                
+                updateIndicators(currentStep + 1);
+            }
+        }
+
+        function prevStep(currentStep) {
+            const currentPanel = document.getElementById(`step-${currentStep}`);
+            const prevPanel = document.getElementById(`step-${currentStep - 1}`);
+            
+            if (currentPanel && prevPanel) {
+                currentPanel.classList.remove('step-active');
+                currentPanel.classList.add('step-hidden-right');
+                
+                prevPanel.classList.remove('step-hidden-left');
+                prevPanel.classList.add('step-active');
+                
+                updateIndicators(currentStep - 1);
+            }
+        }
+
+        function submitForm() {
+            const btn = document.getElementById('submit-btn');
+            btn.classList.add('btn-loading');
+            
+            // Simulate network request
+            setTimeout(() => {
+                const currentPanel = document.getElementById('step-3');
+                const successPanel = document.getElementById('step-success');
+                const progressDots = document.getElementById('progress-dots');
+                
+                currentPanel.classList.remove('step-active');
+                currentPanel.classList.add('step-hidden-left');
+                
+                successPanel.classList.remove('step-hidden-right');
+                successPanel.classList.add('step-active');
+                
+                if(progressDots) progressDots.style.opacity = '0';
+            }, 1500);
+        }
+    </script>
+</body></html>

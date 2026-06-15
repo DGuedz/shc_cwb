@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Artist Dossier Profile - Street Hub Connect</title>
+<!-- Google Fonts & Material Symbols -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Narrow:wght@600;700&amp;family=Inter:wght@400;500&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Tailwind Configuration -->
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "tertiary-fixed-dim": "#c9c6c5",
+                    "on-primary-container": "#636565",
+                    "tertiary-container": "#e5e2e1",
+                    "on-secondary-container": "#00311f",
+                    "surface-container-low": "#1c1b1b",
+                    "on-tertiary-fixed": "#1c1b1b",
+                    "secondary-fixed-dim": "#4edea3",
+                    "on-secondary": "#003824",
+                    "secondary-fixed": "#6ffbbe",
+                    "outline": "#8e9192",
+                    "inverse-on-surface": "#313030",
+                    "surface-bright": "#393939",
+                    "on-tertiary": "#313030",
+                    "on-secondary-fixed-variant": "#005236",
+                    "on-primary": "#2f3131",
+                    "inverse-primary": "#5d5f5f",
+                    "surface-dim": "#131313",
+                    "primary-fixed": "#e2e2e2",
+                    "surface-variant": "#353535",
+                    "on-secondary-fixed": "#002113",
+                    "on-tertiary-fixed-variant": "#474646",
+                    "error-container": "#93000a",
+                    "primary": "#ffffff",
+                    "on-surface-variant": "#c4c7c8",
+                    "on-tertiary-container": "#656464",
+                    "tertiary-fixed": "#e5e2e1",
+                    "secondary": "#4edea3",
+                    "on-error": "#690005",
+                    "on-background": "#e5e2e1",
+                    "on-primary-fixed-variant": "#454747",
+                    "inverse-surface": "#e5e2e1",
+                    "error": "#ffb4ab",
+                    "surface-tint": "#c6c6c7",
+                    "surface": "#131313",
+                    "surface-container-highest": "#353535",
+                    "primary-fixed-dim": "#c6c6c7",
+                    "outline-variant": "#444748",
+                    "on-surface": "#e5e2e1",
+                    "background": "#131313",
+                    "tertiary": "#ffffff",
+                    "surface-container-high": "#2a2a2a",
+                    "secondary-container": "#00a572",
+                    "on-primary-fixed": "#1a1c1c",
+                    "on-error-container": "#ffdad6",
+                    "surface-container-lowest": "#0e0e0e",
+                    "surface-container": "#20201f",
+                    "primary-container": "#e2e2e2"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "margin-desktop": "32px",
+                    "margin-mobile": "16px",
+                    "unit": "4px",
+                    "gutter": "16px",
+                    "container-max": "1440px"
+            },
+            "fontFamily": {
+                    "label-mono": [
+                            "JetBrains Mono"
+                    ],
+                    "body-lg": [
+                            "Inter"
+                    ],
+                    "body-md": [
+                            "Inter"
+                    ],
+                    "headline-lg-mobile": [
+                            "Archivo Narrow"
+                    ],
+                    "data-num": [
+                            "JetBrains Mono"
+                    ],
+                    "headline-xl": [
+                            "Archivo Narrow"
+                    ],
+                    "headline-md": [
+                            "Archivo Narrow"
+                    ],
+                    "headline-lg": [
+                            "Archivo Narrow"
+                    ]
+            },
+            "fontSize": {
+                    "label-mono": [
+                            "13px",
+                            {
+                                    "lineHeight": "1",
+                                    "letterSpacing": "0.02em",
+                                    "fontWeight": "500"
+                            }
+                    ],
+                    "body-lg": [
+                            "18px",
+                            {
+                                    "lineHeight": "1.6",
+                                    "letterSpacing": "-0.01em",
+                                    "fontWeight": "400"
+                            }
+                    ],
+                    "body-md": [
+                            "15px",
+                            {
+                                    "lineHeight": "1.5",
+                                    "letterSpacing": "0",
+                                    "fontWeight": "400"
+                            }
+                    ],
+                    "headline-lg-mobile": [
+                            "28px",
+                            {
+                                    "lineHeight": "1.1",
+                                    "letterSpacing": "-0.03em",
+                                    "fontWeight": "700"
+                            }
+                    ],
+                    "data-num": [
+                            "14px",
+                            {
+                                    "lineHeight": "1",
+                                    "letterSpacing": "0",
+                                    "fontWeight": "400"
+                            }
+                    ],
+                    "headline-xl": [
+                            "48px",
+                            {
+                                    "lineHeight": "1.1",
+                                    "letterSpacing": "-0.04em",
+                                    "fontWeight": "700"
+                            }
+                    ],
+                    "headline-md": [
+                            "24px",
+                            {
+                                    "lineHeight": "1.2",
+                                    "letterSpacing": "-0.02em",
+                                    "fontWeight": "600"
+                            }
+                    ],
+                    "headline-lg": [
+                            "32px",
+                            {
+                                    "lineHeight": "1.1",
+                                    "letterSpacing": "-0.03em",
+                                    "fontWeight": "700"
+                            }
+                    ]
+            }
+          }
+        }
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        /* Custom scrollbar for brutalist feel */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #000000;
+            border-left: 1px solid #444748;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #353535;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #ffffff;
+        }
+    </style>
+</head>
+<body class="bg-background text-primary antialiased min-h-screen pt-16">
+<!-- TopNavBar JSON Component -->
+<nav class="fixed top-0 w-full z-50 border-b border-outline-variant bg-background/80 backdrop-blur-md flex justify-between items-center h-16 px-margin-desktop">
+<div class="font-headline-md text-headline-md font-bold text-primary uppercase tracking-tighter">CONTRACT_OS</div>
+<div class="hidden md:flex items-center gap-8">
+<a class="text-primary border-b-2 border-primary pb-1 font-label-mono text-label-mono uppercase hover:text-primary transition-colors duration-0 opacity-80" href="#">Artists</a>
+<a class="text-on-surface-variant font-label-mono text-label-mono uppercase hover:text-primary transition-colors duration-0" href="#">Opportunities</a>
+<a class="text-on-surface-variant font-label-mono text-label-mono uppercase hover:text-primary transition-colors duration-0" href="#">Connections</a>
+<a class="text-on-surface-variant font-label-mono text-label-mono uppercase hover:text-primary transition-colors duration-0" href="#">Contracts</a>
+</div>
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-primary cursor-pointer hover:text-secondary" data-icon="search">search</span>
+<button class="bg-primary text-on-primary font-label-mono text-label-mono uppercase px-4 py-2 hover:bg-secondary hover:text-on-secondary transition-none">LOGIN</button>
+</div>
+</nav>
+<!-- Main Content Canvas -->
+<main class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop py-8 grid grid-cols-4 md:grid-cols-12 gap-gutter">
+<!-- Header Dossier (Full Width) -->
+<section class="col-span-4 md:col-span-12 border border-outline-variant bg-surface-container-lowest p-unit mb-8 relative">
+<div class="absolute top-4 left-4 z-10 bg-black/80 border border-secondary px-3 py-1 flex items-center gap-2 backdrop-blur-sm">
+<div class="w-2 h-2 bg-secondary rounded-none animate-pulse"></div>
+<span class="font-label-mono text-label-mono text-secondary uppercase">STATUS: VERIFIED OUTSIDER</span>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-unit">
+<!-- Hero Image -->
+<div class="col-span-1 border border-outline-variant aspect-square overflow-hidden relative grayscale contrast-125">
+<div class="absolute inset-0 bg-cover bg-center" data-alt="A highly detailed, stark black and white portrait of an underground hip-hop artist staring intently at the camera. The lighting is harsh and high-contrast, characteristic of an institutional brutalist aesthetic. The background is a solid, featureless dark grey, emphasizing the raw texture of the artist's face and clothing. The overall mood is serious, uncompromising, and mission-critical." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCyXESxK2RfAwwjdA0PVcIvronlovYGQa51YBktidyg_CDDkX0Y1tr74FfO1CNp7dElm2JRo_ZhZg7KZK9THjcnwGlJDsHznB8bc7Yg89bUIZIAYlAMsyZ9QbQb5hTTGUoqzthFOSKcdCmQtNvGoPIZt-aDq48r3cJixpQzCwz7rTil9aIK44lFwI-Zn_bvxVZOoWk0Sz651MW_3VYqyMQvUQEivCIsVTnR5CpyzcB8Cpn_LkbnTPXCKVX6MYNCP0HsPpXwv1_VCpA')">
+</div>
+<!-- Technical Overlay -->
+<div class="absolute bottom-2 right-2 text-right">
+<div class="font-data-num text-data-num text-primary opacity-50">ID: SHC-8849-KB</div>
+<div class="font-data-num text-[10px] text-primary opacity-50">LAT: -23.5505 / LON: -46.6333</div>
+</div>
+</div>
+<!-- Artist Metadata -->
+<div class="col-span-1 md:col-span-2 flex flex-col justify-between p-4 bg-[#0A0A0A] border border-outline-variant">
+<div>
+<h1 class="font-headline-xl text-headline-xl text-primary tracking-tighter uppercase mb-4">KILLA BEATS</h1>
+<div class="grid grid-cols-2 gap-4 border-t border-outline-variant pt-4">
+<div>
+<span class="font-label-mono text-label-mono text-on-surface-variant block mb-1">PRIMARY DISCIPLINE</span>
+<span class="font-data-num text-data-num text-primary">DJ / PRODUCER</span>
+</div>
+<div>
+<span class="font-label-mono text-label-mono text-on-surface-variant block mb-1">BASE LOCATION</span>
+<span class="font-data-num text-data-num text-primary">SÃO PAULO, BR</span>
+</div>
+<div>
+<span class="font-label-mono text-label-mono text-on-surface-variant block mb-1">CONTRACT RATE (MIN)</span>
+<span class="font-data-num text-data-num text-primary">$2,500 USD</span>
+</div>
+<div>
+<span class="font-label-mono text-label-mono text-on-surface-variant block mb-1">SYSTEM CLEARANCE</span>
+<span class="font-data-num text-data-num text-secondary">LEVEL 4 - APPROVED</span>
+</div>
+</div>
+</div>
+<div class="mt-8 border-t border-outline-variant pt-4">
+<span class="font-label-mono text-label-mono text-on-surface-variant block mb-2">BIOMETRIC / BIO</span>
+<p class="font-body-md text-body-md text-on-surface text-opacity-80 leading-relaxed max-w-3xl">
+                            Specializing in deep bass permutations and heavy industrial rhythms. Active in the underground circuit since 2018. Known for high-impact live sets requiring robust sub-frequency reinforcement. All technical riders are non-negotiable for optimum performance delivery.
+                        </p>
+</div>
+</div>
+</div>
+</section>
+<!-- Left Column: Evidence Grid -->
+<section class="col-span-4 md:col-span-8 flex flex-col gap-unit">
+<!-- Latest Shows -->
+<div class="bg-surface-container-low border border-outline-variant p-4">
+<div class="flex items-center gap-2 mb-4 border-b border-outline-variant pb-2">
+<span class="material-symbols-outlined text-primary" data-icon="stadium">stadium</span>
+<h2 class="font-headline-md text-headline-md text-primary uppercase">AUDIT: LATEST SHOWS</h2>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-unit">
+<div class="border border-outline-variant bg-[#0A0A0A] p-2 flex gap-4 items-center group cursor-pointer hover:bg-surface-bright transition-none">
+<div class="w-16 h-16 bg-surface-dim grayscale bg-cover bg-center" data-alt="A gritty, black and white photograph of a crowded, dark underground club venue. The scene is illuminated by harsh, strobing lights cutting through heavy fog, capturing the intense energy of a live electronic music performance. The architectural elements appear industrial and raw." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBWShvuTq0mCsNvk0Ik9PhXV1mP89W1bjy1xzMc3M0tTy3F_NebItfOCBNWDuClxK90fhbjQ_Up3oe3YWJ-5b6nCkw9sTA6fn6_xrO65tiDrYqV1kyyM-SR3aNVY77S73xgnnHsOtyn2HPl8z2nlRA5oQTyEDbuEZZZdu92gsWPO02pBP22_ZPxvAS96FAGFVPvmgSzopE8U_ZFs3BtScaUqeF1K8xwsmralgk8fq0JOPolRuZyHvgVmirySktPPXiprT0oAcPU_jM')"></div>
+<div>
+<div class="font-data-num text-data-num text-primary uppercase">BASEMENT SESSIONS</div>
+<div class="font-label-mono text-[10px] text-on-surface-variant">2024.10.15 // BERLIN</div>
+<div class="font-label-mono text-[10px] text-secondary mt-1">CAPACITY MET</div>
+</div>
+</div>
+<div class="border border-outline-variant bg-[#0A0A0A] p-2 flex gap-4 items-center group cursor-pointer hover:bg-surface-bright transition-none">
+<div class="w-16 h-16 bg-surface-dim grayscale bg-cover bg-center" data-alt="A high-contrast black and white image of a massive outdoor music festival stage at night. Brutalist speaker arrays dominate the foreground, with distant, blinding stage lights piercing the darkness. The atmosphere feels monumental and heavily engineered." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCl2MHrG3b58kaxRI10lrjfYbSM4RxGTn6DwCXA4SFbXC3fw41bxEuacX2nLzXSwSYt3pbBWFAMetzRVX69VoF-H3ENHDz5xBgcoGgDmM9MrY-VVSK67SB2bfaDIcMGMzRHOyTCeFp2vRYM5x9vWievbfxu47i8FWI-VIpoMFsnFUvdAT-XWCEWhEZecueX_GwIfxoUt1Slc3wDV99MWwQmyp_WIL-r6PbOoMMB9fCcJfnNvu9boRJ9e2Wznu91Iwu1nEc6RZqbRuA')"></div>
+<div>
+<div class="font-data-num text-data-num text-primary uppercase">VOID FESTIVAL</div>
+<div class="font-label-mono text-[10px] text-on-surface-variant">2024.08.02 // LONDON</div>
+<div class="font-label-mono text-[10px] text-secondary mt-1">CAPACITY MET</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Official Clips -->
+<div class="bg-surface-container-low border border-outline-variant p-4">
+<div class="flex items-center gap-2 mb-4 border-b border-outline-variant pb-2">
+<span class="material-symbols-outlined text-primary" data-icon="videocam">videocam</span>
+<h2 class="font-headline-md text-headline-md text-primary uppercase">EVIDENCE: MEDIA</h2>
+</div>
+<div class="grid grid-cols-2 gap-unit">
+<div class="relative border border-outline-variant aspect-video bg-black group cursor-pointer">
+<div class="absolute inset-0 bg-cover bg-center opacity-60 grayscale group-hover:opacity-100 transition-opacity" data-alt="A stark black and white still from a music video showing a DJ leaning intently over a mixing console in a stark, dimly lit room. The equipment is highly detailed, reflecting the precision of institutional brutalism. The lighting focuses solely on the hands and the machine." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBTLa1XyGu4FxNrzv64EUduElbhA1W7I43Kh-zVGAmOyLr5OZqm1F6xhZ1MYa5SpcncLFs6FVDItj0rGtLdravnYRFSZRq3LS04JM0aHIsKMeURWqxqkPL3FytzDoz7P_EPiDQsJvuYYytqUuhUnrmknQixPNzsIwWs5N4p4W0BaEwYdG7Lih_ZscNWJWchO9CgBurjiZxu4v0ej-9kodwUDZLwDQyPPkJt_kv242bLquTSn4FRVtrJ5JmPDNMyFOVj4ROtTLANjdI')"></div>
+<div class="absolute inset-0 flex items-center justify-center">
+<span class="material-symbols-outlined text-white text-4xl" data-icon="play_circle" data-weight="fill">play_circle</span>
+</div>
+<div class="absolute bottom-0 left-0 w-full bg-black/80 border-t border-outline-variant p-1">
+<span class="font-label-mono text-[10px] text-primary">FILE: BOILER_ROOM_REC_01</span>
+</div>
+</div>
+<div class="relative border border-outline-variant aspect-video bg-black group cursor-pointer">
+<div class="absolute inset-0 bg-cover bg-center opacity-60 grayscale group-hover:opacity-100 transition-opacity" data-alt="A gritty monochrome shot of a massive crowd from behind the DJ booth. Silhouettes of hands are raised in the air against flashing strobe lights. The image conveys raw energy and is framed within a rigid, technical grid-like composition." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuD5QOrY685GN1oLDO8ML5evucmPCPf_H4-ro0rqYIasBVHyoRSDqWIZZVX0A61H4ZyY_YNahZY5n4gGI5V3iQ-ZcZSmYjvqYjzwTYGfB_JiC2IJrcSbdqstg6Nnren8wKqdlh9DvRIaKo61sWAbhRtgfsoplAC2KO5jdHsf2JC88GIRtN_paDEAfenyOdwGTVgF85CHmT7tNM0Sg8Dx_Z64O5oZ5iBbx2ZVeXnEmn4qG1m583H71Jt7sozTM_vyRpwNLFTVQ7r8r7Q')"></div>
+<div class="absolute inset-0 flex items-center justify-center">
+<span class="material-symbols-outlined text-white text-4xl" data-icon="play_circle" data-weight="fill">play_circle</span>
+</div>
+<div class="absolute bottom-0 left-0 w-full bg-black/80 border-t border-outline-variant p-1">
+<span class="font-label-mono text-[10px] text-primary">FILE: STUDIO_SESSION_RAW</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Verified Links -->
+<div class="bg-surface-container-low border border-outline-variant p-4">
+<div class="flex items-center gap-2 mb-4 border-b border-outline-variant pb-2">
+<span class="material-symbols-outlined text-primary" data-icon="link">link</span>
+<h2 class="font-headline-md text-headline-md text-primary uppercase">VERIFIED NETWORKS</h2>
+</div>
+<div class="flex flex-wrap gap-4">
+<div class="flex items-center gap-2 border border-outline-variant bg-[#0A0A0A] px-3 py-2">
+<span class="font-label-mono text-label-mono text-primary">SPOTIFY</span>
+<span class="material-symbols-outlined text-secondary text-sm" data-icon="check_circle">check_circle</span>
+</div>
+<div class="flex items-center gap-2 border border-outline-variant bg-[#0A0A0A] px-3 py-2">
+<span class="font-label-mono text-label-mono text-primary">INSTAGRAM</span>
+<span class="material-symbols-outlined text-secondary text-sm" data-icon="check_circle">check_circle</span>
+</div>
+<div class="flex items-center gap-2 border border-outline-variant bg-[#0A0A0A] px-3 py-2">
+<span class="font-label-mono text-label-mono text-primary">SOUNDCLOUD</span>
+<span class="material-symbols-outlined text-secondary text-sm" data-icon="check_circle">check_circle</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Right Column: Contract Specs & Actions -->
+<section class="col-span-4 md:col-span-4 flex flex-col gap-unit">
+<div class="bg-[#0A0A0A] border border-outline-variant flex-1 flex flex-col">
+<div class="p-4 border-b border-outline-variant bg-surface-container-low flex justify-between items-center">
+<h2 class="font-headline-md text-headline-md text-primary uppercase flex items-center gap-2">
+<span class="material-symbols-outlined text-primary" data-icon="gavel">gavel</span>
+                        CONTRACT SPECS
+                    </h2>
+<span class="font-label-mono text-[10px] border border-secondary text-secondary px-1 py-0.5">LOCKED</span>
+</div>
+<div class="p-4 flex flex-col gap-6 flex-1 overflow-y-auto">
+<!-- Tech Rider -->
+<div>
+<div class="font-label-mono text-label-mono text-on-surface-variant mb-2 border-b border-outline-variant pb-1 flex justify-between">
+<span>TECHNICAL RIDER</span>
+<span>MANDATORY</span>
+</div>
+<ul class="font-data-num text-data-num text-primary space-y-1">
+<li class="flex items-start gap-2">
+<span class="text-secondary">-</span> 2x Pioneer CDJ-3000 (Firmware v2.0+)
+                            </li>
+<li class="flex items-start gap-2">
+<span class="text-secondary">-</span> 1x Allen &amp; Heath Xone:96 Mixer
+                            </li>
+<li class="flex items-start gap-2">
+<span class="text-secondary">-</span> 2x L-Acoustics X15 HiQ Monitors
+                            </li>
+<li class="flex items-start gap-2">
+<span class="text-secondary">-</span> Isolated power circuit (220V)
+                            </li>
+</ul>
+</div>
+<!-- Stage Map -->
+<div>
+<div class="font-label-mono text-label-mono text-on-surface-variant mb-2 border-b border-outline-variant pb-1">STAGE MAP</div>
+<button class="w-full border border-outline-variant bg-surface-dim hover:bg-surface-bright text-primary font-label-mono text-label-mono py-2 px-3 flex justify-between items-center transition-none">
+<span>KB_STAGE_PLOT_2024.PDF</span>
+<span class="material-symbols-outlined" data-icon="download">download</span>
+</button>
+</div>
+<!-- Logistics -->
+<div>
+<div class="font-label-mono text-label-mono text-on-surface-variant mb-2 border-b border-outline-variant pb-1">LOGISTICS &amp; HOSPITALITY</div>
+<ul class="font-data-num text-data-num text-primary space-y-1 opacity-80">
+<li>&gt; Ground transport (SUV) required.</li>
+<li>&gt; 1x Double room, minimum 4 stars.</li>
+<li>&gt; Backstage: Still water, 2x Black towels.</li>
+</ul>
+</div>
+</div>
+<!-- Tripartite Action Panel -->
+<div class="p-4 border-t border-outline-variant bg-surface-container-low mt-auto relative">
+<div class="hidden absolute inset-0 bg-[#0A0A0A]/90 backdrop-blur-sm z-10 flex flex-col items-center justify-center border border-outline-variant" id="loading-overlay">
+<span class="material-symbols-outlined text-secondary text-4xl animate-spin" data-icon="sync">sync</span>
+<span class="font-label-mono text-label-mono text-secondary mt-2">PROCESSING CONTRACT DATA...</span>
+</div>
+<button class="w-full bg-secondary text-on-secondary font-label-mono text-label-mono uppercase p-4 flex justify-center items-center gap-2 hover:bg-white hover:text-black transition-none border border-transparent" id="gerar-btn">
+<span class="material-symbols-outlined" data-icon="description">description</span>
+                        GERAR ACORDO TRIPARTITE
+                    </button>
+<p class="font-label-mono text-[10px] text-on-surface-variant leading-tight mt-3 text-justify">
+                        Ao avançar, os dados deste portfólio e as exigências técnicas formarão a base do contrato com chancela do Street Hub Connect, garantindo segurança jurídica para o contratante e para o artista. Operação imutável na rede.
+                    </p>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer JSON Component -->
+<footer class="w-full bottom-0 border-t border-outline-variant flex flex-col md:flex-row justify-between items-center py-8 px-margin-desktop gap-gutter bg-surface">
+<div class="font-label-mono text-label-mono text-primary">©2024 SYSTEM_ARCHIVE. ALL RIGHTS RESERVED.</div>
+<div class="flex flex-col md:flex-row gap-8">
+<a class="text-secondary font-label-mono text-label-mono uppercase hover:text-primary transition-colors duration-0" href="#">System Status: Online</a>
+<a class="text-on-surface-variant font-label-mono text-label-mono uppercase hover:text-primary transition-colors duration-0" href="#">Documentation</a>
+<a class="text-on-surface-variant font-label-mono text-label-mono uppercase hover:text-primary transition-colors duration-0" href="#">API</a>
+<a class="text-on-surface-variant font-label-mono text-label-mono uppercase hover:text-primary transition-colors duration-0" href="#">Security</a>
+</div>
+</footer>
+<script>
+        // Simple Interaction Logic for the Contract Generation
+        document.getElementById('gerar-btn').addEventListener('click', function() {
+            const overlay = document.getElementById('loading-overlay');
+            overlay.classList.remove('hidden');
+            
+            // Simulate network request/processing
+            setTimeout(() => {
+                overlay.innerHTML = `
+                    <span class="material-symbols-outlined text-secondary text-4xl" data-icon="check_circle">check_circle</span>
+                    <span class="font-label-mono text-label-mono text-secondary mt-2">DRAFT INITIATED</span>
+                `;
+                
+                setTimeout(() => {
+                    overlay.classList.add('hidden');
+                    // Reset text for demo purposes
+                    overlay.innerHTML = `
+                        <span class="material-symbols-outlined text-secondary text-4xl animate-spin" data-icon="sync">sync</span>
+                        <span class="font-label-mono text-label-mono text-secondary mt-2">PROCESSING CONTRACT DATA...</span>
+                    `;
+                }, 1500);
+
+            }, 2000);
+        });
+    </script>
+</body></html>
