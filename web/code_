@@ -1,0 +1,433 @@
+<!DOCTYPE html><html class="dark" lang="pt-BR"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Street Hub Connect | Mission Critical Music Tech</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Narrow:wght@600;700&amp;family=Inter:wght@400;500&amp;family=JetBrains+Mono:wght@400;500&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Narrow:wght@100..900&amp;family=Inter:wght@100..900&amp;family=JetBrains+Mono:wght@100..900&amp;display=swap" rel="stylesheet">
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body {
+            background-color: #000000;
+            color: #e5e2e1;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+        /* Custom Scrollbar for Brutalist Aesthetic */
+        ::-webkit-scrollbar { width: 4px; }
+        ::-webkit-scrollbar-track { background: #000000; }
+        ::-webkit-scrollbar-thumb { background: #4edea3; }
+
+        .brutalist-border {
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .lego-snap {
+            transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.4s ease;
+        }
+        .reveal-hidden {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        .reveal-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        #hero-video-container {
+            will-change: transform;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                "on-background": "#e5e2e1",
+                "inverse-primary": "#5d5f5f",
+                "outline-variant": "#444748",
+                "background": "#131313",
+                "outline": "#8e9192",
+                "on-tertiary": "#313030",
+                "on-error-container": "#ffdad6",
+                "primary-fixed": "#e2e2e2",
+                "tertiary-container": "#e5e2e1",
+                "on-primary-fixed-variant": "#454747",
+                "inverse-surface": "#e5e2e1",
+                "surface-container": "#20201f",
+                "secondary-fixed-dim": "#4edea3",
+                "on-tertiary-container": "#656464",
+                "surface-dim": "#131313",
+                "on-secondary-fixed-variant": "#005236",
+                "surface-variant": "#353535",
+                "secondary": "#4edea3",
+                "secondary-fixed": "#6ffbbe",
+                "error-container": "#93000a",
+                "on-secondary-fixed": "#002113",
+                "secondary-container": "#00a572",
+                "tertiary": "#ffffff",
+                "on-error": "#690005",
+                "on-surface-variant": "#c4c7c8",
+                "inverse-on-surface": "#313030",
+                "surface-container-highest": "#353535",
+                "surface-container-lowest": "#0e0e0e",
+                "on-primary-container": "#636565",
+                "surface-tint": "#c6c6c7",
+                "tertiary-fixed": "#e5e2e1",
+                "tertiary-fixed-dim": "#c9c6c5",
+                "primary-fixed-dim": "#c6c6c7",
+                "on-tertiary-fixed-variant": "#474646",
+                "surface-bright": "#393939",
+                "on-surface": "#e5e2e1",
+                "on-secondary-container": "#00311f",
+                "surface": "#131313",
+                "on-secondary": "#003824",
+                "primary": "#ffffff",
+                "surface-container-high": "#2a2a2a",
+                "on-primary": "#2f3131",
+                "error": "#ffb4ab",
+                "on-tertiary-fixed": "#1c1b1b",
+                "primary-container": "#e2e2e2",
+                "surface-container-low": "#1c1b1b",
+                "on-primary-fixed": "#1a1c1c"
+              },
+              "borderRadius": {
+                "DEFAULT": "0px",
+                "lg": "0px",
+                "xl": "0px",
+                "full": "9999px"
+              },
+              "spacing": {
+                "margin-desktop": "32px",
+                "unit": "4px",
+                "container-max": "1440px",
+                "margin-mobile": "16px",
+                "gutter": "16px"
+              },
+              "fontFamily": {
+                "headline-lg": ["Archivo Narrow"],
+                "headline-md": ["Archivo Narrow"],
+                "headline-xl": ["Archivo Narrow"],
+                "data-num": ["JetBrains Mono"],
+                "body-md": ["Inter"],
+                "label-mono": ["JetBrains Mono"]
+              }
+            },
+          }
+        }
+    </script>
+</head>
+<body class="bg-black text-on-background selection:bg-secondary selection:text-on-secondary">
+<!-- Navigation Shell -->
+<nav class="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-margin-mobile md:px-margin-desktop h-16 bg-background/80 backdrop-blur-xl border-b border-outline-variant/10">
+<a href="/" class="text-headline-md font-headline-md font-bold tracking-tighter text-primary">STREET HUB CONNECT</a>
+<div class="hidden md:flex items-center gap-8"><a class="text-label-mono font-label-mono text-on-surface-variant hover:text-primary transition-colors" href="#">Início</a><a class="text-label-mono font-label-mono text-on-surface-variant hover:text-primary transition-colors" href="#artists">Artistas</a><a class="text-label-mono font-label-mono text-on-surface-variant hover:text-primary transition-colors" href="#">Oportunidades</a><a class="text-label-mono font-label-mono text-on-surface-variant hover:text-primary transition-colors" href="#contact">Conexões</a><a class="text-label-mono font-label-mono text-on-surface-variant hover:text-primary transition-colors" href="#">Perfil/Contratos</a></div>
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-on-surface-variant cursor-pointer hover:text-primary">sensors</span>
+<span class="material-symbols-outlined text-on-surface-variant cursor-pointer hover:text-primary">settings</span>
+</div>
+</nav>
+<!-- Section 1: Hero (h-[4096px]) -->
+<section class="relative h-[4096px] w-full bg-black" id="hero-scroll">
+<div class="sticky top-0 h-screen w-full flex items-center justify-center overflow-hidden">
+<!-- Background Visual Layer -->
+<div class="absolute inset-0 z-0 brightness-50 contrast-125" id="hero-video-container">
+</div>
+<!-- Hero Content -->
+<div class="relative z-10 text-center px-margin-mobile max-w-4xl opacity-100 transition-opacity duration-300" id="hero-content">
+<h1 class="font-headline-xl text-headline-xl md:text-[80px] leading-none mb-6 tracking-tighter">
+                    STREET HUB CONNECT
+                </h1>
+<p class="font-body-lg text-body-lg md:text-2xl text-on-surface-variant mb-12 max-w-2xl mx-auto">
+                    A infraestrutura de conexão para a música independente brasileira.
+                </p>
+<div class="flex flex-col md:flex-row gap-4 justify-center">
+<button class="bg-primary text-on-primary px-8 py-4 font-label-mono text-label-mono tracking-widest uppercase hover:bg-secondary transition-colors duration-100">
+                        Cadastrar Artista
+                    </button>
+<button class="bg-transparent border border-white/20 text-white px-8 py-4 font-label-mono text-label-mono tracking-widest uppercase hover:bg-white/10 transition-colors duration-100">
+                        Criar Oportunidade
+                    </button>
+</div>
+</div>
+<!-- Scroll Indicator -->
+<div class="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center opacity-40">
+<span class="text-[10px] font-label-mono tracking-[0.3em] mb-2">SCROLL_DOWN</span>
+<div class="w-[1px] h-12 bg-white/30 relative overflow-hidden">
+<div class="absolute top-0 left-0 w-full h-1/2 bg-secondary translate-y-0" id="scroll-bar-indicator"></div>
+</div>
+</div>
+</div>
+</section>
+<!-- Section 2: O Problema -->
+<section class="relative bg-black py-32 px-margin-mobile md:px-margin-desktop border-t border-white/10">
+<div class="max-w-container-max mx-auto grid grid-cols-1 md:grid-cols-12 gap-gutter lego-snap reveal-hidden section-reveal">
+<div class="md:col-span-8">
+<span class="text-secondary font-label-mono text-label-mono mb-4 block">PHASE_01 // THE_GAP</span>
+<h2 class="font-headline-lg text-headline-lg md:text-6xl mb-8">Muito talento.<br>Pouca estrutura.</h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant leading-relaxed max-w-2xl">
+                    Milhares de artistas produzem cultura todos os dias, mas poucos conseguem acessar oportunidades. A música independente precisa de infraestrutura robusta para escalar do underground ao mainstream.
+                </p>
+</div>
+<div class="md:col-span-4 flex items-end">
+<div class="w-full h-48 bg-surface-container-lowest border border-white/10 p-4 relative">
+<div class="absolute inset-0 opacity-20">
+</div>
+<div class="relative z-10 h-full flex flex-col justify-between">
+<span class="font-label-mono text-[10px] text-outline">LATENCY_STATUS: HIGH</span>
+<div class="h-[1px] w-full bg-white/5"></div>
+<span class="font-label-mono text-secondary">FRAGMENTED_ECOSYSTEM</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Section 3: A Solução -->
+<section class="relative bg-[#0A0A0A] py-32 px-margin-mobile md:px-margin-desktop border-y border-white/10">
+<div class="max-w-container-max mx-auto mb-16 lego-snap reveal-hidden section-reveal">
+<h2 class="font-headline-lg text-headline-lg md:text-5xl text-center">Descubra. Conecte. Contrate. Desenvolva.</h2>
+</div>
+<div class="max-w-container-max mx-auto grid grid-cols-1 md:grid-cols-2 gap-4">
+<!-- Card 1 -->
+<div class="bg-black p-8 border border-white/10 group hover:border-secondary transition-colors lego-snap reveal-hidden section-reveal">
+<div class="flex justify-between items-start mb-12">
+<span class="material-symbols-outlined text-4xl text-secondary" style="font-variation-settings: 'FILL' 1;">mic_external_on</span>
+<span class="text-outline font-label-mono text-[10px]">MODULE_A // TALENTS</span>
+</div>
+<h3 class="font-headline-md text-headline-md mb-4">Para Artistas</h3>
+<p class="font-body-md text-on-surface-variant mb-8">Crie seu perfil profissional, centralize seu trabalho em um hub de alta performance e encontre oportunidades que realmente fazem sentido para sua carreira.</p>
+<div class="space-y-2">
+<div class="flex items-center gap-2 font-label-mono text-xs text-secondary">
+<span class="material-symbols-outlined text-sm">check_circle</span> 
+                        PORTFÓLIO MULTIMÍDIA
+                    </div>
+<div class="flex items-center gap-2 font-label-mono text-xs text-outline">
+<span class="material-symbols-outlined text-sm">check_circle</span> 
+                        GESTOR DE CONTRATOS
+                    </div>
+</div>
+</div>
+<!-- Card 2 -->
+<div class="bg-black p-8 border border-white/10 group hover:border-secondary transition-colors lego-snap reveal-hidden section-reveal">
+<div class="flex justify-between items-start mb-12">
+<span class="material-symbols-outlined text-4xl text-secondary" style="font-variation-settings: 'FILL' 1;">handshake</span>
+<span class="text-outline font-label-mono text-[10px]">MODULE_B // PARTNERS</span>
+</div>
+<h3 class="font-headline-md text-headline-md mb-4">Para Empresas e Eventos</h3>
+<p class="font-body-md text-on-surface-variant mb-8">Descubra novos talentos com curadoria baseada em dados, monte lineups completos em minutos e invista no futuro da cultura urbana com segurança jurídica.</p>
+<div class="space-y-2">
+<div class="flex items-center gap-2 font-label-mono text-xs text-secondary">
+<span class="material-symbols-outlined text-sm">check_circle</span> 
+                        CURADORIA ANALÍTICA
+                    </div>
+<div class="flex items-center gap-2 font-label-mono text-xs text-outline">
+<span class="material-symbols-outlined text-sm">check_circle</span> 
+                        LOGÍSTICA DE EVENTOS
+                    </div>
+</div>
+</div>
+</div>
+</section>
+<!-- Section 4: O Impacto (Dashboard) -->
+<section class="bg-black py-32 px-margin-mobile md:px-margin-desktop overflow-hidden" id="stats">
+<div class="max-w-container-max mx-auto">
+<div class="mb-16 border-l-2 border-secondary pl-6 lego-snap reveal-hidden section-reveal">
+<span class="font-label-mono text-label-mono text-outline">METRICS_DASHBOARD_V2.0</span>
+<h2 class="font-headline-lg text-headline-lg">Impacto em Tempo Real</h2>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-1 border border-white/10 bg-white/10 lego-snap reveal-hidden section-reveal">
+<div class="bg-black p-12 text-center">
+<div class="font-data-num text-5xl md:text-6xl text-primary mb-4 counter" data-target="2450">0</div>
+<div class="font-label-mono text-label-mono text-outline uppercase tracking-widest">Artistas Cadastrados</div>
+</div>
+<div class="bg-black p-12 text-center">
+<div class="font-data-num text-5xl md:text-6xl text-secondary mb-4 counter" data-target="820">0</div>
+<div class="font-label-mono text-label-mono text-outline uppercase tracking-widest">Eventos Realizados</div>
+</div>
+<div class="bg-black p-12 text-center">
+<div class="font-data-num text-5xl md:text-6xl text-primary mb-4 counter" data-target="15700">0</div>
+<div class="font-label-mono text-label-mono text-outline uppercase tracking-widest">Oportunidades Geradas</div>
+</div>
+</div>
+<div class="mt-1 w-full h-32 bg-surface-container-lowest border border-white/10 relative lego-snap reveal-hidden section-reveal">
+<div class="absolute inset-0 opacity-10">
+</div>
+<div class="h-full flex items-center justify-between px-8 font-label-mono text-[10px] text-secondary/60">
+<span class="">SYSTEM_SYNC_STABLE</span>
+<div class="flex gap-1">
+<div class="w-1 h-4 bg-secondary animate-pulse"></div>
+<div class="w-1 h-4 bg-secondary animate-pulse" style="animation-delay: 0.1s"></div>
+<div class="w-1 h-4 bg-secondary animate-pulse" style="animation-delay: 0.2s"></div>
+</div>
+<span class="">LAST_UPDATE: NOW</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Section 5: Conexão (Match) Form -->
+<section class="bg-[#0A0A0A] py-32 px-margin-mobile md:px-margin-desktop border-t border-white/10" id="contact">
+<div class="max-w-4xl mx-auto lego-snap reveal-hidden section-reveal">
+<div class="text-center mb-16">
+<h2 class="font-headline-lg text-headline-lg md:text-5xl mb-4">Inicie a Conexão</h2>
+<p class="font-body-md text-on-surface-variant">Pronto para o próximo nível? Preencha os dados e nossa inteligência fará o resto.</p>
+</div>
+<form class="space-y-6" id="connection-form">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<div class="space-y-2">
+<label class="font-label-mono text-label-mono text-outline uppercase tracking-tighter">Nome / Marca</label>
+<input class="w-full bg-black border border-white/10 px-4 py-3 focus:border-white focus:ring-0 text-white font-body-md transition-colors" placeholder="Ex: Street Collective" required="" type="text">
+</div>
+<div class="space-y-2">
+<label class="font-label-mono text-label-mono text-outline uppercase tracking-tighter">Tipo de Perfil</label>
+<select class="w-full bg-black border border-white/10 px-4 py-3 focus:border-white focus:ring-0 text-white font-body-md transition-colors appearance-none" required="">
+<option disabled="" selected="" value="">Selecione...</option>
+<option value="talento">Talento (Artista/Produtor)</option>
+<option value="parceiro">Parceiro (Marca/Evento)</option>
+</select>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<div class="space-y-2">
+<label class="font-label-mono text-label-mono text-outline uppercase tracking-tighter">Link (Spotify/Instagram)</label>
+<input class="w-full bg-black border border-white/10 px-4 py-3 focus:border-white focus:ring-0 text-white font-body-md transition-colors" placeholder="https://..." type="url">
+</div>
+<div class="space-y-2">
+<label class="font-label-mono text-label-mono text-outline uppercase tracking-tighter">Contato (WhatsApp/Email)</label>
+<input class="w-full bg-black border border-white/10 px-4 py-3 focus:border-white focus:ring-0 text-white font-body-md transition-colors" placeholder="contato@street.hub" required="" type="text">
+</div>
+</div>
+<div class="pt-6">
+<button class="w-full bg-primary text-on-primary py-5 font-label-mono text-label-mono uppercase tracking-[0.3em] font-bold hover:bg-secondary transition-colors flex items-center justify-center gap-4 group" id="submit-btn" type="submit">
+<span id="btn-text" class="">SOLICITAR ACESSO ALPHA</span>
+<span class="material-symbols-outlined group-hover:translate-x-2 transition-transform">arrow_forward</span>
+</button>
+<div class="hidden mt-4 p-4 border border-secondary bg-secondary/10 text-secondary font-label-mono text-center" id="success-msg">
+                        SOLICITAÇÃO RECEBIDA COM SUCESSO. AGUARDE CONTATO DO OPERADOR.
+                    </div>
+</div>
+</form>
+</div>
+</section>
+<!-- Footer -->
+<footer class="w-full py-12 px-margin-mobile md:px-margin-desktop border-t border-outline-variant bg-surface-container-lowest">
+<div class="max-w-container-max mx-auto flex flex-col md:flex-row justify-between items-center gap-8">
+<div class="flex flex-col gap-2">
+<span class="text-label-mono font-label-mono font-bold text-primary">STREET HUB CONNECT</span>
+<span class="text-label-mono font-label-mono text-outline">© 2024 STREET HUB CONNECT. ALL RIGHTS RESERVED.</span>
+</div>
+<div class="flex flex-wrap justify-center gap-6">
+<span class="text-label-mono font-label-mono text-secondary flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-secondary animate-pulse"></span>
+                    SYSTEM STATUS: ONLINE
+                </span>
+<span class="text-label-mono font-label-mono text-outline">v2.4.0-STABLE</span>
+<a class="text-label-mono font-label-mono text-outline hover:text-primary transition-colors" href="#">PRIVACY</a>
+<a class="text-label-mono font-label-mono text-outline hover:text-primary transition-colors" href="#">TERMS</a>
+</div>
+</div>
+</footer>
+<script>
+        // Hero Scroll Mechanism
+        window.addEventListener('scroll', () => {
+            const scrollPos = window.scrollY;
+            const windowHeight = window.innerHeight;
+            const heroSection = document.getElementById('hero-scroll');
+            const heroContent = document.getElementById('hero-content');
+            const scrollIndicator = document.getElementById('scroll-bar-indicator');
+            
+            const totalScroll = heroSection.offsetHeight - windowHeight;
+            const scrollPercent = Math.min(scrollPos / totalScroll, 1);
+            
+            // Fade out hero content
+            if (scrollPercent < 0.25) {
+                heroContent.style.opacity = 1 - (scrollPercent * 4);
+                heroContent.style.pointerEvents = 'auto';
+            } else {
+                heroContent.style.opacity = 0;
+                heroContent.style.pointerEvents = 'none';
+            }
+
+            // Move scroll indicator
+            scrollIndicator.style.transform = `translateY(${scrollPercent * 100}%)`;
+        });
+
+        // Intersection Observer for Reveal Effects
+        const observerOptions = {
+            threshold: 0.1
+        };
+
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.remove('reveal-hidden');
+                    entry.target.classList.add('reveal-visible');
+                    
+                    // Trigger counters if this is the stats section
+                    if (entry.target.closest('#stats')) {
+                        const counters = entry.target.querySelectorAll('.counter');
+                        counters.forEach(c => animateCounter(c));
+                    }
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.section-reveal').forEach(el => revealObserver.observe(el));
+
+        // Counter Animation
+        function animateCounter(el) {
+            if (el.dataset.animated === 'true') return;
+            el.dataset.animated = 'true';
+            
+            const target = +el.getAttribute('data-target');
+            const duration = 2000;
+            const startTime = performance.now();
+
+            function update(currentTime) {
+                const elapsed = currentTime - startTime;
+                const progress = Math.min(elapsed / duration, 1);
+                const current = Math.floor(progress * target);
+                
+                el.innerText = current.toLocaleString();
+
+                if (progress < 1) {
+                    requestAnimationFrame(update);
+                } else {
+                    el.innerText = target.toLocaleString();
+                }
+            }
+            requestAnimationFrame(update);
+        }
+
+        // Form Submission Interaction
+        const form = document.getElementById('connection-form');
+        const submitBtn = document.getElementById('submit-btn');
+        const btnText = document.getElementById('btn-text');
+        const successMsg = document.getElementById('success-msg');
+
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+            btnText.innerText = 'PROCESSING...';
+            submitBtn.disabled = true;
+            submitBtn.classList.add('opacity-50');
+
+            setTimeout(() => {
+                submitBtn.classList.add('hidden');
+                successMsg.classList.remove('hidden');
+            }, 1500);
+        });
+
+        // Micro-interaction: Mouse followers or parallax
+        document.addEventListener('mousemove', (e) => {
+            const moveX = (e.clientX - window.innerWidth / 2) * 0.01;
+            const moveY = (e.clientY - window.innerHeight / 2) * 0.01;
+            const heroVideo = document.getElementById('hero-video-container');
+            if (heroVideo) {
+                heroVideo.style.transform = `translate(${moveX}px, ${moveY}px) scale(1.1)`;
+            }
+        });
+    </script>
+
+
+</body></html>

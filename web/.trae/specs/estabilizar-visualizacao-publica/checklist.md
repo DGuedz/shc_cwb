@@ -1,0 +1,9 @@
+- [x] A causa da falha de visualizacao foi classificada com evidencias objetivas
+- [x] A home publica renderiza com conteudo visivel e navegacao funcional
+- [x] O preview local usa uma URL dedicada e verificavel
+- [x] Pelo menos uma rota publica secundaria abre corretamente no preview
+- [x] As rotas protegidas continuam isoladas para usuarios anonimos
+- [x] As rotas protegidas permanecem nao indexaveis
+- [x] `lint` e `build` concluem sem erro
+- [x] A validacao automatizada de navegador confirma a navegacao publica
+- [x] O handoff final inclui a URL de preview correta

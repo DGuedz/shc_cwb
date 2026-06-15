@@ -1,0 +1,25 @@
+-- Smoke test manual para validar RLS com usuarios autenticados distintos.
+-- Execute apos aplicar a migration principal no projeto Supabase.
+
+-- 1. Criar dois usuarios autenticados reais no projeto:
+--    - artist_user
+--    - contractor_user
+--
+-- 2. Logar como artist_user e validar:
+--    select * from public.artists;                -- retorna apenas a propria linha
+--    select * from public.matches;                -- retorna apenas matches do proprio artist_id
+--    select * from public.opportunities;          -- sem retorno, a menos que tambem seja owner de company
+--
+-- 3. Logar como contractor_user e validar:
+--    select * from public.companies;              -- retorna apenas a propria company
+--    select * from public.opportunities;          -- retorna apenas oportunidades da propria company
+--    select * from public.matches;                -- retorna apenas matches das oportunidades ativas da propria company
+--
+-- 4. Testes negativos obrigatorios:
+--    - artist_user nao consegue selecionar matches de outro artista
+--    - contractor_user nao consegue selecionar matches de oportunidades de outra company
+--    - contractor_user nao consegue criar match em oportunidade inativa
+--    - artist_user nao consegue atualizar opportunity
+--
+-- 5. Sugestao de automacao posterior:
+--    converter este arquivo em testes pgTAP ou em suite `supabase test db`.

@@ -1,0 +1,81 @@
+{
+  "baseUrl": "http://127.0.0.1:3200",
+  "generatedAt": "2026-06-15T16:23:17.952Z",
+  "results": [
+    {
+      "name": "home-desktop",
+      "status": "passed",
+      "consoleMessages": [],
+      "pageErrors": [],
+      "finalUrl": "http://127.0.0.1:3200/",
+      "title": "Street Hub Connect",
+      "screenshot": "/Users/doublegreen/Music/shc_cwb/web/.trae/specs/estabilizar-visualizacao-publica/evidence/home-desktop.png",
+      "checks": [
+        "home heading visivel",
+        "cta para catalogo visivel"
+      ]
+    },
+    {
+      "name": "catalogo-desktop",
+      "status": "passed",
+      "consoleMessages": [],
+      "pageErrors": [],
+      "finalUrl": "http://127.0.0.1:3200/catalogo",
+      "title": "Catalogo de Talentos | Street Hub Connect",
+      "screenshot": "/Users/doublegreen/Music/shc_cwb/web/.trae/specs/estabilizar-visualizacao-publica/evidence/catalogo-desktop.png",
+      "checks": [
+        "titulo do catalogo visivel",
+        "cards publicos visiveis"
+      ]
+    },
+    {
+      "name": "navegacao-desktop",
+      "status": "passed",
+      "consoleMessages": [],
+      "pageErrors": [],
+      "finalUrl": "http://127.0.0.1:3200/catalogo",
+      "title": "Catalogo de Talentos | Street Hub Connect",
+      "checks": [
+        "navegacao da home para o catalogo em desktop"
+      ]
+    },
+    {
+      "name": "home-mobile",
+      "status": "passed",
+      "consoleMessages": [],
+      "pageErrors": [],
+      "finalUrl": "http://127.0.0.1:3200/",
+      "title": "Street Hub Connect",
+      "screenshot": "/Users/doublegreen/Music/shc_cwb/web/.trae/specs/estabilizar-visualizacao-publica/evidence/home-mobile.png",
+      "checks": [
+        "home renderiza em viewport mobile",
+        "cta publica continua acessivel"
+      ]
+    },
+    {
+      "name": "navegacao-mobile",
+      "status": "passed",
+      "consoleMessages": [],
+      "pageErrors": [],
+      "finalUrl": "http://127.0.0.1:3200/catalogo",
+      "title": "Catalogo de Talentos | Street Hub Connect",
+      "checks": [
+        "navegacao da home para o catalogo em mobile"
+      ]
+    },
+    {
+      "name": "rota-protegida-dashboard",
+      "status": "passed",
+      "consoleMessages": [],
+      "pageErrors": [],
+      "requestedUrl": "http://127.0.0.1:3200/dashboard",
+      "finalUrl": "http://127.0.0.1:3200/sign-in?next=%2Fdashboard",
+      "initialStatus": 200,
+      "screenshot": "/Users/doublegreen/Music/shc_cwb/web/.trae/specs/estabilizar-visualizacao-publica/evidence/dashboard-redirect-signin.png",
+      "checks": [
+        "anonimo redirecionado para sign-in",
+        "pagina protegida nao abre diretamente"
+      ]
+    }
+  ]
+}

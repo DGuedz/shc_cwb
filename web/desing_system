@@ -1,0 +1,60 @@
+# Design System: Street Hub Connect — Institutional Underground
+
+## 1. North Star: "Governança Radical"
+A Street Hub Connect não é apenas uma plataforma de música; é uma infraestrutura B2B de missão crítica. O design deve transmitir **autoridade jurídica, precisão financeira e autenticidade cultural**. A estética é o "Brutalismo Institucional": superfícies escuras profundas, tipografia técnica e acentos de dados de alta visibilidade.
+
+---
+
+## 2. Fundamentos Visuais
+
+### Paleta de Cores (Institutional Underground)
+- **Surface (Primary):** `#131313` — Fundo principal, denso e profundo.
+- **Surface Dim:** `#0E0E0E` — Container de menor destaque, quase preto.
+- **Surface Bright:** `#393939` — Divisores e bordas de destaque.
+- **Primary (Accent):** `#10B981` (Emerald Green) — Usado para status, badges de sistema vinculado e ações críticas.
+- **Secondary:** `#FFFFFF` — Texto de leitura principal e ícones de alta prioridade.
+- **On-Surface-Variant:** `#A8A8A8` — Metadados e textos secundários.
+
+### Tipografia
+- **Display/Headers:** `ARCHIVO NARROW` — Peso bold, tracking apertado. Transmite urgência e peso institucional.
+- **Technical/Data:** `FONT-MONO` (Geist Mono ou similar) — Usado para IDs de transação, valores financeiros, cláusulas legais e metadados de sistema. Reforça o sentimento de "terminal de auditoria".
+- **Body:** `ARCHIVO NARROW` — Regular, para descrições e textos informativos.
+
+### Forma e Estrutura
+- **Roundness:** `ROUND_NONE` ou `ROUND_EIGHT` (muito sutil). Prioridade para bordas retas e cantos vivos que reforçam o brutalismo.
+- **Separation:** Bordas de `1px` em `outline-variant/30` para criar separação de seções sem sombras pesadas.
+- **Grids:** Layouts baseados em colunas rígidas, com espaçamento generoso (gutter) para manter a clareza da informação.
+
+---
+
+## 3. Linguagem de Componentes
+
+### TopNavBar (Institutional)
+- **Brand:** Logotipo "STREET HUB CONNECT" em bold, uppercase.
+- **Nav:** Links em uppercase com indicadores de estado ativo (border-bottom sutil).
+- **Icons:** Notificações e Perfil com estilo minimalista.
+
+### Cards de Conteúdo (Dossiers)
+- **Header:** Título em Archivo Narrow Bold + Badge de Status em Primary (Emerald).
+- **Body:** Grid de metadados em font-mono (ID, Valor, Data).
+- **Footer:** Ações claras (ex: "TENHO INTERESSE", "VER DOSSIÊ").
+
+### Dashboard de Governança
+- **Módulos:** Seções delimitadas por bordas sólidas.
+- **Visualização de Dados:** Uso de barras de progresso lineares (Potencial de Dedução) e contadores de impacto em fonte grande e brilhante.
+
+---
+
+## 4. Glossário Visual & Status
+- **SYSTEM LINKED:** Badge verde pulsante indicando conectividade em tempo real.
+- **PROVISIONADO:** Status cinza/brilhante indicando recursos em escrow.
+- **LIQUIDADO:** Status verde sólido indicando transação concluída.
+- **HUSTLE:** Retenção institucional (taxa de manutenção) claramente rotulada.
+
+---
+
+## 5. Diretrizes de UX
+1. **Transparência Absoluta:** Cada número deve ter uma origem clara e um documento vinculado (PDF).
+2. **Double Opt-in:** Interações financeiras exigem confirmação bilateral clara.
+3. **Dual Theme Ready:** O sistema deve suportar inversão para "Clinical White" mantendo o Emerald Green como ponto de ancoragem visual.
+4. **Respeito à Origem:** Imagens de artistas devem ser apresentadas com alta qualidade, contrastando com a rigidez institucional da interface.
