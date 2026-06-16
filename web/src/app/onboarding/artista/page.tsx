@@ -1,288 +1,176 @@
 'use client';
 
-import React, { useState } from 'react';
-import Link from 'next/link';
-import { useRouter } from 'next/navigation';
+import { MultiStepWizard } from '@/components/onboarding/MultiStepWizard';
 
-const ArtistOnboardingPage: React.FC = () => {
-  const [currentStep, setCurrentStep] = useState(1);
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [formData, setFormData] = useState({
-    artistName: '',
-    genre: '',
-    location: '',
-    minFee: '',
-    idealFee: '',
-    techReqs: '',
-    musicUrl: '',
-    socialUrl: ''
-  });
-  const router = useRouter();
-
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
-    const { id, value } = e.target;
-    setFormData(prev => ({
-      ...prev,
-      [id]: value
-    }));
-  };
-
-  const nextStep = () => {
-    if (currentStep < 3) {
-      setCurrentStep(currentStep + 1);
-    }
-  };
-
-  const prevStep = () => {
-    if (currentStep > 1) {
-      setCurrentStep(currentStep - 1);
-    }
-  };
-
-  const submitForm = async () => {
-    setIsSubmitting(true);
-    
-    // Simulate network request
-    await new Promise(resolve => setTimeout(resolve, 1500));
-    
-    // Success - go to step 4
-    setCurrentStep(4);
-    
-    // Redirect to dossier after delay
-    setTimeout(() => {
-      router.push('/dashboard/dossie');
-    }, 2000);
-  };
-
+// Step 1: Identidade e CNPJ
+function StepIdentity({ formData, updateData, onSubmit }: any) {
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center relative bg-black p-4 md:p-8">
-      {/* Blueprint Background Grid */}
-      <div className="fixed inset-0 z-0 pointer-events-none" style={{
-        backgroundImage: `
-          linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
-          linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px)
-        `,
-        backgroundSize: '32px 32px'
-      }} />
+    <div className="flex flex-col gap-6">
+      <p className="font-mono text-sm text-[#A3A3A3] mb-4">
+        A validação de identidade é obrigatória para conformidade. Insira os dados oficiais do responsável legal.
+      </p>
+      
+      <div className="flex flex-col gap-2">
+        <label className="font-mono text-[10px] text-[#10B981] tracking-widest uppercase">RAZÃO SOCIAL OU NOME COMPLETO</label>
+        <input 
+          type="text" 
+          value={formData.nome || ''}
+          onChange={e => updateData('nome', e.target.value)}
+          placeholder="Ex: SILVA PRODUCOES LTDA" 
+          className="bg-transparent border-b border-[#393939] focus:border-[#10B981] outline-none py-3 text-white font-mono placeholder:text-[#393939] transition-colors"
+        />
+      </div>
 
-      {/* Hackathon Badge */}
-      <div className="fixed top-4 right-4 md:top-8 md:right-8 z-50">
-        <div className="bg-black border border-white/10 px-3 py-1 font-mono text-sm text-white flex items-center gap-2 uppercase tracking-wider">
-          <span className="w-2 h-2 rounded-full bg-[#10B981] animate-pulse"></span>
-          HACKATHON MUSICTECH BRASIL
+      <div className="flex flex-col gap-2">
+        <label className="font-mono text-[10px] text-[#10B981] tracking-widest uppercase">CNPJ (MEI OU ME)</label>
+        <input 
+          type="text" 
+          value={formData.cnpj || ''}
+          onChange={e => updateData('cnpj', e.target.value)}
+          placeholder="00.000.000/0000-00" 
+          className="bg-transparent border-b border-[#393939] focus:border-[#10B981] outline-none py-3 text-white font-mono placeholder:text-[#393939] transition-colors"
+        />
+      </div>
+    </div>
+  );
+}
+
+// Step 2: Portfólio
+function StepPortfolio({ formData, updateData, onSubmit }: any) {
+  return (
+    <div className="flex flex-col gap-6">
+      <p className="font-mono text-sm text-[#A3A3A3] mb-4">
+        Comprovação de atuação cultural. O investidor avaliará seu impacto digital e histórico de apresentações.
+      </p>
+      
+      <div className="flex flex-col gap-2">
+        <label className="font-mono text-[10px] text-[#10B981] tracking-widest uppercase">LINK DO SPOTIFY / PLATAFORMA</label>
+        <input 
+          type="url" 
+          value={formData.spotify || ''}
+          onChange={e => updateData('spotify', e.target.value)}
+          placeholder="https://open.spotify.com/artist/..." 
+          className="bg-transparent border-b border-[#393939] focus:border-[#10B981] outline-none py-3 text-white font-mono placeholder:text-[#393939] transition-colors"
+        />
+      </div>
+
+      <div className="flex flex-col gap-2">
+        <label className="font-mono text-[10px] text-[#10B981] tracking-widest uppercase">LINK DO CLIPPING (ÚLTIMOS 3 ANOS)</label>
+        <input 
+          type="url" 
+          value={formData.clipping || ''}
+          onChange={e => updateData('clipping', e.target.value)}
+          placeholder="Drive, Dropbox ou Site Pessoal" 
+          className="bg-transparent border-b border-[#393939] focus:border-[#10B981] outline-none py-3 text-white font-mono placeholder:text-[#393939] transition-colors"
+        />
+      </div>
+    </div>
+  );
+}
+
+// Step 3: Custos
+function StepCosts({ formData, updateData, onSubmit }: any) {
+  return (
+    <div className="flex flex-col gap-6">
+      <p className="font-mono text-sm text-[#A3A3A3] mb-4">
+        Estrutura de custos base para geração do Plano de Trabalho e viabilidade via Acordo Tripartite.
+      </p>
+      
+      <div className="flex flex-col gap-2">
+        <label className="font-mono text-[10px] text-[#10B981] tracking-widest uppercase">CACHÊ MÉDIO (BRL)</label>
+        <input 
+          type="number" 
+          value={formData.cache || ''}
+          onChange={e => updateData('cache', e.target.value)}
+          placeholder="Ex: 5000" 
+          className="bg-transparent border-b border-[#393939] focus:border-[#10B981] outline-none py-3 text-white font-mono placeholder:text-[#393939] transition-colors"
+        />
+      </div>
+
+      <div className="flex flex-col gap-2">
+        <label className="font-mono text-[10px] text-[#10B981] tracking-widest uppercase">CUSTOS LOGÍSTICOS E EQUIPE (ESTIMATIVA)</label>
+        <input 
+          type="number" 
+          value={formData.logistica || ''}
+          onChange={e => updateData('logistica', e.target.value)}
+          placeholder="Ex: 2000" 
+          className="bg-transparent border-b border-[#393939] focus:border-[#10B981] outline-none py-3 text-white font-mono placeholder:text-[#393939] transition-colors"
+        />
+      </div>
+    </div>
+  );
+}
+
+// Step 4: Compliance
+function StepCompliance({ formData, updateData, onSubmit }: any) {
+  return (
+    <div className="flex flex-col gap-6">
+      <p className="font-mono text-sm text-[#A3A3A3] mb-4">
+        Ateste sua conformidade para estar elegível aos repasses de patrocínio do Terceiro Setor.
+      </p>
+      
+      <div className="flex items-start gap-4 mt-4 border border-[#393939] p-4 bg-[#131313] hover:border-[#10B981] transition-colors cursor-pointer" onClick={() => updateData('certidoes', !formData.certidoes)}>
+        <div className={`w-5 h-5 border flex items-center justify-center mt-0.5 ${formData.certidoes ? 'border-[#10B981] bg-[#10B981]' : 'border-[#393939]'}`}>
+           {formData.certidoes && <span className="text-black text-xs">✓</span>}
+        </div>
+        <div>
+          <span className="font-mono text-xs text-white uppercase tracking-widest block mb-1">REGULARIDADE FISCAL</span>
+          <span className="font-mono text-[10px] text-[#A3A3A3]">Declaro possuir CND Federal, Estadual e Municipal válidas.</span>
         </div>
       </div>
 
-      {/* Main Content */}
-      <main className="w-full max-w-2xl z-10 relative mt-16 md:mt-0">
-        {/* Header */}
-        <div className="mb-12 border-b border-white/10 pb-6">
-          <h1 className="text-5xl font-bold text-white uppercase tracking-tighter mb-2 font-heading">Artist Onboarding</h1>
-          <p className="text-sm font-mono text-gray-400">INITIALIZE SYSTEM CONFIGURATION FOR NEW ARTIST PROFILE.</p>
+      <div className="flex items-start gap-4 border border-[#393939] p-4 bg-[#131313] hover:border-[#10B981] transition-colors cursor-pointer" onClick={() => updateData('tripartite', !formData.tripartite)}>
+        <div className={`w-5 h-5 border flex items-center justify-center mt-0.5 ${formData.tripartite ? 'border-[#10B981] bg-[#10B981]' : 'border-[#393939]'}`}>
+           {formData.tripartite && <span className="text-black text-xs">✓</span>}
         </div>
-
-        {/* Progress Indicators */}
-        <div className="flex gap-2 mb-8">
-          {[1, 2, 3].map(step => (
-            <div
-              key={step}
-              className={`h-2 flex-1 border border-white/10 transition-colors duration-300 ${
-                step <= currentStep ? 'bg-white' : 'bg-[#353535]'
-              }`}
-            />
-          ))}
+        <div>
+          <span className="font-mono text-xs text-white uppercase tracking-widest block mb-1">TERMO TRIPARTITE</span>
+          <span className="font-mono text-[10px] text-[#A3A3A3]">Concordo com os termos do repasse via MROSC e auditoria de métricas.</span>
         </div>
-
-        {/* Form Container */}
-        <div className="relative w-full bg-[#0A0A0A] border border-white/10 p-6 md:p-8 overflow-hidden">
-          {/* Step 1: Perfil */}
-          {currentStep === 1 && (
-            <div className="flex flex-col gap-6">
-              <div className="border-b border-white/10 pb-4 mb-2">
-                <h2 className="text-2xl font-bold text-white uppercase font-heading">01 // Perfil</h2>
-              </div>
-              <div className="flex flex-col gap-2">
-                <label className="font-mono text-sm text-gray-400 uppercase">Artist Name</label>
-                <input
-                  id="artistName"
-                  type="text"
-                  placeholder="ENTER STAGE NAME"
-                  value={formData.artistName}
-                  onChange={handleInputChange}
-                  className="w-full p-4 bg-black border border-white/10 text-white text-lg focus:outline-none focus:border-[#10B981] focus:shadow-[0_0_0_1px_#10B981] transition-colors"
-                />
-              </div>
-              <div className="flex flex-col gap-2">
-                <label className="font-mono text-sm text-gray-400 uppercase">Musical Genre</label>
-                <select
-                  id="genre"
-                  value={formData.genre}
-                  onChange={handleInputChange}
-                  className="w-full p-4 bg-black border border-white/10 text-white text-lg appearance-none cursor-pointer focus:outline-none focus:border-[#10B981] focus:shadow-[0_0_0_1px_#10B981] transition-colors"
-                >
-                  <option disabled value="">SELECT GENRE</option>
-                  <option value="hiphop">Hip Hop / Rap</option>
-                  <option value="trap">Trap</option>
-                  <option value="funk">Funk</option>
-                  <option value="electronic">Electronic</option>
-                  <option value="other">Other</option>
-                </select>
-              </div>
-              <div className="flex flex-col gap-2">
-                <label className="font-mono text-sm text-gray-400 uppercase">City/State</label>
-                <input
-                  id="location"
-                  type="text"
-                  placeholder="SÃO PAULO / SP"
-                  value={formData.location}
-                  onChange={handleInputChange}
-                  className="w-full p-4 bg-black border border-white/10 text-white text-lg uppercase focus:outline-none focus:border-[#10B981] focus:shadow-[0_0_0_1px_#10B981] transition-colors"
-                />
-              </div>
-              <div className="mt-4 flex justify-end">
-                <button
-                  onClick={nextStep}
-                  className="bg-white text-black font-mono text-sm py-4 px-8 uppercase hover:bg-white/90 transition-colors border-none outline-none cursor-pointer flex items-center gap-2"
-                >
-                  NEXT SEQUENCE
-                  <span className="text-lg">→</span>
-                </button>
-              </div>
-            </div>
-          )}
-
-          {/* Step 2: Business */}
-          {currentStep === 2 && (
-            <div className="flex flex-col gap-6">
-              <div className="border-b border-white/10 pb-4 mb-2">
-                <h2 className="text-2xl font-bold text-white uppercase font-heading">02 // Business</h2>
-              </div>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div className="flex flex-col gap-2">
-                  <label className="font-mono text-sm text-gray-400 uppercase">Minimum Fee (BRL)</label>
-                  <div className="relative">
-                    <span className="absolute left-4 top-4 font-mono text-sm text-gray-400">R$</span>
-                    <input
-                      id="minFee"
-                      type="number"
-                      placeholder="0.00"
-                      value={formData.minFee}
-                      onChange={handleInputChange}
-                      className="w-full p-4 pl-12 bg-black border border-white/10 text-white text-sm font-mono focus:outline-none focus:border-[#10B981] focus:shadow-[0_0_0_1px_#10B981] transition-colors"
-                    />
-                  </div>
-                </div>
-                <div className="flex flex-col gap-2">
-                  <label className="font-mono text-sm text-gray-400 uppercase">Ideal Fee (BRL)</label>
-                  <div className="relative">
-                    <span className="absolute left-4 top-4 font-mono text-sm text-gray-400">R$</span>
-                    <input
-                      id="idealFee"
-                      type="number"
-                      placeholder="0.00"
-                      value={formData.idealFee}
-                      onChange={handleInputChange}
-                      className="w-full p-4 pl-12 bg-black border border-white/10 text-white text-sm font-mono focus:outline-none focus:border-[#10B981] focus:shadow-[0_0_0_1px_#10B981] transition-colors"
-                    />
-                  </div>
-                </div>
-              </div>
-              <div className="flex flex-col gap-2">
-                <label className="font-mono text-sm text-gray-400 uppercase">Technical Requirements</label>
-                <textarea
-                  id="techReqs"
-                  placeholder="LIST RIDER REQUIREMENTS, BACKLINE, ETC."
-                  value={formData.techReqs}
-                  onChange={handleInputChange}
-                  className="w-full p-4 bg-black border border-white/10 text-white text-sm min-h-[120px] resize-y focus:outline-none focus:border-[#10B981] focus:shadow-[0_0_0_1px_#10B981] transition-colors"
-                />
-              </div>
-              <div className="mt-4 flex justify-between">
-                <button
-                  onClick={prevStep}
-                  className="bg-transparent border border-white/10 text-white font-mono text-sm py-4 px-8 uppercase hover:bg-[#353535] transition-colors cursor-pointer flex items-center gap-2"
-                >
-                  <span className="text-lg">←</span> BACK
-                </button>
-                <button
-                  onClick={nextStep}
-                  className="bg-white text-black font-mono text-sm py-4 px-8 uppercase hover:bg-white/90 transition-colors border-none outline-none cursor-pointer flex items-center gap-2"
-                >
-                  NEXT SEQUENCE
-                  <span className="text-lg">→</span>
-                </button>
-              </div>
-            </div>
-          )}
-
-          {/* Step 3: Mídia */}
-          {currentStep === 3 && (
-            <div className="flex flex-col gap-6">
-              <div className="border-b border-white/10 pb-4 mb-2">
-                <h2 className="text-2xl font-bold text-white uppercase font-heading">03 // Mídia</h2>
-              </div>
-              <div className="flex flex-col gap-2">
-                <label className="font-mono text-sm text-gray-400 uppercase">Spotify / YouTube URL</label>
-                <div className="relative flex items-center">
-                  <span className="absolute left-4 text-gray-400">▶</span>
-                  <input
-                    id="musicUrl"
-                    type="url"
-                    placeholder="HTTPS://"
-                    value={formData.musicUrl}
-                    onChange={handleInputChange}
-                    className="w-full p-4 pl-12 bg-black border border-white/10 text-white text-sm focus:outline-none focus:border-[#10B981] focus:shadow-[0_0_0_1px_#10B981] transition-colors"
-                  />
-                </div>
-              </div>
-              <div className="flex flex-col gap-2">
-                <label className="font-mono text-sm text-gray-400 uppercase">Instagram URL</label>
-                <div className="relative flex items-center">
-                  <span className="absolute left-4 text-gray-400">🔗</span>
-                  <input
-                    id="socialUrl"
-                    type="url"
-                    placeholder="HTTPS://INSTAGRAM.COM/"
-                    value={formData.socialUrl}
-                    onChange={handleInputChange}
-                    className="w-full p-4 pl-12 bg-black border border-white/10 text-white text-sm focus:outline-none focus:border-[#10B981] focus:shadow-[0_0_0_1px_#10B981] transition-colors"
-                  />
-                </div>
-              </div>
-              <div className="mt-8 flex justify-between items-center">
-                <button
-                  onClick={prevStep}
-                  className="bg-transparent border border-white/10 text-white font-mono text-sm py-4 px-8 uppercase hover:bg-[#353535] transition-colors cursor-pointer flex items-center gap-2"
-                >
-                  <span className="text-lg">←</span> BACK
-                </button>
-                <button
-                  onClick={submitForm}
-                  disabled={isSubmitting}
-                  className="bg-white text-black font-bold text-2xl py-4 px-12 uppercase hover:bg-white/90 transition-colors border-none outline-none cursor-pointer flex justify-center items-center h-16 w-48 disabled:opacity-60"
-                >
-                  {isSubmitting ? (
-                    <div className="animate-spin rounded-full h-6 w-6 border-4 border-black border-t-transparent"></div>
-                  ) : (
-                    'CADASTRAR'
-                  )}
-                </button>
-              </div>
-            </div>
-          )}
-
-          {/* Success State */}
-          {currentStep === 4 && (
-            <div className="flex flex-col items-center justify-center text-center gap-6 py-12">
-              <span className="text-6xl text-[#10B981] mb-4">✓</span>
-              <h2 className="text-3xl font-bold text-white uppercase tracking-tighter font-heading">DADOS PROCESSADOS</h2>
-              <p className="font-mono text-sm text-[#10B981] animate-pulse">REDIRECIONANDO PARA O MATCHBOARD...</p>
-            </div>
-          )}
-        </div>
-      </main>
+      </div>
     </div>
   );
-};
+}
 
-export default ArtistOnboardingPage;
+export default function ArtistaOnboarding() {
+  const steps = [
+    {
+      id: 'identity',
+      title: 'Qualificação Legal',
+      subtitle: 'VERIFICAÇÃO DE CNPJ E NATUREZA',
+      content: <StepIdentity />
+    },
+    {
+      id: 'portfolio',
+      title: 'Auditoria de Impacto',
+      subtitle: 'ATUAÇÃO CULTURAL E HISTÓRICO',
+      content: <StepPortfolio />
+    },
+    {
+      id: 'costs',
+      title: 'Plano de Trabalho',
+      subtitle: 'COMPOSIÇÃO DE CUSTOS OPERACIONAIS',
+      content: <StepCosts />
+    },
+    {
+      id: 'compliance',
+      title: 'Termo de Compliance',
+      subtitle: 'CERTIDÕES E ACORDO TRIPARTITE',
+      content: <StepCompliance />
+    }
+  ];
+
+  const handleComplete = (data: any) => {
+    console.log('Match Engine Data (Artista):', data);
+    // Aqui conectaremos com o backend depois
+    alert('DOSSIÊ GERADO. Em breve você receberá as oportunidades compatíveis.');
+  };
+
+  return (
+    <MultiStepWizard 
+      type="TALENT" 
+      steps={steps} 
+      onComplete={handleComplete} 
+    />
+  );
+}
