@@ -1,5 +1,6 @@
 'use client';
 
+import { useRouter } from 'next/navigation';
 import { MultiStepWizard } from '@/components/onboarding/MultiStepWizard';
 
 // Step 1: Regime Tributário
@@ -155,6 +156,8 @@ function StepController({ formData, updateData, onSubmit }: any) {
 }
 
 export default function EmpresaOnboarding() {
+  const router = useRouter();
+
   const steps = [
     {
       id: 'regime',
@@ -183,8 +186,11 @@ export default function EmpresaOnboarding() {
   ];
 
   const handleComplete = (data: any) => {
-    console.log('Match Engine Data (Empresa):', data);
-    alert('PERFIL DE INVESTIDOR CONFIGURADO. Em breve nosso time enviará o dossiê das oportunidades de Match.');
+    // Simulate API delay for better UX
+    setTimeout(() => {
+      // Empresas/Contratantes vão para o Matchboard ver os artistas disponíveis
+      router.push('/dashboard/matchboard');
+    }, 800);
   };
 
   return (
