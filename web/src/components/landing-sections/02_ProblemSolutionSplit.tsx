@@ -53,11 +53,17 @@ export function ProblemSolutionSplit() {
   const bar5Opacity = useTransform(scrollYProgress, [0.4, 0.5, 0.95, 1], [0, 1, 1, 0]);
 
   // Efeito Glow/Neon nos textos numéricos
-  // Conforme o scroll avança e as barras estabilizam, injetamos um text-shadow branco
+  // Conforme o scroll avança e as barras estabilizam, injetamos um text-shadow mais forte
   const glowEffect = useTransform(
     scrollYProgress, 
     [0.1, 0.5], 
-    ["drop-shadow(0 0 0px rgba(255,255,255,0))", "drop-shadow(0 0 8px rgba(255,255,255,0.4))"]
+    ["drop-shadow(0 0 0px rgba(255,255,255,0))", "drop-shadow(0 0 12px rgba(255,255,255,0.8))"]
+  );
+
+  const glowEffectGreen = useTransform(
+    scrollYProgress, 
+    [0.4, 0.6], 
+    ["drop-shadow(0 0 0px rgba(16,185,129,0))", "drop-shadow(0 0 16px rgba(16,185,129,0.9))"]
   );
 
   return (
@@ -119,11 +125,11 @@ export function ProblemSolutionSplit() {
                 <motion.div className="group" style={{ opacity: bar1Opacity }}>
                   <div className="flex justify-between font-mono text-[10px] text-white mb-1">
                     <span>MERCADO TOTAL DA MÚSICA</span>
-                    <motion.span style={{ filter: glowEffect }}>R$ 116 BI</motion.span>
+                    <motion.span style={{ filter: glowEffect }} className="font-bold">R$ 116 BI</motion.span>
                   </div>
                   <div className="w-full h-[2px] bg-[#393939] relative overflow-hidden">
                     <motion.div 
-                      className="absolute top-0 left-0 h-full bg-white shadow-[0_0_8px_rgba(255,255,255,0.8)]"
+                      className="absolute top-0 left-0 h-full bg-white shadow-[0_0_12px_rgba(255,255,255,1)]"
                       style={{ width: bar1Width }}
                     />
                   </div>
@@ -175,11 +181,11 @@ export function ProblemSolutionSplit() {
                 <motion.div className="group pt-2 border-t border-[#393939]" style={{ opacity: bar5Opacity }}>
                   <div className="flex justify-between font-mono text-[10px] text-[#10B981] mb-1">
                     <span>CRIADORES / COMPOSITORES</span>
-                    <motion.span style={{ filter: glowEffect }} className="text-[#10B981] font-bold">R$ 250 MI</motion.span>
+                    <motion.span style={{ filter: glowEffectGreen }} className="text-[#10B981] font-bold text-xs">R$ 250 MI</motion.span>
                   </div>
                   <div className="w-full h-[2px] bg-[#393939] relative overflow-hidden mb-4">
                     <motion.div 
-                      className="absolute top-0 left-0 h-full bg-[#10B981] shadow-[0_0_10px_#10B981]"
+                      className="absolute top-0 left-0 h-full bg-[#10B981] shadow-[0_0_16px_#10B981]"
                       style={{ width: bar5Width }}
                     />
                   </div>
