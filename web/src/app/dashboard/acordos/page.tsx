@@ -1,6 +1,7 @@
 'use client';
 
 import Link from "next/link";
+import { DashboardNav } from "@/components/ui/DashboardNav";
 
 export default function DealsPipeline() {
   const deals = [
@@ -13,45 +14,10 @@ export default function DealsPipeline() {
   return (
     <div className="bg-black text-[var(--on-background)] min-h-screen flex flex-col">
       {/* TopNavBar */}
-      <nav className="fixed top-0 w-full z-50 border-b border-[#393939] bg-[#0E0E0E]/90 backdrop-blur-xl h-20 px-[var(--spacing-margin-mobile)] md:px-[var(--spacing-margin-desktop)] flex justify-between items-center transition-colors duration-0">
-        <div className="flex items-center space-x-8 h-full">
-          <Link href="/" className="font-archivo text-xl font-bold tracking-tighter text-white uppercase">
-            STREET HUB CONNECT
-          </Link>
-          <div className="hidden md:flex space-x-6 h-full items-center font-mono text-xs text-neutral-400">
-            <Link href="/" className="h-full flex items-center transition-colors duration-0 hover:text-white hover:bg-[#131313] px-4">
-              Início
-            </Link>
-            <Link href="/catalogo" className="h-full flex items-center transition-colors duration-0 hover:text-white hover:bg-[#131313] px-4">
-              Artistas
-            </Link>
-            <Link href="/oportunidades/criar" className="h-full flex items-center transition-colors duration-0 hover:text-white hover:bg-[#131313] px-4">
-              Oportunidades
-            </Link>
-            <Link href="/dashboard/acordos" className="text-[#10B981] border-b-2 border-[#10B981] h-full flex items-center pt-[2px] transition-colors duration-0 hover:text-[#10B981] hover:bg-[#131313] px-4 bg-[#131313]/50">
-              Conexões
-            </Link>
-            <Link href="/onboarding/artista" className="h-full flex items-center transition-colors duration-0 hover:text-white hover:bg-[#131313] px-4">
-              Perfil/Contratos
-            </Link>
-          </div>
-        </div>
-        <div className="flex items-center space-x-4">
-          <div className="relative hidden md:block">
-            <input 
-              type="text" 
-              placeholder="Search TX, Block, or ID..." 
-              className="bg-[#131313] border border-[#393939] text-white font-mono text-xs pl-4 pr-4 py-2 w-64 focus:outline-none focus:border-[#10B981] transition-colors placeholder:text-neutral-600"
-            />
-          </div>
-          <div className="w-10 h-10 border border-[#393939] bg-[#131313] flex items-center justify-center font-mono text-xs text-[#10B981]">
-            PR
-          </div>
-        </div>
-      </nav>
+      <DashboardNav />
       
       {/* Main Content Canvas */}
-      <main className="flex-grow pt-20 px-[var(--spacing-margin-mobile)] md:px-[var(--spacing-margin-desktop)] max-w-[var(--spacing-container-max)] mx-auto w-full flex flex-col gap-8 pb-16">
+      <div className="flex-grow flex flex-col gap-8 w-full">
         {/* Hero Header */}
         <header className="mt-12 flex flex-col items-start gap-4 relative">
           <div className="absolute right-0 top-0 border border-white/10 bg-[#0E0E0E] px-4 py-2 hidden md:flex items-center gap-2">
@@ -145,7 +111,7 @@ export default function DealsPipeline() {
             </table>
           </div>
         </div>
-      </main>
+      </div>
     </div>
   );
 }

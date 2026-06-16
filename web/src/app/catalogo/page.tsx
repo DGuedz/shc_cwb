@@ -2,7 +2,8 @@
 
 import { motion } from "framer-motion";
 import { useState } from "react";
-import { Navbar } from "@/components/layout/Navbar";
+import { DashboardNav } from "@/components/ui/DashboardNav";
+import { ScrollRevealTitle } from "@/components/ui/ScrollRevealTitle";
 
 const MOCK_ARTISTS = [
 	{
@@ -99,35 +100,37 @@ export default function VitrineArtistas() {
 	const [isVerifiedOnly, setIsVerifiedOnly] = useState(true);
 
 	return (
-		<div className="bg-[#0E0E0E] min-h-screen text-white font-sans selection:bg-[#10B981] selection:text-black">
-			<Navbar />
+		<div className="bg-black text-[var(--on-background)] min-h-screen flex flex-col">
+			<DashboardNav />
 
-			<main className="pt-32 pb-24 px-6 md:px-12 max-w-[1400px] mx-auto">
+			<main className="flex-grow pt-32 pb-24 px-[var(--spacing-margin-mobile)] md:px-[var(--spacing-margin-desktop)] max-w-[var(--spacing-container-max)] mx-auto w-full">
 				{/* HERO EDITORIAL */}
-				<header className="mb-16 md:mb-24 max-w-3xl">
-					<div className="flex items-center gap-3 mb-6">
-						<span className="w-1.5 h-1.5 rounded-full bg-[#10B981]"></span>
+				<header className="mb-16 md:mb-24 flex flex-col items-start gap-4 relative">
+					<div className="absolute right-0 top-0 border border-white/10 bg-[#0E0E0E] px-4 py-2 hidden md:flex items-center gap-2">
+						<span className="w-2 h-2 rounded-full bg-[#10B981] animate-pulse"></span>
 						<span className="font-mono text-[#10B981] text-[10px] uppercase tracking-widest">
-							DIRETÓRIO CURADO
+							DIRETÓRIO CURADO // ZK_READY
 						</span>
 					</div>
-					<h1 className="font-archivo text-3xl md:text-4xl lg:text-5xl font-bold uppercase tracking-[0.1em] text-white mb-4 leading-tight">
-						VITRINE DE ARTISTAS
-					</h1>
-					<p className="font-mono text-[#A3A3A3] text-xs md:text-sm leading-relaxed border-l border-[#393939] pl-6 max-w-xl">
-						Artistas independentes de Curitiba prontos para shows, ativações de
+					<ScrollRevealTitle
+						className="font-archivo text-5xl md:text-[64px] font-bold uppercase tracking-tighter max-w-3xl leading-tight text-[#10B981]"
+					>
+						CATÁLOGO DE ARTISTAS
+					</ScrollRevealTitle>
+					<p className="font-mono text-sm text-neutral-400 max-w-2xl border-l-2 border-[#10B981] pl-4">
+						Artistas independentes prontos para shows, ativações de
 						marca, eventos privados e festivais.
 					</p>
 				</header>
 
 				{/* FILTROS COMPACTOS */}
-				<div className="flex flex-col lg:flex-row gap-4 lg:items-center bg-[#131313] border border-[#393939] p-2 mb-12">
+				<div className="flex flex-col lg:flex-row gap-4 lg:items-center bg-[#0E0E0E] border border-[#393939] p-2 mb-12">
 					<div className="flex-1 flex items-center px-4 py-2">
 						<label htmlFor="search-artist" className="sr-only">
 							Buscar artista
 						</label>
 						<svg
-							className="w-4 h-4 text-[#A3A3A3] mr-3"
+							className="w-4 h-4 text-neutral-500 mr-3"
 							fill="none"
 							stroke="currentColor"
 							viewBox="0 0 24 24"
@@ -144,7 +147,7 @@ export default function VitrineArtistas() {
 							id="search-artist"
 							type="text"
 							placeholder="Buscar artista, cidade ou tag..."
-							className="bg-transparent border-none outline-none text-sm font-mono text-white placeholder-[#A3A3A3] w-full"
+							className="bg-transparent border-none outline-none text-xs font-mono text-white placeholder-neutral-500 w-full"
 						/>
 					</div>
 
@@ -156,7 +159,7 @@ export default function VitrineArtistas() {
 						</label>
 						<select
 							id="filter-style"
-							className="bg-transparent border-none outline-none text-sm font-mono text-[#A3A3A3] w-full appearance-none cursor-pointer"
+							className="bg-transparent border-none outline-none text-xs font-mono text-neutral-400 w-full appearance-none cursor-pointer"
 						>
 							<option value="">Estilo</option>
 							<option value="trap">Trap / Drill</option>
@@ -173,7 +176,7 @@ export default function VitrineArtistas() {
 						</label>
 						<select
 							id="filter-format"
-							className="bg-transparent border-none outline-none text-sm font-mono text-[#A3A3A3] w-full appearance-none cursor-pointer"
+							className="bg-transparent border-none outline-none text-xs font-mono text-neutral-400 w-full appearance-none cursor-pointer"
 						>
 							<option value="">Formato</option>
 							<option value="pocket">Show Pocket</option>
@@ -190,7 +193,7 @@ export default function VitrineArtistas() {
 						</label>
 						<select
 							id="filter-cache"
-							className="bg-transparent border-none outline-none text-sm font-mono text-[#A3A3A3] w-full appearance-none cursor-pointer"
+							className="bg-transparent border-none outline-none text-xs font-mono text-neutral-400 w-full appearance-none cursor-pointer"
 						>
 							<option value="">Faixa de Cachê</option>
 							<option value="2000">A partir de R$ 1.500</option>
@@ -203,11 +206,11 @@ export default function VitrineArtistas() {
 					<div className="flex items-center gap-6 px-4 py-2 border-t border-[#393939] lg:border-none justify-between lg:justify-end min-w-[280px]">
 						<label className="flex items-center gap-2 cursor-pointer group">
 							<div
-								className={`w-8 h-4 rounded-full transition-colors ${isVerifiedOnly ? "bg-[#10B981]" : "bg-[#393939]"} relative`}
+								className={`w-8 h-4 rounded-none transition-colors ${isVerifiedOnly ? "bg-[#10B981]" : "bg-neutral-800 border border-[#393939]"} relative`}
 								aria-hidden="true"
 							>
 								<div
-									className={`absolute top-0.5 w-3 h-3 rounded-full bg-black transition-transform ${isVerifiedOnly ? "translate-x-4.5 left-[1px]" : "translate-x-0.5 left-[1px]"}`}
+									className={`absolute top-0.5 w-3 h-3 rounded-none bg-black transition-transform ${isVerifiedOnly ? "translate-x-4.5 left-[1px]" : "translate-x-0.5 left-[1px]"}`}
 								></div>
 							</div>
 							<input
@@ -216,13 +219,13 @@ export default function VitrineArtistas() {
 								checked={isVerifiedOnly}
 								onChange={() => setIsVerifiedOnly(!isVerifiedOnly)}
 							/>
-							<span className="font-mono text-xs text-[#A3A3A3] group-hover:text-white transition-colors">
-								Apenas verificados
+							<span className="font-mono text-[10px] text-neutral-400 group-hover:text-white transition-colors uppercase tracking-widest">
+								Verificados
 							</span>
 						</label>
 						<button
 							type="button"
-							className="font-mono text-xs text-[#393939] hover:text-white transition-colors uppercase tracking-widest focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#10B981]"
+							className="font-mono text-[10px] text-neutral-500 hover:text-white transition-colors uppercase tracking-widest focus-visible:outline-none"
 						>
 							Limpar
 						</button>

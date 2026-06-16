@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 
-import { DashboardShell } from "@/components/ui";
-import { SignOutButton } from "@/components/forms";
+import { DashboardNav } from "@/components/ui/DashboardNav";
 import { requireSession } from "@/lib/auth";
 
 export const metadata: Metadata = {
@@ -19,11 +18,11 @@ export default async function DashboardLayout({
   const session = await requireSession({ redirectTo: "/sign-in" });
 
   return (
-    <DashboardShell roleLabel={session.role === "artist" ? "Artist control room" : "Contractor control room"}>
-      <div className="mb-6 flex items-center justify-end">
-        <SignOutButton />
-      </div>
-      {children}
-    </DashboardShell>
+    <div className="bg-black text-[var(--on-background)] min-h-screen flex flex-col">
+      <DashboardNav />
+      <main className="flex-grow pt-32 pb-24 px-[var(--spacing-margin-mobile)] md:px-[var(--spacing-margin-desktop)] max-w-[var(--spacing-container-max)] mx-auto w-full">
+        {children}
+      </main>
+    </div>
   );
 }
