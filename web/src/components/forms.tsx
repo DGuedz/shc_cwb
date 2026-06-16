@@ -120,16 +120,16 @@ export function ArtistOnboardingForm() {
 
   return (
     <form action={action} className="grid gap-6 lg:grid-cols-[0.95fr_1.05fr]">
-      <section className="panel space-y-5">
+      <section className="bg-[#0E0E0E] border border-[#393939] p-6 space-y-6">
         <div>
-          <p className="font-mono text-[11px] uppercase tracking-[0.3em] text-[var(--accent)]">01 // Perfil</p>
-          <h1 className="mt-2 font-heading text-4xl font-bold uppercase tracking-[-0.05em]">Artist Onboarding</h1>
+          <p className="font-mono text-[10px] uppercase tracking-widest text-[#10B981]">01 // Perfil</p>
+          <h1 className="mt-2 font-archivo text-2xl font-bold uppercase tracking-tight text-white">Artist Onboarding</h1>
         </div>
 
-        <label className="field">
-          <span className="field-label">Nome artistico</span>
+        <label className="flex flex-col gap-2">
+          <span className="font-mono text-xs text-neutral-400 uppercase">Nome artistico</span>
           <input
-            className="field-input"
+            className="bg-[#131313] border border-[#393939] text-white font-mono text-sm p-3 focus:outline-none focus:border-[#10B981] transition-colors rounded-none placeholder:text-neutral-600"
             name="stageName"
             value={draft.stageName}
             onChange={(event) => patchDraft({ stageName: event.target.value })}
@@ -138,20 +138,20 @@ export function ArtistOnboardingForm() {
         </label>
 
         <div className="grid gap-4 md:grid-cols-2">
-          <label className="field">
-            <span className="field-label">Genero</span>
+          <label className="flex flex-col gap-2">
+            <span className="font-mono text-xs text-neutral-400 uppercase">Genero</span>
             <input
-              className="field-input"
+              className="bg-[#131313] border border-[#393939] text-white font-mono text-sm p-3 focus:outline-none focus:border-[#10B981] transition-colors rounded-none placeholder:text-neutral-600"
               name="genre"
               value={draft.genre}
               onChange={(event) => patchDraft({ genre: event.target.value })}
             />
             <FieldError state={state} name="genre" />
           </label>
-          <label className="field">
-            <span className="field-label">Cidade</span>
+          <label className="flex flex-col gap-2">
+            <span className="font-mono text-xs text-neutral-400 uppercase">Cidade</span>
             <input
-              className="field-input"
+              className="bg-[#131313] border border-[#393939] text-white font-mono text-sm p-3 focus:outline-none focus:border-[#10B981] transition-colors rounded-none placeholder:text-neutral-600"
               name="city"
               value={draft.city}
               onChange={(event) => patchDraft({ city: event.target.value })}
@@ -160,10 +160,10 @@ export function ArtistOnboardingForm() {
           </label>
         </div>
 
-        <label className="field">
-          <span className="field-label">UF</span>
+        <label className="flex flex-col gap-2">
+          <span className="font-mono text-xs text-neutral-400 uppercase">UF</span>
           <input
-            className="field-input"
+            className="bg-[#131313] border border-[#393939] text-white font-mono text-sm p-3 focus:outline-none focus:border-[#10B981] transition-colors rounded-none placeholder:text-neutral-600"
             name="state"
             value={draft.state}
             onChange={(event) => patchDraft({ state: event.target.value })}
@@ -172,14 +172,14 @@ export function ArtistOnboardingForm() {
         </label>
       </section>
 
-      <section className="panel space-y-5">
-        <p className="font-mono text-[11px] uppercase tracking-[0.3em] text-[var(--accent)]">02 // Negocio</p>
+      <section className="bg-[#0E0E0E] border border-[#393939] p-6 space-y-6">
+        <p className="font-mono text-[10px] uppercase tracking-widest text-[#10B981]">02 // Negocio</p>
 
         <div className="grid gap-4 md:grid-cols-2">
-          <label className="field">
-            <span className="field-label">Cache minimo</span>
+          <label className="flex flex-col gap-2">
+            <span className="font-mono text-xs text-neutral-400 uppercase">Cache minimo</span>
             <input
-              className="field-input"
+              className="bg-[#131313] border border-[#393939] text-white font-mono text-sm p-3 focus:outline-none focus:border-[#10B981] transition-colors rounded-none placeholder:text-neutral-600"
               name="minFee"
               type="number"
               value={draft.minFee}
@@ -187,10 +187,10 @@ export function ArtistOnboardingForm() {
             />
             <FieldError state={state} name="minFee" />
           </label>
-          <label className="field">
-            <span className="field-label">Cache ideal</span>
+          <label className="flex flex-col gap-2">
+            <span className="font-mono text-xs text-neutral-400 uppercase">Cache ideal</span>
             <input
-              className="field-input"
+              className="bg-[#131313] border border-[#393939] text-white font-mono text-sm p-3 focus:outline-none focus:border-[#10B981] transition-colors rounded-none placeholder:text-neutral-600"
               name="idealFee"
               type="number"
               value={draft.idealFee}
@@ -200,10 +200,10 @@ export function ArtistOnboardingForm() {
           </label>
         </div>
 
-        <label className="field">
-          <span className="field-label">Bio operacional</span>
+        <label className="flex flex-col gap-2">
+          <span className="font-mono text-xs text-neutral-400 uppercase">Bio operacional</span>
           <textarea
-            className="field-input min-h-36"
+            className="bg-[#131313] border border-[#393939] text-white font-mono text-sm p-3 focus:outline-none focus:border-[#10B981] transition-colors rounded-none placeholder:text-neutral-600 min-h-36"
             name="bio"
             value={draft.bio}
             onChange={(event) => patchDraft({ bio: event.target.value })}
@@ -211,10 +211,14 @@ export function ArtistOnboardingForm() {
           <FieldError state={state} name="bio" />
         </label>
 
-        {state.message ? <p className="text-sm text-red-200">{state.message}</p> : null}
+        {state.message ? <p className="font-mono text-xs text-red-400 uppercase">{state.message}</p> : null}
 
-        <button className="primary-button" type="submit" disabled={pending}>
-          {pending ? "Sincronizando..." : "Salvar e abrir dossie"}
+        <button 
+          className="w-full mt-4 border border-[#10B981] bg-[#10B981]/10 hover:bg-[#10B981] text-[#10B981] hover:text-black uppercase font-bold py-3 transition-colors tracking-widest font-archivo text-sm rounded-none" 
+          type="submit" 
+          disabled={pending}
+        >
+          {pending ? "SINCRONIZANDO..." : "SALVAR E ABRIR DOSSIÊ"}
         </button>
       </section>
     </form>
@@ -230,20 +234,20 @@ export function ContractorOnboardingForm() {
 
   return (
     <form action={action} className="grid gap-6 lg:grid-cols-[0.95fr_1.05fr]">
-      <section className="panel space-y-5">
+      <section className="bg-[#0E0E0E] border border-[#393939] p-6 space-y-6">
         <div>
-          <p className="font-mono text-[11px] uppercase tracking-[0.3em] text-[var(--accent)]">
+          <p className="font-mono text-[10px] uppercase tracking-widest text-[#10B981]">
             01 // Contratante
           </p>
-          <h1 className="mt-2 font-heading text-4xl font-bold uppercase tracking-[-0.05em]">
+          <h1 className="mt-2 font-archivo text-2xl font-bold uppercase tracking-tight text-white">
             Opportunity Creation
           </h1>
         </div>
 
-        <label className="field">
-          <span className="field-label">Empresa</span>
+        <label className="flex flex-col gap-2">
+          <span className="font-mono text-xs text-neutral-400 uppercase">Empresa</span>
           <input
-            className="field-input"
+            className="bg-[#131313] border border-[#393939] text-white font-mono text-sm p-3 focus:outline-none focus:border-[#10B981] transition-colors rounded-none placeholder:text-neutral-600"
             name="companyName"
             value={draft.companyName}
             onChange={(event) => patchDraft({ companyName: event.target.value })}
@@ -251,10 +255,10 @@ export function ContractorOnboardingForm() {
           <FieldError state={state} name="companyName" />
         </label>
 
-        <label className="field">
-          <span className="field-label">Segmento</span>
+        <label className="flex flex-col gap-2">
+          <span className="font-mono text-xs text-neutral-400 uppercase">Segmento</span>
           <input
-            className="field-input"
+            className="bg-[#131313] border border-[#393939] text-white font-mono text-sm p-3 focus:outline-none focus:border-[#10B981] transition-colors rounded-none placeholder:text-neutral-600"
             name="segment"
             value={draft.segment}
             onChange={(event) => patchDraft({ segment: event.target.value })}
@@ -263,20 +267,20 @@ export function ContractorOnboardingForm() {
         </label>
 
         <div className="grid gap-4 md:grid-cols-2">
-          <label className="field">
-            <span className="field-label">Cidade</span>
+          <label className="flex flex-col gap-2">
+            <span className="font-mono text-xs text-neutral-400 uppercase">Cidade</span>
             <input
-              className="field-input"
+              className="bg-[#131313] border border-[#393939] text-white font-mono text-sm p-3 focus:outline-none focus:border-[#10B981] transition-colors rounded-none placeholder:text-neutral-600"
               name="city"
               value={draft.city}
               onChange={(event) => patchDraft({ city: event.target.value })}
             />
             <FieldError state={state} name="city" />
           </label>
-          <label className="field">
-            <span className="field-label">UF</span>
+          <label className="flex flex-col gap-2">
+            <span className="font-mono text-xs text-neutral-400 uppercase">UF</span>
             <input
-              className="field-input"
+              className="bg-[#131313] border border-[#393939] text-white font-mono text-sm p-3 focus:outline-none focus:border-[#10B981] transition-colors rounded-none placeholder:text-neutral-600"
               name="state"
               value={draft.state}
               onChange={(event) => patchDraft({ state: event.target.value })}
@@ -286,11 +290,11 @@ export function ContractorOnboardingForm() {
         </div>
       </section>
 
-      <section className="panel space-y-5">
-        <label className="field">
-          <span className="field-label">Titulo da oportunidade</span>
+      <section className="bg-[#0E0E0E] border border-[#393939] p-6 space-y-6">
+        <label className="flex flex-col gap-2">
+          <span className="font-mono text-xs text-neutral-400 uppercase">Titulo da oportunidade</span>
           <input
-            className="field-input"
+            className="bg-[#131313] border border-[#393939] text-white font-mono text-sm p-3 focus:outline-none focus:border-[#10B981] transition-colors rounded-none placeholder:text-neutral-600"
             name="title"
             value={draft.title}
             onChange={(event) => patchDraft({ title: event.target.value })}
@@ -299,10 +303,10 @@ export function ContractorOnboardingForm() {
         </label>
 
         <div className="grid gap-4 md:grid-cols-2">
-          <label className="field">
-            <span className="field-label">Budget minimo</span>
+          <label className="flex flex-col gap-2">
+            <span className="font-mono text-xs text-neutral-400 uppercase">Budget minimo</span>
             <input
-              className="field-input"
+              className="bg-[#131313] border border-[#393939] text-white font-mono text-sm p-3 focus:outline-none focus:border-[#10B981] transition-colors rounded-none placeholder:text-neutral-600"
               name="budgetMin"
               type="number"
               value={draft.budgetMin}
@@ -310,10 +314,10 @@ export function ContractorOnboardingForm() {
             />
             <FieldError state={state} name="budgetMin" />
           </label>
-          <label className="field">
-            <span className="field-label">Budget maximo</span>
+          <label className="flex flex-col gap-2">
+            <span className="font-mono text-xs text-neutral-400 uppercase">Budget maximo</span>
             <input
-              className="field-input"
+              className="bg-[#131313] border border-[#393939] text-white font-mono text-sm p-3 focus:outline-none focus:border-[#10B981] transition-colors rounded-none placeholder:text-neutral-600"
               name="budgetMax"
               type="number"
               value={draft.budgetMax}
@@ -323,10 +327,10 @@ export function ContractorOnboardingForm() {
           </label>
         </div>
 
-        <label className="field">
-          <span className="field-label">Data do evento</span>
+        <label className="flex flex-col gap-2">
+          <span className="font-mono text-xs text-neutral-400 uppercase">Data do evento</span>
           <input
-            className="field-input"
+            className="bg-[#131313] border border-[#393939] text-white font-mono text-sm p-3 focus:outline-none focus:border-[#10B981] transition-colors rounded-none placeholder:text-neutral-600"
             name="eventDate"
             type="date"
             value={draft.eventDate}
@@ -335,10 +339,10 @@ export function ContractorOnboardingForm() {
           <FieldError state={state} name="eventDate" />
         </label>
 
-        <label className="field">
-          <span className="field-label">Briefing</span>
+        <label className="flex flex-col gap-2">
+          <span className="font-mono text-xs text-neutral-400 uppercase">Briefing</span>
           <textarea
-            className="field-input min-h-36"
+            className="bg-[#131313] border border-[#393939] text-white font-mono text-sm p-3 focus:outline-none focus:border-[#10B981] transition-colors rounded-none placeholder:text-neutral-600 min-h-36"
             name="briefing"
             value={draft.briefing}
             onChange={(event) => patchDraft({ briefing: event.target.value })}
@@ -346,10 +350,14 @@ export function ContractorOnboardingForm() {
           <FieldError state={state} name="briefing" />
         </label>
 
-        {state.message ? <p className="text-sm text-red-200">{state.message}</p> : null}
+        {state.message ? <p className="font-mono text-xs text-red-400 uppercase">{state.message}</p> : null}
 
-        <button className="primary-button" type="submit" disabled={pending}>
-          {pending ? "Processando..." : "Salvar e abrir matchboard"}
+        <button 
+          className="w-full mt-4 border border-[#10B981] bg-[#10B981]/10 hover:bg-[#10B981] text-[#10B981] hover:text-black uppercase font-bold py-3 transition-colors tracking-widest font-archivo text-sm rounded-none" 
+          type="submit" 
+          disabled={pending}
+        >
+          {pending ? "PROCESSANDO..." : "SALVAR E ABRIR MATCHBOARD"}
         </button>
       </section>
     </form>
