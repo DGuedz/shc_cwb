@@ -1,26 +1,33 @@
 'use client';
 
-import { motion, useScroll, useTransform } from 'framer-motion';
+import { motion, useScroll, useTransform, MotionValue } from 'framer-motion';
 import { useRef } from 'react';
 
 interface ScrollRevealTitleProps {
   children: React.ReactNode;
   className?: string;
+  progress?: MotionValue<number>;
+  progressRange?: [number, number];
 }
 
-export function ScrollRevealTitle({ children, className = "" }: ScrollRevealTitleProps) {
+export function ScrollRevealTitle({ 
+  children, 
+  className = "", 
+  progress,
+  progressRange = [0, 1] 
+}: ScrollRevealTitleProps) {
   const containerRef = useRef<HTMLHeadingElement>(null);
   
-  // O scroll vai rastrear quando este título entra na tela
-  // "start 85%" significa: começa quando o topo do elemento atinge 85% da altura da tela (entrando por baixo)
-  // "end 50%" significa: termina quando o final do elemento atinge o centro da tela
-  const { scrollYProgress } = useScroll({
+  // Fallback interno caso não seja passado um progress externo (ideal para seções normais, não-sticky)
+  const { scrollYProgress: internalProgress } = useScroll({
     target: containerRef,
     offset: ["start 85%", "end 50%"]
   });
 
+  const activeProgress = progress || internalProgress;
+
   // Transforma o progresso do scroll em um valor de clip-path (da esquerda para a direita)
-  const clipPath = useTransform(scrollYProgress, [0, 1], ["inset(0 100% 0 0)", "inset(0 0% 0 0)"]);
+  const clipPath = useTransform(activeProgress, progressRange, ["inset(0 100% 0 0)", "inset(0 0% 0 0)"]);
 
   return (
     <h2 ref={containerRef} className={`relative ${className}`}>

@@ -35,6 +35,9 @@ export function HeroSection() {
   
   const indicatorHeight = useTransform(scrollYProgress, [0, 1], ["0%", "100%"]);
 
+  // O Efeito Cinza Metálico: Reflete a luz da esquerda para a direita de acordo com o scrub do vídeo
+  const metallicShine = useTransform(scrollYProgress, [0, 0.25], ["200% center", "-200% center"]);
+
   return (
     <section ref={heroRef} className="relative h-[400vh] w-full bg-black">
       <div className="sticky top-0 h-screen w-full overflow-hidden flex items-center justify-center">
@@ -54,9 +57,22 @@ export function HeroSection() {
             className="absolute w-full px-6"
             style={{ opacity: opacityChapter1, pointerEvents: pointerEventsChapter1 }}
           >
-            <ScrollRevealTitle className="font-archivo text-4xl md:text-5xl lg:text-6xl font-bold uppercase tracking-tight leading-none mb-6">
+            <ScrollRevealTitle 
+              className="font-archivo text-4xl md:text-5xl lg:text-6xl font-bold uppercase tracking-tight leading-none mb-6"
+              progress={scrollYProgress}
+              progressRange={[0.05, 0.20]}
+            >
               <span className="text-white">MUITO TALENTO.</span><br />
-              <span className="text-[#393939]">POUCA ESTRUTURA.</span>
+              <motion.span 
+                className="text-transparent bg-clip-text"
+                style={{ 
+                  backgroundImage: "linear-gradient(100deg, #393939 20%, #737373 40%, #ffffff 50%, #737373 60%, #393939 80%)",
+                  backgroundSize: "200% auto",
+                  backgroundPosition: metallicShine 
+                }}
+              >
+                POUCA ESTRUTURA.
+              </motion.span>
             </ScrollRevealTitle>
             <p className="font-mono text-[#A3A3A3] text-xs md:text-sm max-w-xl mx-auto">
               Transformamos a economia criativa com um poderoso algoritmo de Business Match para a cena underground.
@@ -68,7 +84,11 @@ export function HeroSection() {
             className="absolute w-full px-6"
             style={{ opacity: opacityChapter2, pointerEvents: pointerEventsChapter2 }}
           >
-            <ScrollRevealTitle className="font-archivo text-4xl md:text-5xl lg:text-6xl font-bold uppercase tracking-tight leading-none mb-6">
+            <ScrollRevealTitle 
+              className="font-archivo text-4xl md:text-5xl lg:text-6xl font-bold uppercase tracking-tight leading-none mb-6"
+              progress={scrollYProgress}
+              progressRange={[0.50, 0.65]}
+            >
               <span className="text-white">DESCUBRA. CONECTE.</span><br />
               <span className="text-gradient">CONTRATE.</span>
             </ScrollRevealTitle>

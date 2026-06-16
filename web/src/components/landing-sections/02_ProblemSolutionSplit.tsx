@@ -63,7 +63,11 @@ export function ProblemSolutionSplit() {
             viewport={{ once: true, margin: "-100px" }}
           >
             <div className="w-12 h-1 bg-[#10B981] mb-8" />
-            <ScrollRevealTitle className="font-archivo text-5xl md:text-6xl lg:text-7xl font-bold uppercase tracking-tight leading-[0.9] mb-8">
+            <ScrollRevealTitle 
+              className="font-archivo text-5xl md:text-6xl lg:text-7xl font-bold uppercase tracking-tight leading-[0.9] mb-8"
+              progress={scrollYProgress}
+              progressRange={[0.0, 0.15]}
+            >
               <span className="text-white">O CUSTO DA</span><br />
               <span className="text-gradient">INVISIBILIDADE.</span>
             </ScrollRevealTitle>
