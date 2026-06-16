@@ -66,8 +66,7 @@ export function GovBrUpgradeModal({
               <button 
                 className="w-full border border-[#1351B4] bg-[#1351B4]/10 hover:bg-[#1351B4] text-[#1351B4] hover:text-white uppercase font-bold py-3 transition-colors tracking-widest font-archivo text-sm rounded-none flex items-center justify-center gap-3" 
                 onClick={() => {
-                  alert("Iniciando fluxo de reautenticação OAuth com Gov.br...");
-                  onClose();
+                  window.location.href = "/sign-in";
                 }}
               >
                 <img src="/govbr-logo.svg" alt="gov.br" className="h-4 brightness-0 invert opacity-80" onError={(e) => e.currentTarget.style.display = 'none'} />

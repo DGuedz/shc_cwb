@@ -33,24 +33,21 @@ export class GovBrMockService {
   /**
    * Simulates an auth callback that returns the mocked payload
    */
-  static async simulateAuthCallback(role: "artist" | "contractor"): Promise<GovBrMockResponse> {
+  static async simulateAuthCallback(role: "artist" | "contractor", requestedLevel: "bronze" | "prata" | "ouro" = "bronze"): Promise<GovBrMockResponse> {
     // Artificial delay
-    await new Promise((resolve) => setTimeout(resolve, 1500));
+    await new Promise((resolve) => setTimeout(resolve, 800));
 
-    if (role === "contractor") {
-      return {
-        cpf: "123.456.789-00",
-        name: "Empresa Contratante S.A.",
-        level: "prata", // Starting as prata to show the upgrade flow
-        categories: ["Validação por bancos credenciados"],
-      };
-    }
+    const categories = requestedLevel === "ouro" 
+      ? ["Validação por certificado digital", "Biometria facial TSE"]
+      : requestedLevel === "prata"
+      ? ["Validação por bancos credenciados"]
+      : ["Validação básica INSS"];
 
     return {
-      cpf: "098.765.432-11",
-      name: "Artista Demo",
-      level: "bronze",
-      categories: ["Validação básica INSS"],
+      cpf: role === "contractor" ? "123.456.789-00" : "098.765.432-11",
+      name: role === "contractor" ? "Empresa Contratante S.A." : "Artista Demo",
+      level: requestedLevel,
+      categories,
     };
   }
 }

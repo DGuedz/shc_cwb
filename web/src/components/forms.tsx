@@ -12,7 +12,8 @@ import {
   signOutAction,
 } from "@/app/actions";
 import { useAppStore } from "@/store/app-store";
-import type { UserRole } from "@/types/domain";
+import type { UserRole, GovBrLevel } from "@/types/domain";
+import { GovBrMockService } from "@/lib/govbr";
 
 const initialState: FormActionState = {};
 
@@ -46,6 +47,30 @@ export function SignInForm({ supabaseEnabled }: { supabaseEnabled: boolean }) {
   const [state, action, pending] = useActionState(signInAction, initialState);
   const role = useAppStore((store) => store.role);
   const setRole = useAppStore((store) => store.setRole);
+  const setGovBrLevel = useAppStore((store) => store.setGovBrLevel);
+  const router = useRouter();
+
+  const [isGovBrLoading, setIsGovBrLoading] = useState(false);
+  const [mockLevel, setMockLevel] = useState<GovBrLevel>("bronze");
+
+  const handleGovBrLogin = async () => {
+    setIsGovBrLoading(true);
+    try {
+      const currentRole = role ?? "artist";
+      const response = await GovBrMockService.simulateAuthCallback(currentRole, mockLevel as "bronze" | "prata" | "ouro");
+      setGovBrLevel(response.level);
+      setRole(currentRole);
+      
+      // Simula roteamento do gateway
+      if (currentRole === "contractor") {
+        router.push("/onboarding/contratante");
+      } else {
+        router.push("/onboarding/artista");
+      }
+    } finally {
+      setIsGovBrLoading(false);
+    }
+  };
 
   return (
     <form action={action} className="bg-[#0E0E0E] border border-[#393939] p-6 flex flex-col gap-6 rounded-none w-full">
@@ -101,6 +126,23 @@ export function SignInForm({ supabaseEnabled }: { supabaseEnabled: boolean }) {
 
       {state.message ? <p className="font-mono text-xs text-red-400 uppercase">{state.message}</p> : null}
 
+      {!supabaseEnabled && (
+        <div className="bg-[#131313] border border-[#393939] p-4 flex flex-col gap-2">
+          <p className="font-mono text-[10px] text-[#A3A3A3] uppercase tracking-widest">
+            Simulador Gov.br (Ambiente Demo)
+          </p>
+          <select
+            className="w-full bg-black border border-[#393939] text-white font-mono text-xs p-2 focus:border-[#10B981] outline-none"
+            value={mockLevel}
+            onChange={(e) => setMockLevel(e.target.value as GovBrLevel)}
+          >
+            <option value="bronze">Forçar Nível BRONZE (Teste de Bloqueios)</option>
+            <option value="prata">Forçar Nível PRATA (Intermediário)</option>
+            <option value="ouro">Forçar Nível OURO (Acesso Total)</option>
+          </select>
+        </div>
+      )}
+
       <div className="flex flex-col gap-3 mt-4">
         <button 
           className="border border-[#10B981] bg-[#10B981]/10 hover:bg-[#10B981] text-[#10B981] hover:text-black uppercase font-bold py-3 transition-colors tracking-widest font-archivo text-sm rounded-none" 
@@ -119,10 +161,11 @@ export function SignInForm({ supabaseEnabled }: { supabaseEnabled: boolean }) {
         <button 
           className="border border-[#1351B4] bg-[#1351B4]/10 hover:bg-[#1351B4] text-[#1351B4] hover:text-white uppercase font-bold py-3 transition-colors tracking-widest font-archivo text-sm rounded-none flex items-center justify-center gap-3" 
           type="button" 
-          onClick={() => alert("Redirecionando para o Gateway Gov.br...")}
+          onClick={handleGovBrLogin}
+          disabled={isGovBrLoading}
         >
           <img src="/govbr-logo.svg" alt="gov.br" className="h-4 brightness-0 invert opacity-80" onError={(e) => e.currentTarget.style.display = 'none'} />
-          <span>ENTRAR COM GOV.BR</span>
+          <span>{isGovBrLoading ? "CONECTANDO..." : "ENTRAR COM GOV.BR"}</span>
         </button>
       </div>
     </form>
