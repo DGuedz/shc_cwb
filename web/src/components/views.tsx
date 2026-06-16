@@ -148,6 +148,8 @@ export function MatchBoard({
   opportunity: Opportunity;
   entries: Array<Match & { artist: Artist }>;
 }) {
+  const [selectedMatch, setSelectedMatch] = useState<typeof entries[0] | null>(null);
+
   // Simulando o Motor de Matchmaking: Os artistas que chegam aqui já foram pré-selecionados pelo Agente Curador
   return (
     <div className="flex flex-col gap-8">
@@ -205,7 +207,10 @@ export function MatchBoard({
             </div>
             
             <div className="flex flex-col gap-2 mt-auto">
-              <button className="w-full bg-[#10B981]/10 border border-[#10B981] hover:bg-[#10B981] text-[#10B981] hover:text-black uppercase font-bold py-3 transition-colors tracking-widest font-archivo text-xs rounded-none">
+              <button 
+                onClick={() => setSelectedMatch(entry)}
+                className="w-full bg-[#10B981]/10 border border-[#10B981] hover:bg-[#10B981] text-[#10B981] hover:text-black uppercase font-bold py-3 transition-colors tracking-widest font-archivo text-xs rounded-none"
+              >
                 Notificar & Assinar
               </button>
               <button className="w-full bg-transparent border border-[#393939] hover:border-white text-neutral-400 hover:text-white uppercase font-bold py-3 transition-colors tracking-widest font-archivo text-xs rounded-none">
@@ -215,6 +220,18 @@ export function MatchBoard({
           </div>
         ))}
       </div>
+
+      {/* Modal: Tripartite Handshake / Legal Agent */}
+      {selectedMatch && (
+        <TripartiteHandshake 
+          artistName={selectedMatch.artist.stageName}
+          artistExp={(selectedMatch.artist as any).exp || 1050}
+          companyName="CONTRATANTE VERIFICADO" // No ambiente real, vem da session da empresa logada
+          opportunityTitle={opportunity.title}
+          budget={(opportunity as any).budget || 50000}
+          onClose={() => setSelectedMatch(null)}
+        />
+      )}
     </div>
   );
 }
@@ -263,6 +280,8 @@ export function DealsKanban({ deals }: { deals: Deal[] }) {
 }
 
 import { ArtistIDCard } from "./ui/ArtistIDCard";
+import { TripartiteHandshake } from "./ui/TripartiteHandshake";
+import { useState } from "react";
 
 export function DossierPanel({ artist }: { artist: Artist & { exp?: number, health?: 'OPTIMAL' | 'WARNING' | 'REHAB' } }) {
   return (
