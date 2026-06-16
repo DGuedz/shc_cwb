@@ -15,12 +15,12 @@ export function DashboardNav() {
   ];
 
   return (
-    <nav className="fixed top-0 w-full z-50 border-b border-[#393939] bg-[#0E0E0E]/90 backdrop-blur-xl h-20 px-6 md:px-12 flex justify-between items-center transition-colors duration-0">
-      <div className="flex items-center space-x-8 h-full">
-        <Link href="/" className="font-archivo text-xl font-bold tracking-tighter text-white uppercase">
-          STREET HUB CONNECT
+    <nav className="fixed top-0 w-full z-50 border-b border-[#393939] bg-[#0E0E0E]/90 backdrop-blur-xl h-16 px-4 md:px-8 flex justify-between items-center transition-colors duration-0">
+      <div className="flex items-center space-x-6 h-full">
+        <Link href="/" className="font-archivo text-lg font-bold tracking-tighter text-white uppercase leading-none w-32">
+          STREET HUB <br/>CONNECT
         </Link>
-        <div className="hidden md:flex space-x-6 h-full items-center font-mono text-xs text-neutral-400">
+        <div className="hidden md:flex space-x-1 h-full items-center font-mono text-[10px] text-neutral-400 uppercase tracking-widest">
           {links.map((link) => {
             const isActive = pathname === link.href || pathname?.startsWith(link.href + "/");
             return (

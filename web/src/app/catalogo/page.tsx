@@ -109,9 +109,9 @@ export default function VitrineArtistas() {
 		<div className="bg-black text-[var(--on-background)] min-h-screen flex flex-col">
 			<DashboardNav />
 
-			<main className="flex-grow pt-32 pb-24 px-[var(--spacing-margin-mobile)] md:px-[var(--spacing-margin-desktop)] max-w-[var(--spacing-container-max)] mx-auto w-full">
+			<main className="flex-grow pt-24 pb-16 px-4 md:px-8 max-w-[var(--spacing-container-max)] mx-auto w-full">
 				{/* HERO EDITORIAL */}
-				<header className="mb-16 md:mb-24 flex flex-col items-start gap-4 relative">
+				<header className="mb-12 md:mb-16 flex flex-col items-start gap-4 relative">
 					<div className="absolute right-0 top-0 border border-white/10 bg-[#0E0E0E] px-4 py-2 hidden md:flex items-center gap-2">
 						<span className="w-2 h-2 rounded-full bg-[#10B981] animate-pulse"></span>
 						<span className="font-mono text-[#10B981] text-[10px] uppercase tracking-widest">
@@ -119,11 +119,11 @@ export default function VitrineArtistas() {
 						</span>
 					</div>
 					<ScrollRevealTitle
-						className="font-archivo text-5xl md:text-[64px] font-bold uppercase tracking-tighter max-w-3xl leading-tight text-[#10B981]"
+						className="font-archivo text-4xl md:text-5xl lg:text-6xl font-bold uppercase tracking-tighter max-w-3xl leading-[0.9] text-[#10B981]"
 					>
 						CATÁLOGO DE ARTISTAS
 					</ScrollRevealTitle>
-					<p className="font-mono text-sm text-neutral-400 max-w-2xl border-l-2 border-[#10B981] pl-4">
+					<p className="font-mono text-xs text-neutral-400 max-w-xl border-l border-[#10B981] pl-4 mt-2">
 						Artistas independentes prontos para shows, ativações de
 						marca, eventos privados e festivais.
 					</p>
