@@ -1,123 +1,21 @@
 @import "tailwindcss";
 
-/* Institutional Underground Design System from Stitch */
 :root {
-  --on-background: #e5e2e1;
-  --inverse-primary: #5d5f5f;
-  --outline-variant: #444748;
   --background: #131313;
-  --outline: #8e9192;
-  --on-tertiary: #313030;
-  --on-error-container: #ffdad6;
-  --primary-fixed: #e2e2e2;
-  --tertiary-container: #e5e2e1;
-  --on-primary-fixed-variant: #454747;
-  --inverse-surface: #e5e2e1;
-  --surface-container: #20201f;
-  --secondary-fixed-dim: #4edea3;
-  --on-tertiary-container: #656464;
-  --surface-dim: #131313;
-  --on-secondary-fixed-variant: #005236;
-  --surface-variant: #353535;
-  --secondary: #4edea3;
-  --secondary-fixed: #6ffbbe;
-  --error-container: #93000a;
-  --on-secondary-fixed: #002113;
-  --secondary-container: #00a572;
-  --tertiary: #ffffff;
-  --on-error: #690005;
-  --on-surface-variant: #c4c7c8;
-  --inverse-on-surface: #313030;
-  --surface-container-highest: #353535;
-  --surface-container-lowest: #0e0e0e;
-  --on-primary-container: #636565;
-  --surface-tint: #c6c6c7;
-  --tertiary-fixed: #e5e2e1;
-  --tertiary-fixed-dim: #c9c6c5;
-  --primary-fixed-dim: #c6c6c7;
-  --on-tertiary-fixed-variant: #474646;
-  --surface-bright: #393939;
-  --on-surface: #e5e2e1;
-  --on-secondary-container: #00311f;
-  --surface: #131313;
-  --on-secondary: #003824;
-  --primary: #ffffff;
-  --surface-container-high: #2a2a2a;
-  --on-primary: #2f3131;
-  --error: #ffb4ab;
-  --on-tertiary-fixed: #1c1b1b;
-  --primary-container: #e2e2e2;
-  --surface-container-low: #1c1b1b;
-  --on-primary-fixed: #1a1c1c;
+  --surface-dim: #0E0E0E;
+  --primary: #10B981;
+  --outline: #393939;
 }
 
 @theme inline {
-  --color-on-background: var(--on-background);
-  --color-inverse-primary: var(--inverse-primary);
-  --color-outline-variant: var(--outline-variant);
   --color-background: var(--background);
-  --color-outline: var(--outline);
-  --color-on-tertiary: var(--on-tertiary);
-  --color-on-error-container: var(--on-error-container);
-  --color-primary-fixed: var(--primary-fixed);
-  --color-tertiary-container: var(--tertiary-container);
-  --color-on-primary-fixed-variant: var(--on-primary-fixed-variant);
-  --color-inverse-surface: var(--inverse-surface);
-  --color-surface-container: var(--surface-container);
-  --color-secondary-fixed-dim: var(--secondary-fixed-dim);
-  --color-on-tertiary-container: var(--on-tertiary-container);
   --color-surface-dim: var(--surface-dim);
-  --color-on-secondary-fixed-variant: var(--on-secondary-fixed-variant);
-  --color-surface-variant: var(--surface-variant);
-  --color-secondary: var(--secondary);
-  --color-secondary-fixed: var(--secondary-fixed);
-  --color-error-container: var(--error-container);
-  --color-on-secondary-fixed: var(--on-secondary-fixed);
-  --color-secondary-container: var(--secondary-container);
-  --color-tertiary: var(--tertiary);
-  --color-on-error: var(--on-error);
-  --color-on-surface-variant: var(--on-surface-variant);
-  --color-inverse-on-surface: var(--inverse-on-surface);
-  --color-surface-container-highest: var(--surface-container-highest);
-  --color-surface-container-lowest: var(--surface-container-lowest);
-  --color-on-primary-container: var(--on-primary-container);
-  --color-surface-tint: var(--surface-tint);
-  --color-tertiary-fixed: var(--tertiary-fixed);
-  --color-tertiary-fixed-dim: var(--tertiary-fixed-dim);
-  --color-primary-fixed-dim: var(--primary-fixed-dim);
-  --color-on-tertiary-fixed-variant: var(--on-tertiary-fixed-variant);
-  --color-surface-bright: var(--surface-bright);
-  --color-on-surface: var(--on-surface);
-  --color-on-secondary-container: var(--on-secondary-container);
-  --color-surface: var(--surface);
-  --color-on-secondary: var(--on-secondary);
   --color-primary: var(--primary);
-  --color-surface-container-high: var(--surface-container-high);
-  --color-on-primary: var(--on-primary);
-  --color-error: var(--error);
-  --color-on-tertiary-fixed: var(--on-tertiary-fixed);
-  --color-primary-container: var(--primary-container);
-  --color-surface-container-low: var(--surface-container-low);
-  --color-on-primary-fixed: var(--on-primary-fixed);
-
-  --radius-sm: 0px;
-  --radius-md: 0px;
-  --radius-lg: 0px;
-  --radius-xl: 0px;
-  --radius-full: 9999px;
-
-  --spacing-margin-desktop: 32px;
-  --spacing-unit: 4px;
-  --spacing-container-max: 1440px;
-  --spacing-margin-mobile: 16px;
-  --spacing-gutter: 16px;
-
-  --font-family-headline-lg: "Archivo Narrow", system-ui, sans-serif;
-  --font-family-headline-md: "Archivo Narrow", system-ui, sans-serif;
-  --font-family-headline-xl: "Archivo Narrow", system-ui, sans-serif;
-  --font-family-data-num: "JetBrains Mono", ui-monospace, monospace;
-  --font-family-body-md: "Inter", system-ui, sans-serif;
-  --font-family-label-mono: "JetBrains Mono", ui-monospace, monospace;
+  --color-outline: var(--outline);
+  
+  --font-family-archivo: var(--font-heading-ui), system-ui, sans-serif;
+  --font-family-mono: var(--font-mono-ui), ui-monospace, monospace;
+  --font-family-sans: var(--font-heading-ui), system-ui, sans-serif;
 }
 
 * {
@@ -130,40 +28,19 @@ html {
 
 body {
   min-height: 100vh;
-  background-color: #000000;
-  color: var(--on-background);
+  background-color: var(--background);
+  color: #ffffff;
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
 }
 
 ::selection {
-  background: var(--secondary);
-  color: var(--on-secondary);
+  background: var(--primary);
+  color: #000000;
 }
 
 /* Custom Scrollbar for Brutalist Aesthetic */
 ::-webkit-scrollbar { width: 4px; }
-::-webkit-scrollbar-track { background: #000000; }
-::-webkit-scrollbar-thumb { background: var(--secondary); }
-
-.brutalist-border {
-  border: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-.lego-snap {
-  transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.4s ease;
-}
-
-.reveal-hidden {
-  opacity: 0;
-  transform: translateY(20px);
-}
-
-.reveal-visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-#hero-video-container {
-  will-change: transform;
-}
+::-webkit-scrollbar-track { background: var(--surface-dim); }
+::-webkit-scrollbar-thumb { background: var(--outline); }
+::-webkit-scrollbar-thumb:hover { background: var(--primary); }

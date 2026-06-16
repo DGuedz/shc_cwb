@@ -1,453 +1,423 @@
-'use client';
+"use client";
 
-import { useState, useEffect } from 'react';
+import { motion } from "framer-motion";
+import { useState } from "react";
+import { Navbar } from "@/components/layout/Navbar";
 
-export default function DiretorioTalentos() {
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [modalStep, setModalStep] = useState<'loading' | 'success'>('loading');
+const MOCK_ARTISTS = [
+	{
+		id: "1",
+		name: "NAVE",
+		city: "Curitiba, PR",
+		base: "Centro",
+		genre: "Trap / Melodic Rap",
+		formats: "Show pocket · Festival · Club",
+		minCache: "R$ 2.500",
+		duration: "35–45 min",
+		image: "/images/artists/01.jpg",
+	},
+	{
+		id: "2",
+		name: "KAYO VX",
+		city: "Curitiba, PR",
+		base: "Boqueirão",
+		genre: "Drill / Trap",
+		formats: "Club · Batalha · Evento urbano",
+		minCache: "R$ 1.800",
+		duration: "30–40 min",
+		image: "/images/artists/02.jpg",
+	},
+	{
+		id: "3",
+		name: "LIL VILA",
+		city: "Curitiba, PR",
+		base: "CIC",
+		genre: "Trap / Funk Trap",
+		formats: "Baile · Festa univ. · Showcase",
+		minCache: "R$ 2.200",
+		duration: "35 min",
+		image: "/images/artists/03.jpg",
+	},
+	{
+		id: "4",
+		name: "MC AURA",
+		city: "Curitiba, PR",
+		base: "Água Verde",
+		genre: "Rap / R&B",
+		formats: "Acústico · Pocket · Marca",
+		minCache: "R$ 3.000",
+		duration: "40–50 min",
+		image: "/images/artists/04.jpg",
+	},
+	{
+		id: "5",
+		name: "D7 NOIR",
+		city: "Curitiba, PR",
+		base: "Sítio Cercado",
+		genre: "Trap / Gangsta Rap",
+		formats: "Festival · Club · Evento urbano",
+		minCache: "R$ 2.800",
+		duration: "40 min",
+		image: "/images/artists/05.jpg",
+	},
+	{
+		id: "6",
+		name: "YUNG PINHA",
+		city: "Curitiba, PR",
+		base: "Santa Felicidade",
+		genre: "Plug / Trap Soul",
+		formats: "Lounge · Marca · Evento privado",
+		minCache: "R$ 2.000",
+		duration: "30–45 min",
+		image: "/images/artists/06.jpg",
+	},
+	{
+		id: "7",
+		name: "BRISA 41",
+		city: "Curitiba, PR",
+		base: "Portão",
+		genre: "Rap / Boom Bap / Trap",
+		formats: "Sarau · Festival · Cultural",
+		minCache: "R$ 1.500",
+		duration: "30–40 min",
+		image: "/images/artists/07.jpg",
+	},
+	{
+		id: "8",
+		name: "RUAH",
+		city: "Curitiba, PR",
+		base: "Rebouças",
+		genre: "Trap Exp. / Afrotrap",
+		formats: "Galeria · Club · Conceitual",
+		minCache: "R$ 2.600",
+		duration: "35–45 min",
+		image: "/images/artists/08.jpg",
+	},
+];
 
-  useEffect(() => {
-    // Simular animações Framer Motion (adaptadas para React)
-  }, []);
+export default function VitrineArtistas() {
+	const [isVerifiedOnly, setIsVerifiedOnly] = useState(true);
 
-  const handleContractClick = (e: React.MouseEvent<HTMLButtonElement>) => {
-    e.preventDefault();
-    setIsModalOpen(true);
-    setModalStep('loading');
-    
-    setTimeout(() => {
-      setModalStep('success');
-      setTimeout(() => {
-        // Redirecionar para deals pipeline
-        window.location.href = '/dashboard/acordos';
-      }, 2000);
-    }, 2000);
-  };
+	return (
+		<div className="bg-[#0E0E0E] min-h-screen text-white font-sans selection:bg-[#10B981] selection:text-black">
+			<Navbar />
 
-  return (
-    <div className="bg-black text-[var(--on-background)] min-h-screen flex flex-col">
-      {/* Interactive Modal */}
-      {isModalOpen && (
-        <div className="fixed inset-0 z-[100] bg-black/90 backdrop-blur-sm flex items-center justify-center">
-          <div className="glass-panel max-w-md w-full p-8 relative overflow-hidden border border-emerald-500/30 flex flex-col items-center text-center">
-            <style jsx>{`
-              .glass-panel {
-                background-color: #0A0A0A;
-                border: 1px solid rgba(255,255,255,0.1);
-              }
-              @keyframes scan {
-                0% { top: -10%; }
-                100% { top: 110%; }
-              }
-              .scanner-line {
-                position: absolute;
-                width: 100%;
-                height: 2px;
-                background: #10B981;
-                box-shadow: 0 0 10px #10B981;
-                animation: scan 1.5s linear infinite;
-              }
-              @keyframes flicker {
-                0%, 19.999%, 22%, 62.999%, 64%, 64.999%, 70%, 100% { opacity: 1; }
-                20%, 21.999%, 63%, 63.999%, 65%, 69.999% { opacity: 0.4; }
-              }
-              .text-flicker {
-                animation: flicker 3s infinite;
-              }
-            `}</style>
-            {modalStep === 'loading' && (
-              <div className="flex flex-col items-center gap-4 w-full">
-                <div className="w-16 h-16 relative border border-white/10 bg-black rounded flex items-center justify-center overflow-hidden">
-                  <span className="material-symbols-outlined text-[var(--outline-variant)] animate-pulse" style={{ fontSize: '32px' }}>terminal</span>
-                  <div className="scanner-line"></div>
-                </div>
-                <p className="font-[var(--font-family-label-mono)] text-emerald-500 text-[14px] uppercase tracking-widest text-flicker">
-                  Validando dados no Supabase...
-                </p>
-              </div>
-            )}
-            {modalStep === 'success' && (
-              <div className="flex flex-col items-center gap-4 w-full">
-                <div className="w-16 h-16 rounded-full bg-emerald-500/10 flex items-center justify-center mb-2 border border-emerald-500/30">
-                  <span className="material-symbols-outlined text-emerald-500" style={{ fontSize: '40px', fontWeight: 700 }}>check</span>
-                </div>
-                <p className="font-[var(--font-family-label-mono)] text-[var(--primary)] text-[14px] uppercase tracking-widest leading-relaxed">
-                  Conexão Estabelecida.<br/>
-                  <span className="text-emerald-500/70 text-[12px] mt-2 block">Acordo enviado para o Deals Pipeline.</span>
-                </p>
-              </div>
-            )}
-          </div>
-        </div>
-      )}
-      
-      {/* TopNavBar */}
-      <nav className="fixed top-0 w-full z-50 border-b border-[var(--outline-variant)] bg-[var(--surface)]/90 backdrop-blur-xl h-20 px-[var(--spacing-margin-mobile)] md:px-[var(--spacing-margin-desktop)] flex justify-between items-center transition-colors duration-0">
-        <div className="flex items-center space-x-8 h-full">
-          <a href="/" className="font-[var(--font-family-headline-lg)] text-[var(--font-size-headline-lg)] font-bold tracking-tighter text-[var(--primary)]">
-            STREET HUB CONNECT
-          </a>
-          <div className="hidden md:flex space-x-6 h-full items-center font-[var(--font-family-label-mono)] text-[var(--font-size-label-mono)] text-[var(--on-surface-variant)]">
-            <a href="/" className="h-full flex items-center transition-colors duration-0 hover:text-[var(--primary)] hover:bg-[var(--surface-container-high)] px-2">
-              Início
-            </a>
-            <a href="/catalogo" className="text-[var(--primary)] border-b-2 border-[var(--primary)] h-full flex items-center pt-[2px] transition-colors duration-0 hover:text-[var(--primary)] hover:bg-[var(--surface-container-high)] px-2">
-              Artistas
-            </a>
-            <a href="/onboarding/contratante" className="h-full flex items-center transition-colors duration-0 hover:text-[var(--primary)] hover:bg-[var(--surface-container-high)] px-2">
-              Oportunidades
-            </a>
-            <a href="/dashboard/acordos" className="h-full flex items-center transition-colors duration-0 hover:text-[var(--primary)] hover:bg-[var(--surface-container-high)] px-2">
-              Conexões
-            </a>
-            <a href="/onboarding/artista" className="h-full flex items-center transition-colors duration-0 hover:text-[var(--primary)] hover:bg-[var(--surface-container-high)] px-2">
-              Perfil/Contratos
-            </a>
-          </div>
-        </div>
-        <div className="flex items-center space-x-4">
-          <div className="relative hidden md:block">
-            <span className="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-[var(--on-surface-variant)]" style={{ fontSize: '20px' }}>search</span>
-            <input 
-              type="text" 
-              placeholder="Search..." 
-              className="bg-black border border-white/10 text-[var(--primary)] font-[var(--font-family-label-mono)] text-[var(--font-size-label-mono)] pl-10 pr-4 py-2 focus:outline-none focus:border-white transition-colors"
-            />
-          </div>
-          <button aria-label="Notifications" className="p-2 hover:bg-[var(--surface-container-high)] transition-colors duration-0 rounded">
-            <span className="material-symbols-outlined text-[var(--primary)]">notifications</span>
-          </button>
-          <button aria-label="Settings" className="p-2 hover:bg-[var(--surface-container-high)] transition-colors duration-0 rounded">
-            <span className="material-symbols-outlined text-[var(--primary)]">settings</span>
-          </button>
-          <div className="w-10 h-10 border border-white/10 bg-[var(--surface-container-high)] flex items-center justify-center font-[var(--font-family-label-mono)] text-xs text-[var(--primary)]">
-            PR
-          </div>
-        </div>
-      </nav>
-      
-      {/* Main Content Canvas */}
-      <main className="flex-grow pt-20 px-[var(--spacing-margin-mobile)] md:px-[var(--spacing-margin-desktop)] max-w-[var(--spacing-container-max)] mx-auto w-full flex flex-col gap-8 pb-16">
-        {/* Hero Header */}
-        <header className="mt-12 flex flex-col items-start gap-4 relative">
-          <div className="absolute right-0 top-0 border border-white/10 bg-black px-4 py-2 hidden md:flex items-center gap-2">
-            <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
-            <span className="font-[var(--font-family-label-mono)] text-[var(--font-size-label-mono)] text-emerald-500">HACKATHON MUSICTECH BRASIL</span>
-          </div>
-          <h1 className="font-[var(--font-family-headline-xl)] text-[var(--font-size-headline-xl)] md:text-[64px] font-bold text-[var(--primary)] tracking-tighter uppercase max-w-3xl leading-tight">
-            DIRETÓRIO DE TALENTOS
-          </h1>
-          <p className="font-[var(--font-family-body-lg)] text-[var(--font-size-body-lg)] text-[var(--on-surface-variant)] max-w-2xl border-l-2 border-[var(--primary)] pl-4">
-            Base de artistas independentes validados pela Street Hub. Fomento à economia criativa e curadoria de infraestrutura para o mercado institucional.
-          </p>
-        </header>
-        
-        {/* Command Bar (Sticky) */}
-        <div className="sticky top-20 z-40 glass-panel p-4 flex flex-col md:flex-row gap-4 items-end">
-          <style jsx>{`
-            .glass-panel {
-              background-color: #0A0A0A;
-              border: 1px solid rgba(255,255,255,0.1);
-            }
-          `}</style>
-          <div className="w-full md:w-1/3 flex flex-col gap-2">
-            <label className="font-[var(--font-family-label-mono)] text-[var(--font-size-label-mono)] text-[var(--on-surface-variant)] uppercase text-[11px]">
-              Buscar Artista
-            </label>
-            <div className="relative">
-              <span className="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-[var(--outline-variant)]" style={{ fontSize: '18px' }}>search</span>
-              <input 
-                type="text" 
-                placeholder="Nome, cidade ou tag..." 
-                className="w-full bg-black border border-white/10 text-[var(--primary)] font-[var(--font-family-body-md)] text-[var(--font-size-body-md)] pl-10 pr-4 py-3 focus:outline-none focus:border-white transition-colors h-12"
-              />
-            </div>
-          </div>
-          <div className="w-full md:w-1/4 flex flex-col gap-2">
-            <label className="font-[var(--font-family-label-mono)] text-[var(--font-size-label-mono)] text-[var(--on-surface-variant)] uppercase text-[11px]">
-              Gênero Musical
-            </label>
-            <select className="w-full bg-black border border-white/10 text-[var(--primary)] font-[var(--font-family-body-md)] text-[var(--font-size-body-md)] px-4 py-3 focus:outline-none focus:border-white transition-colors appearance-none h-12">
-              <option value="">Todos os Gêneros</option>
-              <option value="dj">DJ Set</option>
-              <option value="rap">Rap / Hip-Hop</option>
-              <option value="trap">Trap</option>
-              <option value="mpb">Nova MPB</option>
-            </select>
-          </div>
-          <div className="w-full md:w-1/4 flex flex-col gap-2">
-            <label className="font-[var(--font-family-label-mono)] text-[var(--font-size-label-mono)] text-[var(--on-surface-variant)] uppercase text-[11px]">
-              Budget Máximo (R$)
-            </label>
-            <div className="relative">
-              <span className="font-[var(--font-family-data-num)] text-[var(--font-size-data-num)] text-[var(--outline-variant)] absolute left-3 top-1/2 -translate-y-1/2">R$</span>
-              <input 
-                type="number" 
-                placeholder="5000" 
-                step="500" 
-                className="w-full bg-black border border-white/10 text-[var(--primary)] font-[var(--font-family-data-num)] text-[var(--font-size-data-num)] pl-10 pr-4 py-3 focus:outline-none focus:border-white transition-colors h-12"
-              />
-            </div>
-          </div>
-          <div className="w-full md:w-auto ml-auto">
-            <button className="w-full md:w-auto bg-[var(--primary)] text-black font-[var(--font-family-label-mono)] text-[var(--font-size-label-mono)] px-8 py-3 hover:bg-[var(--surface-tint)] transition-none flex items-center justify-center gap-2 h-12">
-              <span className="material-symbols-outlined" style={{ fontSize: '18px' }}>filter_list</span>
-              FILTRAR
-            </button>
-          </div>
-        </div>
-        
-        {/* Active Filters Chip Area */}
-        <div className="flex flex-wrap gap-2 items-center min-h-[32px]">
-          <span className="font-[var(--font-family-label-mono)] text-[var(--font-size-label-mono)] text-[var(--on-surface-variant)] text-[11px] uppercase mr-2">
-            Filtros Ativos:
-          </span>
-          <div className="border border-white/10 bg-[var(--surface-container-low)] px-3 py-1 flex items-center gap-2 group cursor-pointer hover:bg-[var(--surface-container)] transition-none">
-            <span className="font-[var(--font-family-label-mono)] text-[var(--font-size-label-mono)] text-[var(--primary)] text-[12px]">Status: Verified</span>
-            <span className="material-symbols-outlined text-[14px] text-[var(--outline-variant)] group-hover:text-[var(--primary)]">close</span>
-          </div>
-        </div>
-        
-        {/* Artist Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {/* Card 1 - DJ ALX */}
-          <article className="glass-panel flex flex-col group artist-card transition-all duration-300 hover:-translate-y-1 hover:border-emerald-500/40 hover:shadow-[0_0_15px_rgba(16,185,129,0.1)]">
-            <style jsx>{`
-              .glass-panel {
-                background-color: #0A0A0A;
-                border: 1px solid rgba(255,255,255,0.1);
-              }
-              @keyframes flicker {
-                0%, 19.999%, 22%, 62.999%, 64%, 64.999%, 70%, 100% { opacity: 1; }
-                20%, 21.999%, 63%, 63.999%, 65%, 69.999% { opacity: 0.4; }
-              }
-              .text-flicker {
-                animation: flicker 3s infinite;
-              }
-            `}</style>
-            {/* Header */}
-            <div className="p-6 border-b border-white/10 flex items-start gap-4">
-              <div className="w-16 h-16 shrink-0 relative">
-                <div className="w-full h-full bg-[var(--surface-container-low)] grayscale brightness-110 contrast-125 border border-white/10 flex items-center justify-center">
-                  <span className="font-[var(--font-family-label-mono)] text-[var(--on-surface-variant)] text-xs">IMG</span>
-                </div>
-                <div className="absolute -bottom-2 -right-2 bg-black border border-white/10 px-1 py-0.5">
-                  <span className="font-[var(--font-family-label-mono)] text-[10px] text-emerald-500 flex items-center gap-1">
-                    <span className="material-symbols-outlined text-[12px]" style={{ fontVariationSettings: "'FILL' 1" }}>verified</span>
-                  </span>
-                </div>
-              </div>
-              <div className="flex flex-col flex-grow">
-                <div className="flex justify-between items-start">
-                  <h3 className="font-[var(--font-family-headline-md)] text-[var(--font-size-headline-md)] text-[var(--primary)] truncate" title="DJ ALX">
-                    DJ ALX
-                  </h3>
-                  <span className="font-[var(--font-family-data-num)] text-[11px] text-[var(--outline-variant)] border border-white/10 px-1.5 py-0.5 text-flicker">
-                    ID: 8842
-                  </span>
-                </div>
-                <p className="font-[var(--font-family-body-md)] text-[14px] text-[var(--on-surface-variant)] flex items-center gap-1 mt-1">
-                  <span className="material-symbols-outlined text-[14px]">location_on</span>
-                  Curitiba, PR
-                </p>
-              </div>
-            </div>
-            {/* Metadata Body */}
-            <div className="p-6 flex flex-col gap-4 flex-grow bg-black/40">
-              <div className="flex justify-between items-end border-b border-white/10 pb-2">
-                <span className="font-[var(--font-family-label-mono)] text-[11px] text-[var(--outline-variant)] uppercase">
-                  Gênero Principal
-                </span>
-                <span className="font-[var(--font-family-label-mono)] text-[13px] text-[var(--primary)]">
-                  Techno / Industrial
-                </span>
-              </div>
-              <div className="flex flex-col gap-1 border-b border-white/10 pb-2">
-                <span className="font-[var(--font-family-label-mono)] text-[11px] text-[var(--outline-variant)] uppercase">
-                  Rider Técnico Mínimo
-                </span>
-                <span className="font-[var(--font-family-data-num)] text-[13px] text-[var(--on-surface)]">
-                  2x CDJ 3000, 1x DJM-A9, Monitoração L-Acoustics
-                </span>
-              </div>
-              <div className="flex justify-between items-end pb-2">
-                <span className="font-[var(--font-family-label-mono)] text-[11px] text-[var(--outline-variant)] uppercase">
-                  Faixa de Cachê (B2B)
-                </span>
-                <span className="font-[var(--font-family-data-num)] text-[14px] text-emerald-500 text-flicker">
-                  R$ 3.500 - 6.000
-                </span>
-              </div>
-            </div>
-            {/* Footer Action */}
-            <div className="p-4 mt-auto border-t border-white/10 bg-[#050505]">
-              <button 
-                onClick={handleContractClick}
-                className="w-full bg-transparent border border-white/10 text-[var(--primary)] font-[var(--font-family-label-mono)] text-[var(--font-size-label-mono)] py-3 hover:bg-white hover:text-black transition-colors duration-0 flex items-center justify-center gap-2 relative overflow-hidden group"
-              >
-                INICIAR CONTRATAÇÃO
-                <span className="material-symbols-outlined text-[16px]">arrow_forward</span>
-              </button>
-            </div>
-          </article>
-          
-          {/* Card 2 - MC RZ */}
-          <article className="glass-panel flex flex-col group artist-card transition-all duration-300 hover:-translate-y-1 hover:border-emerald-500/40 hover:shadow-[0_0_15px_rgba(16,185,129,0.1)]">
-            <style jsx>{`
-              .glass-panel {
-                background-color: #0A0A0A;
-                border: 1px solid rgba(255,255,255,0.1);
-              }
-              @keyframes flicker {
-                0%, 19.999%, 22%, 62.999%, 64%, 64.999%, 70%, 100% { opacity: 1; }
-                20%, 21.999%, 63%, 63.999%, 65%, 69.999% { opacity: 0.4; }
-              }
-              .text-flicker {
-                animation: flicker 3s infinite;
-              }
-            `}</style>
-            <div className="p-6 border-b border-white/10 flex items-start gap-4">
-              <div className="w-16 h-16 shrink-0 relative">
-                <div className="w-full h-full bg-[var(--surface-container-low)] grayscale brightness-110 contrast-125 border border-white/10 flex items-center justify-center">
-                  <span className="font-[var(--font-family-label-mono)] text-[var(--on-surface-variant)] text-xs">IMG</span>
-                </div>
-                <div className="absolute -bottom-2 -right-2 bg-black border border-white/10 px-1 py-0.5">
-                  <span className="font-[var(--font-family-label-mono)] text-[10px] text-emerald-500 flex items-center gap-1">
-                    <span className="material-symbols-outlined text-[12px]" style={{ fontVariationSettings: "'FILL' 1" }}>verified</span>
-                  </span>
-                </div>
-              </div>
-              <div className="flex flex-col flex-grow">
-                <div className="flex justify-between items-start">
-                  <h3 className="font-[var(--font-family-headline-md)] text-[var(--font-size-headline-md)] text-[var(--primary)] truncate" title="MC RZ">
-                    MC RZ
-                  </h3>
-                  <span className="font-[var(--font-family-data-num)] text-[11px] text-[var(--outline-variant)] border border-white/10 px-1.5 py-0.5 text-flicker">
-                    ID: 9102
-                  </span>
-                </div>
-                <p className="font-[var(--font-family-body-md)] text-[14px] text-[var(--on-surface-variant)] flex items-center gap-1 mt-1">
-                  <span className="material-symbols-outlined text-[14px]">location_on</span>
-                  São Paulo, SP
-                </p>
-              </div>
-            </div>
-            <div className="p-6 flex flex-col gap-4 flex-grow bg-black/40">
-              <div className="flex justify-between items-end border-b border-white/10 pb-2">
-                <span className="font-[var(--font-family-label-mono)] text-[11px] text-[var(--outline-variant)] uppercase">
-                  Gênero Principal
-                </span>
-                <span className="font-[var(--font-family-label-mono)] text-[13px] text-[var(--primary)]">
-                  Grime / UK Drill
-                </span>
-              </div>
-              <div className="flex flex-col gap-1 border-b border-white/10 pb-2">
-                <span className="font-[var(--font-family-label-mono)] text-[11px] text-[var(--outline-variant)] uppercase">
-                  Rider Técnico Mínimo
-                </span>
-                <span className="font-[var(--font-family-data-num)] text-[13px] text-[var(--on-surface)]">
-                  1x Shure SM58 sem fio, DJ Setup básico, PA &gt; 2k RMS
-                </span>
-              </div>
-              <div className="flex justify-between items-end pb-2">
-                <span className="font-[var(--font-family-label-mono)] text-[11px] text-[var(--outline-variant)] uppercase">
-                  Faixa de Cachê (B2B)
-                </span>
-                <span className="font-[var(--font-family-data-num)] text-[14px] text-emerald-500 text-flicker">
-                  R$ 5.000 - 8.500
-                </span>
-              </div>
-            </div>
-            <div className="p-4 mt-auto border-t border-white/10 bg-[#050505]">
-              <button 
-                onClick={handleContractClick}
-                className="w-full bg-transparent border border-white/10 text-[var(--primary)] font-[var(--font-family-label-mono)] text-[var(--font-size-label-mono)] py-3 hover:bg-white hover:text-black transition-colors duration-0 flex items-center justify-center gap-2 relative overflow-hidden group"
-              >
-                INICIAR CONTRATAÇÃO
-                <span className="material-symbols-outlined text-[16px]">arrow_forward</span>
-              </button>
-            </div>
-          </article>
-          
-          {/* Card 3 - LIA B */}
-          <article className="glass-panel flex flex-col group artist-card transition-all duration-300 hover:-translate-y-1 hover:border-emerald-500/40 hover:shadow-[0_0_15px_rgba(16,185,129,0.1)]">
-            <style jsx>{`
-              .glass-panel {
-                background-color: #0A0A0A;
-                border: 1px solid rgba(255,255,255,0.1);
-              }
-              @keyframes flicker {
-                0%, 19.999%, 22%, 62.999%, 64%, 64.999%, 70%, 100% { opacity: 1; }
-                20%, 21.999%, 63%, 63.999%, 65%, 69.999% { opacity: 0.4; }
-              }
-              .text-flicker {
-                animation: flicker 3s infinite;
-              }
-            `}</style>
-            <div className="p-6 border-b border-white/10 flex items-start gap-4">
-              <div className="w-16 h-16 shrink-0 relative">
-                <div className="w-full h-full bg-[var(--surface-container-low)] grayscale brightness-110 contrast-125 border border-white/10 flex items-center justify-center">
-                  <span className="font-[var(--font-family-label-mono)] text-[var(--on-surface-variant)] text-xs">IMG</span>
-                </div>
-                <div className="absolute -bottom-2 -right-2 bg-black border border-white/10 px-1 py-0.5">
-                  <span className="font-[var(--font-family-label-mono)] text-[10px] text-emerald-500 flex items-center gap-1">
-                    <span className="material-symbols-outlined text-[12px]" style={{ fontVariationSettings: "'FILL' 1" }}>verified</span>
-                  </span>
-                </div>
-              </div>
-              <div className="flex flex-col flex-grow">
-                <div className="flex justify-between items-start">
-                  <h3 className="font-[var(--font-family-headline-md)] text-[var(--font-size-headline-md)] text-[var(--primary)] truncate" title="LIA B">
-                    LIA B
-                  </h3>
-                  <span className="font-[var(--font-family-data-num)] text-[11px] text-[var(--outline-variant)] border border-white/10 px-1.5 py-0.5 text-flicker">
-                    ID: 7731
-                  </span>
-                </div>
-                <p className="font-[var(--font-family-body-md)] text-[14px] text-[var(--on-surface-variant)] flex items-center gap-1 mt-1">
-                  <span className="material-symbols-outlined text-[14px]">location_on</span>
-                  Rio de Janeiro, RJ
-                </p>
-              </div>
-            </div>
-            <div className="p-6 flex flex-col gap-4 flex-grow bg-black/40">
-              <div className="flex justify-between items-end border-b border-white/10 pb-2">
-                <span className="font-[var(--font-family-label-mono)] text-[11px] text-[var(--outline-variant)] uppercase">
-                  Gênero Principal
-                </span>
-                <span className="font-[var(--font-family-label-mono)] text-[13px] text-[var(--primary)]">
-                  Neo-Soul / MPB
-                </span>
-              </div>
-              <div className="flex flex-col gap-1 border-b border-white/10 pb-2">
-                <span className="font-[var(--font-family-label-mono)] text-[11px] text-[var(--outline-variant)] uppercase">
-                  Rider Técnico Mínimo
-                </span>
-                <span className="font-[var(--font-family-data-num)] text-[13px] text-[var(--on-surface)]">
-                  Piano Digital (88 teclas pesadas), 2x DI Activas, Microfone Condensador
-                </span>
-              </div>
-              <div className="flex justify-between items-end pb-2">
-                <span className="font-[var(--font-family-label-mono)] text-[11px] text-[var(--outline-variant)] uppercase">
-                  Faixa de Cachê (B2B)
-                </span>
-                <span className="font-[var(--font-family-data-num)] text-[14px] text-emerald-500 text-flicker">
-                  R$ 8.000 - 12.000
-                </span>
-              </div>
-            </div>
-            <div className="p-4 mt-auto border-t border-white/10 bg-[#050505]">
-              <button 
-                onClick={handleContractClick}
-                className="w-full bg-transparent border border-white/10 text-[var(--primary)] font-[var(--font-family-label-mono)] text-[var(--font-size-label-mono)] py-3 hover:bg-white hover:text-black transition-colors duration-0 flex items-center justify-center gap-2 relative overflow-hidden group"
-              >
-                INICIAR CONTRATAÇÃO
-                <span className="material-symbols-outlined text-[16px]">arrow_forward</span>
-              </button>
-            </div>
-          </article>
-        </div>
-      </main>
-    </div>
-  );
+			<main className="pt-32 pb-24 px-6 md:px-12 max-w-[1400px] mx-auto">
+				{/* HERO EDITORIAL */}
+				<header className="mb-16 md:mb-24 max-w-3xl">
+					<div className="flex items-center gap-3 mb-6">
+						<span className="w-1.5 h-1.5 rounded-full bg-[#10B981]"></span>
+						<span className="font-mono text-[#10B981] text-[10px] uppercase tracking-widest">
+							DIRETÓRIO CURADO
+						</span>
+					</div>
+					<h1 className="font-archivo text-3xl md:text-4xl lg:text-5xl font-bold uppercase tracking-[0.1em] text-white mb-4 leading-tight">
+						VITRINE DE ARTISTAS
+					</h1>
+					<p className="font-mono text-[#A3A3A3] text-xs md:text-sm leading-relaxed border-l border-[#393939] pl-6 max-w-xl">
+						Artistas independentes de Curitiba prontos para shows, ativações de
+						marca, eventos privados e festivais.
+					</p>
+				</header>
+
+				{/* FILTROS COMPACTOS */}
+				<div className="flex flex-col lg:flex-row gap-4 lg:items-center bg-[#131313] border border-[#393939] p-2 mb-12">
+					<div className="flex-1 flex items-center px-4 py-2">
+						<label htmlFor="search-artist" className="sr-only">
+							Buscar artista
+						</label>
+						<svg
+							className="w-4 h-4 text-[#A3A3A3] mr-3"
+							fill="none"
+							stroke="currentColor"
+							viewBox="0 0 24 24"
+							aria-hidden="true"
+						>
+							<path
+								strokeLinecap="round"
+								strokeLinejoin="round"
+								strokeWidth="2"
+								d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+							></path>
+						</svg>
+						<input
+							id="search-artist"
+							type="text"
+							placeholder="Buscar artista, cidade ou tag..."
+							className="bg-transparent border-none outline-none text-sm font-mono text-white placeholder-[#A3A3A3] w-full"
+						/>
+					</div>
+
+					<div className="hidden lg:block w-px h-6 bg-[#393939]"></div>
+
+					<div className="flex-1 flex items-center px-4 py-2 border-t border-[#393939] lg:border-none">
+						<label htmlFor="filter-style" className="sr-only">
+							Filtrar por estilo
+						</label>
+						<select
+							id="filter-style"
+							className="bg-transparent border-none outline-none text-sm font-mono text-[#A3A3A3] w-full appearance-none cursor-pointer"
+						>
+							<option value="">Estilo</option>
+							<option value="trap">Trap / Drill</option>
+							<option value="rap">Rap / Boom Bap</option>
+							<option value="rnb">R&B / Soul</option>
+						</select>
+					</div>
+
+					<div className="hidden lg:block w-px h-6 bg-[#393939]"></div>
+
+					<div className="flex-1 flex items-center px-4 py-2 border-t border-[#393939] lg:border-none">
+						<label htmlFor="filter-format" className="sr-only">
+							Filtrar por formato
+						</label>
+						<select
+							id="filter-format"
+							className="bg-transparent border-none outline-none text-sm font-mono text-[#A3A3A3] w-full appearance-none cursor-pointer"
+						>
+							<option value="">Formato</option>
+							<option value="pocket">Show Pocket</option>
+							<option value="club">Club / Batalha</option>
+							<option value="festival">Festival</option>
+						</select>
+					</div>
+
+					<div className="hidden lg:block w-px h-6 bg-[#393939]"></div>
+
+					<div className="flex-1 flex items-center px-4 py-2 border-t border-[#393939] lg:border-none">
+						<label htmlFor="filter-cache" className="sr-only">
+							Filtrar por faixa de cachê
+						</label>
+						<select
+							id="filter-cache"
+							className="bg-transparent border-none outline-none text-sm font-mono text-[#A3A3A3] w-full appearance-none cursor-pointer"
+						>
+							<option value="">Faixa de Cachê</option>
+							<option value="2000">A partir de R$ 1.500</option>
+							<option value="5000">A partir de R$ 3.000</option>
+						</select>
+					</div>
+
+					<div className="hidden lg:block w-px h-6 bg-[#393939]"></div>
+
+					<div className="flex items-center gap-6 px-4 py-2 border-t border-[#393939] lg:border-none justify-between lg:justify-end min-w-[280px]">
+						<label className="flex items-center gap-2 cursor-pointer group">
+							<div
+								className={`w-8 h-4 rounded-full transition-colors ${isVerifiedOnly ? "bg-[#10B981]" : "bg-[#393939]"} relative`}
+								aria-hidden="true"
+							>
+								<div
+									className={`absolute top-0.5 w-3 h-3 rounded-full bg-black transition-transform ${isVerifiedOnly ? "translate-x-4.5 left-[1px]" : "translate-x-0.5 left-[1px]"}`}
+								></div>
+							</div>
+							<input
+								type="checkbox"
+								className="sr-only"
+								checked={isVerifiedOnly}
+								onChange={() => setIsVerifiedOnly(!isVerifiedOnly)}
+							/>
+							<span className="font-mono text-xs text-[#A3A3A3] group-hover:text-white transition-colors">
+								Apenas verificados
+							</span>
+						</label>
+						<button
+							type="button"
+							className="font-mono text-xs text-[#393939] hover:text-white transition-colors uppercase tracking-widest focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#10B981]"
+						>
+							Limpar
+						</button>
+					</div>
+				</div>
+
+				{/* GRID EDITORIAL DE ARTISTAS */}
+				<div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+					{MOCK_ARTISTS.map((artist, i) => (
+						<motion.article
+							key={artist.id}
+							initial={{ opacity: 0, y: 20 }}
+							animate={{ opacity: 1, y: 0 }}
+							transition={{ duration: 0.5, delay: i * 0.05 }}
+							className="group relative bg-[#131313] border border-[#393939] overflow-hidden hover:border-[#10B981] transition-colors duration-300 flex flex-col h-full"
+						>
+							<div className="relative h-[220px] w-full overflow-hidden bg-[#1A1A1A]">
+								<img
+									src={artist.image}
+									alt={`Foto de perfil do artista ${artist.name}`}
+									className="w-full h-full object-cover grayscale opacity-80 group-hover:grayscale-0 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700 ease-out"
+								/>
+								<div
+									className="absolute top-4 left-4 bg-black/80 backdrop-blur-sm border border-[#10B981]/30 px-2 py-1 flex items-center gap-1.5"
+									role="status"
+									aria-label="Status do Artista"
+								>
+									<svg
+										className="w-3 h-3 text-[#10B981]"
+										viewBox="0 0 24 24"
+										fill="currentColor"
+										aria-hidden="true"
+									>
+										<path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2zm-1.9 14.7L6 12.6l1.5-1.5 2.6 2.6 6.4-6.4 1.5 1.5-7.9 7.9z" />
+									</svg>
+									<span className="font-mono text-[9px] text-[#10B981] tracking-widest uppercase">
+										Associado Verificado
+									</span>
+								</div>
+							</div>
+
+							{/* Informações */}
+							<div className="p-4 md:p-5 flex flex-col justify-between flex-1 bg-gradient-to-t from-[#0E0E0E] to-[#131313]">
+								<div>
+									<h3 className="font-archivo text-xl md:text-2xl font-bold uppercase tracking-tight text-white group-hover:text-[#10B981] transition-colors">
+										{artist.name}
+									</h3>
+
+									{/* Localização */}
+									<div className="flex items-center gap-2 mt-2 mb-4">
+										<span className="font-mono text-[9px] text-[#A3A3A3] uppercase tracking-widest">
+											{artist.city}
+										</span>
+										<span className="w-1 h-1 bg-[#393939] rounded-full"></span>
+										<span className="font-mono text-[9px] text-[#A3A3A3] uppercase tracking-widest">
+											{artist.base}
+										</span>
+									</div>
+
+									{/* Metadados do Show */}
+									<div className="space-y-2 border-t border-[#393939] pt-4">
+										<div className="flex flex-col">
+											<span className="font-mono text-[9px] text-[#393939] uppercase tracking-widest">
+												Estilo Musical
+											</span>
+											<span className="font-mono text-[11px] text-white uppercase tracking-wider">
+												{artist.genre}
+											</span>
+										</div>
+
+										<div className="flex flex-col">
+											<span className="font-mono text-[9px] text-[#393939] uppercase tracking-widest">
+												Formatos
+											</span>
+											<span className="font-mono text-[10px] text-[#A3A3A3] uppercase tracking-wider">
+												{artist.formats}
+											</span>
+										</div>
+
+										<div className="flex items-center justify-between pt-2">
+											<div className="flex flex-col">
+												<span className="font-mono text-[9px] text-[#393939] uppercase tracking-widest">
+													Cachê Base
+												</span>
+												<span className="font-mono text-xs text-[#10B981] font-bold tracking-widest">
+													{artist.minCache}
+												</span>
+											</div>
+											<div className="flex flex-col items-end">
+												<span className="font-mono text-[9px] text-[#393939] uppercase tracking-widest">
+													Duração
+												</span>
+												<span className="font-mono text-[10px] text-[#A3A3A3] tracking-widest">
+													{artist.duration}
+												</span>
+											</div>
+										</div>
+									</div>
+								</div>
+
+								{/* Ações (Booking & Presskit) */}
+								<div className="mt-6 flex items-center gap-2">
+									<button
+										type="button"
+										className="flex-1 bg-[#10B981] text-black font-mono text-[10px] uppercase tracking-widest py-2.5 font-bold hover:bg-white transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
+									>
+										Solicitar Booking
+									</button>
+									<button
+										type="button"
+										className="px-3 border border-[#393939] bg-transparent text-[#A3A3A3] hover:text-white hover:border-white transition-colors flex items-center justify-center py-2.5 group-hover:border-[#10B981] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#10B981]"
+									>
+										<span className="font-mono text-[10px] uppercase tracking-widest">
+											Press Kit
+										</span>
+									</button>
+								</div>
+							</div>
+						</motion.article>
+					))}
+				</div>
+
+				{/* RODAPÉ INSTITUCIONAL DA SEÇÃO */}
+				<div className="mt-24 pt-12 border-t border-[#393939] grid grid-cols-1 md:grid-cols-3 gap-8">
+					<div>
+						<h4 className="font-archivo text-lg font-bold text-white uppercase tracking-widest mb-2 flex items-center gap-2">
+							<svg
+								className="w-4 h-4 text-[#10B981]"
+								fill="none"
+								stroke="currentColor"
+								viewBox="0 0 24 24"
+								aria-hidden="true"
+							>
+								<path
+									strokeLinecap="round"
+									strokeLinejoin="round"
+									strokeWidth="2"
+									d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+								></path>
+							</svg>
+							ARTISTAS ASSOCIADOS
+						</h4>
+						<p className="font-mono text-[#A3A3A3] text-xs">
+							Curadoria, validação e onboarding feito pelos próprios artistas
+							para o diretório.
+						</p>
+					</div>
+					<div>
+						<h4 className="font-archivo text-lg font-bold text-white uppercase tracking-widest mb-2 flex items-center gap-2">
+							<svg
+								className="w-4 h-4 text-[#10B981]"
+								fill="none"
+								stroke="currentColor"
+								viewBox="0 0 24 24"
+								aria-hidden="true"
+							>
+								<path
+									strokeLinecap="round"
+									strokeLinejoin="round"
+									strokeWidth="2"
+									d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"
+								></path>
+							</svg>
+							BOOKING COM MENOS ATRITO
+						</h4>
+						<p className="font-mono text-[#A3A3A3] text-xs">
+							Receba informações de cachê, formato de show, press kit e
+							disponibilidade.
+						</p>
+					</div>
+					<div>
+						<h4 className="font-archivo text-lg font-bold text-white uppercase tracking-widest mb-2 flex items-center gap-2">
+							<svg
+								className="w-4 h-4 text-[#10B981]"
+								fill="none"
+								stroke="currentColor"
+								viewBox="0 0 24 24"
+								aria-hidden="true"
+							>
+								<path
+									strokeLinecap="round"
+									strokeLinejoin="round"
+									strokeWidth="2"
+									d="M13 10V3L4 14h7v7l9-11h-7z"
+								></path>
+							</svg>
+							CONEXÃO COM A CENA LOCAL
+						</h4>
+						<p className="font-mono text-[#A3A3A3] text-xs">
+							Contrate talentos reais de Curitiba e fortaleça a economia
+							cultural da cidade.
+						</p>
+					</div>
+				</div>
+			</main>
+		</div>
+	);
 }
