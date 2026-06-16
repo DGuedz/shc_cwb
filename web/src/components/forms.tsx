@@ -47,50 +47,65 @@ export function SignInForm({ supabaseEnabled }: { supabaseEnabled: boolean }) {
   const setRole = useAppStore((store) => store.setRole);
 
   return (
-    <form action={action} className="panel max-w-xl space-y-6">
-      <div className="space-y-2">
-        <p className="font-mono text-[11px] uppercase tracking-[0.32em] text-[var(--accent)]">
-          Acesso autenticado
-        </p>
-        <h1 className="font-heading text-4xl font-bold uppercase tracking-[-0.05em]">Entrar na operacao</h1>
-        <p className="text-white/72">
-          {supabaseEnabled
-            ? "Auth ativo via Supabase. Selecione o perfil para aplicar o roteamento protegido."
-            : "Sem credenciais Supabase no ambiente: o login entra em modo demo seguro para validar rotas e UX."}
-        </p>
+    <form action={action} className="bg-[#0E0E0E] border border-[#393939] p-6 flex flex-col gap-6 rounded-none w-full">
+      <div className="flex justify-between items-center border-b border-[#393939] pb-4">
+        <h3 className="font-archivo uppercase font-bold text-white tracking-tight">Credenciais de Acesso</h3>
+        <span className="font-mono text-xs text-[#10B981]">GATEWAY: {supabaseEnabled ? 'SECURE' : 'DEMO'}</span>
       </div>
 
-      <div className="grid gap-4 md:grid-cols-2">
-        <label className="field">
-          <span className="field-label">E-mail</span>
-          <input className="field-input" name="email" placeholder="ops@streethub.connect" type="email" required />
+      <div className="grid gap-6">
+        <label className="flex flex-col gap-2">
+          <span className="font-mono text-xs text-neutral-400 uppercase">E-mail Operacional</span>
+          <input 
+            className="bg-[#131313] border border-[#393939] text-white font-mono text-sm p-3 focus:outline-none focus:border-[#10B981] transition-colors rounded-none placeholder:text-neutral-600" 
+            name="email" 
+            placeholder="ops@streethub.connect" 
+            type="email" 
+            required 
+          />
           <FieldError state={state} name="email" />
         </label>
-        <label className="field">
-          <span className="field-label">Senha</span>
-          <input className="field-input" name="password" placeholder="******" type="password" required />
+        
+        <label className="flex flex-col gap-2">
+          <span className="font-mono text-xs text-neutral-400 uppercase">Senha / Auth Key</span>
+          <input 
+            className="bg-[#131313] border border-[#393939] text-white font-mono text-sm p-3 focus:outline-none focus:border-[#10B981] transition-colors rounded-none placeholder:text-neutral-600" 
+            name="password" 
+            placeholder="••••••••" 
+            type="password" 
+            required 
+          />
           <FieldError state={state} name="password" />
         </label>
       </div>
 
-      <label className="field">
-        <span className="field-label">Perfil de acesso</span>
-        <select
-          className="field-input"
-          name="role"
-          value={role ?? "artist"}
-          onChange={(event) => setRole(event.target.value as UserRole)}
-        >
-          <option value="artist">Artista</option>
-          <option value="contractor">Contratante</option>
-        </select>
+      <label className="flex flex-col gap-2">
+        <span className="font-mono text-xs text-neutral-400 uppercase">Perfil de Roteamento</span>
+        <div className="relative">
+          <select
+            className="bg-[#131313] border border-[#393939] text-white font-mono text-sm p-3 focus:outline-none focus:border-[#10B981] transition-colors rounded-none appearance-none w-full"
+            name="role"
+            value={role ?? "artist"}
+            onChange={(event) => setRole(event.target.value as UserRole)}
+          >
+            <option value="artist">ARTISTA (TALENT)</option>
+            <option value="contractor">CONTRATANTE (PARTNER)</option>
+          </select>
+          <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-4 text-[#10B981]">
+            <svg className="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
+          </div>
+        </div>
         <FieldError state={state} name="role" />
       </label>
 
-      {state.message ? <p className="text-sm text-red-200">{state.message}</p> : null}
+      {state.message ? <p className="font-mono text-xs text-red-400 uppercase">{state.message}</p> : null}
 
-      <button className="primary-button" type="submit" disabled={pending}>
-        {pending ? "Autenticando..." : "Entrar"}
+      <button 
+        className="mt-4 border border-[#10B981] bg-[#10B981]/10 hover:bg-[#10B981] text-[#10B981] hover:text-black uppercase font-bold py-3 transition-colors tracking-widest font-archivo text-sm rounded-none" 
+        type="submit" 
+        disabled={pending}
+      >
+        {pending ? "PROCESSANDO..." : "AUTENTICAR E ROTEAR"}
       </button>
     </form>
   );
