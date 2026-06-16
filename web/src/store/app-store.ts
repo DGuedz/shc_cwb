@@ -2,13 +2,15 @@
 
 import { create } from "zustand";
 
-import type { ArtistDraft, OpportunityDraft, UserRole } from "@/types/domain";
+import type { ArtistDraft, OpportunityDraft, UserRole, GovBrLevel } from "@/types/domain";
 
 type AppState = {
   role: UserRole | null;
+  govBrLevel: GovBrLevel;
   artistDraft: ArtistDraft;
   opportunityDraft: OpportunityDraft;
   setRole: (role: UserRole | null) => void;
+  setGovBrLevel: (level: GovBrLevel) => void;
   patchArtistDraft: (payload: Partial<ArtistDraft>) => void;
   patchOpportunityDraft: (payload: Partial<OpportunityDraft>) => void;
   resetDrafts: () => void;
@@ -38,9 +40,11 @@ const initialOpportunityDraft: OpportunityDraft = {
 
 export const useAppStore = create<AppState>((set) => ({
   role: null,
+  govBrLevel: "none",
   artistDraft: initialArtistDraft,
   opportunityDraft: initialOpportunityDraft,
   setRole: (role) => set({ role }),
+  setGovBrLevel: (level) => set({ govBrLevel: level }),
   patchArtistDraft: (payload) =>
     set((state) => ({
       artistDraft: {

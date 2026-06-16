@@ -1,9 +1,11 @@
 export type UserRole = "artist" | "contractor";
+export type GovBrLevel = "bronze" | "prata" | "ouro" | "none";
 
 export type SessionUser = {
   id: string;
   email: string;
   role: UserRole;
+  govBrLevel: GovBrLevel;
   isDemo: boolean;
 };
 

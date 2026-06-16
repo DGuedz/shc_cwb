@@ -1,6 +1,7 @@
 "use client";
 
-import { useActionState, useEffect } from "react";
+import { useState, useActionState, useEffect } from "react";
+import { GovBrUpgradeModal } from "./govbr/GovBrUpgradeModal";
 import { useRouter } from "next/navigation";
 
 import type { FormActionState } from "@/app/actions";
@@ -109,18 +110,20 @@ export function SignInForm({ supabaseEnabled }: { supabaseEnabled: boolean }) {
           {pending ? "PROCESSANDO..." : "AUTENTICAR E ROTEAR"}
         </button>
 
-        {role === "artist" && (
-          <button 
-            className="border border-[#0042B1] bg-[#0042B1]/10 hover:bg-[#0042B1] text-[#0042B1] hover:text-white uppercase font-bold py-3 transition-colors tracking-widest font-archivo text-sm rounded-none flex items-center justify-center gap-2" 
-            type="button" 
-            onClick={() => alert("Integração com gov.br em desenvolvimento...")}
-          >
-            <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z" fill="currentColor"/>
-            </svg>
-            ENTRAR COM GOV.BR
-          </button>
-        )}
+        <div className="flex items-center gap-4 my-2">
+          <div className="h-px bg-[#393939] flex-1"></div>
+          <span className="font-mono text-[10px] text-neutral-500 uppercase tracking-widest">OU</span>
+          <div className="h-px bg-[#393939] flex-1"></div>
+        </div>
+
+        <button 
+          className="border border-[#1351B4] bg-[#1351B4]/10 hover:bg-[#1351B4] text-[#1351B4] hover:text-white uppercase font-bold py-3 transition-colors tracking-widest font-archivo text-sm rounded-none flex items-center justify-center gap-3" 
+          type="button" 
+          onClick={() => alert("Redirecionando para o Gateway Gov.br...")}
+        >
+          <img src="/govbr-logo.svg" alt="gov.br" className="h-4 brightness-0 invert opacity-80" onError={(e) => e.currentTarget.style.display = 'none'} />
+          <span>ENTRAR COM GOV.BR</span>
+        </button>
       </div>
     </form>
   );
@@ -244,11 +247,53 @@ export function ContractorOnboardingForm() {
   const [state, action, pending] = useActionState(saveOpportunityAction, initialState);
   const draft = useAppStore((store) => store.opportunityDraft);
   const patchDraft = useAppStore((store) => store.patchOpportunityDraft);
+  const govBrLevel = useAppStore((store) => store.govBrLevel);
+
+  const [isUpgradeModalOpen, setIsUpgradeModalOpen] = useState(false);
+  const [requiredLevelForContract, setRequiredLevelForContract] = useState<"prata" | "ouro">("ouro");
 
   useRedirectOnSuccess(state);
 
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const maxBudget = parseInt(draft.budgetMax || "0", 10);
+    
+    // Regra de Negócio Gov.br MOCK
+    // Se budget > 50000, exige ouro
+    // Se budget > 10000, exige prata
+    if (maxBudget > 50000 && govBrLevel !== "ouro") {
+      setRequiredLevelForContract("ouro");
+      setIsUpgradeModalOpen(true);
+      return;
+    }
+    
+    if (maxBudget > 10000 && govBrLevel !== "ouro" && govBrLevel !== "prata") {
+      setRequiredLevelForContract("prata");
+      setIsUpgradeModalOpen(true);
+      return;
+    }
+
+    // Passou pela validação gov.br, continua com o action original
+    const form = e.currentTarget;
+    // Isso simula o submit chamando a action
+    const formData = new FormData(form);
+    // Nota: como useActionState não expõe a chamada direta facilmente com event,
+    // Em React 19 podemos usar o action no form e interceptar via onSubmit ou usar startTransition
+    // Por simplicidade na refatoração, vamos apenas despachar
+    // Na prática, form.submit() bypassaria o useActionState, então usamos requestSubmit
+    form.requestSubmit();
+  };
+
   return (
-    <form action={action} className="grid gap-6 lg:grid-cols-[0.95fr_1.05fr]">
+    <>
+      <form action={action} onSubmit={(e) => {
+        // Se a validação customizada falhar, não propaga para o action original
+        const maxBudget = parseInt(draft.budgetMax || "0", 10);
+        if ((maxBudget > 50000 && govBrLevel !== "ouro") || (maxBudget > 10000 && govBrLevel !== "ouro" && govBrLevel !== "prata")) {
+          e.preventDefault();
+          handleSubmit(e);
+        }
+      }} className="grid gap-6 lg:grid-cols-[0.95fr_1.05fr]">
       <section className="bg-[#0E0E0E] border border-[#393939] p-6 space-y-6">
         <div>
           <p className="font-mono text-[10px] uppercase tracking-widest text-[#10B981]">
@@ -379,6 +424,14 @@ export function ContractorOnboardingForm() {
         </button>
       </section>
     </form>
+    
+    <GovBrUpgradeModal 
+      isOpen={isUpgradeModalOpen} 
+      onClose={() => setIsUpgradeModalOpen(false)} 
+      requiredLevel={requiredLevelForContract}
+      currentActionValue={draft.budgetMax}
+    />
+  </>
   );
 }
 
