@@ -12,6 +12,8 @@ interface ArtistIDCardProps {
     city: string;
     state: string;
     verified: boolean;
+    exp?: number;
+    health?: 'OPTIMAL' | 'WARNING' | 'REHAB';
   };
 }
 
@@ -96,9 +98,15 @@ export function ArtistIDCard({ artist }: ArtistIDCardProps) {
 
           {/* Metadata */}
           <div className="flex flex-col gap-4 relative z-20">
-            <div>
-              <p className="font-mono text-[9px] text-neutral-500 uppercase tracking-widest">MEMBER_ID</p>
-              <p className="font-mono text-xs text-[#10B981]">SHC-{artist.id.slice(0, 8).toUpperCase()}</p>
+            <div className="flex justify-between items-end">
+              <div>
+                <p className="font-mono text-[9px] text-neutral-500 uppercase tracking-widest">MEMBER_ID</p>
+                <p className="font-mono text-xs text-[#10B981]">SHC-{artist.id.slice(0, 8).toUpperCase()}</p>
+              </div>
+              <div className="text-right">
+                <p className="font-mono text-[9px] text-neutral-500 uppercase tracking-widest">POE / EXP</p>
+                <p className="font-mono text-xs text-[#10B981] font-bold">{artist.exp || 1250}</p>
+              </div>
             </div>
             <div className="flex justify-between">
               <div>
@@ -129,12 +137,16 @@ export function ArtistIDCard({ artist }: ArtistIDCardProps) {
 
           {/* Footer Status */}
           <div className="mt-4 pt-4 border-t border-[#393939] flex justify-between items-center relative z-20">
-            <span className="font-mono text-[9px] text-neutral-500 uppercase tracking-widest">CLEARANCE</span>
-            {artist.verified ? (
-              <span className="font-mono text-[10px] text-[#10B981] bg-[#10B981]/10 px-2 py-1 uppercase border border-[#10B981]/30">VERIFIED OUTSIDER</span>
-            ) : (
-              <span className="font-mono text-[10px] text-yellow-500 bg-yellow-500/10 px-2 py-1 uppercase border border-yellow-500/30">PENDING AUDIT</span>
-            )}
+            <span className="font-mono text-[9px] text-neutral-500 uppercase tracking-widest">HEALTH</span>
+            <span className={`font-mono text-[10px] px-2 py-1 uppercase border ${
+              (artist.health || 'OPTIMAL') === 'OPTIMAL' 
+                ? "text-[#10B981] bg-[#10B981]/10 border-[#10B981]/30" 
+                : (artist.health === 'WARNING' 
+                    ? "text-yellow-500 bg-yellow-500/10 border-yellow-500/30" 
+                    : "text-red-500 bg-red-500/10 border-red-500/30")
+            }`}>
+              {artist.health || 'OPTIMAL'}
+            </span>
           </div>
         </div>
       </motion.div>

@@ -263,7 +263,7 @@ export function DealsKanban({ deals }: { deals: Deal[] }) {
 
 import { ArtistIDCard } from "./ui/ArtistIDCard";
 
-export function DossierPanel({ artist }: { artist: Artist }) {
+export function DossierPanel({ artist }: { artist: Artist & { exp?: number, health?: 'OPTIMAL' | 'WARNING' | 'REHAB' } }) {
   return (
     <div className="flex flex-col gap-6">
       {/* Header: Identity & Status */}
@@ -328,7 +328,74 @@ export function DossierPanel({ artist }: { artist: Artist }) {
           </div>
 
           {/* Abstracted Evidence & Networks */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          {/* Proof of Engagement (PoE) / EXP Ledger */}
+      <div className="bg-[#0E0E0E] border border-[#393939] p-6">
+        <div className="flex justify-between items-center border-b border-[#393939] pb-4 mb-6">
+          <h3 className="font-archivo text-xl md:text-2xl font-bold uppercase tracking-tight text-white">Proof of Engagement (PoE)</h3>
+          <span className="font-mono text-[10px] text-[#10B981] bg-[#10B981]/10 px-2 py-1 uppercase border border-[#10B981]/30 hidden md:inline-block">SYNC: LIVE</span>
+        </div>
+
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+          {/* Current Balance */}
+          <div className="col-span-1 border border-[#393939] p-6 bg-[#131313] flex flex-col justify-between">
+            <div>
+              <div className="font-mono text-[10px] text-neutral-500 uppercase tracking-widest mb-2">Current Balance</div>
+              <div className="font-mono text-5xl font-bold text-[#10B981]">
+                {artist.exp || 1250} <span className="text-sm text-neutral-500 font-normal">EXP</span>
+              </div>
+            </div>
+            
+            <div className="mt-8 pt-4 border-t border-[#393939]">
+              <div className="font-mono text-[10px] text-neutral-500 uppercase tracking-widest mb-2">Ecosystem Health Status</div>
+              <div className={`font-mono text-xs px-2 py-1 inline-block uppercase border ${
+                (artist.health || 'OPTIMAL') === 'OPTIMAL' 
+                  ? "text-[#10B981] bg-[#10B981]/10 border-[#10B981]/30" 
+                  : (artist.health === 'WARNING' 
+                      ? "text-yellow-500 bg-yellow-500/10 border-yellow-500/30" 
+                      : "text-red-500 bg-red-500/10 border-red-500/30")
+              }`}>
+                {(artist.health || 'OPTIMAL') === 'OPTIMAL' ? 'OPTIMAL - ELIGIBLE FOR REWARDS' : 
+                 artist.health === 'WARNING' ? 'WARNING - ACTIVITY REQUIRED' : 
+                 'REHAB - ACCOUNT RESTRICTED'}
+              </div>
+            </div>
+          </div>
+
+          {/* Activity Ledger */}
+          <div className="col-span-1 lg:col-span-2 border border-[#393939] p-6 bg-[#131313]">
+            <div className="flex justify-between items-center mb-6">
+              <div className="font-mono text-[10px] text-neutral-500 uppercase tracking-widest">Recent Activity Ledger</div>
+              <button className="font-mono text-[10px] text-[#10B981] hover:underline uppercase">View All</button>
+            </div>
+            
+            <ul className="space-y-4">
+              <li className="flex justify-between items-center border-b border-[#393939] pb-3">
+                <div className="flex flex-col gap-1">
+                  <span className="font-mono text-xs text-white uppercase">Contract Settled: Basement Sessions</span>
+                  <span className="font-mono text-[9px] text-neutral-500">TX: 0x8f2a...3b9c | 2 days ago</span>
+                </div>
+                <span className="font-mono text-sm font-bold text-[#10B981]">+ 150 EXP</span>
+              </li>
+              <li className="flex justify-between items-center border-b border-[#393939] pb-3">
+                <div className="flex flex-col gap-1">
+                  <span className="font-mono text-xs text-white uppercase">Governance: Voted on Proposal #42</span>
+                  <span className="font-mono text-[9px] text-neutral-500">TX: 0x3e1d...9a2f | 1 week ago</span>
+                </div>
+                <span className="font-mono text-sm font-bold text-[#10B981]">+ 50 EXP</span>
+              </li>
+              <li className="flex justify-between items-center pb-1">
+                <div className="flex flex-col gap-1">
+                  <span className="font-mono text-xs text-neutral-400 uppercase">System Sweep: Weekly Activity Check</span>
+                  <span className="font-mono text-[9px] text-neutral-500">Automated Audit | 2 weeks ago</span>
+                </div>
+                <span className="font-mono text-sm text-neutral-500">0 EXP</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div className="bg-[#131313] border border-[#393939] p-6 flex flex-col justify-between">
               <div>
                 <h3 className="font-mono text-[10px] text-neutral-500 uppercase tracking-widest mb-4">Evidence & Shows</h3>
