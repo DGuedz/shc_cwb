@@ -33,7 +33,8 @@ export function HeroSection() {
   const opacityChapter2 = useTransform(scrollYProgress, [0.50, 0.65, 1], [0, 1, 1]);
   const pointerEventsChapter2 = useTransform(scrollYProgress, [0.55, 1], ["none", "auto"]);
   
-  const indicatorHeight = useTransform(scrollYProgress, [0, 1], ["0%", "100%"]);
+  const indicatorHeight = useTransform(scrollYProgress, [0, 0.15], ["0%", "100%"]);
+  const indicatorOpacity = useTransform(scrollYProgress, [0, 0.15], [0.7, 0]); // Some rápido para limpar a tela
 
   // O Efeito Cinza Metálico: Reflete a luz da esquerda para a direita de acordo com o scrub do vídeo
   const metallicShine = useTransform(scrollYProgress, [0, 0.25], ["200% center", "-200% center"]);
@@ -107,15 +108,18 @@ export function HeroSection() {
 
         </div>
 
-        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center opacity-70">
-          <span className="font-mono text-[10px] tracking-[0.3em] text-[#10B981] mb-3">SCROLL</span>
+        <motion.div 
+          className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center"
+          style={{ opacity: indicatorOpacity }}
+        >
+          <span className="font-mono text-[10px] tracking-[0.3em] text-[#10B981] mb-3 drop-shadow-[0_0_8px_rgba(16,185,129,0.5)]">SCROLL</span>
           <div className="w-[1px] h-16 bg-[#393939] overflow-hidden relative">
             <motion.div 
-              className="absolute top-0 left-0 w-full bg-[#10B981]" 
+              className="absolute top-0 left-0 w-full bg-[#10B981] shadow-[0_0_10px_#10B981]" 
               style={{ height: indicatorHeight }}
             />
           </div>
-        </div>
+        </motion.div>
       </div>
     </section>
   );
