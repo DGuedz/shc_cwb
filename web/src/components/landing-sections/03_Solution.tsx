@@ -88,7 +88,7 @@ export function Solution() {
             {/* Video Placeholder Background (Revela no Hover) */}
             <div className="absolute inset-0 bg-black z-0">
               <video 
-                src="/videos/a_slow_motion_frame_a_rapper.mp4" 
+                src="/videos/mcs_show_partens.mp4" 
                 muted playsInline loop preload="none"
                 className="w-full h-full object-cover opacity-0 group-hover:opacity-40 transition-opacity duration-700 grayscale mix-blend-luminosity"
                 onMouseEnter={(e) => e.currentTarget.play()}
