@@ -30,24 +30,24 @@ export function Conversion() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 max-w-2xl mx-auto">
           
           {/* CTA Artista */}
-          <Link href={"/onboarding/artista" as any}>
+          <Link href={"/sign-in" as any}>
             <motion.div 
               className="bg-[#10B981] border border-[#10B981] text-black px-6 py-4 flex items-center justify-center font-mono text-xs tracking-widest uppercase font-bold hover:bg-white transition-colors cursor-pointer"
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
             >
-              SOU UM TALENTO
+              CADASTRO DE ARTISTAS
             </motion.div>
           </Link>
 
           {/* CTA Empresa */}
-          <Link href={"/onboarding/empresa" as any}>
+          <Link href={"/onboarding/contratante" as any}>
             <motion.div 
               className="bg-transparent border border-[#393939] text-white px-6 py-4 flex items-center justify-center font-mono text-xs tracking-widest uppercase hover:border-white transition-colors cursor-pointer"
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
             >
-              SOU UM PARCEIRO
+              CADASTRO DE EMPRESAS
             </motion.div>
           </Link>
 

@@ -97,11 +97,11 @@ export function HeroSection() {
               O motor tecnológico que transforma a música independente em um ativo de alto impacto para o seu negócio.
             </p>
             <div className="flex flex-col md:flex-row gap-4 justify-center">
-              <Link href="/onboarding/artista" className="bg-[#10B981] text-black px-6 py-3 font-mono text-xs tracking-widest uppercase font-bold hover:bg-white transition-colors border border-[#10B981]">
-                Onboarding de Ativos
+              <Link href="/sign-in" className="bg-[#10B981] text-black px-6 py-3 font-mono text-xs tracking-widest uppercase font-bold hover:bg-white transition-colors border border-[#10B981]">
+                CADASTRO DE ARTISTAS
               </Link>
-              <Link href="#conversion" className="border border-[#393939] bg-transparent text-white px-6 py-3 font-mono text-xs tracking-widest uppercase hover:border-white transition-colors">
-                Acesso Institucional
+              <Link href="/onboarding/contratante" className="border border-[#393939] bg-transparent text-white px-6 py-3 font-mono text-xs tracking-widest uppercase hover:border-white transition-colors">
+                CADASTRO DE EMPRESAS
               </Link>
             </div>
           </motion.div>

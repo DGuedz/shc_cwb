@@ -2,8 +2,14 @@
 
 import { MultiStepWizard } from '@/components/onboarding/MultiStepWizard';
 
+interface StepProps {
+  formData?: any;
+  updateData?: any;
+  onSubmit?: any;
+}
+
 // Step 1: Identidade e CNPJ
-function StepIdentity({ formData, updateData, onSubmit }: any) {
+function StepIdentity({ formData, updateData }: StepProps) {
   // Inicializa como 'cnpj' se não estiver definido
   const docType = formData.documentType || 'cnpj';
 
@@ -67,11 +73,11 @@ function StepIdentity({ formData, updateData, onSubmit }: any) {
 }
 
 // Step 2: Portfólio
-function StepPortfolio({ formData, updateData, onSubmit }: any) {
+function StepPortfolio({ formData, updateData }: StepProps) {
   return (
     <div className="flex flex-col gap-6">
       <p className="font-mono text-sm text-[#A3A3A3] mb-4">
-        Comprovação de atuação cultural. O investidor avaliará seu impacto digital e histórico de apresentações.
+        Comprovação de atuação cultural. O investidor avaliará seu impacto digital e histórico de apresentações. Este material será enviado às empresas cadastradas para fechamentos de datas.
       </p>
       
       <div className="flex flex-col gap-2">
@@ -86,12 +92,23 @@ function StepPortfolio({ formData, updateData, onSubmit }: any) {
       </div>
 
       <div className="flex flex-col gap-2">
+        <label className="font-mono text-[10px] text-[#10B981] tracking-widest uppercase">LINK DE IMAGENS / PRESS KIT</label>
+        <input 
+          type="url" 
+          value={formData.images || ''}
+          onChange={e => updateData('images', e.target.value)}
+          placeholder="Drive, Dropbox com fotos em alta" 
+          className="bg-transparent border-b border-[#393939] focus:border-[#10B981] outline-none py-3 text-white font-mono placeholder:text-[#393939] transition-colors"
+        />
+      </div>
+
+      <div className="flex flex-col gap-2">
         <label className="font-mono text-[10px] text-[#10B981] tracking-widest uppercase">LINK DO CLIPPING (ÚLTIMOS 3 ANOS)</label>
         <input 
           type="url" 
           value={formData.clipping || ''}
           onChange={e => updateData('clipping', e.target.value)}
-          placeholder="Drive, Dropbox ou Site Pessoal" 
+          placeholder="Notícias, Matérias, Entrevistas" 
           className="bg-transparent border-b border-[#393939] focus:border-[#10B981] outline-none py-3 text-white font-mono placeholder:text-[#393939] transition-colors"
         />
       </div>
@@ -100,7 +117,7 @@ function StepPortfolio({ formData, updateData, onSubmit }: any) {
 }
 
 // Step 3: Custos
-function StepCosts({ formData, updateData, onSubmit }: any) {
+function StepCosts({ formData, updateData }: StepProps) {
   return (
     <div className="flex flex-col gap-6">
       <p className="font-mono text-sm text-[#A3A3A3] mb-4">
@@ -133,7 +150,7 @@ function StepCosts({ formData, updateData, onSubmit }: any) {
 }
 
 // Step 4: Compliance
-function StepCompliance({ formData, updateData, onSubmit }: any) {
+function StepCompliance({ formData, updateData }: StepProps) {
   return (
     <div className="flex flex-col gap-6">
       <p className="font-mono text-sm text-[#A3A3A3] mb-4">

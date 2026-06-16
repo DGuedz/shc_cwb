@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 
 import { SignInForm } from "@/components/forms";
 import { hasSupabaseEnv } from "@/lib/supabase/config";
@@ -17,9 +18,9 @@ export default function SignInPage() {
     <div className="min-h-screen bg-[#131313] text-white flex flex-col font-archivo selection:bg-[#10B981] selection:text-black">
       {/* Top Header Simplificado */}
       <header className="border-b border-[#393939] px-6 py-4 flex justify-between items-center bg-[#0E0E0E] sticky top-0 z-50">
-        <div className="font-archivo font-bold text-xl tracking-tighter uppercase">
+        <Link href="/" className="font-archivo font-bold text-xl tracking-tighter uppercase hover:text-[#10B981] transition-colors">
           Street Hub Connect
-        </div>
+        </Link>
         <div className="font-mono text-xs text-[#10B981] bg-[#10B981]/10 px-3 py-1 uppercase tracking-widest border border-[#10B981]/30">
           AUTH_GATEWAY
         </div>
