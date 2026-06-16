@@ -26,29 +26,31 @@ export function ProblemSolutionSplit() {
 
   // Mapeamentos para atrelar a largura das barras diretamente ao scroll
   // O scrollYProgress vai de 0 a 1.
+  // Ajuste de Timing: Começamos mais cedo e terminamos mais tarde, para que fiquem visíveis por mais tempo.
+  // Além disso, mantemos a opacidade em 1 até o fim do scroll da seção (1.0).
   
-  // Barra 1: Cresce de 0% a 100% entre os 10% e 30% do scroll da seção
-  const bar1Width = useTransform(scrollYProgress, [0.1, 0.3], ["0%", "100%"]);
-  const bar1Opacity = useTransform(scrollYProgress, [0.05, 0.15], [0, 1]);
-
-  // Barra 2: Cresce de 0% a 81% entre os 25% e 45% do scroll
-  const bar2Width = useTransform(scrollYProgress, [0.25, 0.45], ["0%", "81%"]);
-  const bar2Opacity = useTransform(scrollYProgress, [0.2, 0.3], [0, 1]);
-
-  // Barra 3: Cresce de 0% a 2.2% entre os 40% e 60% do scroll
-  const bar3Width = useTransform(scrollYProgress, [0.40, 0.60], ["0%", "2.2%"]);
-  const bar3Opacity = useTransform(scrollYProgress, [0.35, 0.45], [0, 1]);
-
-  // Barra 4: Cresce de 0% a 1.5% entre os 55% e 75% do scroll
-  const bar4Width = useTransform(scrollYProgress, [0.55, 0.75], ["0%", "1.5%"]);
-  const bar4Opacity = useTransform(scrollYProgress, [0.50, 0.60], [0, 1]);
-
-  // Barra 5 (Verde): Cresce de 0% a 0.5% entre os 70% e 90% do scroll
-  const bar5Width = useTransform(scrollYProgress, [0.70, 0.90], ["0%", "0.5%"]);
-  const bar5Opacity = useTransform(scrollYProgress, [0.65, 0.75], [0, 1]);
-
   // Opacidade do Label Inicial "DISTRIBUIÇÃO DE CAPITAL (2024)"
-  const titleOpacity = useTransform(scrollYProgress, [0, 0.1], [0, 1]);
+  const titleOpacity = useTransform(scrollYProgress, [0, 0.05], [0, 1]);
+
+  // Barra 1: Mercado Total
+  const bar1Width = useTransform(scrollYProgress, [0.05, 0.25], ["0%", "100%"]);
+  const bar1Opacity = useTransform(scrollYProgress, [0.0, 0.1, 0.95, 1], [0, 1, 1, 0]);
+
+  // Barra 2: Shows
+  const bar2Width = useTransform(scrollYProgress, [0.15, 0.35], ["0%", "81%"]);
+  const bar2Opacity = useTransform(scrollYProgress, [0.1, 0.2, 0.95, 1], [0, 1, 1, 0]);
+
+  // Barra 3: Fomento Público
+  const bar3Width = useTransform(scrollYProgress, [0.25, 0.45], ["0%", "2.2%"]);
+  const bar3Opacity = useTransform(scrollYProgress, [0.2, 0.3, 0.95, 1], [0, 1, 1, 0]);
+
+  // Barra 4: Direitos Autorais
+  const bar4Width = useTransform(scrollYProgress, [0.35, 0.55], ["0%", "1.5%"]);
+  const bar4Opacity = useTransform(scrollYProgress, [0.3, 0.4, 0.95, 1], [0, 1, 1, 0]);
+
+  // Barra 5 (Verde): O Contraste Brutal
+  const bar5Width = useTransform(scrollYProgress, [0.45, 0.65], ["0%", "0.5%"]);
+  const bar5Opacity = useTransform(scrollYProgress, [0.4, 0.5, 0.95, 1], [0, 1, 1, 0]);
 
   return (
     <section ref={sectionRef} className="bg-black border-t border-[#393939] h-[200vh]">
@@ -94,7 +96,7 @@ export function ProblemSolutionSplit() {
           />
           
           {/* Painel Translúcido de Dados (SCROLL DRIVEN) - Fixo no canto inferior */}
-          <div className="absolute inset-0 flex flex-col justify-end p-8 md:p-12 lg:p-16 bg-black/10 backdrop-blur-[2px]">
+          <div className="absolute inset-0 flex flex-col justify-end p-8 md:p-12 lg:p-16 bg-black/30 backdrop-blur-sm">
             <motion.div 
               className="max-w-md w-full ml-auto"
               style={{ opacity: titleOpacity }}
