@@ -19,8 +19,7 @@ export function Solution() {
             PHASE_04 // VALUE_PROPOSITION
           </span>
           <ScrollRevealTitle className="font-archivo text-3xl md:text-5xl font-bold uppercase tracking-tight max-w-2xl">
-            <span className="text-white">A ESTRUTURA</span><br />
-            <span className="text-gradient">INVISÍVEL.</span>
+            <span className="text-gradient">CÚMPLICE.</span>
           </ScrollRevealTitle>
         </motion.div>
 
