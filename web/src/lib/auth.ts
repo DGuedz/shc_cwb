@@ -31,6 +31,7 @@ export async function getSessionUser(): Promise<SessionUser | null> {
       email: demoEmail,
       role: demoRole,
       isDemo: true,
+      govBrLevel: 'bronze' // Valor default seguro para o modo demo
     };
   }
 
@@ -52,9 +53,10 @@ export async function getSessionUser(): Promise<SessionUser | null> {
 
   return {
     id: user.id,
-    email: user.email,
+    email: user.email!,
     role: storedRole,
     isDemo: false,
+    govBrLevel: 'bronze' // Em produção real, este valor viria do banco/metadata do Supabase
   };
 }
 
