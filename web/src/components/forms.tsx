@@ -145,11 +145,12 @@ export function SignInForm({ supabaseEnabled }: { supabaseEnabled: boolean }) {
 
       <div className="flex flex-col gap-3 mt-4">
         <button 
-          className="border border-[#10B981] bg-[#10B981]/10 hover:bg-[#10B981] text-[#10B981] hover:text-black uppercase font-bold py-3 transition-colors tracking-widest font-archivo text-sm rounded-none" 
+          className="relative overflow-hidden bg-gradient-to-b from-[#10B981]/20 to-[#10B981]/5 backdrop-blur-md border border-[#10B981]/40 shadow-[inset_0_1px_0_0_rgba(16,185,129,0.4)] hover:shadow-[inset_0_1px_0_0_rgba(16,185,129,0.6),0_0_20px_rgba(16,185,129,0.2)] text-[#10B981] hover:text-white uppercase font-bold py-3 transition-all duration-300 tracking-widest font-archivo text-sm rounded-none group" 
           type="submit" 
           disabled={pending}
         >
-          {pending ? "PROCESSANDO..." : "AUTENTICAR E ROTEAR"}
+          <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700 ease-in-out" />
+          <span className="relative z-10">{pending ? "PROCESSANDO..." : "AUTENTICAR E ROTEAR"}</span>
         </button>
 
         <div className="flex items-center gap-4 my-2">
@@ -159,13 +160,14 @@ export function SignInForm({ supabaseEnabled }: { supabaseEnabled: boolean }) {
         </div>
 
         <button 
-          className="border border-[#1351B4] bg-[#1351B4]/10 hover:bg-[#1351B4] text-[#1351B4] hover:text-white uppercase font-bold py-3 transition-colors tracking-widest font-archivo text-sm rounded-none flex items-center justify-center gap-3" 
+          className="relative overflow-hidden bg-gradient-to-b from-[#1351B4]/30 to-[#1351B4]/10 backdrop-blur-md border border-[#1351B4]/50 shadow-[inset_0_1px_0_0_rgba(19,81,180,0.5)] hover:shadow-[inset_0_1px_0_0_rgba(19,81,180,0.7),0_0_20px_rgba(19,81,180,0.3)] text-[#6B9DFF] hover:text-white uppercase font-bold py-3 transition-all duration-300 tracking-widest font-archivo text-sm rounded-none flex items-center justify-center gap-3 group" 
           type="button" 
           onClick={handleGovBrLogin}
           disabled={isGovBrLoading}
         >
-          <img src="/govbr-logo.svg" alt="gov.br" className="h-4 brightness-0 invert opacity-80" onError={(e) => e.currentTarget.style.display = 'none'} />
-          <span>{isGovBrLoading ? "CONECTANDO..." : "ENTRAR COM GOV.BR"}</span>
+          <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700 ease-in-out" />
+          <img src="/govbr-logo.svg" alt="gov.br" className="h-4 brightness-0 invert opacity-80 group-hover:opacity-100 transition-opacity relative z-10" onError={(e) => e.currentTarget.style.display = 'none'} />
+          <span className="relative z-10">{isGovBrLoading ? "CONECTANDO..." : "ENTRAR COM GOV.BR"}</span>
         </button>
       </div>
     </form>
