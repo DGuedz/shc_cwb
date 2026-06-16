@@ -1,9 +1,26 @@
 'use client';
 
+import { useState } from "react";
+import { useRouter } from "next/navigation";
 import { DashboardNav } from "@/components/ui/DashboardNav";
 import { ScrollRevealTitle } from "@/components/ui/ScrollRevealTitle";
 
 export default function CriarOportunidade() {
+  const router = useRouter();
+  const [isPublishing, setIsPublishing] = useState(false);
+
+  const handlePublish = (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsPublishing(true);
+    
+    // Simula o tempo do Agente Curador rodando o Matchmaking
+    setTimeout(() => {
+      // Passaríamos o ID da oportunidade real aqui. 
+      // Por enquanto, jogamos direto para o Matchboard (Visão da Empresa com os matches).
+      router.push('/dashboard/matchboard');
+    }, 2000);
+  };
+
   return (
     <div className="bg-black text-[var(--on-background)] min-h-screen flex flex-col">
       <DashboardNav />
@@ -27,7 +44,21 @@ export default function CriarOportunidade() {
         </header>
         
         {/* Form Panel */}
-        <div className="bg-[#0E0E0E] border border-[#393939] p-6 flex flex-col gap-6">
+        <form onSubmit={handlePublish} className="bg-[#0E0E0E] border border-[#393939] p-6 flex flex-col gap-6 relative overflow-hidden">
+          
+          {/* Tela de Loading do Agente (UX) */}
+          {isPublishing && (
+            <div className="absolute inset-0 z-50 bg-[#0E0E0E]/95 backdrop-blur-sm flex flex-col items-center justify-center border border-[#10B981]">
+              <div className="w-12 h-12 border border-[#393939] bg-[#131313] flex items-center justify-center mb-6">
+                <span className="w-3 h-3 bg-[#10B981] rounded-full animate-pulse shadow-[0_0_12px_#10B981]"></span>
+              </div>
+              <h3 className="font-archivo text-2xl font-bold uppercase tracking-tight text-white mb-2">AGENTE CURADOR ATIVADO</h3>
+              <p className="font-mono text-xs text-neutral-400 text-center max-w-sm">
+                Propagando evento na rede e cruzando metadados (EXP / Cache / Base). Gerando painel de Matchmaking...
+              </p>
+            </div>
+          )}
+
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div className="flex flex-col gap-2">
               <label className="font-mono text-[10px] text-neutral-500 uppercase tracking-widest">
@@ -111,14 +142,14 @@ export default function CriarOportunidade() {
           </div>
           
           <div className="flex justify-end gap-4 pt-4 border-t border-[#393939]">
-            <button className="bg-transparent border border-[#393939] text-neutral-400 font-mono text-[10px] uppercase tracking-widest px-8 py-3 hover:text-white transition-colors duration-0">
+            <button type="button" className="bg-transparent border border-[#393939] text-neutral-400 font-mono text-[10px] uppercase tracking-widest px-8 py-3 hover:text-white transition-colors duration-0">
               Cancelar
             </button>
-            <button className="bg-[#10B981] text-black font-mono font-bold text-[10px] uppercase tracking-widest px-8 py-3 hover:bg-white transition-colors duration-0">
+            <button type="submit" disabled={isPublishing} className="bg-[#10B981] text-black font-mono font-bold text-[10px] uppercase tracking-widest px-8 py-3 hover:bg-white transition-colors duration-0 disabled:opacity-50">
               Publicar Oportunidade
             </button>
           </div>
-        </div>
+        </form>
       </main>
     </div>
   );

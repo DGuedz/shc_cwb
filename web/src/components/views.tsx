@@ -142,77 +142,78 @@ export function PublicArtistProfile({ artist }: { artist: Artist }) {
 }
 
 export function MatchBoard({
-  // opportunity,
+  opportunity,
   entries,
 }: {
   opportunity: Opportunity;
   entries: Array<Match & { artist: Artist }>;
 }) {
+  // Simulando o Motor de Matchmaking: Os artistas que chegam aqui já foram pré-selecionados pelo Agente Curador
   return (
-    <div className="space-y-8">
-      <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-10 border-b border-white/10 pb-6 gap-6">
-        <div>
-          <span className="text-[var(--accent)] font-mono text-[10px] mb-2 block tracking-widest">INTELLIGENCE_MODULE // MATCH_ENGINE</span>
-          <h1 className="font-heading text-4xl md:text-5xl leading-none uppercase tracking-tighter">Curadoria Analítica</h1>
-          <p className="text-white/70 mt-2 max-w-xl">Algoritmo de recomendação baseado em fit de marca, histórico de engajamento e viabilidade orçamentária.</p>
-        </div>
-        <div className="flex gap-4">
-          <div className="bg-[#0e0e0e] border border-white/10 px-4 py-2 flex items-center gap-3">
-            <span className="font-mono text-[10px] text-white/50 tracking-widest">SORT:</span>
-            <select className="bg-transparent text-white font-mono text-xs focus:outline-none appearance-none cursor-pointer">
-              <option>MATCH SCORE (DESC)</option>
-              <option>BUDGET (ASC)</option>
-              <option>REACH (DESC)</option>
-            </select>
-            <span className="text-white/50">▼</span>
+    <div className="flex flex-col gap-8">
+      {/* Resumo da Oportunidade */}
+      <div className="bg-[#0E0E0E] border border-[#393939] p-6">
+        <div className="flex justify-between items-start mb-4">
+          <div>
+            <span className="font-mono text-[10px] text-[#10B981] bg-[#10B981]/10 px-2 py-1 uppercase border border-[#10B981]/30">ACTIVE OPPORTUNITY</span>
+            <h2 className="font-archivo text-3xl font-bold uppercase tracking-tight text-white mt-4">{opportunity.title}</h2>
+            <p className="font-mono text-xs text-neutral-400 mt-2">ID: SHC-OPP-{opportunity.id.slice(0, 8).toUpperCase()}</p>
+          </div>
+          <div className="text-right">
+            <span className="font-mono text-[10px] text-neutral-500 uppercase tracking-widest">COMPANY ID</span>
+            <p className="font-mono text-sm text-[#10B981]">{opportunity.companyId.slice(0, 8).toUpperCase()}</p>
           </div>
         </div>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {entries.map((entry) => (
-          <article key={entry.id} className="bg-[#0e0e0e] border border-white/10 p-6 flex flex-col hover:border-[var(--accent)] transition-colors group relative">
-            <div className="absolute top-0 right-0 w-2 h-2 bg-[var(--accent)] m-6 animate-pulse" />
-            <div className="flex justify-between items-start mb-6">
-              <div>
-                <h2 className="font-heading text-2xl md:text-3xl mb-2 uppercase tracking-tight">
-                  {entry.artist.stageName}
-                </h2>
-                <div className="font-mono text-[10px] text-white/50 space-y-1 tracking-wider">
-                  <div><span className="text-white/70">LOC:</span> {entry.artist.city}, {entry.artist.state}</div>
-                  <div><span className="text-white/70">GENRE:</span> {entry.artist.genre}</div>
-                </div>
-              </div>
-              <div className="text-right mt-1 mr-4">
-                <div className="font-mono text-5xl text-[var(--accent)] leading-none">{entry.affinityScore}<span className="text-lg text-white/50 ml-1">%</span></div>
-                <div className="font-mono text-[8px] text-[var(--accent)] tracking-[0.2em] mt-2">MATCH_SCORE</div>
-              </div>
-            </div>
-            <div className="h-[1px] w-full bg-white/10 mb-5" />
-            <div className="flex-grow mb-8">
-              <h3 className="font-mono text-[10px] text-white mb-3 tracking-widest">MOTIVOS DO MATCH:</h3>
-              <ul className="space-y-3">
-                {entry.reasons.map((reason, idx) => (
-                  <li key={idx} className="flex items-start gap-3">
-                    <span className="text-[var(--accent)] shrink-0">✓</span>
-                    <span className="font-mono text-[11px] text-white/70 leading-tight">{reason}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-            <button className="w-full bg-transparent border border-[var(--accent)] text-[var(--accent)] py-4 font-mono text-xs tracking-[0.2em] hover:bg-[var(--accent)] hover:text-black transition-colors uppercase font-bold flex items-center justify-center gap-2">
-              <span>Tenho Interesse</span>
-              <span>→</span>
-            </button>
-          </article>
-        ))}
+      {/* Painel do Agente Curador */}
+      <div className="bg-[#131313] border-l-4 border-[#10B981] p-4 flex items-center gap-4">
+        <div className="w-10 h-10 border border-[#393939] bg-black flex items-center justify-center flex-shrink-0">
+          <span className="material-symbols-outlined text-[#10B981] text-lg">smart_toy</span>
+        </div>
+        <div>
+          <h4 className="font-archivo font-bold text-white uppercase text-sm">AGENTE CURADOR (SHC_AI)</h4>
+          <p className="font-mono text-xs text-neutral-400 mt-1">
+            Varredura concluída. 3 artistas compatíveis com seu budget e parâmetros geográficos. Notificações cross-platform prontas para disparo.
+          </p>
+        </div>
       </div>
 
-      <div className="mt-12 flex justify-center">
-        <button className="bg-black border border-white/10 text-white/70 px-8 py-3 font-mono text-xs tracking-widest hover:text-white hover:border-white/30 transition-colors uppercase flex items-center gap-2">
-          <span>↻</span>
-          Carregar Mais Matches
-        </button>
+      {/* Pipeline de Matchmaking */}
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        {entries.map((entry) => (
+          <div key={entry.id} className="bg-[#0E0E0E] border border-[#393939] p-6 flex flex-col justify-between">
+            <div>
+              <div className="flex justify-between items-center mb-4">
+                <h3 className="font-archivo text-xl font-bold uppercase text-white">{entry.artist.stageName}</h3>
+                <span className="font-mono text-sm font-bold text-[#10B981]">{entry.affinityScore}% MATCH</span>
+              </div>
+              <div className="flex flex-col gap-2 font-mono text-xs text-neutral-400 mb-6">
+                <div className="flex justify-between border-b border-[#393939] pb-2">
+                  <span>DISCIPLINA</span>
+                  <span className="text-white">{entry.artist.genre}</span>
+                </div>
+                <div className="flex justify-between border-b border-[#393939] pb-2">
+                  <span>EXP (SAÚDE)</span>
+                  <span className="text-[#10B981]">{(entry.artist as any).exp || 1050}</span>
+                </div>
+                <div className="flex justify-between pb-2">
+                  <span>CACHÊ MIN</span>
+                  <span className="text-white">R$ {entry.artist.minFee.toLocaleString("pt-BR")}</span>
+                </div>
+              </div>
+            </div>
+            
+            <div className="flex flex-col gap-2 mt-auto">
+              <button className="w-full bg-[#10B981]/10 border border-[#10B981] hover:bg-[#10B981] text-[#10B981] hover:text-black uppercase font-bold py-3 transition-colors tracking-widest font-archivo text-xs rounded-none">
+                Notificar & Assinar
+              </button>
+              <button className="w-full bg-transparent border border-[#393939] hover:border-white text-neutral-400 hover:text-white uppercase font-bold py-3 transition-colors tracking-widest font-archivo text-xs rounded-none">
+                Ver Dossiê ZK
+              </button>
+            </div>
+          </div>
+        ))}
       </div>
     </div>
   );
