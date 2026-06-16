@@ -2,6 +2,7 @@
 
 import { motion, useScroll, useTransform, MotionValue } from 'framer-motion';
 import { useRef } from 'react';
+import { ScrollRevealTitle } from '../ui/ScrollRevealTitle';
 
 // Counter Component Scroll-Driven
 function ScrollCounter({ progress, targetValue, prefix = "", suffix = "" }: { progress: MotionValue<number>, targetValue: number, prefix?: string, suffix?: string }) {
@@ -36,10 +37,11 @@ export function Impact() {
           <span className="font-mono text-[#10B981] text-[10px] uppercase tracking-widest block mb-4">
             PHASE_05 // PILOT
           </span>
-          <h2 className="font-archivo text-4xl md:text-5xl font-bold uppercase tracking-tight text-white mb-6 leading-[0.9]">
-            O IMPACTO DA<br />
-            <span className="text-[#393939]">CONEXÃO</span>
-          </h2>
+          <ScrollRevealTitle className="font-archivo text-4xl md:text-5xl font-bold uppercase tracking-tight leading-[0.9] mb-6">
+            <span className="text-white">A ECONOMIA </span>
+            <span className="text-gradient">CULTURAL</span><br />
+            <span className="text-white">ATIVADA.</span>
+          </ScrollRevealTitle>
           <p className="font-mono text-[#A3A3A3] text-xs md:text-sm leading-relaxed border-l border-[#393939] pl-5 mb-4">
             Curitiba como laboratório vivo de conexão cultural.
           </p>

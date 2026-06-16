@@ -1,6 +1,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
+import { ScrollRevealTitle } from '../ui/ScrollRevealTitle';
 
 export function Solution() {
   return (
@@ -17,9 +18,10 @@ export function Solution() {
           <span className="font-mono text-[#10B981] text-[10px] uppercase tracking-widest block mb-4">
             PHASE_04 // VALUE_PROPOSITION
           </span>
-          <h2 className="font-archivo text-3xl md:text-5xl font-bold uppercase tracking-tight text-white max-w-2xl">
-            Descubra. Conecte. Contrate. Desenvolva.
-          </h2>
+          <ScrollRevealTitle className="font-archivo text-3xl md:text-5xl font-bold uppercase tracking-tight max-w-2xl">
+            <span className="text-white">A ESTRUTURA</span><br />
+            <span className="text-gradient">INVISÍVEL.</span>
+          </ScrollRevealTitle>
         </motion.div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">

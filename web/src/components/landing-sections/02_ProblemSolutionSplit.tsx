@@ -2,6 +2,7 @@
 
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { useRef, useEffect } from 'react';
+import { ScrollRevealTitle } from '../ui/ScrollRevealTitle';
 
 export function ProblemSolutionSplit() {
   const sectionRef = useRef<HTMLDivElement>(null);
@@ -62,10 +63,10 @@ export function ProblemSolutionSplit() {
             viewport={{ once: true, margin: "-100px" }}
           >
             <div className="w-12 h-1 bg-[#10B981] mb-8" />
-            <h2 className="font-archivo text-5xl md:text-6xl lg:text-7xl font-bold uppercase tracking-tight text-white leading-[0.9] mb-8">
-              O CUSTO DA<br />
-              <span className="text-[#393939]">INVISIBILIDADE.</span>
-            </h2>
+            <ScrollRevealTitle className="font-archivo text-5xl md:text-6xl lg:text-7xl font-bold uppercase tracking-tight leading-[0.9] mb-8">
+              <span className="text-white">O CUSTO DA</span><br />
+              <span className="text-gradient">INVISIBILIDADE.</span>
+            </ScrollRevealTitle>
             <p className="font-mono text-[#A3A3A3] text-sm md:text-base max-w-xl leading-relaxed border-l border-[#393939] pl-6 mb-8">
               A cena independente não é pobre, é invisível. O capital existe, mas o sistema é cego.
             </p>

@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion';
 import Link from 'next/link';
+import { ScrollRevealTitle } from '../ui/ScrollRevealTitle';
 
 export function Conversion() {
   return (
@@ -19,9 +20,11 @@ export function Conversion() {
           <span className="font-mono text-[#10B981] text-[10px] uppercase tracking-widest block mb-4">
             GATEWAY // ENTRY_POINT
           </span>
-          <h2 className="font-archivo text-3xl md:text-4xl lg:text-5xl font-bold uppercase tracking-tight text-white mb-16 leading-tight">
-            Faça parte da infraestrutura da economia criativa underground
-          </h2>
+          <ScrollRevealTitle className="font-archivo text-3xl md:text-4xl lg:text-5xl font-bold uppercase tracking-tight mb-16 leading-tight">
+            <span className="text-white">FAÇA PARTE DA INFRAESTRUTURA DA </span>
+            <span className="text-gradient">ECONOMIA CRIATIVA</span><br />
+            <span className="text-white">UNDERGROUND.</span>
+          </ScrollRevealTitle>
         </motion.div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-3xl mx-auto">

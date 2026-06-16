@@ -46,3 +46,12 @@ body {
   background: linear-gradient(to bottom, #131313, var(--primary), #131313); 
 }
 ::-webkit-scrollbar-thumb:hover { background: var(--primary); }
+
+/* Text Gradient Utility */
+@utility text-gradient {
+  background-image: linear-gradient(to right, #ffffff, var(--primary));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
+}
