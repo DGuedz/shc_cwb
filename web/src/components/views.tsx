@@ -261,33 +261,57 @@ export function DealsKanban({ deals }: { deals: Deal[] }) {
   );
 }
 
+import { ArtistIDCard } from "./ui/ArtistIDCard";
+
 export function DossierPanel({ artist }: { artist: Artist }) {
   return (
     <div className="flex flex-col gap-6">
       {/* Header: Identity & Status */}
-      <div className="bg-[#0E0E0E] border border-[#393939] p-6 flex flex-col md:flex-row justify-between gap-6 items-start md:items-center">
-        <div className="flex items-center gap-6">
-          <div className="w-24 h-24 bg-[#131313] border border-[#393939] flex items-center justify-center font-mono text-xs text-neutral-600">
-            PORTRAIT
-          </div>
+      <div className="bg-[#0E0E0E] border border-[#393939] p-6 md:p-12 flex flex-col md:flex-row gap-12 items-start md:items-center relative overflow-hidden">
+        {/* Fundo com Grid */}
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,#393939_1px,transparent_1px),linear-gradient(to_bottom,#393939_1px,transparent_1px)] bg-[size:2rem_2rem] opacity-20 pointer-events-none" />
+        
+        {/* Left Col: 3D ID Card */}
+        <div className="w-full md:w-auto relative z-10 flex-shrink-0">
+          <ArtistIDCard artist={artist} />
+        </div>
+
+        {/* Right Col: High Level Metadata & Governance */}
+        <div className="flex flex-col gap-6 relative z-10 flex-1">
           <div>
-            <h1 className="font-archivo text-3xl font-bold uppercase tracking-tight text-white">{artist.stageName}</h1>
-            <p className="font-mono text-xs text-neutral-400 mt-1">ID: SHC-{artist.id.slice(0, 4).toUpperCase()} | {artist.genre}</p>
-            <div className="mt-3 flex gap-2 flex-wrap">
-              {artist.verified ? (
-                <span className="font-mono text-[10px] text-[#10B981] bg-[#10B981]/10 px-2 py-1 uppercase border border-[#10B981]/30">VERIFIED OUTSIDER</span>
-              ) : (
-                <span className="font-mono text-[10px] text-neutral-400 bg-neutral-800 px-2 py-1 uppercase border border-neutral-600">EM ANÁLISE</span>
-              )}
-              <span className="font-mono text-[10px] text-[#1351B4] bg-[#1351B4]/10 px-2 py-1 uppercase border border-[#1351B4]/30">LEVEL 4 - APPROVED</span>
+            <h1 className="font-archivo text-4xl md:text-5xl font-bold uppercase tracking-tight text-white">{artist.stageName}</h1>
+            <p className="font-mono text-sm text-neutral-400 mt-2 border-l-2 border-[#10B981] pl-3">
+              Membro Oficial validado pelo Gov.br (OIDC).
+            </p>
+          </div>
+
+          <div className="grid grid-cols-2 md:grid-cols-3 gap-6 pt-6 border-t border-[#393939]">
+            <div className="flex flex-col gap-1">
+              <span className="font-mono text-[10px] text-neutral-500 uppercase tracking-widest">Base Location</span>
+              <span className="font-mono text-sm text-white">{artist.city}, {artist.state}</span>
+            </div>
+            <div className="flex flex-col gap-1">
+              <span className="font-mono text-[10px] text-neutral-500 uppercase tracking-widest">Contract Rate (Min)</span>
+              <span className="font-mono text-sm text-[#10B981]">R$ {artist.minFee.toLocaleString("pt-BR")}</span>
+            </div>
+            <div className="flex flex-col gap-1 col-span-2 md:col-span-1">
+              <span className="font-mono text-[10px] text-neutral-500 uppercase tracking-widest">Governance Rights</span>
+              <div className="flex items-center gap-2 mt-1">
+                <span className="w-2 h-2 rounded-full bg-[#10B981] animate-pulse"></span>
+                <span className="font-mono text-xs text-white uppercase">VOTING ENABLED</span>
+              </div>
             </div>
           </div>
-        </div>
-        <div className="text-left md:text-right flex flex-col gap-1">
-          <span className="font-mono text-[10px] text-neutral-500 uppercase tracking-widest">Base Location</span>
-          <span className="font-mono text-sm text-white">{artist.city}, {artist.state}</span>
-          <span className="font-mono text-[10px] text-neutral-500 uppercase tracking-widest mt-2">Contract Rate (Min)</span>
-          <span className="font-mono text-lg text-[#10B981]">R$ {artist.minFee.toLocaleString("pt-BR")}</span>
+
+          {/* Association Action */}
+          <div className="mt-4 pt-6 border-t border-[#393939] flex flex-col md:flex-row gap-4">
+            <button className="flex-1 bg-[#10B981]/10 border border-[#10B981] hover:bg-[#10B981] text-[#10B981] hover:text-black uppercase font-bold py-3 transition-colors tracking-widest font-archivo text-xs rounded-none">
+              Acessar Assembleia (DAO)
+            </button>
+            <button className="flex-1 bg-transparent border border-[#393939] hover:border-white text-neutral-400 hover:text-white uppercase font-bold py-3 transition-colors tracking-widest font-archivo text-xs rounded-none">
+              Download Press Kit
+            </button>
+          </div>
         </div>
       </div>
 
