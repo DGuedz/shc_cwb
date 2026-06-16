@@ -1,55 +1,50 @@
 'use client';
 
+import Link from "next/link";
+
 export default function DealsPipeline() {
   const deals = [
-    { id: 1, artist: "DJ ALX", status: "Negociação", value: "R$ 4.000", date: "15/06/2026" },
-    { id: 2, artist: "MC RZ", status: "Proposta Enviada", value: "R$ 7.000", date: "14/06/2026" },
-    { id: 3, artist: "LIA B", status: "Aguardando Assinatura", value: "R$ 10.000", date: "13/06/2026" },
-    { id: 4, artist: "VNXX", status: "Concluído", value: "R$ 3.500", date: "10/06/2026" }
+    { id: 1, artist: "DJ ALX", status: "PENDING_ZK_PROOF", value: "R$ 4.000", date: "15/06/2026", hash: "0x8f2a...3b9c", block: "14589201" },
+    { id: 2, artist: "MC RZ", status: "VALIDATING", value: "R$ 7.000", date: "14/06/2026", hash: "0x3e1d...9a2f", block: "14588934" },
+    { id: 3, artist: "LIA B", status: "AWAITING_SIG", value: "R$ 10.000", date: "13/06/2026", hash: "0x1a4b...7d8e", block: "14588102" },
+    { id: 4, artist: "VNXX", status: "SETTLED", value: "R$ 3.500", date: "10/06/2026", hash: "0x9c5f...2e1a", block: "14587045" }
   ];
   
   return (
     <div className="bg-black text-[var(--on-background)] min-h-screen flex flex-col">
       {/* TopNavBar */}
-      <nav className="fixed top-0 w-full z-50 border-b border-[var(--outline-variant)] bg-[var(--surface)]/90 backdrop-blur-xl h-20 px-[var(--spacing-margin-mobile)] md:px-[var(--spacing-margin-desktop)] flex justify-between items-center transition-colors duration-0">
+      <nav className="fixed top-0 w-full z-50 border-b border-[#393939] bg-[#0E0E0E]/90 backdrop-blur-xl h-20 px-[var(--spacing-margin-mobile)] md:px-[var(--spacing-margin-desktop)] flex justify-between items-center transition-colors duration-0">
         <div className="flex items-center space-x-8 h-full">
-          <a href="/" className="font-[var(--font-family-headline-lg)] text-[var(--font-size-headline-lg)] font-bold tracking-tighter text-[var(--primary)]">
+          <Link href="/" className="font-archivo text-xl font-bold tracking-tighter text-white uppercase">
             STREET HUB CONNECT
-          </a>
-          <div className="hidden md:flex space-x-6 h-full items-center font-[var(--font-family-label-mono)] text-[var(--font-size-label-mono)] text-[var(--on-surface-variant)]">
-            <a href="/" className="h-full flex items-center transition-colors duration-0 hover:text-[var(--primary)] hover:bg-[var(--surface-container-high)] px-2">
+          </Link>
+          <div className="hidden md:flex space-x-6 h-full items-center font-mono text-xs text-neutral-400">
+            <Link href="/" className="h-full flex items-center transition-colors duration-0 hover:text-white hover:bg-[#131313] px-4">
               Início
-            </a>
-            <a href="/catalogo" className="h-full flex items-center transition-colors duration-0 hover:text-[var(--primary)] hover:bg-[var(--surface-container-high)] px-2">
+            </Link>
+            <Link href="/catalogo" className="h-full flex items-center transition-colors duration-0 hover:text-white hover:bg-[#131313] px-4">
               Artistas
-            </a>
-            <a href="/oportunidades/criar" className="h-full flex items-center transition-colors duration-0 hover:text-[var(--primary)] hover:bg-[var(--surface-container-high)] px-2">
+            </Link>
+            <Link href="/oportunidades/criar" className="h-full flex items-center transition-colors duration-0 hover:text-white hover:bg-[#131313] px-4">
               Oportunidades
-            </a>
-            <a href="/dashboard/acordos" className="text-[var(--primary)] border-b-2 border-[var(--primary)] h-full flex items-center pt-[2px] transition-colors duration-0 hover:text-[var(--primary)] hover:bg-[var(--surface-container-high)] px-2">
+            </Link>
+            <Link href="/dashboard/acordos" className="text-[#10B981] border-b-2 border-[#10B981] h-full flex items-center pt-[2px] transition-colors duration-0 hover:text-[#10B981] hover:bg-[#131313] px-4 bg-[#131313]/50">
               Conexões
-            </a>
-            <a href="/onboarding/artista" className="h-full flex items-center transition-colors duration-0 hover:text-[var(--primary)] hover:bg-[var(--surface-container-high)] px-2">
+            </Link>
+            <Link href="/onboarding/artista" className="h-full flex items-center transition-colors duration-0 hover:text-white hover:bg-[#131313] px-4">
               Perfil/Contratos
-            </a>
+            </Link>
           </div>
         </div>
         <div className="flex items-center space-x-4">
           <div className="relative hidden md:block">
-            <span className="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-[var(--on-surface-variant)]" style={{ fontSize: '20px' }}>search</span>
             <input 
               type="text" 
-              placeholder="Search..." 
-              className="bg-black border border-white/10 text-[var(--primary)] font-[var(--font-family-label-mono)] text-[var(--font-size-label-mono)] pl-10 pr-4 py-2 focus:outline-none focus:border-white transition-colors"
+              placeholder="Search TX, Block, or ID..." 
+              className="bg-[#131313] border border-[#393939] text-white font-mono text-xs pl-4 pr-4 py-2 w-64 focus:outline-none focus:border-[#10B981] transition-colors placeholder:text-neutral-600"
             />
           </div>
-          <button aria-label="Notifications" className="p-2 hover:bg-[var(--surface-container-high)] transition-colors duration-0 rounded">
-            <span className="material-symbols-outlined text-[var(--primary)]">notifications</span>
-          </button>
-          <button aria-label="Settings" className="p-2 hover:bg-[var(--surface-container-high)] transition-colors duration-0 rounded">
-            <span className="material-symbols-outlined text-[var(--primary)]">settings</span>
-          </button>
-          <div className="w-10 h-10 border border-white/10 bg-[var(--surface-container-high)] flex items-center justify-center font-[var(--font-family-label-mono)] text-xs text-[var(--primary)]">
+          <div className="w-10 h-10 border border-[#393939] bg-[#131313] flex items-center justify-center font-mono text-xs text-[#10B981]">
             PR
           </div>
         </div>
@@ -59,37 +54,31 @@ export default function DealsPipeline() {
       <main className="flex-grow pt-20 px-[var(--spacing-margin-mobile)] md:px-[var(--spacing-margin-desktop)] max-w-[var(--spacing-container-max)] mx-auto w-full flex flex-col gap-8 pb-16">
         {/* Hero Header */}
         <header className="mt-12 flex flex-col items-start gap-4 relative">
-          <div className="absolute right-0 top-0 border border-white/10 bg-black px-4 py-2 hidden md:flex items-center gap-2">
-            <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
-            <span className="font-[var(--font-family-label-mono)] text-[var(--font-size-label-mono)] text-emerald-500">HACKATHON MUSICTECH BRASIL</span>
+          <div className="absolute right-0 top-0 border border-white/10 bg-[#0E0E0E] px-4 py-2 hidden md:flex items-center gap-2">
+            <span className="w-2 h-2 rounded-full bg-[#10B981] animate-pulse"></span>
+            <span className="font-mono text-xs text-[#10B981] tracking-widest uppercase">SHC_NETWORK // ZK_READY</span>
           </div>
-          <h1 className="font-[var(--font-family-headline-xl)] text-[var(--font-size-headline-xl)] md:text-[64px] font-bold text-[var(--primary)] tracking-tighter uppercase max-w-3xl leading-tight">
-            DEALS PIPELINE
+          <h1 className="font-archivo text-5xl md:text-[64px] font-bold text-white tracking-tighter uppercase max-w-3xl leading-tight">
+            DEALS <span className="text-[#10B981]">EXPLORER</span>
           </h1>
-          <p className="font-[var(--font-family-body-lg)] text-[var(--font-size-body-lg)] text-[var(--on-surface-variant)] max-w-2xl border-l-2 border-[var(--primary)] pl-4">
-            Acompanhe todas as negociações e acordos em andamento com artistas da Street Hub.
+          <p className="font-mono text-sm text-neutral-400 max-w-2xl border-l-2 border-[#10B981] pl-4">
+            Acompanhe as transações de contratos e liquidações. Dados sensíveis ofuscados (ZK).
           </p>
         </header>
         
         {/* Stats Bar */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
           {[
-            { label: "Total de Deals", value: "4" },
-            { label: "Em Negociação", value: "2" },
-            { label: "Concluídos", value: "1" },
-            { label: "Valor Total", value: "R$ 24.500" }
+            { label: "LATEST BLOCK", value: "14589201" },
+            { label: "PENDING TXS", value: "2" },
+            { label: "SETTLED TXS", value: "1" },
+            { label: "TVL (SHC)", value: "R$ 24.500" }
           ].map((stat, i) => (
-            <div key={i} className="glass-panel p-4 flex flex-col gap-2">
-              <style jsx>{`
-                .glass-panel {
-                  background-color: #0A0A0A;
-                  border: 1px solid rgba(255,255,255,0.1);
-                }
-              `}</style>
-              <span className="font-[var(--font-family-label-mono)] text-[var(--font-size-label-mono)] text-[var(--on-surface-variant)] uppercase text-[11px]">
+            <div key={i} className="bg-[#0E0E0E] border border-[#393939] p-4 flex flex-col gap-2">
+              <span className="font-mono text-[10px] text-neutral-500 uppercase tracking-widest">
                 {stat.label}
               </span>
-              <span className="font-[var(--font-family-data-num)] text-2xl text-[var(--primary)]">
+              <span className="font-mono text-xl text-white">
                 {stat.value}
               </span>
             </div>
@@ -97,59 +86,58 @@ export default function DealsPipeline() {
         </div>
         
         {/* Deals List */}
-        <div className="glass-panel overflow-hidden">
-          <style jsx>{`
-            .glass-panel {
-              background-color: #0A0A0A;
-              border: 1px solid rgba(255,255,255,0.1);
-            }
-          `}</style>
+        <div className="bg-[#0E0E0E] border border-[#393939] overflow-hidden">
           <div className="overflow-x-auto">
             <table className="w-full">
-              <thead className="border-b border-white/10">
+              <thead className="border-b border-[#393939] bg-[#131313]">
                 <tr className="text-left">
-                  <th className="p-4 font-[var(--font-family-label-mono)] text-[var(--font-size-label-mono)] text-[var(--on-surface-variant)] uppercase text-[11px]">
-                    Artista
+                  <th className="p-4 font-mono text-[10px] text-neutral-500 uppercase tracking-widest">
+                    TX_HASH
                   </th>
-                  <th className="p-4 font-[var(--font-family-label-mono)] text-[var(--font-size-label-mono)] text-[var(--on-surface-variant)] uppercase text-[11px]">
-                    Status
+                  <th className="p-4 font-mono text-[10px] text-neutral-500 uppercase tracking-widest">
+                    BLOCK
                   </th>
-                  <th className="p-4 font-[var(--font-family-label-mono)] text-[var(--font-size-label-mono)] text-[var(--on-surface-variant)] uppercase text-[11px]">
-                    Valor
+                  <th className="p-4 font-mono text-[10px] text-neutral-500 uppercase tracking-widest">
+                    TIMESTAMP
                   </th>
-                  <th className="p-4 font-[var(--font-family-label-mono)] text-[var(--font-size-label-mono)] text-[var(--on-surface-variant)] uppercase text-[11px]">
-                    Data
+                  <th className="p-4 font-mono text-[10px] text-neutral-500 uppercase tracking-widest">
+                    PARTICIPANT_ID
                   </th>
-                  <th className="p-4 font-[var(--font-family-label-mono)] text-[var(--font-size-label-mono)] text-[var(--on-surface-variant)] uppercase text-[11px]">
-                    Ações
+                  <th className="p-4 font-mono text-[10px] text-neutral-500 uppercase tracking-widest">
+                    AMOUNT
+                  </th>
+                  <th className="p-4 font-mono text-[10px] text-neutral-500 uppercase tracking-widest">
+                    STATUS
                   </th>
                 </tr>
               </thead>
               <tbody>
                 {deals.map((deal) => (
-                  <tr key={deal.id} className="border-t border-white/10 hover:bg-white/5 transition-colors">
-                    <td className="p-4 font-[var(--font-family-headline-md)] text-[var(--font-size-headline-md)] text-[var(--primary)]">
-                      {deal.artist}
+                  <tr key={deal.id} className="border-t border-[#393939] hover:bg-[#131313] transition-colors group">
+                    <td className="p-4 font-mono text-sm text-[#10B981] group-hover:underline cursor-pointer">
+                      {deal.hash}
+                    </td>
+                    <td className="p-4 font-mono text-xs text-white">
+                      {deal.block}
+                    </td>
+                    <td className="p-4 font-mono text-xs text-neutral-400">
+                      {deal.date}
+                    </td>
+                    <td className="p-4 font-mono text-xs text-neutral-300">
+                      SHC_ART_{deal.artist.replace(" ", "_")}
+                    </td>
+                    <td className="p-4 font-mono text-sm text-white">
+                      {deal.value}
                     </td>
                     <td className="p-4">
-                      <span className={`font-[var(--font-family-label-mono)] text-[var(--font-size-label-mono)] px-3 py-1 border border-white/20 ${
-                        deal.status === "Concluído" ? "text-emerald-500 border-emerald-500/30" : 
-                        deal.status === "Aguardando Assinatura" ? "text-yellow-500 border-yellow-500/30" : 
-                        "text-[var(--on-surface-variant)]"
+                      <span className={`font-mono text-[10px] px-2 py-1 uppercase tracking-widest border ${
+                        deal.status === "SETTLED" ? "text-[#10B981] bg-[#10B981]/10 border-[#10B981]/30" : 
+                        deal.status === "VALIDATING" ? "text-[#1351B4] bg-[#1351B4]/10 border-[#1351B4]/30" : 
+                        deal.status === "AWAITING_SIG" ? "text-yellow-500 bg-yellow-500/10 border-yellow-500/30" :
+                        "text-neutral-400 bg-neutral-800 border-neutral-600"
                       }`}>
                         {deal.status}
                       </span>
-                    </td>
-                    <td className="p-4 font-[var(--font-family-data-num)] text-[var(--font-size-data-num)] text-[var(--primary)]">
-                      {deal.value}
-                    </td>
-                    <td className="p-4 font-[var(--font-family-data-num)] text-[var(--font-size-data-num)] text-[var(--on-surface-variant)]">
-                      {deal.date}
-                    </td>
-                    <td className="p-4">
-                      <button className="font-[var(--font-family-label-mono)] text-[var(--font-size-label-mono)] text-[var(--primary)] hover:text-emerald-500 transition-colors">
-                        Ver Detalhes
-                      </button>
                     </td>
                   </tr>
                 ))}
