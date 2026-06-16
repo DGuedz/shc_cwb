@@ -3,6 +3,7 @@
 import { useEffect, useRef } from 'react';
 import Link from 'next/link';
 import { motion, useScroll, useTransform } from 'framer-motion';
+import { ScrollRevealTitle } from '../ui/ScrollRevealTitle';
 
 export function HeroSection() {
   const heroRef = useRef<HTMLDivElement>(null);
@@ -53,9 +54,10 @@ export function HeroSection() {
             className="absolute w-full px-6"
             style={{ opacity: opacityChapter1, pointerEvents: pointerEventsChapter1 }}
           >
-            <h1 className="font-archivo text-4xl md:text-5xl lg:text-6xl font-bold uppercase tracking-tight leading-none mb-6 text-white">
-              Muito talento.<br />Pouca estrutura.
-            </h1>
+            <ScrollRevealTitle className="font-archivo text-4xl md:text-5xl lg:text-6xl font-bold uppercase tracking-tight leading-none mb-6">
+              <span className="text-white">MUITO TALENTO.</span><br />
+              <span className="text-[#393939]">POUCA ESTRUTURA.</span>
+            </ScrollRevealTitle>
             <p className="font-mono text-[#A3A3A3] text-xs md:text-sm max-w-xl mx-auto">
               Transformamos a economia criativa com um poderoso algoritmo de Business Match para a cena underground.
             </p>
@@ -66,9 +68,10 @@ export function HeroSection() {
             className="absolute w-full px-6"
             style={{ opacity: opacityChapter2, pointerEvents: pointerEventsChapter2 }}
           >
-            <h1 className="font-archivo text-4xl md:text-5xl lg:text-6xl font-bold uppercase tracking-tight leading-none mb-6 text-white">
-              Descubra. Conecte.<br />Contrate.
-            </h1>
+            <ScrollRevealTitle className="font-archivo text-4xl md:text-5xl lg:text-6xl font-bold uppercase tracking-tight leading-none mb-6">
+              <span className="text-white">DESCUBRA. CONECTE.</span><br />
+              <span className="text-gradient">CONTRATE.</span>
+            </ScrollRevealTitle>
             <p className="font-mono text-[#A3A3A3] text-xs md:text-sm max-w-2xl mx-auto mb-10 leading-relaxed">
               O motor tecnológico que transforma a música independente em um ativo de alto impacto para o seu negócio.
             </p>
