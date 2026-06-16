@@ -142,7 +142,7 @@ export function PublicArtistProfile({ artist }: { artist: Artist }) {
 }
 
 export function MatchBoard({
-  opportunity,
+  // opportunity,
   entries,
 }: {
   opportunity: Opportunity;
@@ -263,174 +263,120 @@ export function DealsKanban({ deals }: { deals: Deal[] }) {
 
 export function DossierPanel({ artist }: { artist: Artist }) {
   return (
-    <div className="grid grid-cols-1 md:grid-cols-12 gap-4">
-      <section className="col-span-4 md:col-span-12 border border-white/10 bg-[#0e0e0e] p-4 mb-8 relative">
-        <div className="absolute top-4 left-4 z-10 bg-black/80 border border-[var(--accent)] px-3 py-1 flex items-center gap-2 backdrop-blur-sm">
-          <div className="w-2 h-2 bg-[var(--accent)] animate-pulse" />
-          <span className="font-mono text-xs text-[var(--accent)] uppercase">STATUS: {artist.verified ? "VERIFIED OUTSIDER" : "EM ANÁLISE"}</span>
-        </div>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-          <div className="col-span-1 border border-white/10 aspect-square overflow-hidden relative grayscale contrast-125 bg-[#1a1a1a] flex items-center justify-center">
-            <div className="font-mono text-white/30 text-4xl">PORTRAIT</div>
-            <div className="absolute bottom-2 right-2 text-right">
-              <div className="font-mono text-sm text-white/50">ID: SHC-{artist.id.slice(0, 4).toUpperCase()}</div>
-              <div className="font-mono text-[10px] text-white/50">LAT: -23.5505 / LON: -46.6333</div>
-            </div>
+    <div className="flex flex-col gap-6">
+      {/* Header: Identity & Status */}
+      <div className="bg-[#0E0E0E] border border-[#393939] p-6 flex flex-col md:flex-row justify-between gap-6 items-start md:items-center">
+        <div className="flex items-center gap-6">
+          <div className="w-24 h-24 bg-[#131313] border border-[#393939] flex items-center justify-center font-mono text-xs text-neutral-600">
+            PORTRAIT
           </div>
-          <div className="col-span-1 md:col-span-2 flex flex-col justify-between p-4 bg-[#0A0A0A] border border-white/10">
-            <div>
-              <h1 className="font-heading text-4xl md:text-5xl tracking-tighter uppercase mb-4">{artist.stageName}</h1>
-              <div className="grid grid-cols-2 gap-4 border-t border-white/10 pt-4">
-                <div>
-                  <span className="font-mono text-xs text-white/50 block mb-1">PRIMARY DISCIPLINE</span>
-                  <span className="font-mono text-sm text-white">{artist.genre}</span>
-                </div>
-                <div>
-                  <span className="font-mono text-xs text-white/50 block mb-1">BASE LOCATION</span>
-                  <span className="font-mono text-sm text-white">{artist.city}, {artist.state}</span>
-                </div>
-                <div>
-                  <span className="font-mono text-xs text-white/50 block mb-1">CONTRACT RATE (MIN)</span>
-                  <span className="font-mono text-sm text-white">R$ {artist.minFee.toLocaleString("pt-BR")}</span>
-                </div>
-                <div>
-                  <span className="font-mono text-xs text-white/50 block mb-1">SYSTEM CLEARANCE</span>
-                  <span className="font-mono text-sm text-[var(--accent)]">LEVEL 4 - APPROVED</span>
-                </div>
-              </div>
-            </div>
-            <div className="mt-8 border-t border-white/10 pt-4">
-              <span className="font-mono text-xs text-white/50 block mb-2">BIOMETRIC / BIO</span>
-              <p className="text-base text-white/80 leading-relaxed max-w-3xl">{artist.bio}</p>
+          <div>
+            <h1 className="font-archivo text-3xl font-bold uppercase tracking-tight text-white">{artist.stageName}</h1>
+            <p className="font-mono text-xs text-neutral-400 mt-1">ID: SHC-{artist.id.slice(0, 4).toUpperCase()} | {artist.genre}</p>
+            <div className="mt-3 flex gap-2 flex-wrap">
+              {artist.verified ? (
+                <span className="font-mono text-[10px] text-[#10B981] bg-[#10B981]/10 px-2 py-1 uppercase border border-[#10B981]/30">VERIFIED OUTSIDER</span>
+              ) : (
+                <span className="font-mono text-[10px] text-neutral-400 bg-neutral-800 px-2 py-1 uppercase border border-neutral-600">EM ANÁLISE</span>
+              )}
+              <span className="font-mono text-[10px] text-[#1351B4] bg-[#1351B4]/10 px-2 py-1 uppercase border border-[#1351B4]/30">LEVEL 4 - APPROVED</span>
             </div>
           </div>
         </div>
-      </section>
-      <section className="col-span-4 md:col-span-8 flex flex-col gap-4">
-        <div className="bg-[#1c1b1b] border border-white/10 p-4">
-          <div className="flex items-center gap-2 mb-4 border-b border-white/10 pb-2">
-            <span className="text-white">⚪</span>
-            <h2 className="font-heading text-2xl text-white uppercase">AUDIT: LATEST SHOWS</h2>
+        <div className="text-left md:text-right flex flex-col gap-1">
+          <span className="font-mono text-[10px] text-neutral-500 uppercase tracking-widest">Base Location</span>
+          <span className="font-mono text-sm text-white">{artist.city}, {artist.state}</span>
+          <span className="font-mono text-[10px] text-neutral-500 uppercase tracking-widest mt-2">Contract Rate (Min)</span>
+          <span className="font-mono text-lg text-[#10B981]">R$ {artist.minFee.toLocaleString("pt-BR")}</span>
+        </div>
+      </div>
+
+      {/* Body: Two columns - Operational Info & Action */}
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        
+        {/* Left Col: Abstracted Info */}
+        <div className="lg:col-span-2 flex flex-col gap-6">
+          
+          {/* Bio / Summary */}
+          <div className="bg-[#131313] border border-[#393939] p-6">
+            <h3 className="font-mono text-[10px] text-[#10B981] uppercase tracking-widest mb-3">Biometric / Bio</h3>
+            <p className="font-archivo text-sm text-neutral-300 leading-relaxed">{artist.bio}</p>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <div className="border border-white/10 bg-[#0A0A0A] p-2 flex gap-4 items-center group cursor-pointer hover:bg-[#393939] transition-none">
-              <div className="w-16 h-16 bg-[#131313] grayscale flex items-center justify-center">
-                <span className="text-white/30">IMG</span>
-              </div>
+
+          {/* Abstracted Evidence & Networks */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="bg-[#131313] border border-[#393939] p-6 flex flex-col justify-between">
               <div>
-                <div className="font-mono text-sm text-white uppercase">BASEMENT SESSIONS</div>
-                <div className="font-mono text-[10px] text-white/50">2024.10.15 // BERLIN</div>
-                <div className="font-mono text-[10px] text-[var(--accent)] mt-1">CAPACITY MET</div>
+                <h3 className="font-mono text-[10px] text-neutral-500 uppercase tracking-widest mb-4">Evidence & Shows</h3>
+                <ul className="font-mono text-xs text-neutral-300 space-y-3">
+                  <li className="flex justify-between border-b border-[#393939] pb-2">
+                    <span>BASEMENT SESSIONS</span>
+                    <span className="text-neutral-500">BERLIN</span>
+                  </li>
+                  <li className="flex justify-between border-b border-[#393939] pb-2">
+                    <span>VOID FESTIVAL</span>
+                    <span className="text-neutral-500">LONDON</span>
+                  </li>
+                  <li className="flex justify-between border-b border-[#393939] pb-2">
+                    <span>MEDIA: BOILER_ROOM</span>
+                    <span className="text-[#10B981]">VERIFIED</span>
+                  </li>
+                </ul>
               </div>
             </div>
-            <div className="border border-white/10 bg-[#0A0A0A] p-2 flex gap-4 items-center group cursor-pointer hover:bg-[#393939] transition-none">
-              <div className="w-16 h-16 bg-[#131313] grayscale flex items-center justify-center">
-                <span className="text-white/30">IMG</span>
-              </div>
-              <div>
-                <div className="font-mono text-sm text-white uppercase">VOID FESTIVAL</div>
-                <div className="font-mono text-[10px] text-white/50">2024.08.02 // LONDON</div>
-                <div className="font-mono text-[10px] text-[var(--accent)] mt-1">CAPACITY MET</div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div className="bg-[#1c1b1b] border border-white/10 p-4">
-          <div className="flex items-center gap-2 mb-4 border-b border-white/10 pb-2">
-            <span className="text-white">⚪</span>
-            <h2 className="font-heading text-2xl text-white uppercase">EVIDENCE: MEDIA</h2>
-          </div>
-          <div className="grid grid-cols-2 gap-4">
-            <div className="relative border border-white/10 aspect-video bg-black group cursor-pointer">
-              <div className="absolute inset-0 opacity-60 grayscale group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                <span className="text-white/30 text-4xl">▶</span>
-              </div>
-              <div className="absolute bottom-0 left-0 w-full bg-black/80 border-t border-white/10 p-1">
-                <span className="font-mono text-[10px] text-white">FILE: BOILER_ROOM_REC_01</span>
-              </div>
-            </div>
-            <div className="relative border border-white/10 aspect-video bg-black group cursor-pointer">
-              <div className="absolute inset-0 opacity-60 grayscale group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                <span className="text-white/30 text-4xl">▶</span>
-              </div>
-              <div className="absolute bottom-0 left-0 w-full bg-black/80 border-t border-white/10 p-1">
-                <span className="font-mono text-[10px] text-white">FILE: STUDIO_SESSION_RAW</span>
+
+            <div className="bg-[#131313] border border-[#393939] p-6">
+              <h3 className="font-mono text-[10px] text-neutral-500 uppercase tracking-widest mb-4">Verified Networks</h3>
+              <div className="flex flex-col gap-2">
+                {["SPOTIFY", "INSTAGRAM", "SOUNDCLOUD"].map((network) => (
+                  <div key={network} className="flex justify-between items-center bg-[#0E0E0E] border border-[#393939] px-3 py-2">
+                    <span className="font-mono text-xs text-white">{network}</span>
+                    <span className="text-[#10B981] text-sm">✓</span>
+                  </div>
+                ))}
               </div>
             </div>
           </div>
         </div>
-        <div className="bg-[#1c1b1b] border border-white/10 p-4">
-          <div className="flex items-center gap-2 mb-4 border-b border-white/10 pb-2">
-            <span className="text-white">⚪</span>
-            <h2 className="font-heading text-2xl text-white uppercase">VERIFIED NETWORKS</h2>
+
+        {/* Right Col: Contract Specs & Action */}
+        <div className="bg-[#0E0E0E] border border-[#393939] flex flex-col">
+          <div className="p-6 border-b border-[#393939] flex justify-between items-center bg-[#131313]">
+            <h3 className="font-mono text-[10px] text-white uppercase tracking-widest">Contract Specs</h3>
+            <span className="font-mono text-[10px] text-neutral-500 bg-[#0E0E0E] border border-[#393939] px-2 py-1">LOCKED</span>
           </div>
-          <div className="flex flex-wrap gap-4">
-            {["SPOTIFY", "INSTAGRAM", "SOUNDCLOUD"].map((network) => (
-              <div key={network} className="flex items-center gap-2 border border-white/10 bg-[#0A0A0A] px-3 py-2">
-                <span className="font-mono text-xs text-white">{network}</span>
-                <span className="text-[var(--accent)] text-sm">✓</span>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-      <section className="col-span-4 md:col-span-4 flex flex-col gap-4">
-        <div className="bg-[#0A0A0A] border border-white/10 flex-1 flex flex-col">
-          <div className="p-4 border-b border-white/10 bg-[#1c1b1b] flex justify-between items-center">
-            <h2 className="font-heading text-2xl text-white uppercase flex items-center gap-2">
-              <span className="text-white">⚪</span>
-              CONTRACT SPECS
-            </h2>
-            <span className="font-mono text-[10px] border border-[var(--accent)] text-[var(--accent)] px-1 py-0.5">LOCKED</span>
-          </div>
-          <div className="p-4 flex flex-col gap-6 flex-1 overflow-y-auto">
-            <div>
-              <div className="font-mono text-xs text-white/50 mb-2 border-b border-white/10 pb-1 flex justify-between">
-                <span>TECHNICAL RIDER</span>
-                <span>MANDATORY</span>
-              </div>
-              <ul className="font-mono text-sm text-white space-y-1">
-                <li className="flex items-start gap-2">
-                  <span className="text-[var(--accent)]">-</span> 2x Pioneer CDJ-3000 (Firmware v2.0+)
-                </li>
-                <li className="flex items-start gap-2">
-                  <span className="text-[var(--accent)]">-</span> 1x Allen & Heath Xone:96 Mixer
-                </li>
-                <li className="flex items-start gap-2">
-                  <span className="text-[var(--accent)]">-</span> 2x L-Acoustics X15 HiQ Monitors
-                </li>
-                <li className="flex items-start gap-2">
-                  <span className="text-[var(--accent)]">-</span> Isolated power circuit (220V)
-                </li>
-              </ul>
-            </div>
-            <div>
-              <div className="font-mono text-xs text-white/50 mb-2 border-b border-white/10 pb-1">STAGE MAP</div>
-              <button className="w-full border border-white/10 bg-[#131313] hover:bg-[#393939] text-white font-mono text-xs py-2 px-3 flex justify-between items-center transition-none">
-                <span>KB_STAGE_PLOT_2024.PDF</span>
-                <span>⬇</span>
-              </button>
-            </div>
-            <div>
-              <div className="font-mono text-xs text-white/50 mb-2 border-b border-white/10 pb-1">LOGISTICS & HOSPITALITY</div>
-              <ul className="font-mono text-sm text-white space-y-1 opacity-80">
-                <li>&gt; Ground transport (SUV) required.</li>
-                <li>&gt; 1x Double room, minimum 4 stars.</li>
-                <li>&gt; Backstage: Still water, 2x Black towels.</li>
-              </ul>
-            </div>
-          </div>
-          <div className="p-4 border-t border-white/10 bg-[#1c1b1b] mt-auto relative">
-            <button className="w-full bg-[var(--accent)] text-black font-mono text-xs uppercase p-4 flex justify-center items-center gap-2 hover:bg-white hover:text-black transition-none border border-transparent">
-              <span>📄</span>
-              GERAR ACORDO TRIPARTITE
-            </button>
-            <p className="font-mono text-[10px] text-white/50 leading-tight mt-3 text-justify">
-              Ao avançar, os dados deste portfólio e as exigências técnicas formarão a base do contrato com chancela do Street Hub Connect, garantindo segurança jurídica para o contratante e para o artista. Operação imutável na rede.
+          
+          <div className="p-6 flex-1 flex flex-col gap-6">
+            <p className="font-archivo text-sm text-neutral-400">
+              Especificações técnicas (Rider, Stage Map e Logística) estão protegidas. 
+              O dossiê completo será anexado ao Acordo Tripartite.
             </p>
+
+            <div className="bg-[#131313] border border-[#393939] p-4 flex flex-col gap-3">
+              <div className="flex justify-between items-center font-mono text-xs text-neutral-300">
+                <span>TECHNICAL RIDER</span>
+                <span className="text-[#10B981]">✓ VALID</span>
+              </div>
+              <div className="flex justify-between items-center font-mono text-xs text-neutral-300">
+                <span>STAGE MAP</span>
+                <span className="text-[#10B981]">✓ VALID</span>
+              </div>
+              <div className="flex justify-between items-center font-mono text-xs text-neutral-300">
+                <span>LOGISTICS</span>
+                <span className="text-[#10B981]">✓ VALID</span>
+              </div>
+            </div>
+          </div>
+
+          <div className="p-6 border-t border-[#393939] bg-[#131313]">
+            <button className="w-full relative overflow-hidden bg-gradient-to-b from-[#10B981]/20 to-[#10B981]/5 backdrop-blur-md border border-[#10B981]/40 shadow-[inset_0_1px_0_0_rgba(16,185,129,0.4)] hover:shadow-[inset_0_1px_0_0_rgba(16,185,129,0.6),0_0_20px_rgba(16,185,129,0.2)] text-[#10B981] hover:text-white uppercase font-bold py-4 transition-all duration-300 tracking-widest font-archivo text-sm rounded-none group flex justify-center items-center gap-2">
+              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700 ease-in-out" />
+              <span className="relative z-10">GERAR ACORDO TRIPARTITE</span>
+            </button>
           </div>
         </div>
-      </section>
+
+      </div>
     </div>
   );
 }
