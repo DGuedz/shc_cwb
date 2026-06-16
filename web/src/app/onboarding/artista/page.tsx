@@ -4,33 +4,64 @@ import { MultiStepWizard } from '@/components/onboarding/MultiStepWizard';
 
 // Step 1: Identidade e CNPJ
 function StepIdentity({ formData, updateData, onSubmit }: any) {
+  // Inicializa como 'cnpj' se não estiver definido
+  const docType = formData.documentType || 'cnpj';
+
   return (
     <div className="flex flex-col gap-6">
       <p className="font-mono text-sm text-[#A3A3A3] mb-4">
-        A validação de identidade é obrigatória para conformidade. Insira os dados oficiais do responsável legal.
+        A validação de identidade é obrigatória. Selecione seu status atual de formalização.
       </p>
+
+      <div className="grid grid-cols-2 gap-4">
+        <div 
+          className={`border p-4 flex items-center justify-center cursor-pointer transition-colors ${docType === 'cnpj' ? 'border-[#10B981] bg-[#10B981]/10 text-[#10B981]' : 'border-[#393939] text-[#A3A3A3] hover:border-white'}`}
+          onClick={() => { updateData('documentType', 'cnpj'); updateData('document', ''); }}
+        >
+          <span className="font-mono text-[10px] tracking-widest uppercase">POSSUO CNPJ (MEI/ME)</span>
+        </div>
+        <div 
+          className={`border p-4 flex text-center items-center justify-center cursor-pointer transition-colors ${docType === 'cpf' ? 'border-[#10B981] bg-[#10B981]/10 text-[#10B981]' : 'border-[#393939] text-[#A3A3A3] hover:border-white'}`}
+          onClick={() => { updateData('documentType', 'cpf'); updateData('document', ''); }}
+        >
+          <span className="font-mono text-[10px] tracking-widest uppercase">SOU PESSOA FÍSICA (CPF)</span>
+        </div>
+      </div>
       
-      <div className="flex flex-col gap-2">
-        <label className="font-mono text-[10px] text-[#10B981] tracking-widest uppercase">RAZÃO SOCIAL OU NOME COMPLETO</label>
+      <div className="flex flex-col gap-2 mt-2">
+        <label className="font-mono text-[10px] text-[#10B981] tracking-widest uppercase">
+          {docType === 'cnpj' ? 'RAZÃO SOCIAL OU NOME ARTÍSTICO' : 'NOME COMPLETO'}
+        </label>
         <input 
           type="text" 
           value={formData.nome || ''}
           onChange={e => updateData('nome', e.target.value)}
-          placeholder="Ex: SILVA PRODUCOES LTDA" 
+          placeholder={docType === 'cnpj' ? "Ex: SILVA PRODUCOES LTDA" : "Ex: João da Silva"} 
           className="bg-transparent border-b border-[#393939] focus:border-[#10B981] outline-none py-3 text-white font-mono placeholder:text-[#393939] transition-colors"
         />
       </div>
 
       <div className="flex flex-col gap-2">
-        <label className="font-mono text-[10px] text-[#10B981] tracking-widest uppercase">CNPJ (MEI OU ME)</label>
+        <label className="font-mono text-[10px] text-[#10B981] tracking-widest uppercase">
+          {docType === 'cnpj' ? 'CNPJ' : 'CPF'}
+        </label>
         <input 
           type="text" 
-          value={formData.cnpj || ''}
-          onChange={e => updateData('cnpj', e.target.value)}
-          placeholder="00.000.000/0000-00" 
+          value={formData.document || ''}
+          onChange={e => updateData('document', e.target.value)}
+          placeholder={docType === 'cnpj' ? "00.000.000/0000-00" : "000.000.000-00"} 
           className="bg-transparent border-b border-[#393939] focus:border-[#10B981] outline-none py-3 text-white font-mono placeholder:text-[#393939] transition-colors"
         />
       </div>
+
+      {docType === 'cpf' && (
+        <div className="mt-2 p-4 border border-[#393939] bg-[#10B981]/5 flex flex-col gap-2">
+          <span className="font-mono text-[10px] text-[#10B981] tracking-widest uppercase font-bold">PROGRAMA DE QUALIFICAÇÃO (ICT)</span>
+          <span className="font-mono text-xs text-[#A3A3A3] leading-relaxed">
+            Notamos que você atua como Pessoa Física. A Associação o amparará em um programa de capacitação e governança, estruturando sua formalização para que você se torne elegível aos Acordos Tripartites e editais corporativos.
+          </span>
+        </div>
+      )}
     </div>
   );
 }
