@@ -225,10 +225,10 @@ export function MatchBoard({
       {selectedMatch && (
         <TripartiteHandshake 
           artistName={selectedMatch.artist.stageName}
-          artistExp={(selectedMatch.artist as any).exp || 1050}
+          artistExp={(selectedMatch.artist as {exp?: number}).exp || 1050}
           companyName="CONTRATANTE VERIFICADO" // No ambiente real, vem da session da empresa logada
           opportunityTitle={opportunity.title}
-          budget={(opportunity as any).budget || 50000}
+          budget={(opportunity as {budget?: number}).budget || 50000}
           onClose={() => setSelectedMatch(null)}
         />
       )}

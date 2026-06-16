@@ -12,7 +12,7 @@ interface TripartiteHandshakeProps {
   onClose: () => void;
 }
 
-export function TripartiteHandshake({ artistName, artistExp, companyName, opportunityTitle, budget, onClose }: TripartiteHandshakeProps) {
+export function TripartiteHandshake({ artistName, artistExp, companyName, budget, onClose }: TripartiteHandshakeProps) {
   const [step, setStep] = useState(0);
 
   useEffect(() => {
@@ -94,29 +94,29 @@ export function TripartiteHandshake({ artistName, artistExp, companyName, opport
         <div className="p-6 bg-[#0A0A0A] flex flex-col gap-2 font-mono text-xs">
           <div className="flex items-center gap-2 mb-2">
             <span className="w-2 h-2 bg-[#10B981] animate-pulse"></span>
-            <span className="text-[#10B981]">SHC_LEGAL_AGENT // RUNNING</span>
+            <span className="text-[#10B981]">SHC_LEGAL_AGENT // PROTOTYPE</span>
           </div>
           <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="text-neutral-400">
-            {'>'} Inicializando agente autônomo jurídico...
+            {'>'} Inicializando agente de governança institucional...
           </motion.div>
           {step >= 1 && (
             <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="text-neutral-400">
-              {'>'} Coletando template MROSC_V2.4 pré-autorizado pelas partes...
+              {'>'} Template institucional carregado.
             </motion.div>
           )}
           {step >= 2 && (
             <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="text-neutral-400">
-              {'>'} Injetando metadados (Briefing: {opportunityTitle})...
+              {'>'} Briefing e metadados da oportunidade consolidados.
             </motion.div>
           )}
           {step >= 3 && (
             <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="text-neutral-400">
-              {'>'} Contrato gerado. HASH ZK_PROOF: <span className="text-white">0x8a7b9c2f...4d5e</span>
+              {'>'} Termo tripartite gerado para revisão. Hash demonstrativo de auditoria criado: <span className="text-white">0x8a7b9c2f...4d5e</span>
             </motion.div>
           )}
           {step >= 4 && (
             <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="text-[#10B981] font-bold mt-2">
-              {'>'} AGUARDANDO ASSINATURAS OIDC (GOV.BR)
+              {'>'} PREPARADO PARA INTEGRAÇÃO COM ASSINATURA GOV.BR
             </motion.div>
           )}
         </div>
@@ -131,7 +131,7 @@ export function TripartiteHandshake({ artistName, artistExp, companyName, opport
                 : "bg-[#393939] text-neutral-500 cursor-not-allowed border border-[#393939]"
             }`}
           >
-            ASSINAR TERMO (GOV.BR)
+            SOLICITAR REVISÃO E ASSINATURA
           </button>
         </div>
 

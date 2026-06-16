@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { useState } from "react";
 import { DashboardNav } from "@/components/ui/DashboardNav";
 import { ScrollRevealTitle } from "@/components/ui/ScrollRevealTitle";
+import { TripartiteHandshake } from "@/components/ui/TripartiteHandshake";
 
 const MOCK_ARTISTS = [
 	{
@@ -98,6 +99,11 @@ const MOCK_ARTISTS = [
 
 export default function VitrineArtistas() {
 	const [isVerifiedOnly, setIsVerifiedOnly] = useState(true);
+	const [selectedArtist, setSelectedArtist] = useState<typeof MOCK_ARTISTS[0] | null>(null);
+
+	const handleBookingClick = (artist: typeof MOCK_ARTISTS[0]) => {
+		setSelectedArtist(artist);
+	};
 
 	return (
 		<div className="bg-black text-[var(--on-background)] min-h-screen flex flex-col">
@@ -330,6 +336,7 @@ export default function VitrineArtistas() {
 								<div className="mt-6 flex items-center gap-2">
 									<button
 										type="button"
+										onClick={() => handleBookingClick(artist)}
 										className="flex-1 bg-[#10B981] text-black font-mono text-[10px] uppercase tracking-widest py-2.5 font-bold hover:bg-white transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
 									>
 										Solicitar Booking
@@ -421,6 +428,18 @@ export default function VitrineArtistas() {
 					</div>
 				</div>
 			</main>
+
+			{/* Modal: Tripartite Handshake / Legal Agent */}
+			{selectedArtist && (
+				<TripartiteHandshake 
+					artistName={selectedArtist.name}
+					artistExp={1050}
+					companyName="EMPRESA CONTRATANTE" // No ambiente real, vem da session da empresa logada
+					opportunityTitle="OPORTUNIDADE DE BOOKING"
+					budget={parseInt(selectedArtist.minCache.replace(/\D/g, '')) || 0}
+					onClose={() => setSelectedArtist(null)}
+				/>
+			)}
 		</div>
 	);
 }
