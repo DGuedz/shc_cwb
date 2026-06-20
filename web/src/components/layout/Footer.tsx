@@ -17,10 +17,11 @@ const navInstitucional: Array<{ href: Route; label: string }> = [
 
 const navDocumentos: Array<{ href: Route; label: string }> = [
   { href: "/documentos", label: "Documentação" },
-  { href: "/documentos#memorial", label: "Memorial Fundacional" },
   { href: "/documentos#estatuto", label: "Estatuto Social" },
   { href: "/documentos#licencas", label: "Licenças" },
-  { href: "/documentos#roadmap", label: "Roadmap" },
+  { href: "/privacidade", label: "Privacidade" },
+  { href: "/termos", label: "Termos de Uso" },
+  { href: "/contato", label: "Contato" },
 ];
 
 const socialLinks = [
