@@ -4,6 +4,7 @@ import { ScrollRevealTitle } from "@/components/ui/ScrollRevealTitle";
 import { SectionReveal } from "@/components/ui/SectionReveal";
 import { PageEntrance } from "@/components/ui/PageEntrance";
 import { GlassCTA } from "@/components/ui/GlassCTA";
+import { ChromaticSpan } from "@/components/ui/ChromaticSpan";
 
 const posts = [
   { id: "001", date: "Jun 2026", tag: "LANÇAMENTO", highlight: true,
@@ -33,7 +34,7 @@ export function NewsContent() {
             <span className="font-mono text-[9px] text-neutral-500 tracking-widest uppercase title-reveal reveal-delay-1">Atualizado Jun 2026</span>
           </div>
           <h1 className="font-archivo shc-hero font-bold uppercase tracking-tighter leading-[0.85] max-w-4xl">
-            <span className="block title-chromatic reveal-delay-1">NOVIDADES</span>
+            <ChromaticSpan delay={0.05}>NOVIDADES</ChromaticSpan>
             <span className="block text-[#10B981] title-reveal reveal-delay-2">DA ASSOCIAÇÃO</span>
           </h1>
         </header>

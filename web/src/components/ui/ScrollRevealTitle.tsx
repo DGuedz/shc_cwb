@@ -14,7 +14,6 @@ interface ScrollRevealTitleProps {
   as?: 'h1' | 'h2' | 'h3' | 'div' | 'span';
 }
 
-// Gradiente cromático SHC: cinza → branco → esmeralda → ciano → branco
 const CHROMATIC_GRADIENT =
   "linear-gradient(105deg, #555 0%, #aaa 18%, #fff 32%, #10B981 52%, #5eead4 68%, #fff 82%, #aaa 100%)";
 
@@ -29,26 +28,24 @@ export function ScrollRevealTitle({
 }: ScrollRevealTitleProps) {
   const containerRef = useRef<HTMLElement>(null);
 
-  const { scrollYProgress: internalProgress } = useScroll({
+  // Clip reveal: dispara quando o elemento entra na viewport
+  const { scrollYProgress: elementProgress } = useScroll({
     target: containerRef,
     offset: ["start 90%", "end 35%"]
   });
 
-  const activeProgress = progress ?? internalProgress;
+  const activeProgress = progress ?? elementProgress;
 
   const clipPath = useTransform(activeProgress, progressRange, [
     "inset(0 100% 0 0)",
     "inset(0 0% 0 0)"
   ]);
 
-  // Sweep: entra da direita e varre para a esquerda conforme o scroll
-  const chromaticShine = useTransform(
-    activeProgress,
-    progressRange,
-    ["240% center", "-240% center"]
-  );
+  // Cromático: lê o scroll da PÁGINA inteira — cores mudam continuamente enquanto o usuário rola
+  const { scrollYProgress: pageProgress } = useScroll();
+  const chromaticShine = useTransform(pageProgress, [0, 1], ["240% center", "-240% center"]);
 
-  const applyChromatic = chromatic || metallic; // metallic agora é alias de chromatic
+  const applyChromatic = chromatic || metallic;
 
   const gradientStyle = applyChromatic ? {
     backgroundImage: CHROMATIC_GRADIENT,
@@ -70,7 +67,7 @@ export function ScrollRevealTitle({
         {children}
       </span>
 
-      {/* Camada revelada com clip + cromático */}
+      {/* Clip entra pelo scroll do elemento; cromático varia com o scroll da página */}
       <motion.span
         className="block"
         style={{ clipPath, ...gradientStyle }}

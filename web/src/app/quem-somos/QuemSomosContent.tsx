@@ -4,6 +4,7 @@ import { ScrollRevealTitle } from "@/components/ui/ScrollRevealTitle";
 import { SectionReveal } from "@/components/ui/SectionReveal";
 import { PageEntrance } from "@/components/ui/PageEntrance";
 import { GlassCTA } from "@/components/ui/GlassCTA";
+import { ChromaticSpan } from "@/components/ui/ChromaticSpan";
 
 const pilares = [
   { n: "01", title: "CURADORIA HUMANA", body: "Todo artista no catálogo passa por validação real — não é só algoritmo. A associação garante que só entram quem tem comprometimento, histórico e potencial." },
@@ -38,7 +39,7 @@ export function QuemSomosContent() {
             <span className="font-mono text-[9px] text-neutral-500 tracking-widest uppercase title-reveal reveal-delay-1">Manifesto</span>
           </div>
           <h1 className="font-archivo shc-hero font-bold uppercase tracking-tighter leading-[0.85] max-w-4xl mb-8">
-            <span className="block title-chromatic reveal-delay-1">A ASSOCIAÇÃO</span>
+            <ChromaticSpan delay={0.05}>A ASSOCIAÇÃO</ChromaticSpan>
             <span className="block text-[#10B981] title-reveal reveal-delay-2">QUE FAZ A RODA GIRAR</span>
           </h1>
           <p className="font-mono text-sm text-neutral-400 max-w-2xl border-l border-[#10B981] pl-4 leading-relaxed title-reveal reveal-delay-3">

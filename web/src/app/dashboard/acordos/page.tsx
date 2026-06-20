@@ -1,5 +1,7 @@
 'use client';
 
+import { ChromaticSpan } from "@/components/ui/ChromaticSpan";
+
 export default function DealsPipeline() {
   const deals = [
     { id: 1, artist: "DJ ALX", status: "PENDING_ZK_PROOF", value: "R$ 4.000", date: "15/06/2026", hash: "0x8f2a...3b9c", block: "14589201" },
@@ -17,7 +19,7 @@ export default function DealsPipeline() {
             <span className="font-mono text-xs text-[#10B981] tracking-widest uppercase">SHC_NETWORK // ZK_READY</span>
           </div>
           <h1 className="font-archivo text-[clamp(2.5rem,5.5vw,4rem)] font-bold tracking-tighter uppercase leading-[0.88] max-w-3xl">
-            <span className="block title-chromatic reveal-delay-1">DEALS</span>
+            <ChromaticSpan delay={0.05}>DEALS</ChromaticSpan>
             <span className="block text-[#10B981] title-reveal reveal-delay-2">EXPLORER</span>
           </h1>
           <p className="font-mono text-sm text-neutral-400 max-w-2xl border-l-2 border-[#10B981] pl-4">
