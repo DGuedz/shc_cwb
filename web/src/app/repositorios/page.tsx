@@ -66,7 +66,7 @@ export default function Repositorios() {
     <div className="bg-black text-[var(--on-background)] min-h-screen flex flex-col">
       <DashboardNav />
 
-      <main className="flex-grow pt-24 pb-16 px-4 md:px-8 max-w-[var(--spacing-container-max)] mx-auto w-full">
+      <main className="flex-grow pt-20 pb-20 px-[var(--spacing-margin-mobile)] md:px-[var(--spacing-margin-desktop)] max-w-[var(--spacing-container-max)] mx-auto w-full">
         {/* HERO */}
         <header className="mb-12 flex flex-col items-start gap-4 relative">
           <div className="absolute right-0 top-0 border border-white/10 bg-[#0E0E0E] px-4 py-2 hidden md:flex items-center gap-2">

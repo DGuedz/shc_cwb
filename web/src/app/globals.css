@@ -4,7 +4,14 @@
   --background: #131313;
   --surface-dim: #0E0E0E;
   --primary: #10B981;
+  --on-background: #ffffff;
   --outline: #393939;
+
+  /* Layout — mesmos valores em todas as páginas e no DashboardNav */
+  --spacing-container-max: 1400px;
+  --spacing-margin-mobile: 1rem;    /* px-4  — 16px */
+  --spacing-margin-desktop: 2rem;   /* px-8  — 32px */
+  --nav-height: 3.5rem;             /* h-14  — 56px */
 }
 
 @theme inline {

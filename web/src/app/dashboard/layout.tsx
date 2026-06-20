@@ -20,7 +20,7 @@ export default async function DashboardLayout({
   return (
     <div className="bg-black text-[var(--on-background)] min-h-screen flex flex-col">
       <DashboardNav session={session} />
-      <main className="flex-grow pt-32 pb-24 px-[var(--spacing-margin-mobile)] md:px-[var(--spacing-margin-desktop)] max-w-[var(--spacing-container-max)] mx-auto w-full">
+      <main className="flex-grow pt-20 pb-20 px-[var(--spacing-margin-mobile)] md:px-[var(--spacing-margin-desktop)] max-w-[var(--spacing-container-max)] mx-auto w-full">
         {children}
       </main>
     </div>
