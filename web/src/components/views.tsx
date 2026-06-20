@@ -148,10 +148,8 @@ export function MatchBoard({
   entries,
 }: {
   opportunity: Opportunity;
-  entries: Array<Match & { artist: Artist }>;
+  entries: Array<Match & { artist: Artist & { exp?: number } }>;
 }) {
-  const [selectedMatch, setSelectedMatch] = useState<typeof entries[0] | null>(null);
-
   // Simulando o Motor de Matchmaking: Os artistas que chegam aqui já foram pré-selecionados pelo Agente Curador
   return (
     <div className="flex flex-col gap-8">
@@ -199,7 +197,7 @@ export function MatchBoard({
                 </div>
                 <div className="flex justify-between border-b border-[#393939] pb-2">
                   <span>EXP (SAÚDE)</span>
-                  <span className="text-[#10B981]">{(entry.artist as any).exp || 1050}</span>
+                  <span className="text-[#10B981]">{entry.artist.exp || 1050}</span>
                 </div>
                 <div className="flex justify-between pb-2">
                   <span>CACHÊ MIN</span>
@@ -209,8 +207,8 @@ export function MatchBoard({
             </div>
             
             <div className="flex flex-col gap-2 mt-auto">
-              <button 
-                onClick={() => setSelectedMatch(entry)}
+              <button
+                onClick={() => window.location.assign(`/dashboard/acordo?matchId=${encodeURIComponent(entry.id)}`)}
                 className="w-full bg-[#10B981]/10 border border-[#10B981] hover:bg-[#10B981] text-[#10B981] hover:text-black uppercase font-bold py-3 transition-colors tracking-widest font-archivo text-xs rounded-none"
               >
                 Notificar & Assinar
@@ -223,17 +221,6 @@ export function MatchBoard({
         ))}
       </div>
 
-      {/* Modal: Tripartite Handshake / Legal Agent */}
-      {selectedMatch && (
-        <TripartiteHandshake 
-          artistName={selectedMatch.artist.stageName}
-          artistExp={(selectedMatch.artist as {exp?: number}).exp || 1050}
-          companyName="CONTRATANTE VERIFICADO" // No ambiente real, vem da session da empresa logada
-          opportunityTitle={opportunity.title}
-          budget={(opportunity as {budget?: number}).budget || 50000}
-          onClose={() => setSelectedMatch(null)}
-        />
-      )}
     </div>
   );
 }
@@ -282,168 +269,102 @@ export function DealsKanban({ deals }: { deals: Deal[] }) {
 }
 
 import { ArtistIDCard } from "./ui/ArtistIDCard";
-import { TripartiteHandshake } from "./ui/TripartiteHandshake";
-import { useState } from "react";
+import { ActivityHeatmap } from "./ui/ActivityHeatmap";
 
 export function DossierPanel({ artist }: { artist: Artist & { exp?: number, health?: 'OPTIMAL' | 'WARNING' | 'REHAB' } }) {
+  const healthStatus = artist.health || 'OPTIMAL';
+
   return (
     <div className="flex flex-col gap-6">
-      {/* Header: Identity & Status */}
-      <div className="bg-[#0E0E0E] border border-[#393939] p-6 md:p-12 flex flex-col md:flex-row gap-12 items-start md:items-center relative overflow-hidden">
-        {/* Fundo com Grid */}
-        <div className="absolute inset-0 bg-[linear-gradient(to_right,#393939_1px,transparent_1px),linear-gradient(to_bottom,#393939_1px,transparent_1px)] bg-[size:2rem_2rem] opacity-20 pointer-events-none" />
-        
-        {/* Left Col: 3D ID Card */}
-        <div className="w-full md:w-auto relative z-10 flex-shrink-0">
-          <ArtistIDCard artist={artist} />
-        </div>
 
-        {/* Right Col: High Level Metadata & Governance */}
-        <div className="flex flex-col gap-6 relative z-10 flex-1">
-          <div>
-            <h1 className="font-archivo text-4xl md:text-5xl font-bold uppercase tracking-tight text-white">{artist.stageName}</h1>
-            <p className="font-mono text-sm text-neutral-400 mt-2 border-l-2 border-[#10B981] pl-3">
-              Membro Oficial validado pelo Gov.br (OIDC).
-            </p>
+      {/* ── HERO: tipografia pura, sem card ── */}
+      <div className="bg-[#0E0E0E] border border-[#393939] p-6 md:p-10 relative overflow-hidden">
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,#393939_1px,transparent_1px),linear-gradient(to_bottom,#393939_1px,transparent_1px)] bg-[size:2rem_2rem] opacity-10 pointer-events-none" />
+        <div className="relative z-10 flex flex-col gap-6">
+          <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4">
+            <div>
+              <p className="font-mono text-[10px] text-[#10B981] uppercase tracking-widest mb-2">SHC_PASS // MEMBRO ATIVO</p>
+              <h1 className="font-archivo text-5xl md:text-6xl font-bold uppercase tracking-tighter text-white leading-none">
+                {artist.stageName}
+              </h1>
+            </div>
+            <div className={`self-start sm:self-auto font-mono text-[10px] px-3 py-1.5 uppercase border ${
+              healthStatus === 'OPTIMAL'
+                ? "text-[#10B981] bg-[#10B981]/10 border-[#10B981]/30"
+                : healthStatus === 'WARNING'
+                  ? "text-yellow-500 bg-yellow-500/10 border-yellow-500/30"
+                  : "text-red-500 bg-red-500/10 border-red-500/30"
+            }`}>
+              {healthStatus === 'OPTIMAL' ? 'perfil em dia' : healthStatus === 'WARNING' ? 'precisa de atividade' : 'perfil em revisao'}
+            </div>
           </div>
 
-          <div className="grid grid-cols-2 md:grid-cols-3 gap-6 pt-6 border-t border-[#393939]">
-            <div className="flex flex-col gap-1">
-              <span className="font-mono text-[10px] text-neutral-500 uppercase tracking-widest">Base Location</span>
-              <span className="font-mono text-sm text-white">{artist.city}, {artist.state}</span>
-            </div>
-            <div className="flex flex-col gap-1">
-              <span className="font-mono text-[10px] text-neutral-500 uppercase tracking-widest">Contract Rate (Min)</span>
-              <span className="font-mono text-sm text-[#10B981]">R$ {artist.minFee.toLocaleString("pt-BR")}</span>
-            </div>
-            <div className="flex flex-col gap-1 col-span-2 md:col-span-1">
-              <span className="font-mono text-[10px] text-neutral-500 uppercase tracking-widest">Governance Rights</span>
-              <div className="flex items-center gap-2 mt-1">
-                <span className="w-2 h-2 rounded-full bg-[#10B981] animate-pulse"></span>
-                <span className="font-mono text-xs text-white uppercase">VOTING ENABLED</span>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-px border border-[#393939] bg-[#393939]">
+            {[
+              { label: "Cidade base", value: `${artist.city}, ${artist.state}` },
+              { label: "Cache inicial", value: `R$ ${artist.minFee.toLocaleString("pt-BR")}`, accent: true },
+              { label: "Cache ideal", value: `R$ ${artist.idealFee.toLocaleString("pt-BR")}`, accent: true },
+              { label: "Associacao", value: "Ativa", pulse: true },
+            ].map(({ label, value, accent, pulse }) => (
+              <div key={label} className="bg-[#0E0E0E] px-4 py-4 flex flex-col gap-1">
+                <span className="font-mono text-[9px] text-neutral-500 uppercase tracking-widest">{label}</span>
+                <div className="flex items-center gap-2">
+                  {pulse && <span className="w-1.5 h-1.5 rounded-full bg-[#10B981] animate-pulse flex-shrink-0" />}
+                  <span className={`font-mono text-sm ${accent ? "text-[#10B981]" : "text-white"}`}>{value}</span>
+                </div>
               </div>
-            </div>
-          </div>
-
-          {/* Association Action */}
-          <div className="mt-4 pt-6 border-t border-[#393939] flex flex-col md:flex-row gap-4">
-            <button className="flex-1 bg-[#10B981]/10 border border-[#10B981] hover:bg-[#10B981] text-[#10B981] hover:text-black uppercase font-bold py-3 transition-colors tracking-widest font-archivo text-xs rounded-none">
-              Acessar Assembleia (DAO)
-            </button>
-            <button className="flex-1 bg-transparent border border-[#393939] hover:border-white text-neutral-400 hover:text-white uppercase font-bold py-3 transition-colors tracking-widest font-archivo text-xs rounded-none">
-              Download Press Kit
-            </button>
+            ))}
           </div>
         </div>
       </div>
 
-      {/* Body: Two columns - Operational Info & Action */}
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-        
-        {/* Left Col: Abstracted Info */}
-        <div className="lg:col-span-2 flex flex-col gap-6">
-          
-          {/* Bio / Summary */}
+      {/* ── BODY: conteúdo (2/3) + sidebar com card (1/3) ── */}
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 items-start">
+
+        {/* Coluna principal */}
+        <div className="lg:col-span-2 flex flex-col gap-6 min-w-0">
+
+          {/* Bio */}
           <div className="bg-[#131313] border border-[#393939] p-6">
-            <h3 className="font-mono text-[10px] text-[#10B981] uppercase tracking-widest mb-3">Biometric / Bio</h3>
+            <h3 className="font-mono text-[10px] text-[#10B981] uppercase tracking-widest mb-3">Sobre o artista</h3>
             <p className="font-archivo text-sm text-neutral-300 leading-relaxed">{artist.bio}</p>
           </div>
 
-          {/* Abstracted Evidence & Networks */}
-          {/* Proof of Engagement (PoE) / EXP Ledger */}
-      <div className="bg-[#0E0E0E] border border-[#393939] p-6">
-        <div className="flex justify-between items-center border-b border-[#393939] pb-4 mb-6">
-          <h3 className="font-archivo text-xl md:text-2xl font-bold uppercase tracking-tight text-white">Proof of Engagement (PoE)</h3>
-          <span className="font-mono text-[10px] text-[#10B981] bg-[#10B981]/10 px-2 py-1 uppercase border border-[#10B981]/30 hidden md:inline-block">SYNC: LIVE</span>
-        </div>
-
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-          {/* Current Balance */}
-          <div className="col-span-1 border border-[#393939] p-6 bg-[#131313] flex flex-col justify-between">
-            <div>
-              <div className="font-mono text-[10px] text-neutral-500 uppercase tracking-widest mb-2">Current Balance</div>
-              <div className="font-mono text-5xl font-bold text-[#10B981]">
-                {artist.exp || 1250} <span className="text-sm text-neutral-500 font-normal">EXP</span>
+          {/* Histórico de atividade */}
+          <div className="bg-[#0E0E0E] border border-[#393939] p-6">
+            <div className="flex justify-between items-center border-b border-[#393939] pb-4 mb-6">
+              <h3 className="font-archivo text-xl font-bold uppercase tracking-tight text-white">Historico de atividade</h3>
+              <div className="flex items-center gap-2">
+                <span className="font-mono text-2xl font-bold text-[#10B981]">{artist.exp || 1250}</span>
+                <span className="font-mono text-[9px] text-neutral-500 uppercase">pontos</span>
               </div>
             </div>
-            
-            <div className="mt-8 pt-4 border-t border-[#393939]">
-              <div className="font-mono text-[10px] text-neutral-500 uppercase tracking-widest mb-2">Ecosystem Health Status</div>
-              <div className={`font-mono text-xs px-2 py-1 inline-block uppercase border ${
-                (artist.health || 'OPTIMAL') === 'OPTIMAL' 
-                  ? "text-[#10B981] bg-[#10B981]/10 border-[#10B981]/30" 
-                  : (artist.health === 'WARNING' 
-                      ? "text-yellow-500 bg-yellow-500/10 border-yellow-500/30" 
-                      : "text-red-500 bg-red-500/10 border-red-500/30")
-              }`}>
-                {(artist.health || 'OPTIMAL') === 'OPTIMAL' ? 'OPTIMAL - ELIGIBLE FOR REWARDS' : 
-                 artist.health === 'WARNING' ? 'WARNING - ACTIVITY REQUIRED' : 
-                 'REHAB - ACCOUNT RESTRICTED'}
-              </div>
-            </div>
+            <ActivityHeatmap artistId={artist.id} exp={artist.exp || 1250} />
           </div>
 
-          {/* Activity Ledger */}
-          <div className="col-span-1 lg:col-span-2 border border-[#393939] p-6 bg-[#131313]">
-            <div className="flex justify-between items-center mb-6">
-              <div className="font-mono text-[10px] text-neutral-500 uppercase tracking-widest">Recent Activity Ledger</div>
-              <button className="font-mono text-[10px] text-[#10B981] hover:underline uppercase">View All</button>
-            </div>
-            
-            <ul className="space-y-4">
-              <li className="flex justify-between items-center border-b border-[#393939] pb-3">
-                <div className="flex flex-col gap-1">
-                  <span className="font-mono text-xs text-white uppercase">Contract Settled: Basement Sessions</span>
-                  <span className="font-mono text-[9px] text-neutral-500">TX: 0x8f2a...3b9c | 2 days ago</span>
-                </div>
-                <span className="font-mono text-sm font-bold text-[#10B981]">+ 150 EXP</span>
-              </li>
-              <li className="flex justify-between items-center border-b border-[#393939] pb-3">
-                <div className="flex flex-col gap-1">
-                  <span className="font-mono text-xs text-white uppercase">Governance: Voted on Proposal #42</span>
-                  <span className="font-mono text-[9px] text-neutral-500">TX: 0x3e1d...9a2f | 1 week ago</span>
-                </div>
-                <span className="font-mono text-sm font-bold text-[#10B981]">+ 50 EXP</span>
-              </li>
-              <li className="flex justify-between items-center pb-1">
-                <div className="flex flex-col gap-1">
-                  <span className="font-mono text-xs text-neutral-400 uppercase">System Sweep: Weekly Activity Check</span>
-                  <span className="font-mono text-[9px] text-neutral-500">Automated Audit | 2 weeks ago</span>
-                </div>
-                <span className="font-mono text-sm text-neutral-500">0 EXP</span>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </div>
-
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div className="bg-[#131313] border border-[#393939] p-6 flex flex-col justify-between">
-              <div>
-                <h3 className="font-mono text-[10px] text-neutral-500 uppercase tracking-widest mb-4">Evidence & Shows</h3>
-                <ul className="font-mono text-xs text-neutral-300 space-y-3">
-                  <li className="flex justify-between border-b border-[#393939] pb-2">
-                    <span>BASEMENT SESSIONS</span>
-                    <span className="text-neutral-500">BERLIN</span>
-                  </li>
-                  <li className="flex justify-between border-b border-[#393939] pb-2">
-                    <span>VOID FESTIVAL</span>
-                    <span className="text-neutral-500">LONDON</span>
-                  </li>
-                  <li className="flex justify-between border-b border-[#393939] pb-2">
-                    <span>MEDIA: BOILER_ROOM</span>
-                    <span className="text-[#10B981]">VERIFIED</span>
-                  </li>
-                </ul>
-              </div>
-            </div>
-
+          {/* Apresentações + Canais */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
             <div className="bg-[#131313] border border-[#393939] p-6">
-              <h3 className="font-mono text-[10px] text-neutral-500 uppercase tracking-widest mb-4">Verified Networks</h3>
+              <h3 className="font-mono text-[10px] text-neutral-500 uppercase tracking-widest mb-4">Apresentacoes</h3>
+              <ul className="font-mono text-xs text-neutral-300 space-y-3">
+                {[
+                  { name: "BASEMENT SESSIONS", local: "BERLIM" },
+                  { name: "VOID FESTIVAL", local: "LONDRES" },
+                  { name: "Midia: Boiler Room", local: null, verified: true },
+                ].map(({ name, local, verified }) => (
+                  <li key={name} className="flex justify-between border-b border-[#393939] pb-2 last:border-0 last:pb-0">
+                    <span>{name}</span>
+                    <span className={verified ? "text-[#10B981]" : "text-neutral-500"}>{verified ? "validado" : local}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <div className="bg-[#131313] border border-[#393939] p-6">
+              <h3 className="font-mono text-[10px] text-neutral-500 uppercase tracking-widest mb-4">Canais verificados</h3>
               <div className="flex flex-col gap-2">
-                {["SPOTIFY", "INSTAGRAM", "SOUNDCLOUD"].map((network) => (
-                  <div key={network} className="flex justify-between items-center bg-[#0E0E0E] border border-[#393939] px-3 py-2">
-                    <span className="font-mono text-xs text-white">{network}</span>
+                {["SPOTIFY", "INSTAGRAM", "SOUNDCLOUD"].map((n) => (
+                  <div key={n} className="flex justify-between items-center bg-[#0E0E0E] border border-[#393939] px-3 py-2">
+                    <span className="font-mono text-xs text-white">{n}</span>
                     <span className="text-[#10B981] text-sm">✓</span>
                   </div>
                 ))}
@@ -452,43 +373,59 @@ export function DossierPanel({ artist }: { artist: Artist & { exp?: number, heal
           </div>
         </div>
 
-        {/* Right Col: Contract Specs & Action */}
-        <div className="bg-[#0E0E0E] border border-[#393939] flex flex-col">
-          <div className="p-6 border-b border-[#393939] flex justify-between items-center bg-[#131313]">
-            <h3 className="font-mono text-[10px] text-white uppercase tracking-widest">Contract Specs</h3>
-            <span className="font-mono text-[10px] text-neutral-500 bg-[#0E0E0E] border border-[#393939] px-2 py-1">LOCKED</span>
-          </div>
-          
-          <div className="p-6 flex-1 flex flex-col gap-6">
-            <p className="font-archivo text-sm text-neutral-400">
-              Especificações técnicas (Rider, Stage Map e Logística) estão protegidas. 
-              O dossiê completo será anexado ao Acordo Tripartite.
-            </p>
+        {/* Sidebar: card + contratação */}
+        <div className="flex flex-col gap-6 min-w-0">
 
-            <div className="bg-[#131313] border border-[#393939] p-4 flex flex-col gap-3">
-              <div className="flex justify-between items-center font-mono text-xs text-neutral-300">
-                <span>TECHNICAL RIDER</span>
-                <span className="text-[#10B981]">✓ VALID</span>
-              </div>
-              <div className="flex justify-between items-center font-mono text-xs text-neutral-300">
-                <span>STAGE MAP</span>
-                <span className="text-[#10B981]">✓ VALID</span>
-              </div>
-              <div className="flex justify-between items-center font-mono text-xs text-neutral-300">
-                <span>LOGISTICS</span>
-                <span className="text-[#10B981]">✓ VALID</span>
-              </div>
+          {/* ID Card — espaço dedicado */}
+          <div className="bg-[#0E0E0E] border border-[#393939] p-6 flex flex-col items-center gap-4">
+            <p className="font-mono text-[10px] text-neutral-500 uppercase tracking-widest self-start">Carteira do membro</p>
+            <div className="w-full max-w-[300px] mx-auto">
+              <ArtistIDCard artist={artist} />
             </div>
           </div>
 
-          <div className="p-6 border-t border-[#393939] bg-[#131313]">
-            <button className="w-full relative overflow-hidden bg-gradient-to-b from-[#10B981]/20 to-[#10B981]/5 backdrop-blur-md border border-[#10B981]/40 shadow-[inset_0_1px_0_0_rgba(16,185,129,0.4)] hover:shadow-[inset_0_1px_0_0_rgba(16,185,129,0.6),0_0_20px_rgba(16,185,129,0.2)] text-[#10B981] hover:text-white uppercase font-bold py-4 transition-all duration-300 tracking-widest font-archivo text-sm rounded-none group flex justify-center items-center gap-2">
-              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700 ease-in-out" />
-              <span className="relative z-10">GERAR ACORDO TRIPARTITE</span>
+          {/* Contratação */}
+          <div className="bg-[#0E0E0E] border border-[#393939] flex flex-col">
+            <div className="p-4 border-b border-[#393939] flex justify-between items-center bg-[#131313]">
+              <h3 className="font-mono text-[10px] text-white uppercase tracking-widest">Para contratacao</h3>
+              <span className="font-mono text-[9px] text-neutral-500 border border-[#393939] px-2 py-0.5">restrito</span>
+            </div>
+            <div className="p-5 flex flex-col gap-4">
+              <p className="font-archivo text-xs text-neutral-400 leading-relaxed">
+                Rider, mapa de palco e logistica ficam protegidos. O material entra no acordo quando a contratacao avancar.
+              </p>
+              <div className="flex flex-col gap-2">
+                {[
+                  "Necessidades do show",
+                  "Mapa de palco",
+                  "Logistica",
+                ].map((item) => (
+                  <div key={item} className="flex justify-between items-center font-mono text-xs text-neutral-300 border-b border-[#393939] pb-2 last:border-0 last:pb-0">
+                    <span>{item}</span>
+                    <span className="text-[#10B981]">✓</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+            <div className="p-5 border-t border-[#393939]">
+              <button className="w-full relative overflow-hidden bg-gradient-to-b from-[#10B981]/20 to-[#10B981]/5 border border-[#10B981]/40 hover:bg-[#10B981]/20 text-[#10B981] hover:text-white uppercase font-bold py-4 transition-all duration-300 tracking-widest font-archivo text-xs rounded-none group flex justify-center items-center">
+                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700" />
+                <span className="relative z-10">PREPARAR ACORDO</span>
+              </button>
+            </div>
+          </div>
+
+          {/* Ações da associação */}
+          <div className="flex flex-col gap-3">
+            <button className="w-full bg-[#10B981]/10 border border-[#10B981] hover:bg-[#10B981] text-[#10B981] hover:text-black uppercase font-bold py-3 transition-colors tracking-widest font-archivo text-xs rounded-none">
+              Ver area da associacao
+            </button>
+            <button className="w-full bg-transparent border border-[#393939] hover:border-white text-neutral-400 hover:text-white uppercase font-bold py-3 transition-colors tracking-widest font-archivo text-xs rounded-none">
+              Baixar material de apresentacao
             </button>
           </div>
-        </div>
 
+        </div>
       </div>
     </div>
   );

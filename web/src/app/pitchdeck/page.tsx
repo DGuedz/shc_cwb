@@ -8,7 +8,7 @@ import {
 } from "framer-motion";
 import Link from "next/link";
 import { useRef } from "react";
-import { Navbar } from "@/components/layout/Navbar";
+import { DashboardNav } from "@/components/ui/DashboardNav";
 
 // Componente para criar efeito metálico dinâmico atrelado ao scroll
 function MetallicText({
@@ -643,11 +643,11 @@ export default function PitchdeckPage() {
 			ref={containerRef}
 			className="bg-[#0E0E0E] text-white min-h-screen selection:bg-[#10B981] selection:text-black"
 		>
-			<Navbar />
+			<DashboardNav />
 
 			{/* Progress Bar do Deck */}
 			<motion.div
-				className="fixed top-16 left-0 h-[3px] bg-[#10B981] z-50 origin-left"
+				className="fixed top-14 left-0 h-[2px] bg-[#10B981] z-50 origin-left"
 				style={{ scaleX: scrollYProgress }}
 			/>
 

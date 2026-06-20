@@ -32,13 +32,13 @@ export default async function DossierPage() {
       <header className="flex flex-col items-start gap-4 relative">
         <div className="absolute right-0 top-0 border border-[#393939] bg-[#0E0E0E] px-4 py-2 hidden md:flex items-center gap-2">
           <span className="w-2 h-2 rounded-full bg-[#10B981] animate-pulse"></span>
-          <span className="font-mono text-xs text-[#10B981] tracking-widest uppercase">SHC_NETWORK // ZK_READY</span>
+          <span className="font-mono text-xs text-[#10B981] tracking-widest uppercase">perfil sincronizado</span>
         </div>
         <h1 className="font-archivo text-5xl md:text-[64px] font-bold text-white tracking-tighter uppercase max-w-3xl leading-tight">
-          ARTIST <span className="text-[#10B981]">DOSSIER</span>
+          DOSSIE DO <span className="text-[#10B981]">ARTISTA</span>
         </h1>
         <p className="font-mono text-sm text-neutral-400 max-w-2xl border-l-2 border-[#10B981] pl-4">
-          Terminal de controle e metadados. Seus dados estão criptografados na rede.
+          Aqui voce encontra suas informacoes principais, seu historico recente e os materiais validados do seu perfil.
         </p>
       </header>
       <DossierPanel artist={artist} />

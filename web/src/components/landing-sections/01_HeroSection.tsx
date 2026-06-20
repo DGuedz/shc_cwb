@@ -33,7 +33,6 @@ export function HeroSection() {
   const opacityChapter2 = useTransform(scrollYProgress, [0.50, 0.65, 1], [0, 1, 1]);
   const pointerEventsChapter2 = useTransform(scrollYProgress, [0.55, 1], ["none", "auto"]);
   
-  const indicatorHeight = useTransform(scrollYProgress, [0, 0.15], ["0%", "100%"]);
   const indicatorOpacity = useTransform(scrollYProgress, [0, 0.15], [0.7, 0]); // Some rápido para limpar a tela
 
   // O Efeito Cinza Metálico: Reflete a luz da esquerda para a direita de acordo com o scrub do vídeo
@@ -108,16 +107,17 @@ export function HeroSection() {
 
         </div>
 
-        <motion.div 
-          className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center"
+        <motion.div
+          className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-3 animate-pulse"
           style={{ opacity: indicatorOpacity }}
         >
-          <span className="font-mono text-[10px] tracking-[0.3em] text-[#10B981] mb-3 drop-shadow-[0_0_8px_rgba(16,185,129,0.5)]">SCROLL</span>
-          <div className="w-[1px] h-16 bg-[#393939] overflow-hidden relative">
-            <motion.div 
-              className="absolute top-0 left-0 w-full bg-[#10B981] shadow-[0_0_10px_#10B981]" 
-              style={{ height: indicatorHeight }}
-            />
+          <span className="font-mono text-[9px] tracking-[0.4em] text-[#10B981]">SCROLL</span>
+          <div className="flex flex-col items-center gap-0">
+            <div className="w-[1px] h-12 bg-gradient-to-b from-transparent via-[#393939] to-[#10B981]" />
+            {/* seta ultra fina */}
+            <svg width="8" height="6" viewBox="0 0 8 6" fill="none" className="text-[#10B981]">
+              <path d="M0 0 L4 5 L8 0" stroke="currentColor" strokeWidth="0.75" strokeLinecap="round" strokeLinejoin="round"/>
+            </svg>
           </div>
         </motion.div>
       </div>

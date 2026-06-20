@@ -55,8 +55,8 @@ export function ArtistIDCard({ artist }: ArtistIDCardProps) {
   const publicProfileUrl = `https://streethub.connect/id/${artist.id.slice(0, 8)}`;
 
   return (
-    <div 
-      className="relative w-full max-w-[320px] aspect-[1/1.6] mx-auto perspective-1000"
+    <div
+      className="relative w-full max-w-[220px] sm:max-w-[260px] md:max-w-[300px] aspect-[1/1.6] mx-auto"
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
       style={{ perspective: "1000px" }}

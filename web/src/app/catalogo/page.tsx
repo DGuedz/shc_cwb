@@ -1,109 +1,53 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { DashboardNav } from "@/components/ui/DashboardNav";
 import { ScrollRevealTitle } from "@/components/ui/ScrollRevealTitle";
 import { TripartiteHandshake } from "@/components/ui/TripartiteHandshake";
+import { getCatalogArtists } from "@/lib/data";
+import type { Artist, XpTier } from "@/types/domain";
 
-const MOCK_ARTISTS = [
-	{
-		id: "1",
-		name: "NAVE",
-		city: "Curitiba, PR",
-		base: "Centro",
-		genre: "Trap / Melodic Rap",
-		formats: "Show pocket · Festival · Club",
-		minCache: "R$ 2.500",
-		duration: "35–45 min",
-		image: "/images/artists/01.jpg",
-	},
-	{
-		id: "2",
-		name: "KAYO VX",
-		city: "Curitiba, PR",
-		base: "Boqueirão",
-		genre: "Drill / Trap",
-		formats: "Club · Batalha · Evento urbano",
-		minCache: "R$ 1.800",
-		duration: "30–40 min",
-		image: "/images/artists/02.jpg",
-	},
-	{
-		id: "3",
-		name: "LIL VILA",
-		city: "Curitiba, PR",
-		base: "CIC",
-		genre: "Trap / Funk Trap",
-		formats: "Baile · Festa univ. · Showcase",
-		minCache: "R$ 2.200",
-		duration: "35 min",
-		image: "/images/artists/03.jpg",
-	},
-	{
-		id: "4",
-		name: "MC AURA",
-		city: "Curitiba, PR",
-		base: "Água Verde",
-		genre: "Rap / R&B",
-		formats: "Acústico · Pocket · Marca",
-		minCache: "R$ 3.000",
-		duration: "40–50 min",
-		image: "/images/artists/04.jpg",
-	},
-	{
-		id: "5",
-		name: "D7 NOIR",
-		city: "Curitiba, PR",
-		base: "Sítio Cercado",
-		genre: "Trap / Gangsta Rap",
-		formats: "Festival · Club · Evento urbano",
-		minCache: "R$ 2.800",
-		duration: "40 min",
-		image: "/images/artists/05.jpg",
-	},
-	{
-		id: "6",
-		name: "YUNG PINHA",
-		city: "Curitiba, PR",
-		base: "Santa Felicidade",
-		genre: "Plug / Trap Soul",
-		formats: "Lounge · Marca · Evento privado",
-		minCache: "R$ 2.000",
-		duration: "30–45 min",
-		image: "/images/artists/06.jpg",
-	},
-	{
-		id: "7",
-		name: "BRISA 41",
-		city: "Curitiba, PR",
-		base: "Portão",
-		genre: "Rap / Boom Bap / Trap",
-		formats: "Sarau · Festival · Cultural",
-		minCache: "R$ 1.500",
-		duration: "30–40 min",
-		image: "/images/artists/07.jpg",
-	},
-	{
-		id: "8",
-		name: "RUAH",
-		city: "Curitiba, PR",
-		base: "Rebouças",
-		genre: "Trap Exp. / Afrotrap",
-		formats: "Galeria · Club · Conceitual",
-		minCache: "R$ 2.600",
-		duration: "35–45 min",
-		image: "/images/artists/08.jpg",
-	},
-];
+const XP_TIER_STYLE: Record<XpTier, { label: string; color: string; border: string }> = {
+  INICIANTE:  { label: "INICIANTE",  color: "text-neutral-400", border: "border-neutral-600" },
+  ATIVO:      { label: "ATIVO",      color: "text-blue-400",    border: "border-blue-500/40" },
+  DESTAQUE:   { label: "DESTAQUE",   color: "text-[#10B981]",   border: "border-[#10B981]/40" },
+  REFERENCIA: { label: "REFERÊNCIA", color: "text-yellow-400",  border: "border-yellow-500/40" },
+};
+
+function fmt(n: number) {
+  if (n >= 1000000) return `${(n / 1000000).toFixed(1)}M`;
+  if (n >= 1000) return `${(n / 1000).toFixed(0)}k`;
+  return String(n);
+}
 
 export default function VitrineArtistas() {
 	const [isVerifiedOnly, setIsVerifiedOnly] = useState(true);
-	const [selectedArtist, setSelectedArtist] = useState<typeof MOCK_ARTISTS[0] | null>(null);
+	const [selectedArtist, setSelectedArtist] = useState<Artist | null>(null);
+	const [artists, setArtists] = useState<Artist[]>([]);
+	const [isLoading, setIsLoading] = useState(true);
 
-	const handleBookingClick = (artist: typeof MOCK_ARTISTS[0]) => {
+	useEffect(() => {
+		async function loadArtists() {
+			try {
+				const data = await getCatalogArtists();
+				setArtists(data);
+			} catch (error) {
+				console.error("Erro ao carregar artistas:", error);
+			} finally {
+				setIsLoading(false);
+			}
+		}
+		loadArtists();
+	}, []);
+
+	const handleBookingClick = (artist: Artist) => {
 		setSelectedArtist(artist);
 	};
+
+	const filteredArtists = isVerifiedOnly 
+		? artists.filter(a => a.verified !== false) 
+		: artists;
 
 	return (
 		<div className="bg-black text-[var(--on-background)] min-h-screen flex flex-col">
@@ -240,119 +184,179 @@ export default function VitrineArtistas() {
 
 				{/* GRID EDITORIAL DE ARTISTAS */}
 				<div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-					{MOCK_ARTISTS.map((artist, i) => (
-						<motion.article
-							key={artist.id}
-							initial={{ opacity: 0, y: 20 }}
-							animate={{ opacity: 1, y: 0 }}
-							transition={{ duration: 0.5, delay: i * 0.05 }}
-							className="group relative bg-[#131313] border border-[#393939] overflow-hidden hover:border-[#10B981] transition-colors duration-300 flex flex-col h-full"
-						>
-							<div className="relative h-[220px] w-full overflow-hidden bg-[#1A1A1A]">
-								<img
-									src={artist.image}
-									alt={`Foto de perfil do artista ${artist.name}`}
-									className="w-full h-full object-cover grayscale opacity-80 group-hover:grayscale-0 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700 ease-out"
-								/>
-								<div
-									className="absolute top-4 left-4 bg-black/80 backdrop-blur-sm border border-[#10B981]/30 px-2 py-1 flex items-center gap-1.5"
-									role="status"
-									aria-label="Status do Artista"
-								>
-									<svg
-										className="w-3 h-3 text-[#10B981]"
-										viewBox="0 0 24 24"
-										fill="currentColor"
-										aria-hidden="true"
+					{isLoading ? (
+						<div className="col-span-full py-12 flex justify-center items-center">
+							<div className="w-8 h-8 border-2 border-[#10B981] border-t-transparent rounded-full animate-spin"></div>
+						</div>
+					) : filteredArtists.length === 0 ? (
+						<div className="col-span-full py-12 text-center border border-[#393939] bg-[#131313]">
+							<p className="font-mono text-sm text-neutral-500 uppercase tracking-widest p-8">Nenhum artista encontrado com os filtros atuais.</p>
+						</div>
+					) : (
+						filteredArtists.map((artist, i) => (
+							<motion.article
+								key={artist.id}
+								initial={{ opacity: 0, y: 20 }}
+								animate={{ opacity: 1, y: 0 }}
+								transition={{ duration: 0.5, delay: i * 0.05 }}
+								className="group relative bg-[#131313] border border-[#393939] overflow-hidden hover:border-[#10B981] transition-colors duration-300 flex flex-col h-full"
+							>
+								<div className="relative h-[220px] w-full overflow-hidden bg-[#1A1A1A]">
+									<img
+										src={`/images/artists/0${(i % 8) + 1}.jpg`}
+										alt={`Foto de perfil do artista ${artist.stageName}`}
+										className="w-full h-full object-cover grayscale opacity-80 group-hover:grayscale-0 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700 ease-out"
+									/>
+									<div
+										className="absolute top-4 left-4 bg-black/80 backdrop-blur-sm border border-[#10B981]/30 px-2 py-1 flex items-center gap-1.5"
+										role="status"
+										aria-label="Status do Artista"
 									>
-										<path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2zm-1.9 14.7L6 12.6l1.5-1.5 2.6 2.6 6.4-6.4 1.5 1.5-7.9 7.9z" />
-									</svg>
-									<span className="font-mono text-[9px] text-[#10B981] tracking-widest uppercase">
-										Associado Verificado
-									</span>
-								</div>
-							</div>
-
-							{/* Informações */}
-							<div className="p-4 md:p-5 flex flex-col justify-between flex-1 bg-gradient-to-t from-[#0E0E0E] to-[#131313]">
-								<div>
-									<h3 className="font-archivo text-xl md:text-2xl font-bold uppercase tracking-tight text-white group-hover:text-[#10B981] transition-colors">
-										{artist.name}
-									</h3>
-
-									{/* Localização */}
-									<div className="flex items-center gap-2 mt-2 mb-4">
-										<span className="font-mono text-[9px] text-[#A3A3A3] uppercase tracking-widest">
-											{artist.city}
-										</span>
-										<span className="w-1 h-1 bg-[#393939] rounded-full"></span>
-										<span className="font-mono text-[9px] text-[#A3A3A3] uppercase tracking-widest">
-											{artist.base}
+										<svg
+											className="w-3 h-3 text-[#10B981]"
+											viewBox="0 0 24 24"
+											fill="currentColor"
+											aria-hidden="true"
+										>
+											<path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2zm-1.9 14.7L6 12.6l1.5-1.5 2.6 2.6 6.4-6.4 1.5 1.5-7.9 7.9z" />
+										</svg>
+										<span className="font-mono text-[9px] text-[#10B981] tracking-widest uppercase">
+											Associado Verificado
 										</span>
 									</div>
+								</div>
 
-									{/* Metadados do Show */}
-									<div className="space-y-2 border-t border-[#393939] pt-4">
-										<div className="flex flex-col">
-											<span className="font-mono text-[9px] text-[#393939] uppercase tracking-widest">
-												Estilo Musical
+								{/* Informações */}
+								<div className="p-4 md:p-5 flex flex-col justify-between flex-1 bg-gradient-to-t from-[#0E0E0E] to-[#131313]">
+									<div>
+										<h3 className="font-archivo text-xl md:text-2xl font-bold uppercase tracking-tight text-white group-hover:text-[#10B981] transition-colors">
+											{artist.stageName}
+										</h3>
+
+										{/* Localização */}
+										<div className="flex items-center gap-2 mt-2 mb-4">
+											<span className="font-mono text-[9px] text-[#A3A3A3] uppercase tracking-widest">
+												{artist.city}
 											</span>
-											<span className="font-mono text-[11px] text-white uppercase tracking-wider">
-												{artist.genre}
+											<span className="w-1 h-1 bg-[#393939] rounded-full"></span>
+											<span className="font-mono text-[9px] text-[#A3A3A3] uppercase tracking-widest">
+												{artist.state}
 											</span>
 										</div>
 
-										<div className="flex flex-col">
-											<span className="font-mono text-[9px] text-[#393939] uppercase tracking-widest">
-												Formatos
-											</span>
-											<span className="font-mono text-[10px] text-[#A3A3A3] uppercase tracking-wider">
-												{artist.formats}
-											</span>
-										</div>
+										{/* Atividade do associado */}
+										{artist.activity && (() => {
+											const { xpTier, feeMultiplier, activeDays, showsThisYear, monthlyStreams, associationVotes, socialReach, lastActiveLabel } = artist.activity;
+											const t = XP_TIER_STYLE[xpTier];
+											return (
+												<div className={`mb-4 border ${t.border} p-3 flex flex-col gap-3`}>
+													{/* Tier + peso */}
+													<div className="flex items-center justify-between">
+														<span className={`font-mono text-[9px] uppercase tracking-widest font-bold ${t.color}`}>{t.label}</span>
+														<span className={`font-mono text-[9px] font-bold ${t.color}`}>cachê {feeMultiplier}x</span>
+													</div>
+													{/* Stats grid */}
+													<div className="grid grid-cols-2 gap-x-4 gap-y-2">
+														{[
+															{ label: "ativo há", value: lastActiveLabel },
+															{ label: "dias/mês", value: `${activeDays}d` },
+															{ label: "shows/ano", value: String(showsThisYear) },
+															{ label: "streams/mês", value: fmt(monthlyStreams) },
+															{ label: "alcance", value: `${socialReach}k` },
+															{ label: "votos assoc.", value: String(associationVotes) },
+														].map(({ label, value }) => (
+															<div key={label} className="flex items-baseline justify-between gap-1">
+																<span className="font-mono text-[8px] text-neutral-600 uppercase shrink-0">{label}</span>
+																<span className="font-mono text-[10px] text-white font-medium">{value}</span>
+															</div>
+														))}
+													</div>
+												</div>
+											);
+										})()}
 
-										<div className="flex items-center justify-between pt-2">
+										{/* Metadados do Show */}
+										<div className="space-y-2 border-t border-[#393939] pt-4">
 											<div className="flex flex-col">
 												<span className="font-mono text-[9px] text-[#393939] uppercase tracking-widest">
-													Cachê Base
+													Estilo Musical
 												</span>
-												<span className="font-mono text-xs text-[#10B981] font-bold tracking-widest">
-													{artist.minCache}
+												<span className="font-mono text-[11px] text-white uppercase tracking-wider">
+													{artist.genre}
 												</span>
 											</div>
-											<div className="flex flex-col items-end">
+
+											<div className="flex flex-col">
 												<span className="font-mono text-[9px] text-[#393939] uppercase tracking-widest">
-													Duração
+													Formatos
 												</span>
-												<span className="font-mono text-[10px] text-[#A3A3A3] tracking-widest">
-													{artist.duration}
+												<span className="font-mono text-[10px] text-[#A3A3A3] uppercase tracking-wider">
+													Show pocket · Festival · Club
 												</span>
+											</div>
+
+											<div className="flex items-center justify-between pt-2">
+												<div className="flex flex-col">
+													<span className="font-mono text-[9px] text-[#393939] uppercase tracking-widest">
+														Cachê Base
+													</span>
+													<span className="font-mono text-xs text-[#10B981] font-bold tracking-widest">
+														R$ {artist.minFee.toLocaleString("pt-BR")}
+													</span>
+												</div>
+												<div className="flex flex-col items-end">
+													<span className="font-mono text-[9px] text-[#393939] uppercase tracking-widest">
+														Duração
+													</span>
+													<span className="font-mono text-[10px] text-[#A3A3A3] tracking-widest">
+														35-45 min
+													</span>
+												</div>
 											</div>
 										</div>
 									</div>
-								</div>
 
-								{/* Ações (Booking & Presskit) */}
-								<div className="mt-6 flex items-center gap-2">
-									<button
-										type="button"
-										onClick={() => handleBookingClick(artist)}
-										className="flex-1 bg-[#10B981] text-black font-mono text-[10px] uppercase tracking-widest py-2.5 font-bold hover:bg-white transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
-									>
-										Solicitar Booking
-									</button>
-									<button
-										type="button"
-										className="px-3 border border-[#393939] bg-transparent text-[#A3A3A3] hover:text-white hover:border-white transition-colors flex items-center justify-center py-2.5 group-hover:border-[#10B981] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#10B981]"
-									>
-										<span className="font-mono text-[10px] uppercase tracking-widest">
-											Press Kit
-										</span>
-									</button>
+									{/* Ações (Booking & Presskit) */}
+									<div className="mt-6 flex items-center gap-2">
+										{/* Solicitar Booking — glass verde */}
+										<button
+											type="button"
+											onClick={() => handleBookingClick(artist)}
+											className="relative flex-1 overflow-hidden group/btn
+												bg-[#10B981] text-black
+												font-mono text-[10px] uppercase tracking-widest py-2.5 font-bold
+												transition-all duration-300
+												hover:shadow-[0_0_24px_rgba(16,185,129,0.35),inset_0_1px_0_rgba(255,255,255,0.25)]
+												focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#10B981]"
+										>
+											{/* glare sweep */}
+											<span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent -translate-x-full group-hover/btn:translate-x-full transition-transform duration-500 ease-in-out pointer-events-none" />
+											{/* glass overlay ao hover */}
+											<span className="absolute inset-0 bg-gradient-to-b from-white/20 to-transparent opacity-0 group-hover/btn:opacity-100 transition-opacity duration-300 pointer-events-none" />
+											<span className="relative z-10">Solicitar Booking</span>
+										</button>
+
+										{/* Press Kit — glass escuro */}
+										<button
+											type="button"
+											onClick={() => window.location.assign(`/catalogo/${artist.slug}`)}
+											className="relative overflow-hidden group/pk
+												px-3 py-2.5
+												border border-[#10B981]/40 bg-[#10B981]/5 text-[#10B981]
+												font-mono text-[10px] uppercase tracking-widest
+												transition-all duration-300
+												hover:border-[#10B981] hover:bg-[#10B981]/15
+												hover:shadow-[0_0_16px_rgba(16,185,129,0.2),inset_0_1px_0_rgba(16,185,129,0.2)]
+												focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#10B981]"
+										>
+											<span className="absolute inset-0 bg-gradient-to-r from-transparent via-[#10B981]/20 to-transparent -translate-x-full group-hover/pk:translate-x-full transition-transform duration-500 ease-in-out pointer-events-none" />
+											<span className="relative z-10">Press Kit</span>
+										</button>
+									</div>
 								</div>
-							</div>
-						</motion.article>
-					))}
+							</motion.article>
+						))
+					)}
 				</div>
 
 				{/* RODAPÉ INSTITUCIONAL DA SEÇÃO */}
@@ -432,11 +436,11 @@ export default function VitrineArtistas() {
 			{/* Modal: Tripartite Handshake / Legal Agent */}
 			{selectedArtist && (
 				<TripartiteHandshake 
-					artistName={selectedArtist.name}
+					artistName={selectedArtist.stageName}
 					artistExp={1050}
 					companyName="EMPRESA CONTRATANTE" // No ambiente real, vem da session da empresa logada
 					opportunityTitle="OPORTUNIDADE DE BOOKING"
-					budget={parseInt(selectedArtist.minCache.replace(/\D/g, '')) || 0}
+					budget={selectedArtist.minFee || 0}
 					onClose={() => setSelectedArtist(null)}
 				/>
 			)}

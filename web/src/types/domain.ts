@@ -9,6 +9,21 @@ export type SessionUser = {
   isDemo: boolean;
 };
 
+export type XpTier = 'INICIANTE' | 'ATIVO' | 'DESTAQUE' | 'REFERENCIA';
+
+export type ArtistActivity = {
+  xp: number;
+  xpTier: XpTier;
+  feeMultiplier: number;
+  activeDays: number;       // dias ativos nos últimos 30
+  streak: number;           // sequência atual em dias
+  showsThisYear: number;    // shows confirmados no ano
+  monthlyStreams: number;   // streams mensais (Spotify/SC)
+  associationVotes: number; // votos em decisões da assoc.
+  socialReach: number;      // alcance combinado redes sociais (k)
+  lastActiveLabel: string;
+};
+
 export type Artist = {
   id: string;
   slug: string;
@@ -22,6 +37,7 @@ export type Artist = {
   bio: string;
   verified: boolean;
   tags: string[];
+  activity?: ArtistActivity;
 };
 
 export type Company = {
