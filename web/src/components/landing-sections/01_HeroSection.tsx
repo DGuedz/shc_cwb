@@ -35,8 +35,8 @@ export function HeroSection() {
   
   const indicatorOpacity = useTransform(scrollYProgress, [0, 0.15], [0.7, 0]); // Some rápido para limpar a tela
 
-  // O Efeito Cinza Metálico: Reflete a luz da esquerda para a direita de acordo com o scrub do vídeo
-  const metallicShine = useTransform(scrollYProgress, [0, 0.25], ["200% center", "-200% center"]);
+  // Cromático: branco → esmeralda → ciano, sincronizado com o scrub do vídeo
+  const metallicShine = useTransform(scrollYProgress, [0, 0.25], ["240% center", "-240% center"]);
 
   return (
     <section ref={heroRef} className="relative h-[400vh] w-full bg-black">
@@ -66,7 +66,7 @@ export function HeroSection() {
               <motion.span 
                 className="text-transparent bg-clip-text"
                 style={{ 
-                  backgroundImage: "linear-gradient(100deg, #393939 20%, #737373 40%, #ffffff 50%, #737373 60%, #393939 80%)",
+                  backgroundImage: "linear-gradient(105deg, #555 0%, #aaa 18%, #fff 32%, #10B981 52%, #5eead4 68%, #fff 82%, #aaa 100%)",
                   backgroundSize: "200% auto",
                   backgroundPosition: metallicShine 
                 }}

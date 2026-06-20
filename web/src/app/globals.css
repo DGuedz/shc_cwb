@@ -90,32 +90,34 @@ body {
   to   { clip-path: inset(0 0%   0 0); }
 }
 
-@keyframes shc-metallic {
-  0%   { background-position: 180% center; }
-  60%  { background-position: -180% center; }
-  100% { background-position: -180% center; }
+/* Sweep: branco → esmeralda → ciano → branco */
+@keyframes shc-chromatic {
+  0%   { background-position: 240% center; }
+  100% { background-position: -240% center; }
 }
 
 @utility title-reveal {
   animation: shc-clip-in 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
-@utility title-metallic {
+@utility title-chromatic {
   background-image: linear-gradient(
     105deg,
-    #4a4a4a 10%,
-    #9a9a9a 30%,
-    #ffffff 50%,
-    #9a9a9a 70%,
-    #4a4a4a 90%
+    #555    0%,
+    #aaa   18%,
+    #fff   32%,
+    #10B981 52%,
+    #5eead4 68%,
+    #fff   82%,
+    #aaa  100%
   );
-  background-size: 200% auto;
+  background-size: 280% auto;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
   animation:
-    shc-clip-in  0.7s  cubic-bezier(0.22, 1, 0.36, 1) both,
-    shc-metallic 1.4s  0.4s ease-in-out both;
+    shc-clip-in    0.7s cubic-bezier(0.22, 1, 0.36, 1) both,
+    shc-chromatic  1.8s 0.3s ease-in-out both;
 }
 
 /* Staggered delay helpers */
@@ -125,7 +127,7 @@ body {
 
 /* Respect reduced-motion */
 @media (prefers-reduced-motion: reduce) {
-  .title-reveal, .title-metallic {
+  .title-reveal, .title-chromatic {
     animation: none;
     clip-path: none;
     background: none;

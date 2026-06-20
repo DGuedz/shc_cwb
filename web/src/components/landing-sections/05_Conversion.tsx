@@ -21,13 +21,13 @@ export function Conversion() {
           </span>
 
           <div className="font-archivo text-3xl md:text-4xl lg:text-5xl font-bold uppercase tracking-tight mb-16 leading-tight">
-            <ScrollRevealTitle as="div" metallic>
+            <ScrollRevealTitle as="div" chromatic>
               FAÇA PARTE DA INFRAESTRUTURA
             </ScrollRevealTitle>
             <ScrollRevealTitle as="div" className="text-[#10B981]">
               DA ECONOMIA CRIATIVA
             </ScrollRevealTitle>
-            <ScrollRevealTitle as="div" metallic>
+            <ScrollRevealTitle as="div" chromatic>
               UNDERGROUND.
             </ScrollRevealTitle>
           </div>
