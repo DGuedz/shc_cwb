@@ -16,8 +16,9 @@ export default function DealsPipeline() {
             <span className="w-2 h-2 rounded-full bg-[#10B981] animate-pulse"></span>
             <span className="font-mono text-xs text-[#10B981] tracking-widest uppercase">SHC_NETWORK // ZK_READY</span>
           </div>
-          <h1 className="font-archivo text-[clamp(2.5rem,5.5vw,4rem)] font-bold text-white tracking-tighter uppercase leading-[0.88] max-w-3xl">
-            DEALS <span className="text-[#10B981]">EXPLORER</span>
+          <h1 className="font-archivo text-[clamp(2.5rem,5.5vw,4rem)] font-bold tracking-tighter uppercase leading-[0.88] max-w-3xl">
+            <span className="block title-chromatic reveal-delay-1">DEALS</span>
+            <span className="block text-[#10B981] title-reveal reveal-delay-2">EXPLORER</span>
           </h1>
           <p className="font-mono text-sm text-neutral-400 max-w-2xl border-l-2 border-[#10B981] pl-4">
             Acompanhe as transações de contratos e liquidações. Dados sensíveis ofuscados (ZK).

@@ -55,7 +55,8 @@ export default function VitrineArtistas({
 						</span>
 					</div>
 					<ScrollRevealTitle
-						className="font-archivo text-4xl md:text-5xl lg:text-6xl font-bold uppercase tracking-tighter max-w-3xl leading-[0.9] text-[#10B981]"
+						chromatic
+						className="font-archivo text-[clamp(2.5rem,5.5vw,4rem)] font-bold uppercase tracking-tighter max-w-3xl leading-[0.9]"
 					>
 						CATÁLOGO DE ARTISTAS
 					</ScrollRevealTitle>
