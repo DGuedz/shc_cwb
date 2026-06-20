@@ -181,13 +181,13 @@ function StepController({ formData = {}, updateData }: StepProps) {
 export default function EmpresaOnboarding() {
   const router = useRouter();
   const initialData = {
-    nome: 'Grupo Araucaria Energia S/A',
+    nome: 'Empresa Demo S/A',
     regime: 'lucro_real',
     impactos: 'DESENVOLVIMENTO_LOCAL,TECNOLOGIA_INOVACAO',
     budget: '250000',
     contrapartida: 'brand_experience',
-    contabilNome: 'Mariana Costa',
-    contabilEmail: 'controladoria@araucariaenergia.com.br',
+    contabilNome: 'Demo Responsável',
+    contabilEmail: 'financeiro@empresa-demo.com.br',
   };
 
   const steps = [

@@ -247,7 +247,7 @@ Este projeto foi desenvolvido como parte do **Desafio TRAE + AI Brasil**, realiz
 |---|---|
 | 🌐 Aplicação | [shc-cwb.vercel.app](https://shc-cwb.vercel.app) |
 | 📦 Repositório | [github.com/DGuedz/shc_cwb](https://github.com/DGuedz/shc_cwb) |
-| 🎬 Vídeo | Em breve |
+| 🎬 Vídeo de Apresentação | [youtube.com/watch?v=OMFsVcebzLQ](https://www.youtube.com/watch?v=OMFsVcebzLQ) |
 
 ---
 
