@@ -388,7 +388,7 @@ XXII. BNDES Cultura e demais linhas do BNDES para economia criativa;
 
 XXIII. Grants internacionais de entidades como IFPI, Creative Commons, Mozilla Foundation;
 
-XXIV. Grants captados via gov.chain Celo L2 e ecossistemas blockchain de impacto;
+XXIV. Grants captados via gov.chain blockchain e ecossistemas blockchain de impacto;
 
 XXV. Rendimentos de aplicações financeiras do Fundo Patrimonial SHC;
 
@@ -428,15 +428,15 @@ II. Até **50% dos rendimentos** podem ser destinados a projetos e atividades da
 
 III. Pelo menos **50% dos rendimentos** são reinvestidos no próprio Fundo.
 
-**Art. 45.** A governança do Fundo Patrimonial SHC integra a **gov.chain Celo L2**, com:
+**Art. 45.** A governança do Fundo Patrimonial SHC integra a **gov.chain blockchain**, com:
 
-I. Registro de hash de todos os movimentos via EAS (Ethereum Attestation Service);
+I. Registro de hash de todos os movimentos via serviço de atestação blockchain;
 
 II. Multi-sig Safe com participação de representantes do Conselho Administrativo;
 
 III. Split Payment automatizado via Smart Contracts para distribuição de royalties;
 
-IV. Trilha auditável pública via CeloScan;
+IV. Trilha auditável pública via blockchain explorer;
 
 V. Relatório trimestral verificável on-chain e off-chain, submetido ao Conselho Fiscal.
 
@@ -450,7 +450,7 @@ V. Relatório trimestral verificável on-chain e off-chain, submetido ao Conselh
 
 I. Cada gravação recebe um ISRC único, imutável e vinculado ao artista titular;
 
-II. O ISRC emitido é simultaneamente ancorado na gov.chain Celo L2 via EAS, criando dupla camada de prova de anterioridade;
+II. O ISRC emitido é simultaneamente ancorado na gov.chain blockchain via EAS, criando dupla camada de prova de anterioridade;
 
 III. Os metadados de cada gravação são registrados em formato compatível com os padrões internacionais IFPI e DDEX;
 
@@ -568,7 +568,7 @@ IV. Segurança — medidas técnicas e organizacionais para proteção dos dados
 
 V. Transparência — acesso facilitado às informações sobre o tratamento.
 
-**Art. 64.** Dados sensíveis dos associados — composições não publicadas, obras em desenvolvimento, informações financeiras e dados de saúde — são mantidos **off-chain**, com apenas hashes e identificadores ancorados na gov.chain Celo L2.
+**Art. 64.** Dados sensíveis dos associados — composições não publicadas, obras em desenvolvimento, informações financeiras e dados de saúde — são mantidos **off-chain**, com apenas hashes e identificadores ancorados na gov.chain blockchain.
 
 **Art. 65.** O **Encarregado de Dados (DPO)** é designado pela Diretoria Executiva e pode ser membro da equipe ou terceiro habilitado, responsável pela conformidade com a LGPD e pela interlocução com a ANPD.
 
@@ -612,7 +612,7 @@ III. Em razão de impossibilidade de consecução dos objetivos institucionais.
 
 **Art. 75.** O processo de habilitação junto à ABPD/IFPI para obtenção do código de registrador ISRC deverá ser iniciado pela Diretoria Executiva no prazo de **180 (cento e oitenta) dias** contados da fundação.
 
-**Art. 76.** A integração da gov.chain Celo L2 e o registro do hash deste Estatuto via EAS deverão ser realizados no prazo de **60 (sessenta) dias** contados da fundação.
+**Art. 76.** A integração da gov.chain blockchain e o registro do hash deste Estatuto via EAS deverão ser realizados no prazo de **60 (sessenta) dias** contados da fundação.
 
 ---
 

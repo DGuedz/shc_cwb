@@ -7,7 +7,7 @@ FILHA ASTEPAM — GOVERNANÇA FONOGRÁFICA ON-CHAIN
 
 O presente memorial tem como objetivo apresentar a estrutura da **STREET HUB CONNECT — ASSOCIAÇÃO DE CURADORIA, BOOKING E GOVERNANÇA PARA A ECONOMIA CRIATIVA**, filha da ICT Mãe ASTEPAM, de direito privado, sem fins econômicos, que opera como unidade especializada de Finanças Regenerativas (REFI) aplicadas ao setor fonográfico e cultural brasileiro.
 
-A Street Hub Connect atua como Gateway Institucional AI First para a economia criativa, conectando artistas independentes a contratantes, marcas e produtores com curadoria humana e tecnologia digital. Utiliza a Lei 9.249/95, Lei 13.243/16 (ICT), Lei 13.800/19 e integração nativa com blockchain Celo L2 como gov.chain, devolvendo ao artista e ao contratante o **Dossiê Digital Rastreável** com autoria carimbada on-chain.
+A Street Hub Connect atua como Gateway Institucional AI First para a economia criativa, conectando artistas independentes a contratantes, marcas e produtores com curadoria humana e tecnologia digital. Utiliza a Lei 9.249/95, Lei 13.243/16 (ICT), Lei 13.800/19 e integração nativa com blockchain como gov.chain, devolvendo ao artista e ao contratante o **Dossiê Digital Rastreável** com autoria carimbada on-chain.
 
 O fundador, **Diego Guedes (DGuedz)**, rapper, compositor e empreendedor com 25 anos de carreira iniciada em 1998, transforma sua trajetória no mercado musical independente em infraestrutura disponível para toda a classe artística brasileira.
 
@@ -21,12 +21,12 @@ As propostas delineadas no presente memorial foram baseadas nas seguintes normas
 - **Constituição Federal – Art. 150, VI, c** → Imunidade tributária de patrimônio, renda e serviços das entidades sem fins econômicos
 - **Código Civil de 2002 – Art. 53 e 59** → Natureza jurídica de associação sem fins econômicos; geração de superávit para reinvestimento na causa
 - **Código Tributário Nacional – Art. 9º e 14** → Requisitos para imunidade tributária; vedação de distribuição de patrimônio e rendas
-- **Lei Federal nº 9.249/95 – Art. 13, § 2º, II e III** → Renúncia fiscal de até 2% do lucro operacional para projetos sociais e 1,5% para P&D; dossiê digital validado on-chain Celo
+- **Lei Federal nº 9.249/95 – Art. 13, § 2º, II e III** → Renúncia fiscal de até 2% do lucro operacional para projetos sociais e 1,5% para P&D; dossiê digital validado on-chain
 - **Lei Federal nº 9.610/98 – Lei de Direitos Autorais** → Proteção da obra intelectual do artista; base para gestão fonográfica via ISRC
 - **Lei Federal nº 9.790/99 – Art. 3º** → Qualificação como OSCIP; requisito para renúncia fiscal e governança terceiro setor
 - **Instrução Normativa SRF nº 87/1996** → Incentivos fiscais complementados por agentes Jurídico-Tributários na malha multiagente
 - **Lei Federal nº 13.243/16 – Marco Legal da Inovação (ICT)** → Qualifica a SHC como Instituição de Ciência, Tecnologia e Inovação; permite gestão do ISRC Registry, P&D open source e integração gov.chain
-- **Lei Federal nº 13.800/19 – Fundo Patrimonial de Investimento em Interesse Público** → Legaliza o Fundo Patrimonial SHC como veículo perene de sustentabilidade; governança on-chain via multi-sig Safe e trilha auditável CeloScan
+- **Lei Federal nº 13.800/19 – Fundo Patrimonial de Investimento em Interesse Público** → Legaliza o Fundo Patrimonial SHC como veículo perene de sustentabilidade; governança on-chain via multi-sig Safe e trilha auditável blockchain explorer
 - **Lei Federal nº 13.019/14 – Marco Legal do Terceiro Setor** → Estrutura as filhas SHC SOCIAL e SHC FONOGRÁFICA como associações do terceiro setor
 - **Resolução BACEN nº 3.109/03** → Sistema de crédito interno/externo automatizado via Smart Contracts e Split Payment
 - **Resolução CFC 1.003/04 – NBC T 15** → Balanço Socioambiental mensurável para obtenção de Atestado de Sustentabilidade
@@ -44,7 +44,7 @@ Para a Street Hub Connect, as filhas base são:
 
 Constituição de associação para gestão de programas sociais destinados a artistas, produtores independentes, técnicos de som e luz, roadies e demais trabalhadores da cadeia cultural, para utilizar a renúncia fiscal conforme Lei Federal nº 9.249/95, podendo atuar em:
 
-**Vinculação:** Lei 9.249/95 (renúncia fiscal) + Lei 13.019/14 (terceiro setor) + Resolução BACEN 3.109/03 (crédito orientado); automatizado por agentes Jurídico-Tributários e dossiê digital Celo.
+**Vinculação:** Lei 9.249/95 (renúncia fiscal) + Lei 13.019/14 (terceiro setor) + Resolução BACEN 3.109/03 (crédito orientado); automatizado por agentes Jurídico-Tributários e dossiê digital.
 
 - Sistema de crédito interno para artistas em início de carreira
 - Programa de capacitação em governança fonográfica e direitos autorais
@@ -58,7 +58,7 @@ Constituição de associação para gestão de programas sociais destinados a ar
 
 Constituição de ICT nos termos da Lei Federal nº 13.243/16 para gestão da plataforma Street Hub Connect, desenvolvimento de tecnologia fonográfica, curatorial e de governança digital:
 
-**Vinculação:** Lei 13.243/16 (qualificação ICT) + Lei 9.249/95 (1,5% para P&D); implementado via plataforma SHC, malha multiagente (Band SDK) e integração gov.chain Celo L2.
+**Vinculação:** Lei 13.243/16 (qualificação ICT) + Lei 9.249/95 (1,5% para P&D); implementado via plataforma SHC, malha multiagente (Band SDK) e integração gov.chain blockchain.
 
 - Gestão e desenvolvimento da plataforma Street Hub Connect (Next.js, TypeScript, Supabase)
 - **ISRC Registry próprio** — emissão e gestão de International Standard Recording Codes para artistas associados, eliminando dependência de distribuidoras
@@ -66,7 +66,7 @@ Constituição de ICT nos termos da Lei Federal nº 13.243/16 para gestão da pl
 - Matchboard inteligente com filtros por gênero, cidade, tier e faixa de cachê
 - Gestão do módulo de Acordos com histórico imutável de negociações
 - Licenças de software open source para a comunidade criativa
-- Integração com gov.chain Celo L2 para ancoragem de contratos e dossiês
+- Integração com gov.chain blockchain para ancoragem de contratos e dossiês
 - Malha Multiagente via Band SDK: Orquestrador, Jurídico-Fonográfico, SecOps e Integridade do Dossiê
 - P&D em IA aplicada à curadoria musical, precificação de cachê e análise de impacto cultural
 
@@ -90,7 +90,7 @@ Constituição de associação para gestão de direitos fonográficos, proteçã
 
 Dentro da Street Hub Connect, constitui-se o **FUNDO PATRIMONIAL SHC** com a seguinte operação:
 
-**Vinculação:** Lei 13.800/19 (Fundo Patrimonial de Investimento em Interesse Público); governança on-chain via Celo L2, EAS, Smart Contracts e multi-sig Safe.
+**Vinculação:** Lei 13.800/19 (Fundo Patrimonial de Investimento em Interesse Público); governança on-chain via blockchain, contratos inteligentes e multi-sig.
 
 ### 4.1 – Origem dos recursos
 
@@ -103,7 +103,7 @@ Dentro da Street Hub Connect, constitui-se o **FUNDO PATRIMONIAL SHC** com a seg
 - Parcerias tripartites (setor público, privado, sociedade civil)
 - Grants culturais: PROAC, Rouanet, BNDES Cultura, Fundo Nacional de Cultura
 - Rendimentos dos investimentos do Fundo Patrimonial
-- Grants captados via gov.chain Celo L2
+- Grants captados via gov.chain blockchain
 
 ### 4.2 – Destino
 
@@ -119,11 +119,11 @@ O FUNDO PATRIMONIAL tem como base de atuação:
 
 ### 4.3 – Governança On-Chain
 
-- O Fundo Patrimonial opera via gov.chain Celo L2 (rede Alfajores para testes)
+- O Fundo Patrimonial opera via gov.chain blockchain (rede Alfajores para testes)
 - Todos os movimentos ancorados via EAS (Ethereum Attestation Service)
 - Split Payment automatizado via Smart Contracts para distribuição de royalties
 - Multi-sig Safe com representantes do Conselho Administrativo SHC
-- Trilha auditável pública completa via CeloScan
+- Trilha auditável pública completa via blockchain explorer
 - Integração com AI/ML API e Band SDK para orquestração de fluxos financeiros
 
 ---
@@ -140,7 +140,7 @@ Realização de seminário com fundadores, diretoria, conselheiros e parceiros e
 - Constituição das 3 filhas base (Social, Tecnologia ICT, Fonográfica)
 - Criação do Fundo Patrimonial SHC
 - Obtenção do código de registrador ISRC junto à ABPD/IFPI
-- Configuração da governança on-chain (Safe + EAS Celo)
+- Configuração da governança on-chain (multi-sig + blockchain)
 - Estruturação dos 4 núcleos: Orquestração, Curadoria, Fonográfico, Defesa/SecOps
 
 ### 5.3 – Treinamento e Capacitação
@@ -158,7 +158,7 @@ Capacitação dos gestores e associados em governança fonográfica, uso da plat
 
 ### 5.5 – Avaliação e Lançamento
 
-Avaliação completa, ajustes e lançamento público oficial da SHC com publicação em https://shc-cwb.vercel.app e ancoragem do Memorial na blockchain Celo L2 via EAS.
+Avaliação completa, ajustes e lançamento público oficial da SHC com publicação em https://shc-cwb.vercel.app e ancoragem do Memorial na blockchain.
 
 ---
 
@@ -169,7 +169,7 @@ Com a implantação completa:
 - **Artista:** identidade digital verificável, ISRC próprio, catálogo rastreável, acordos com histórico imutável, acesso a oportunidades qualificadas
 - **Contratante:** Matchboard curado, perfis verificáveis, briefings organizados, redução do risco em contratações
 - **Empresa associada:** renúncia fiscal de até 34% do IRPJ via Lei 9.249/95, Atestado de Sustentabilidade Cultural, relatório NBC T 15
-- **Ecossistema:** governança transparente via gov.chain Celo L2, trilha auditável completa, eliminação de intermediários informais
+- **Ecossistema:** governança transparente via gov.chain blockchain, trilha auditável completa, eliminação de intermediários informais
 - Estrutura escalável de filhas REFI para outros segmentos da economia criativa
 - Fundo Patrimonial perene para sustentabilidade da associação
 - Integração AI First com agentes especializados no setor fonográfico
@@ -178,7 +178,7 @@ Com a implantação completa:
 
 ## 7 – GOV.CHAIN CELO L2 E ISRC REGISTRY
 
-A Street Hub Connect utiliza a blockchain Celo L2 como gov.chain oficial, em alinhamento com a infraestrutura da ICT Mãe ASTEPAM:
+A Street Hub Connect utiliza a blockchain como gov.chain oficial, em alinhamento com a infraestrutura da ICT Mãe ASTEPAM:
 
 **Vinculação:** Lei 13.019/14 (governança transparente) + Lei 13.800/19 (auditoria fundo patrimonial) + Lei 9.610/98 (rastreabilidade de obras); integração gov.br via Firecrawl valida CNPJs e fontes oficiais.
 
@@ -196,7 +196,7 @@ A Street Hub Connect utiliza a blockchain Celo L2 como gov.chain oficial, em ali
 O programa de **Governança Fonográfica Própria** é o diferencial estratégico da SHC no ecossistema ASTEPAM:
 
 - **Código de Registrador Próprio:** a SHC obtém e administra seu próprio prefixo de registrador ISRC junto à ABPD/IFPI, emitindo códigos diretamente para os artistas associados sem intermediários
-- **Catálogo Auditável:** cada gravação registrada recebe um ISRC único + hash on-chain na gov.chain Celo L2, criando dupla camada de prova de anterioridade
+- **Catálogo Auditável:** cada gravação registrada recebe um ISRC único + hash on-chain na gov.chain blockchain, criando dupla camada de prova de anterioridade
 - **Eliminação de Intermediários:** artistas associados não dependem de distribuidoras, gravadoras ou plataformas de terceiros para formalizar suas obras
 - **Valor Adicionado Cultural (NBC T 15):** a produção fonográfica dos associados gera Valor Adicionado mensurável, convertido em Atestado de Sustentabilidade para empresas parceiras
 - **Integração com Streaming:** ISRCs emitidos pela SHC são compatíveis com Spotify, Apple Music, YouTube Music, ECAD e todos os sistemas internacionais de gestão de direitos
@@ -223,10 +223,10 @@ Seminário de lançamento público da Street Hub Connect com a presença de fund
 - Guia de onboarding para artistas (dossiê, ISRC, acordos)
 - Guia para contratantes (oportunidades, Matchboard, renúncia fiscal)
 - Roteiro de implantação da estrutura SHC
-- Documentação da gov.chain Celo L2
+- Documentação da gov.chain blockchain
 
 ### 9.4 – Governança On-Chain
-O valor do seminário e todos os passos da implantação serão ancorados na blockchain Celo L2 via EAS, gerando trilha auditável completa e prova de anterioridade da fundação.
+O valor do seminário e todos os passos da implantação serão ancorados na blockchain, gerando trilha auditável completa e prova de anterioridade da fundação.
 
 ---
 
