@@ -217,7 +217,7 @@ O Street Hub Connect nasceu da experiência direta de 25 anos navegando o mercad
 
 [![Instagram](https://img.shields.io/badge/@dguedz-E4405F?style=flat-square&logo=instagram&logoColor=white)](https://instagram.com/dguedz)
 [![Facebook](https://img.shields.io/badge/Dguedz-1877F2?style=flat-square&logo=facebook&logoColor=white)](https://facebook.com/dguedz)
-[![X](https://img.shields.io/badge/@dguedz__-000000?style=flat-square&logo=x&logoColor=white)](https://x.com/dguedz_)
+[![X](https://img.shields.io/badge/@dg__doublegreen-000000?style=flat-square&logo=x&logoColor=white)](https://x.com/dg_doublegreen)
 [![YouTube](https://img.shields.io/badge/Canal%20DGuedz-FF0000?style=flat-square&logo=youtube&logoColor=white)](https://youtube.com/@dguedz)
 [![Spotify](https://img.shields.io/badge/DGuedz-1DB954?style=flat-square&logo=spotify&logoColor=white)](https://open.spotify.com/artist/dguedz)
 [![Palco MP3](https://img.shields.io/badge/Palco%20MP3-DGuedz-FF6B00?style=flat-square)](https://www.palcomp3.com.br/dguedz)
