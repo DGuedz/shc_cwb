@@ -69,6 +69,7 @@ export function GovBrUpgradeModal({
                   window.location.href = "/sign-in";
                 }}
               >
+                {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img src="/govbr-logo.svg" alt="gov.br" className="h-4 brightness-0 invert opacity-80" onError={(e) => e.currentTarget.style.display = 'none'} />
                 <span>REAUTENTICAR COM GOV.BR</span>
               </button>

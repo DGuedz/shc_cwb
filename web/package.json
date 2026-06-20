@@ -10,7 +10,8 @@
     "preview:build": "NEXT_PUBLIC_SITE_URL=http://127.0.0.1:3201 next build",
     "preview:start": "NEXT_PUBLIC_SITE_URL=http://127.0.0.1:3201 next start --hostname 127.0.0.1 --port 3201",
     "preview": "npm run preview:build && npm run preview:start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "test:smoke": "playwright test --config playwright.config.ts"
   },
   "dependencies": {
     "@supabase/ssr": "^0.12.0",

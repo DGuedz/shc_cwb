@@ -197,6 +197,7 @@ export function SignInForm({ supabaseEnabled }: { supabaseEnabled: boolean }) {
           disabled={isGovBrLoading}
         >
           <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700 ease-in-out" />
+          {/* eslint-disable-next-line @next/next/no-img-element */}
           <img src="/govbr-logo.svg" alt="gov.br" className="h-4 brightness-0 invert opacity-80 group-hover:opacity-100 transition-opacity relative z-10" onError={(e) => e.currentTarget.style.display = 'none'} />
           <span className="relative z-10">{isGovBrLoading ? "CONECTANDO..." : "ENTRAR COM GOV.BR"}</span>
         </button>
@@ -351,12 +352,6 @@ export function ContractorOnboardingForm() {
 
     // Passou pela validação gov.br, continua com o action original
     const form = e.currentTarget;
-    // Isso simula o submit chamando a action
-    const formData = new FormData(form);
-    // Nota: como useActionState não expõe a chamada direta facilmente com event,
-    // Em React 19 podemos usar o action no form e interceptar via onSubmit ou usar startTransition
-    // Por simplicidade na refatoração, vamos apenas despachar
-    // Na prática, form.submit() bypassaria o useActionState, então usamos requestSubmit
     form.requestSubmit();
   };
 

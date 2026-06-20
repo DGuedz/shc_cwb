@@ -21,7 +21,7 @@ interface MultiStepWizardProps {
   initialData?: Record<string, string>;
 }
 
-export function MultiStepWizard({ type, steps, onComplete, initialData = {} }: MultiStepWizardProps) {
+export function MultiStepWizard({ steps, onComplete, initialData = {} }: MultiStepWizardProps) {
   const [currentStep, setCurrentStep] = useState(0);
   const [direction, setDirection] = useState(1);
   const [formData, setFormData] = useState<Record<string, string>>(initialData);

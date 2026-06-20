@@ -1,8 +1,11 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 
-import { AppShell, SectionIntro } from "@/components/ui";
+import { SectionIntro } from "@/components/ui";
+import { Footer } from "@/components/layout/Footer";
+import { DashboardNav } from "@/components/ui/DashboardNav";
 import { PublicArtistProfile } from "@/components/views";
+import { getSessionUser } from "@/lib/auth";
 import { getPublicArtistBySlug, getPublicArtistSlugs } from "@/lib/data";
 import { SITE_NAME, absoluteUrl } from "@/lib/site";
 
@@ -71,7 +74,10 @@ export async function generateMetadata({ params }: ArtistProfilePageProps): Prom
 
 export default async function ArtistProfilePage({ params }: ArtistProfilePageProps) {
   const { slug } = await params;
-  const artist = await getPublicArtistBySlug(slug);
+  const [artist, session] = await Promise.all([
+    getPublicArtistBySlug(slug),
+    getSessionUser(),
+  ]);
 
   if (!artist) {
     notFound();
@@ -97,22 +103,28 @@ export default async function ArtistProfilePage({ params }: ArtistProfilePagePro
   };
 
   return (
-    <AppShell badge="Perfil publico">
+    <div className="bg-black text-white min-h-screen flex flex-col">
+      <DashboardNav session={session} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{
-        // Escapa < > & para prevenir XSS via JSON-LD com dados do usuário
         __html: JSON.stringify(profileJsonLd)
           .replace(/</g, '\\u003c')
           .replace(/>/g, '\\u003e')
           .replace(/&/g, '\\u0026'),
       }} />
-      <div className="space-y-12">
-        <SectionIntro
-          eyebrow="Public dossier"
-          title={artist.stageName}
-          body="Perfil individual indexavel com dados essenciais para descoberta inicial, metadata propria e ativos de compartilhamento por entidade."
-        />
-        <PublicArtistProfile artist={artist} />
-      </div>
-    </AppShell>
+      <main className="mx-auto flex w-full max-w-7xl flex-1 flex-col px-4 pt-24 pb-16 md:px-8">
+        <p className="mb-8 font-mono text-[10px] uppercase tracking-[0.3em] text-[var(--accent)]">
+          Perfil publico
+        </p>
+        <div className="space-y-12">
+          <SectionIntro
+            eyebrow="Public dossier"
+            title={artist.stageName}
+            body="Perfil individual indexavel com dados essenciais para descoberta inicial, metadata propria e ativos de compartilhamento por entidade."
+          />
+          <PublicArtistProfile artist={artist} />
+        </div>
+      </main>
+      <Footer />
+    </div>
   );
 }

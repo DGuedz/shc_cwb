@@ -68,7 +68,7 @@ export function NewsContent() {
         <SectionReveal delay={0.1}>
           <div className="mt-16 border border-[#393939] bg-[#0E0E0E] p-8 flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
             <div>
-              <p className="font-mono text-[9px] text-[#10B981] tracking-widest uppercase mb-2">// Em breve</p>
+              <p className="font-mono text-[9px] text-[#10B981] tracking-widest uppercase mb-2">Em breve</p>
               <ScrollRevealTitle as="h2" chromatic className="font-archivo shc-block font-bold uppercase tracking-tight mb-1">
                 NEWSLETTER SHC
               </ScrollRevealTitle>

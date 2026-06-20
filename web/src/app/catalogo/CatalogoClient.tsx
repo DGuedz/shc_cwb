@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import Image from "next/image";
 import { useState } from "react";
 import { Footer } from "@/components/layout/Footer";
 import { DashboardNav } from "@/components/ui/DashboardNav";
@@ -195,10 +196,12 @@ export default function VitrineArtistas({
 								className="group relative bg-[#131313] border border-[#393939] overflow-hidden hover:border-[#10B981] transition-colors duration-300 flex flex-col h-full"
 							>
 								<div className="relative h-[220px] w-full overflow-hidden bg-[#1A1A1A]">
-									<img
+									<Image
 										src={`/images/artists/0${(i % 8) + 1}.jpg`}
 										alt={`Foto de perfil do artista ${artist.stageName}`}
-										className="w-full h-full object-cover grayscale opacity-80 group-hover:grayscale-0 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700 ease-out"
+										fill
+										className="object-cover grayscale opacity-80 group-hover:grayscale-0 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700 ease-out"
+										sizes="(max-width: 768px) 100vw, 33vw"
 									/>
 									<div
 										className="absolute top-4 left-4 bg-black/80 backdrop-blur-sm border border-[#10B981]/30 px-2 py-1 flex items-center gap-1.5"

@@ -3,7 +3,6 @@
 import { useMemo, useState } from 'react';
 
 const WEEKS = 52;
-const DAY_LABELS = ['S', '', 'T', '', 'Q', '', 'S', 'D']; // Mon–Sun, label every 2
 const MONTHS_PT = ['Jan','Fev','Mar','Abr','Mai','Jun','Jul','Ago','Set','Out','Nov','Dez'];
 
 function seededRand(seed: number) {
@@ -64,7 +63,6 @@ type StatCategory = { label: string; count: number; accent?: boolean };
 
 export function ActivityHeatmap({
   artistId,
-  exp,
   stats,
 }: {
   artistId: string;
