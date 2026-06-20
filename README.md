@@ -20,6 +20,8 @@
 
 [![Hackathon](https://img.shields.io/badge/TRAE%20+%20AI%20Brasil-Hackathon%202026-FF6B35?style=for-the-badge)](https://trae.aibrasil.ai)
 [![Status](https://img.shields.io/badge/Status-MVP%20em%20Produção-10B981?style=flat-square)]()
+[![Código](https://img.shields.io/badge/Código-MIT-blue?style=flat-square)](LICENSE)
+[![Conteúdo](https://img.shields.io/badge/Conteúdo-CC%20BY--NC--ND%204.0-lightgrey?style=flat-square)](LICENSE-CONTENT.md)
 
 </div>
 
@@ -256,5 +258,10 @@ Este projeto foi desenvolvido como parte do **Desafio TRAE + AI Brasil**, realiz
 *Curadoria, booking e governança para a economia criativa brasileira.*
 
 Construído por [DGuedz](https://instagram.com/dguedz) · Powered by [TRAE IDE](https://trae.ai) + Claude
+
+---
+
+Código © 2026 DGuedz / ASTEPAM — [MIT License](LICENSE)
+Conteúdo © 2026 DGuedz / ASTEPAM — [CC BY-NC-ND 4.0](LICENSE-CONTENT.md)
 
 </div>
