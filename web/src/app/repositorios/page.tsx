@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import { DashboardNav } from "@/components/ui/DashboardNav";
 
 const REPOS = [
   {
@@ -64,8 +63,6 @@ export default function Repositorios() {
 
   return (
     <div className="bg-black text-[var(--on-background)] min-h-screen flex flex-col">
-      <DashboardNav />
-
       <main className="flex-grow pt-20 pb-20 px-[var(--spacing-margin-mobile)] md:px-[var(--spacing-margin-desktop)] max-w-[var(--spacing-container-max)] mx-auto w-full">
         {/* HERO */}
         <header className="mb-12 flex flex-col items-start gap-4 relative">

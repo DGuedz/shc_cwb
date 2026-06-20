@@ -1,15 +1,8 @@
 import { ReactNode } from 'react';
 
-import { DashboardNav } from '@/components/ui/DashboardNav';
-import { getSessionUser } from '@/lib/auth';
-
 export default async function OnboardingLayout({ children }: { children: ReactNode }) {
-  const session = await getSessionUser();
-
   return (
     <div className="min-h-screen bg-[#131313] text-white flex flex-col font-archivo selection:bg-[#10B981] selection:text-black">
-      <DashboardNav session={session} />
-
       {/* Main Content Area */}
       <main className="flex-1 flex flex-col items-center justify-center pt-24 pb-12 px-6 md:px-12 relative overflow-hidden">
         {/* Background Grid Pattern Brutalista */}

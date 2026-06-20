@@ -1,4 +1,3 @@
-import { DashboardNav } from '@/components/ui/DashboardNav';
 import { Footer } from '@/components/layout/Footer';
 import { HeroSection } from '@/components/landing-sections/01_HeroSection';
 import { ProblemSolutionSplit } from '@/components/landing-sections/02_ProblemSolutionSplit';
@@ -6,13 +5,10 @@ import { VideoTransition } from '@/components/landing-sections/02b_VideoTransiti
 import { Solution } from '@/components/landing-sections/03_Solution';
 import { Impact } from '@/components/landing-sections/04_Impact';
 import { Conversion } from '@/components/landing-sections/05_Conversion';
-import { getSessionUser } from '@/lib/auth';
 
 export default async function Home() {
-  const session = await getSessionUser();
   return (
     <div className="bg-background text-white font-archivo">
-      <DashboardNav session={session} />
       <main>
         <HeroSection />
         <ProblemSolutionSplit />

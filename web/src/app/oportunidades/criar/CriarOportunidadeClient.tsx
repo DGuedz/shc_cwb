@@ -2,15 +2,12 @@
 
 import { useActionState, useEffect } from "react";
 import { useRouter } from "next/navigation";
-import { DashboardNav } from "@/components/ui/DashboardNav";
 import { ScrollRevealTitle } from "@/components/ui/ScrollRevealTitle";
 import { saveOpportunityAction, type FormActionState } from "@/app/actions";
 import { useAppStore } from "@/store/app-store";
-import type { SessionUser } from "@/types/domain";
-
 const initialState: FormActionState = {};
 
-export default function CriarOportunidadeClient({ session }: { session: SessionUser }) {
+export default function CriarOportunidadeClient() {
   const router = useRouter();
   const [state, action, pending] = useActionState(saveOpportunityAction, initialState);
   
@@ -35,8 +32,6 @@ export default function CriarOportunidadeClient({ session }: { session: SessionU
 
   return (
     <div className="bg-black text-[var(--on-background)] min-h-screen flex flex-col">
-      <DashboardNav session={session} />
-      
       {/* Main Content Canvas */}
       <main className="flex-grow pt-20 pb-20 px-[var(--spacing-margin-mobile)] md:px-[var(--spacing-margin-desktop)] max-w-[var(--spacing-container-max)] mx-auto w-full">
         {/* Hero Header */}

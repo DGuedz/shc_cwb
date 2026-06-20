@@ -1,6 +1,4 @@
 import { Footer } from "@/components/layout/Footer";
-import { DashboardNav } from "@/components/ui/DashboardNav";
-import { getSessionUser } from "@/lib/auth";
 import { NewsContent } from "./NewsContent";
 
 export const metadata = {
@@ -9,10 +7,8 @@ export const metadata = {
 };
 
 export default async function NewsPage() {
-  const session = await getSessionUser();
   return (
     <div className="bg-black text-white min-h-screen flex flex-col">
-      <DashboardNav session={session} />
       <NewsContent />
       <Footer />
     </div>

@@ -2,8 +2,6 @@ import { notFound } from "next/navigation";
 import Link from "next/link";
 import type { Route } from "next";
 import { Footer } from "@/components/layout/Footer";
-import { DashboardNav } from "@/components/ui/DashboardNav";
-import { getSessionUser } from "@/lib/auth";
 import { articles, getArticleBySlug } from "@/lib/articles";
 import type { Metadata } from "next";
 
@@ -34,12 +32,8 @@ export default async function ArticlePage({
   const article = getArticleBySlug(slug);
   if (!article) notFound();
 
-  const session = await getSessionUser();
-
   return (
     <div className="bg-black text-white min-h-screen flex flex-col">
-      <DashboardNav session={session} />
-
       <main className="flex-grow pt-24 pb-20 px-4 md:px-8 max-w-[780px] mx-auto w-full">
 
         {/* BREADCRUMB */}

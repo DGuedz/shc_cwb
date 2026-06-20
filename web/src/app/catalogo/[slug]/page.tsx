@@ -3,9 +3,7 @@ import { notFound } from "next/navigation";
 
 import { SectionIntro } from "@/components/ui";
 import { Footer } from "@/components/layout/Footer";
-import { DashboardNav } from "@/components/ui/DashboardNav";
 import { PublicArtistProfile } from "@/components/views";
-import { getSessionUser } from "@/lib/auth";
 import { getPublicArtistBySlug, getPublicArtistSlugs } from "@/lib/data";
 import { SITE_NAME, absoluteUrl } from "@/lib/site";
 
@@ -74,10 +72,7 @@ export async function generateMetadata({ params }: ArtistProfilePageProps): Prom
 
 export default async function ArtistProfilePage({ params }: ArtistProfilePageProps) {
   const { slug } = await params;
-  const [artist, session] = await Promise.all([
-    getPublicArtistBySlug(slug),
-    getSessionUser(),
-  ]);
+  const artist = await getPublicArtistBySlug(slug);
 
   if (!artist) {
     notFound();
@@ -104,7 +99,6 @@ export default async function ArtistProfilePage({ params }: ArtistProfilePagePro
 
   return (
     <div className="bg-black text-white min-h-screen flex flex-col">
-      <DashboardNav session={session} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{
         __html: JSON.stringify(profileJsonLd)
           .replace(/</g, '\\u003c')

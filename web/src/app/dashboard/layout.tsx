@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 
-import { DashboardNav } from "@/components/ui/DashboardNav";
 import { requireSession } from "@/lib/auth";
 
 export const metadata: Metadata = {
@@ -15,11 +14,10 @@ export default async function DashboardLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const session = await requireSession({ redirectTo: "/sign-in" });
+  await requireSession({ redirectTo: "/sign-in" });
 
   return (
     <div className="bg-black text-[var(--on-background)] min-h-screen flex flex-col">
-      <DashboardNav session={session} />
       <main className="flex-grow pt-20 pb-20 px-[var(--spacing-margin-mobile)] md:px-[var(--spacing-margin-desktop)] max-w-[var(--spacing-container-max)] mx-auto w-full">
         {children}
       </main>

@@ -2,7 +2,9 @@ import type { Metadata } from "next";
 import { Archivo_Narrow, Inter, JetBrains_Mono } from "next/font/google";
 
 import "./globals.css";
+import { Suspense } from "react";
 import { SITE_DESCRIPTION, SITE_NAME, absoluteUrl, getSiteUrl } from "@/lib/site";
+import { NavServer } from "@/components/ui/NavServer";
 
 const headingFont = Archivo_Narrow({
   variable: "--font-heading-ui",
@@ -64,7 +66,12 @@ export default function RootLayout({
       lang="pt-BR"
       className={`${headingFont.variable} ${bodyFont.variable} ${monoFont.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col">{children}</body>
+      <body className="min-h-full flex flex-col">
+        <Suspense fallback={null}>
+          <NavServer />
+        </Suspense>
+        {children}
+      </body>
     </html>
   );
 }

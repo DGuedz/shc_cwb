@@ -9,8 +9,6 @@ import {
 import Link from "next/link";
 import { useRef } from "react";
 import { Footer } from "@/components/layout/Footer";
-import { DashboardNav } from "@/components/ui/DashboardNav";
-import type { SessionUser } from "@/types/domain";
 
 // Componente para criar efeito metálico dinâmico atrelado ao scroll
 function MetallicText({
@@ -620,7 +618,7 @@ function Slide7() {
 	);
 }
 
-export default function PitchdeckClient({ session }: { session: SessionUser | null }) {
+export default function PitchdeckClient() {
 	const containerRef = useRef<HTMLDivElement>(null);
 
 	const { scrollYProgress } = useScroll({
@@ -633,8 +631,6 @@ export default function PitchdeckClient({ session }: { session: SessionUser | nu
 			ref={containerRef}
 			className="bg-[#0E0E0E] text-white min-h-screen selection:bg-[#10B981] selection:text-black"
 		>
-			<DashboardNav session={session} />
-
 			{/* Progress Bar do Deck */}
 			<motion.div
 				className="fixed top-14 left-0 h-[2px] bg-[#10B981] z-50 origin-left"

@@ -4,10 +4,9 @@ import { motion } from "framer-motion";
 import Image from "next/image";
 import { useState } from "react";
 import { Footer } from "@/components/layout/Footer";
-import { DashboardNav } from "@/components/ui/DashboardNav";
 import { ScrollRevealTitle } from "@/components/ui/ScrollRevealTitle";
 import { TripartiteHandshake } from "@/components/ui/TripartiteHandshake";
-import type { Artist, SessionUser, XpTier } from "@/types/domain";
+import type { Artist, XpTier } from "@/types/domain";
 
 const XP_TIER_STYLE: Record<XpTier, { label: string; color: string; border: string }> = {
   INICIANTE:  { label: "INICIANTE",  color: "text-neutral-400", border: "border-neutral-600" },
@@ -24,10 +23,8 @@ function fmt(n: number) {
 
 export default function VitrineArtistas({
 	initialArtists,
-	session,
 }: {
 	initialArtists: Artist[];
-	session: SessionUser | null;
 }) {
 	const [isVerifiedOnly, setIsVerifiedOnly] = useState(true);
 	const [selectedArtist, setSelectedArtist] = useState<Artist | null>(null);
@@ -44,8 +41,6 @@ export default function VitrineArtistas({
 
 	return (
 		<div className="bg-black text-[var(--on-background)] min-h-screen flex flex-col">
-			<DashboardNav session={session} />
-
 			<main className="flex-grow pt-20 pb-20 px-[var(--spacing-margin-mobile)] md:px-[var(--spacing-margin-desktop)] max-w-[var(--spacing-container-max)] mx-auto w-full">
 				{/* HERO EDITORIAL */}
 				<header className="mb-12 md:mb-16 flex flex-col items-start gap-4 relative">

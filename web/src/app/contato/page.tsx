@@ -1,7 +1,5 @@
 import { Footer } from "@/components/layout/Footer";
-import { DashboardNav } from "@/components/ui/DashboardNav";
 import { GlassCTA } from "@/components/ui/GlassCTA";
-import { getSessionUser } from "@/lib/auth";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -66,12 +64,8 @@ const redes = [
 ];
 
 export default async function ContatoPage() {
-  const session = await getSessionUser();
-
   return (
     <div className="bg-black text-white min-h-screen flex flex-col">
-      <DashboardNav session={session} />
-
       <main className="flex-grow pt-24 pb-20 px-4 md:px-8 max-w-[1400px] mx-auto w-full">
 
         {/* HERO */}
