@@ -1,24 +1,23 @@
 'use client';
 
+import Link from "next/link";
+import type { Route } from "next";
 import { ScrollRevealTitle } from "@/components/ui/ScrollRevealTitle";
 import { SectionReveal } from "@/components/ui/SectionReveal";
 import { PageEntrance } from "@/components/ui/PageEntrance";
 import { GlassCTA } from "@/components/ui/GlassCTA";
 import { ChromaticSpan } from "@/components/ui/ChromaticSpan";
+import { articles } from "@/lib/articles";
 
-const posts = [
-  { id: "001", date: "Jun 2026", tag: "LANÇAMENTO", highlight: true,
-    title: "Street Hub Connect entra em fase beta",
-    excerpt: "A plataforma abre as portas para os primeiros associados. Catálogo curado, sistema de XP e matchmaking inteligente já disponíveis." },
-  { id: "002", date: "Mai 2026", tag: "PROTOCOLO", highlight: false,
-    title: "Sistema de XP e multiplicador de cachê explicado",
-    excerpt: "De INICIANTE a REFERÊNCIA, cada nível impacta diretamente no valor de cachê do artista e na visibilidade no catálogo." },
-  { id: "003", date: "Mai 2026", tag: "PARCERIA", highlight: false,
-    title: "Primeiras empresas confirmadas no protocolo",
-    excerpt: "Marcas de Curitiba e região começam a usar o Matchboard. Fluxo de booking validado em evento piloto com 3 contratações confirmadas." },
-  { id: "004", date: "Abr 2026", tag: "HACKATHON", highlight: false,
-    title: "SHC apresentado no Hackathon Stitch Street",
-    excerpt: "Protótipo validado com feedback de artistas, empresas e investidores. A tese: tecnologia a serviço da economia criativa underground." },
+const updates = [
+  { id: "003", date: "Jun 2026", tag: "FUNDAÇÃO", highlight: false,
+    title: "Documentação institucional publicada",
+    excerpt: "Memorial fundacional, estatuto social (76 artigos), roadmap estratégico e páginas legais (Privacidade, Termos, Contato) publicados no site.",
+    href: "/documentos" },
+  { id: "004", date: "Jun 2026", tag: "HACKATHON", highlight: false,
+    title: "SHC apresentado no Hackathon TRAE + AI Brasil 2026",
+    excerpt: "Protótipo desenvolvido e publicado durante o desafio. Plataforma no ar com catálogo, matchboard e fluxos de demo para artistas e contratantes.",
+    href: "https://www.youtube.com/watch?v=OMFsVcebzLQ" },
 ];
 
 export function NewsContent() {
@@ -39,34 +38,101 @@ export function NewsContent() {
           </h1>
         </header>
 
-        {/* POSTS */}
-        <div className="flex flex-col gap-px bg-[#393939] border border-[#393939]">
-          {posts.map((post, i) => (
-            <SectionReveal key={post.id} delay={i * 0.06}>
-              <article className={`bg-[#0E0E0E] p-6 md:p-8 flex flex-col md:flex-row gap-6 group cursor-pointer hover:bg-[#131313] transition-colors ${post.highlight ? "border-l-2 border-[#10B981]" : ""}`}>
-                <div className="flex flex-row md:flex-col gap-4 md:gap-2 md:min-w-[120px]">
-                  <span className="font-mono text-[9px] text-[#10B981] tracking-widest uppercase border border-[#10B981]/30 bg-[#10B981]/10 px-2 py-1 h-fit w-fit">{post.tag}</span>
-                  <span className="font-mono text-[9px] text-neutral-600 tracking-widest uppercase self-center md:self-auto md:mt-2">{post.date}</span>
-                </div>
-                <div className="flex-1 flex flex-col gap-3">
-                  <ScrollRevealTitle as="h2" className="font-archivo shc-block font-bold uppercase tracking-tight text-white group-hover:text-[#10B981] transition-colors">
-                    {post.title}
-                  </ScrollRevealTitle>
-                  <p className="font-mono text-xs text-neutral-500 leading-relaxed max-w-2xl">{post.excerpt}</p>
-                </div>
-                <div className="hidden md:flex items-center text-neutral-700 group-hover:text-[#10B981] transition-colors">
-                  <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-                    <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round"/>
-                  </svg>
-                </div>
-              </article>
-            </SectionReveal>
-          ))}
-        </div>
+        {/* ARTIGOS — publicações reais */}
+        <SectionReveal>
+          <section className="mb-12">
+            <div className="flex items-center gap-3 mb-6">
+              <span className="font-mono text-[9px] uppercase tracking-[0.3em] text-neutral-600">Artigos</span>
+              <span className="flex-1 h-px bg-[#1A1A1A]" />
+              <span className="font-mono text-[9px] text-neutral-700">{articles.length} publicações</span>
+            </div>
+
+            <div className="flex flex-col gap-px bg-[#1A1A1A] border border-[#1A1A1A]">
+              {articles.map((article, i) => (
+                <SectionReveal key={article.slug} delay={i * 0.06}>
+                  <Link
+                    href={`/news/${article.slug}`}
+                    className="group flex flex-col md:flex-row gap-6 bg-[#0A0A0A] p-6 md:p-8 hover:bg-[#0E0E0E] transition-colors border-l-2 border-[#10B981]"
+                  >
+                    <div className="flex flex-row md:flex-col gap-4 md:gap-2 md:min-w-[120px]">
+                      <span className="font-mono text-[8px] text-[#10B981] border border-[#10B981]/30 bg-[#10B981]/5 px-2 py-1 h-fit w-fit uppercase tracking-widest">
+                        {article.tag}
+                      </span>
+                      <span className="font-mono text-[9px] text-neutral-600 tracking-widest uppercase self-center md:self-auto md:mt-2">
+                        {article.date}
+                      </span>
+                    </div>
+                    <div className="flex-1 flex flex-col gap-3">
+                      <h2 className="font-archivo text-base font-bold uppercase tracking-tight text-white group-hover:text-[#10B981] transition-colors leading-snug">
+                        {article.title}
+                      </h2>
+                      <p className="font-mono text-[10px] text-neutral-500 leading-relaxed max-w-2xl">
+                        {article.excerpt}
+                      </p>
+                      <span className="font-mono text-[9px] uppercase tracking-widest text-neutral-700 group-hover:text-[#10B981] transition-colors">
+                        Ler artigo →
+                      </span>
+                    </div>
+                  </Link>
+                </SectionReveal>
+              ))}
+            </div>
+          </section>
+        </SectionReveal>
+
+        {/* ATUALIZAÇÕES */}
+        <SectionReveal>
+          <section className="mb-16">
+            <div className="flex items-center gap-3 mb-6">
+              <span className="font-mono text-[9px] uppercase tracking-[0.3em] text-neutral-600">Atualizações</span>
+              <span className="flex-1 h-px bg-[#1A1A1A]" />
+            </div>
+
+            <div className="flex flex-col gap-px bg-[#393939] border border-[#393939]">
+              {updates.map((post, i) => {
+                const inner = (
+                  <>
+                    <div className="flex flex-row md:flex-col gap-4 md:gap-2 md:min-w-[120px]">
+                      <span className="font-mono text-[8px] text-neutral-400 border border-[#393939] bg-[#0E0E0E] px-2 py-1 h-fit w-fit uppercase tracking-widest">
+                        {post.tag}
+                      </span>
+                      <span className="font-mono text-[9px] text-neutral-600 tracking-widest uppercase self-center md:self-auto md:mt-2">
+                        {post.date}
+                      </span>
+                    </div>
+                    <div className="flex-1 flex flex-col gap-3">
+                      <ScrollRevealTitle as="h2" className="font-archivo shc-block font-bold uppercase tracking-tight text-white group-hover:text-[#10B981] transition-colors">
+                        {post.title}
+                      </ScrollRevealTitle>
+                      <p className="font-mono text-[10px] text-neutral-500 leading-relaxed max-w-2xl">
+                        {post.excerpt}
+                      </p>
+                    </div>
+                    <div className="hidden md:flex items-center text-neutral-700 group-hover:text-[#10B981] transition-colors">
+                      <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                        <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round"/>
+                      </svg>
+                    </div>
+                  </>
+                );
+                const cls = "group flex flex-col md:flex-row gap-6 bg-[#0E0E0E] p-6 md:p-8 hover:bg-[#131313] transition-colors cursor-pointer";
+                return (
+                  <SectionReveal key={post.id} delay={i * 0.06}>
+                    {post.href.startsWith("http") ? (
+                      <a href={post.href} target="_blank" rel="noopener noreferrer" className={cls}>{inner}</a>
+                    ) : (
+                      <Link href={post.href as Route} className={cls}>{inner}</Link>
+                    )}
+                  </SectionReveal>
+                );
+              })}
+            </div>
+          </section>
+        </SectionReveal>
 
         {/* NEWSLETTER */}
         <SectionReveal delay={0.1}>
-          <div className="mt-16 border border-[#393939] bg-[#0E0E0E] p-8 flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
+          <div className="border border-[#393939] bg-[#0E0E0E] p-8 flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
             <div>
               <p className="font-mono text-[9px] text-[#10B981] tracking-widest uppercase mb-2">Em breve</p>
               <ScrollRevealTitle as="h2" chromatic className="font-archivo shc-block font-bold uppercase tracking-tight mb-1">

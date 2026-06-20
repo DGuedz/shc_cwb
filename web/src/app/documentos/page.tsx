@@ -123,6 +123,18 @@ const docs: DocCard[] = [
     href: "https://github.com/DGuedz/shc_cwb/blob/main/legal/CC-BY-NC-ND-4.0-registro-oficial.md",
     external: true,
   },
+  {
+    id: "guia-cc",
+    category: "licencas",
+    title: "Guia Creative Commons",
+    subtitle: "Como usar e aplicar o CC",
+    description:
+      "O que é o Creative Commons, as 4 condições (BY, NC, ND, SA), como a SHC aplica o CC BY-NC-ND 4.0, como artistas podem licenciar suas obras, e a dupla proteção ISRC + CC para soberania fonográfica.",
+    badge: "Guia",
+    badgeVariant: "neutral",
+    href: "/documentos/creative-commons",
+    external: false,
+  },
 
   // ROADMAP
   {
