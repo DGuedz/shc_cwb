@@ -18,6 +18,46 @@ export type Article = {
 
 export const articles: Article[] = [
   {
+    slug: "empresa-pioneira-street-hub-connect",
+    id: "003",
+    date: "Jun 2026",
+    tag: "PARCERIA",
+    title: "Como Sua Empresa do Lucro Real Pode Ser Pioneira no Street Hub Connect",
+    excerpt:
+      "Guia completo para empresas que querem patrocinar shows, reduzir IRPJ e se tornar parceiras fundadoras da associação — via renúncia fiscal legal.",
+    author: "DGuedz",
+    authorRole: "Rapper, compositor e fundador do Street Hub Connect",
+    sections: [
+      {
+        body: "Existe uma lacuna pouco explorada na legislação tributária brasileira: empresas optantes pelo Lucro Real podem destinar até 2% do lucro operacional para programas sociais e culturais — e abater esse valor diretamente do Imposto de Renda.\n\nO instrumento existe há décadas. A maioria das empresas simplesmente não usa.\n\nO Street Hub Connect foi estruturado exatamente para viabilizar essa ponte: sua empresa apoia a economia criativa, patrocina shows de artistas curadados, recebe um relatório de sustentabilidade cultural verificável — e ainda reduz a carga tributária.",
+      },
+      {
+        heading: "O MECANISMO LEGAL",
+        body: "A base jurídica é o Art. 13, § 2º, incisos II e III da Lei Federal nº 9.249/95:\n\n— Até 2% do lucro operacional pode ser destinado a programas sociais de entidades sem fins econômicos;\n— Até 1,5% adicional pode ser destinado a P&D via Instituição de Ciência e Tecnologia (ICT).\n\nA Street Hub Connect se qualifica em ambas as categorias:\n\nComo associação sem fins econômicos registrada nos termos do Código Civil (Art. 53), a SHC recebe doações dedutíveis como programas sociais.\n\nComo ICT nos termos da Lei Federal nº 13.243/16, a SHC pode receber aportes destinados a P&D em tecnologia fonográfica e curadoria de impacto.\n\nIsso significa que empresas com lucro operacional de R$ 1.000.000/mês podem destinar até R$ 20.000/mês para a associação — com dedução direta no IRPJ. Dinheiro que sairia para o imposto passa a financiar cultura, arte e impacto local.",
+      },
+      {
+        heading: "O QUE VOCÊ RECEBE COMO EMPRESA PARCEIRA",
+        body: "A parceria com a SHC não é filantropia. É uma troca estruturada:\n\nVISIBILIDADE\nSua marca associada ao catálogo curado de artistas independentes de Curitiba e região. Logo nas comunicações dos shows, nos perfis dos artistas apoiados e nos materiais institucionais da associação.\n\nATESTADO DE SUSTENTABILIDADE CULTURAL\nRelatório NBC T 15 (Valor Adicionado Cultural) emitido pela SHC com os dados de impacto dos shows patrocinados — documento válido para relatórios ESG, certificações e auditorias de responsabilidade social.\n\nACESSO AO MATCHBOARD\nSua empresa tem acesso ao Matchboard da plataforma: catálogo curado de artistas com perfil completo, gênero musical, faixa de cachê, histórico de acordos e avaliações. Você escolhe o artista certo para o evento certo.\n\nHISTÓRICO RASTREÁVEL\nTodos os acordos e patrocínios ficam registrados com data, valor e partes — histórico imutável que integra sua prestação de contas junto à contabilidade e ao fisco.\n\nPIONEIRISMO\nAs primeiras empresas a formalizarem parceria com a SHC são reconhecidas como parceiras fundadoras — com menção permanente nos documentos institucionais da associação.",
+      },
+      {
+        heading: "PASSO A PASSO: COMO FECHAR A PARCERIA",
+        body: "01. CADASTRO\nAcesse shc-cwb.vercel.app/onboarding/empresa e preencha o formulário de cadastro como contratante. Dados da empresa, CNPJ, responsável financeiro e tipo de evento de interesse.\n\n02. ANÁLISE DE VIABILIDADE\nNossa equipe recebe seus dados e calcula exatamente quanto sua empresa pode destinar à SHC com base no lucro operacional do último exercício — sem compromisso.\n\n03. CARTA-PROPOSTA\nVocê recebe uma carta-proposta com o enquadramento legal completo (Lei 9.249/95, art. 13), o valor estimado de dedução fiscal e as contrapartidas da parceria. Documento pronto para sua contabilidade e diretoria analisarem.\n\n04. CONVÊNIO DE PARCERIA\nAssinatura do convênio entre sua empresa e a Street Hub Connect, com prazo, valor, contrapartidas e obrigações de ambas as partes. Tudo registrado na plataforma SHC com histórico rastreável.\n\n05. MATCHBOARD\nCom o convênio ativo, você acessa o Matchboard e começa a selecionar artistas para seus eventos. Curadoria nossa, decisão sua.\n\n06. SHOWS E RELATÓRIO\nShows realizados, artistas pagos com histórico de acordo. Ao final do período, você recebe o Atestado de Sustentabilidade Cultural com os dados de impacto para sua contabilidade.",
+      },
+      {
+        heading: "QUANTO ISSO REPRESENTA NA PRÁTICA",
+        body: "Exemplo com empresa de lucro operacional de R$ 500.000/mês:\n\nValor disponível para a SHC:\n→ 2% de R$ 500.000 = R$ 10.000/mês\n→ Em 12 meses: R$ 120.000 financiando shows e artistas locais\n\nImpacto tributário:\n→ Sem a SHC: R$ 10.000 vai para o IRPJ\n→ Com a SHC: R$ 10.000 financia cultura, vira dedução e reduz a base de cálculo\n\nEssa diferença não é abstrata. É a diferença entre financiar a Receita Federal ou financiar 8 a 12 shows de artistas independentes por mês em Curitiba e região.",
+      },
+      {
+        heading: "QUEM PODE SER PARCEIRO FUNDADOR",
+        body: "Empresas optantes pelo Lucro Real, de qualquer setor, com interesse em:\n\n— Associar a marca a eventos culturais locais;\n— Cumprir obrigações ESG com impacto verificável;\n— Reduzir a carga tributária de forma legal e documentada;\n— Ter acesso a talentos artísticos curadados para eventos corporativos, lançamentos de produto ou ações de marketing.\n\nNão é necessário ter experiência prévia com o setor cultural. A SHC faz a curadoria, organiza o briefing e entrega o artista certo para cada ocasião.",
+      },
+      {
+        body: "O mercado da música independente no Brasil movimenta bilhões. A maioria desse dinheiro passa por intermediários que não conhecem o artista, não curadaram o talento e não têm nenhum interesse no resultado além da margem.\n\nA Street Hub Connect oferece outra rota: sua empresa financia cultura com eficiência fiscal, o artista recebe cachê justo com histórico verificável, e a associação cresce como infraestrutura coletiva da economia criativa brasileira.\n\nAs primeiras vagas de parceria fundadora estão abertas.",
+      },
+    ],
+    cta: { label: "Cadastro de empresas", href: "/onboarding/empresa" },
+  },
+  {
     slug: "direitos-autorais-digitais",
     id: "001",
     date: "Jun 2026",

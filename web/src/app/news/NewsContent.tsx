@@ -10,13 +10,13 @@ import { ChromaticSpan } from "@/components/ui/ChromaticSpan";
 import { articles } from "@/lib/articles";
 
 const updates = [
-  { id: "003", date: "Jun 2026", tag: "FUNDAÇÃO", highlight: false,
+  { id: "upd-01", date: "Jun 2026", tag: "FUNDAÇÃO",
     title: "Documentação institucional publicada",
-    excerpt: "Memorial fundacional, estatuto social (76 artigos), roadmap estratégico e páginas legais (Privacidade, Termos, Contato) publicados no site.",
+    excerpt: "Memorial fundacional, estatuto social (76 artigos), roadmap estratégico e páginas legais publicados no site.",
     href: "/documentos" },
-  { id: "004", date: "Jun 2026", tag: "HACKATHON", highlight: false,
+  { id: "upd-02", date: "Jun 2026", tag: "HACKATHON",
     title: "SHC apresentado no Hackathon TRAE + AI Brasil 2026",
-    excerpt: "Protótipo desenvolvido e publicado durante o desafio. Plataforma no ar com catálogo, matchboard e fluxos de demo para artistas e contratantes.",
+    excerpt: "Protótipo desenvolvido e publicado durante o desafio. Plataforma no ar com catálogo, matchboard e fluxos de demo.",
     href: "https://www.youtube.com/watch?v=OMFsVcebzLQ" },
 ];
 
