@@ -160,8 +160,9 @@ Este registro de licença integra o conjunto de documentos fundacionais da **AST
 | Licença do código-fonte (MIT) | `/LICENSE` |
 | Licença do conteúdo (CC BY-NC-ND 4.0) | `/LICENSE-CONTENT.md` |
 | Registro CC completo (este documento) | `/legal/CC-BY-NC-ND-4.0-registro-oficial.md` |
-| Memorial da Associação | `/legal/memorial-astepam.md` *(a criar)* |
-| Estatuto Social | `/legal/estatuto-astepam.md` *(a criar)* |
+| Memorial da SHC | `/legal/memorial-shc.md` |
+| Nota de Vinculação ASTEPAM | `/legal/memorial-astepam.md` |
+| Estatuto Social SHC | `/legal/estatuto-shc.md` |
 | README do projeto | `/README.md` |
 
 ---
