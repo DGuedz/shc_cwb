@@ -37,7 +37,7 @@ export function Impact() {
           <span className="font-mono text-[#10B981] text-[10px] uppercase tracking-widest block mb-4">
             PHASE_05 // PILOT
           </span>
-          <ScrollRevealTitle className="font-archivo shc-section mb-6">
+          <ScrollRevealTitle className="font-archivo shc-section font-bold uppercase tracking-tighter leading-[0.9] mb-6">
             <span className="text-white">A ECONOMIA </span>
             <span className="text-gradient">CULTURAL</span><br />
             <span className="text-white">ATIVADA.</span>

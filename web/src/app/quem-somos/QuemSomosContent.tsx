@@ -37,7 +37,7 @@ export function QuemSomosContent() {
             <span className="w-8 h-px bg-[#393939] title-reveal reveal-delay-1" />
             <span className="font-mono text-[9px] text-neutral-500 tracking-widest uppercase title-reveal reveal-delay-1">Manifesto</span>
           </div>
-          <h1 className="font-archivo shc-hero max-w-4xl mb-8">
+          <h1 className="font-archivo shc-hero font-bold uppercase tracking-tighter leading-[0.85] max-w-4xl mb-8">
             <span className="block title-metallic reveal-delay-1">A ASSOCIAÇÃO</span>
             <span className="block text-[#10B981] title-reveal reveal-delay-2">QUE FAZ A RODA GIRAR</span>
           </h1>
@@ -49,7 +49,7 @@ export function QuemSomosContent() {
         {/* PILARES — scroll reveal */}
         <SectionReveal>
           <section className="mb-20">
-            <ScrollRevealTitle as="h2" metallic className="font-archivo shc-section mb-8">
+            <ScrollRevealTitle as="h2" metallic className="font-archivo shc-section font-bold uppercase tracking-tighter leading-[0.9] mb-8">
               NOSSOS PILARES
             </ScrollRevealTitle>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-px bg-[#393939] border border-[#393939]">
@@ -57,7 +57,7 @@ export function QuemSomosContent() {
                 <SectionReveal key={p.n} delay={i * 0.07}>
                   <div className="bg-[#0E0E0E] p-8 flex flex-col gap-4 h-full">
                     <span className="font-mono text-[9px] text-[#10B981] tracking-widest">[{p.n}]</span>
-                    <ScrollRevealTitle as="h3" className="font-archivo shc-block text-white">
+                    <ScrollRevealTitle as="h3" className="font-archivo shc-block font-bold uppercase tracking-tight text-white">
                       {p.title}
                     </ScrollRevealTitle>
                     <p className="font-mono text-xs text-neutral-400 leading-relaxed">{p.body}</p>
@@ -71,7 +71,7 @@ export function QuemSomosContent() {
         {/* NÚMEROS */}
         <SectionReveal>
           <section className="mb-20 bg-[#0E0E0E] border border-[#393939] p-8 md:p-12">
-            <ScrollRevealTitle as="h2" metallic className="font-archivo shc-section mb-8">
+            <ScrollRevealTitle as="h2" metallic className="font-archivo shc-section font-bold uppercase tracking-tighter leading-[0.9] mb-8">
               ASSOCIAÇÃO EM NÚMEROS
             </ScrollRevealTitle>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-px bg-[#393939] border border-[#393939]">
@@ -90,7 +90,7 @@ export function QuemSomosContent() {
         {/* TIME */}
         <SectionReveal>
           <section className="mb-20">
-            <ScrollRevealTitle as="h2" metallic className="font-archivo shc-section mb-8">
+            <ScrollRevealTitle as="h2" metallic className="font-archivo shc-section font-bold uppercase tracking-tighter leading-[0.9] mb-8">
               TIME FUNDADOR
             </ScrollRevealTitle>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -114,7 +114,7 @@ export function QuemSomosContent() {
         <SectionReveal>
           <section className="border border-[#393939] bg-[#0E0E0E] p-8 md:p-12 flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
             <div>
-              <ScrollRevealTitle as="h2" metallic className="font-archivo shc-section mb-2">
+              <ScrollRevealTitle as="h2" metallic className="font-archivo shc-section font-bold uppercase tracking-tighter leading-[0.9] mb-2">
                 FAÇA PARTE DA ASSOCIAÇÃO
               </ScrollRevealTitle>
               <p className="font-mono text-xs text-neutral-400">Artistas e empresas. Dois caminhos. Um protocolo.</p>

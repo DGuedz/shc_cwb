@@ -46,7 +46,7 @@ export default function CriarOportunidadeClient({ session }: { session: SessionU
             <span className="font-mono text-xs text-[#10B981] tracking-widest uppercase">SHC_NETWORK // ZK_READY</span>
           </div>
           <ScrollRevealTitle
-            className="font-archivo text-5xl md:text-[64px] font-bold text-white tracking-tighter uppercase max-w-3xl leading-tight text-[#10B981]"
+            className="font-archivo text-[clamp(2.5rem,5.5vw,4rem)] font-bold text-[#10B981] tracking-tighter uppercase leading-[0.88] max-w-3xl"
           >
             CRIAR OPORTUNIDADE
           </ScrollRevealTitle>

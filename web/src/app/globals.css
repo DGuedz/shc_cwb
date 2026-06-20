@@ -64,30 +64,22 @@ body {
 }
 
 /* ─── SHC TYPE SCALE ─────────────────────────────────────────────────────── */
-/* Usar em conjunto com font-archivo e uppercase.                              */
+/* Apenas font-size fluido — demais propriedades via classes Tailwind normais. */
+/* Padrão: font-archivo + font-bold + uppercase + tracking-tighter             */
 
 @utility shc-hero {
-  font-size: clamp(2.5rem, 6.5vw, 4.5rem);
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: -0.04em;
-  line-height: 0.85;
+  /* equivale a text-5xl → text-7xl  (48px → 72px) */
+  font-size: clamp(3rem, 6.5vw, 4.5rem);
 }
 
 @utility shc-section {
-  font-size: clamp(1.6rem, 3.5vw, 3rem);
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: -0.03em;
-  line-height: 0.9;
+  /* equivale a text-3xl → text-5xl  (30px → 48px) */
+  font-size: clamp(1.875rem, 3.5vw, 3rem);
 }
 
 @utility shc-block {
-  font-size: clamp(1.1rem, 2vw, 1.5rem);
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: -0.02em;
-  line-height: 1;
+  /* equivale a text-xl → text-2xl  (20px → 24px) */
+  font-size: clamp(1.25rem, 2vw, 1.5rem);
 }
 
 /* ─── HERO TITLE CSS ANIMATION ───────────────────────────────────────────── */

@@ -32,7 +32,7 @@ export function NewsContent() {
             <span className="w-8 h-px bg-[#393939] title-reveal reveal-delay-1" />
             <span className="font-mono text-[9px] text-neutral-500 tracking-widest uppercase title-reveal reveal-delay-1">Atualizado Jun 2026</span>
           </div>
-          <h1 className="font-archivo shc-hero max-w-4xl">
+          <h1 className="font-archivo shc-hero font-bold uppercase tracking-tighter leading-[0.85] max-w-4xl">
             <span className="block title-metallic reveal-delay-1">NOVIDADES</span>
             <span className="block text-[#10B981] title-reveal reveal-delay-2">DA ASSOCIAÇÃO</span>
           </h1>
@@ -48,7 +48,7 @@ export function NewsContent() {
                   <span className="font-mono text-[9px] text-neutral-600 tracking-widest uppercase self-center md:self-auto md:mt-2">{post.date}</span>
                 </div>
                 <div className="flex-1 flex flex-col gap-3">
-                  <ScrollRevealTitle as="h2" className="font-archivo shc-block text-white group-hover:text-[#10B981] transition-colors">
+                  <ScrollRevealTitle as="h2" className="font-archivo shc-block font-bold uppercase tracking-tight text-white group-hover:text-[#10B981] transition-colors">
                     {post.title}
                   </ScrollRevealTitle>
                   <p className="font-mono text-xs text-neutral-500 leading-relaxed max-w-2xl">{post.excerpt}</p>
@@ -68,7 +68,7 @@ export function NewsContent() {
           <div className="mt-16 border border-[#393939] bg-[#0E0E0E] p-8 flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
             <div>
               <p className="font-mono text-[9px] text-[#10B981] tracking-widest uppercase mb-2">// Em breve</p>
-              <ScrollRevealTitle as="h2" metallic className="font-archivo shc-block mb-1">
+              <ScrollRevealTitle as="h2" metallic className="font-archivo shc-block font-bold uppercase tracking-tight mb-1">
                 NEWSLETTER SHC
               </ScrollRevealTitle>
               <p className="font-mono text-[10px] text-neutral-500">Receba novidades, lançamentos e oportunidades direto no seu email.</p>
