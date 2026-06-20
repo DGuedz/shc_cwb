@@ -18,6 +18,10 @@ const updates = [
     title: "SHC apresentado no Hackathon TRAE + AI Brasil 2026",
     excerpt: "Protótipo desenvolvido e publicado durante o desafio. Plataforma no ar com catálogo, matchboard e fluxos de demo.",
     href: "https://www.youtube.com/watch?v=OMFsVcebzLQ" },
+  { id: "upd-03", date: "Jun 2026", tag: "DOCUMENTOS",
+    title: "Guia Creative Commons publicado",
+    excerpt: "Como a SHC protege seu conteúdo com CC BY-NC-ND 4.0 e como artistas podem usar o Creative Commons para soberania fonográfica.",
+    href: "/documentos/creative-commons" },
 ];
 
 export function NewsContent() {

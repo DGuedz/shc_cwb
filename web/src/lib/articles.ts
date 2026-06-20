@@ -58,6 +58,74 @@ export const articles: Article[] = [
     cta: { label: "Cadastro de empresas", href: "/onboarding/empresa" },
   },
   {
+    slug: "fase-beta",
+    id: "004",
+    date: "Jun 2026",
+    tag: "LANÇAMENTO",
+    title: "Street Hub Connect Entra em Fase Beta",
+    excerpt:
+      "A plataforma abre as portas para os primeiros associados. Catálogo curado, dossiê digital, matchboard e governança fonográfica já disponíveis.",
+    author: "DGuedz",
+    authorRole: "Rapper, compositor e fundador do Street Hub Connect",
+    sections: [
+      {
+        body: "Depois de meses de desenvolvimento, validação de produto e estruturação institucional, a Street Hub Connect entra oficialmente em fase beta.\n\nO que isso significa: a plataforma está no ar, funcional e aberta para os primeiros associados — artistas e contratantes que vão ajudar a moldar o produto antes do lançamento público completo.",
+      },
+      {
+        heading: "O QUE ESTÁ DISPONÍVEL AGORA",
+        body: "CATÁLOGO PÚBLICO\nTodos os artistas associados ganham um perfil indexável no catálogo público da SHC — visível sem login, rastreável por mecanismos de busca via JSON-LD e Open Graph. Qualquer contratante, marca ou parceiro pode encontrar o artista diretamente pelo Google.\n\nDOSSIÊ DIGITAL\nCada artista tem acesso ao próprio dossiê dentro da plataforma: gênero musical, cidade, faixa de cachê, press kit e histórico de acordos. É o perfil profissional que o artista independente nunca teve — organizado, verificável e permanente.\n\nMATCHBOARD\nContratantes criam oportunidades com briefing, orçamento e data. O Matchboard cruza esses dados com o catálogo curado e exibe os artistas compatíveis. Sem intermediários, sem achismo, sem ligação às cegas.\n\nACORDOS\nO módulo de Acordos registra o histórico de negociações entre artistas e contratantes dentro da plataforma — data, valor, partes envolvidas. Rastro digital que protege os dois lados.\n\nGOVERNANÇA FONOGRÁFICA\nOrientação sobre ISRC, registro de obras e proteção de propriedade intelectual para artistas associados. A SHC prepara o terreno para emissão própria de ISRCs como registradora habilitada.",
+      },
+      {
+        heading: "QUEM PODE ENTRAR NA FASE BETA",
+        body: "Artistas independentes: músicos, cantores, compositores, produtores, beatmakers e DJs com produção ativa e interesse em crescer com governança.\n\nContratantes: empresas, produtoras, agências de eventos, marcas e organizadores que contratam serviços artísticos e querem acesso a um catálogo curado.\n\nA curadoria é parte do produto. Não é qualquer um que entra — e isso é intencional. O valor do catálogo depende da qualidade de quem está dentro.",
+      },
+      {
+        heading: "O QUE VEM A SEGUIR",
+        body: "A fase beta é o início. O roadmap prevê:\n\n— ISRC Registry próprio da SHC: emissão de códigos diretamente para artistas associados, sem distribuidoras;\n— Programa de parceria com empresas via renúncia fiscal (Lei 9.249/95): shows financiados com abatimento de IRPJ;\n— Fundo Patrimonial SHC: sustentabilidade de longo prazo para a associação e apoio a artistas;\n— Expansão para outras cidades: São Paulo, Rio de Janeiro, Salvador, Recife.\n\nTudo construído sobre o mesmo princípio: tecnologia a serviço de quem cria, não de quem intermediia.",
+      },
+      {
+        body: "A fase beta não é a versão definitiva. É o momento em que o produto encontra as pessoas que vão ajudar a definir o que ele precisa ser.\n\nSe você é artista ou empresa e quer fazer parte dessa fase, a waitlist está aberta. Os primeiros associados têm voz ativa no desenvolvimento do produto.",
+      },
+    ],
+    cta: { label: "Entrar na waitlist", href: "/waitlist" },
+  },
+  {
+    slug: "sistema-xp-multiplicador-cache",
+    id: "005",
+    date: "Mai 2026",
+    tag: "PROTOCOLO",
+    title: "Sistema de XP e Multiplicador de Cachê: Como Funciona a Progressão do Artista na SHC",
+    excerpt:
+      "De INICIANTE a REFERÊNCIA — cada nível impacta diretamente no valor de cachê e na visibilidade no catálogo. Entenda a lógica por trás do protocolo.",
+    author: "DGuedz",
+    authorRole: "Rapper, compositor e fundador do Street Hub Connect",
+    sections: [
+      {
+        body: "A maioria das plataformas trata todos os artistas da mesma forma. O iniciante que acabou de criar o perfil aparece lado a lado com quem tem anos de estrada, histórico verificável e comprometimento comprovado.\n\nIsso não é curadoria. É uma lista telefônica.\n\nO Street Hub Connect foi construído com uma lógica diferente: presença e engajamento na associação geram progressão real, com impacto direto no valor de cachê e na visibilidade dentro do catálogo.",
+      },
+      {
+        heading: "OS NÍVEIS DE PROGRESSÃO",
+        body: "O sistema de XP da SHC organiza os artistas em cinco níveis:\n\nINICIANTE\nArtista recém-associado. Perfil básico, presença no catálogo, acesso às ferramentas essenciais. Multiplicador de cachê: 1.0x.\n\nATIVO\nArtista com histórico de acordos registrados na plataforma, perfil completo e participação nas decisões da associação. Multiplicador: 1.2x.\n\nESTABELECIDO\nArtista com consistência demonstrada: múltiplos acordos, avaliações positivas de contratantes e engajamento institucional. Multiplicador: 1.5x.\n\nDESTAQUE\nArtista reconhecido pela curadoria como referência de qualidade no catálogo. Aparição prioritária no Matchboard e materiais institucionais. Multiplicador: 1.8x.\n\nREFERÊNCIA\nO topo do protocolo. Artistas no nível REFERÊNCIA são a vitrine da associação — consultados na curadoria de novos associados, com voz ativa nas decisões estratégicas da SHC. Multiplicador: 2.0x.",
+      },
+      {
+        heading: "O QUE GERA XP",
+        body: "A progressão não é automática nem baseada em tempo. É baseada em ação verificável:\n\n— Acordos registrados e concluídos na plataforma\n— Avaliações positivas de contratantes\n— Perfil completo com press kit, gênero, cidade e faixa de cachê\n— Participação em assembleias e decisões da associação\n— Indicações de novos artistas que passam pela curadoria\n— Registros fonográficos (ISRCs) vinculados ao perfil\n\nO que não gera XP: número de seguidores em redes sociais, fama percebida, conexões fora da plataforma. O protocolo reconhece o que é verificável dentro do sistema.",
+      },
+      {
+        heading: "POR QUE O MULTIPLICADOR DE CACHÊ IMPORTA",
+        body: "O multiplicador de cachê não é uma restrição — é um argumento.\n\nQuando um artista no nível REFERÊNCIA apresenta sua faixa de cachê ao contratante, o histórico verificável dentro da plataforma sustenta esse valor. O contratante vê: quantos acordos foram concluídos, quais avaliações recebeu, qual o nível de engajamento institucional.\n\nIsso resolve um problema antigo do mercado independente: artistas sérios não conseguiam justificar cachês compatíveis com seu trabalho porque não tinham onde mostrar o histórico.\n\nO multiplicador não é o SHC decidindo quanto o artista vale. É o SHC criando a infraestrutura para que o artista mostre o próprio valor.",
+      },
+      {
+        heading: "VISIBILIDADE NO CATÁLOGO",
+        body: "Além do multiplicador de cachê, o nível de XP impacta a visibilidade dentro do Matchboard:\n\n— Artistas de nível superior aparecem com prioridade nos resultados de busca dos contratantes;\n— Contratantes podem filtrar por nível mínimo de XP no Matchboard;\n— Artistas de nível DESTAQUE e REFERÊNCIA são apresentados nos materiais institucionais da SHC;\n— O catálogo público ordena os perfis considerando o nível de XP como um dos critérios.\n\nIsso cria um incentivo real para que o artista mantenha presença ativa — não como obrigação, mas como progressão natural de quem está comprometido com a própria carreira.",
+      },
+      {
+        body: "O sistema de XP está em desenvolvimento e será refinado com base no feedback dos primeiros associados da fase beta. Os parâmetros de progressão, os multiplicadores exatos e os critérios de avaliação serão ajustados em conjunto com a comunidade.\n\nEssa é a vantagem de entrar agora: os primeiros associados têm voz ativa na construção do protocolo.",
+      },
+    ],
+    cta: { label: "Entrar na waitlist", href: "/waitlist" },
+  },
+  {
     slug: "direitos-autorais-digitais",
     id: "001",
     date: "Jun 2026",
