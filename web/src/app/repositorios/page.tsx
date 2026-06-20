@@ -79,7 +79,7 @@ export default function Repositorios() {
           <p className="font-mono text-[#10B981] text-xs uppercase tracking-widest">
             REFERÊNCIAS // REPOSITÓRIOS
           </p>
-          <h1 className="text-4xl md:text-6xl font-bold uppercase leading-none tracking-tight">
+          <h1 className="text-[clamp(2rem,5vw,3.75rem)] font-bold uppercase leading-none tracking-tight">
             BASE DE
             <br />
             <span className="text-[#10B981]">CONHECIMENTO</span>

@@ -17,7 +17,7 @@ export default function RootError({
   return (
     <div className="mx-auto flex min-h-screen max-w-4xl flex-col items-start justify-center px-6 py-16">
       <p className="font-mono text-[11px] uppercase tracking-[0.32em] text-red-300">500 // error boundary</p>
-      <h1 className="mt-4 font-heading text-6xl font-bold uppercase tracking-[-0.06em]">
+      <h1 className="mt-4 font-heading text-[clamp(2rem,5vw,3.75rem)] font-bold uppercase tracking-[-0.06em]">
         Sistema em degradacao controlada
       </h1>
       <p className="mt-5 max-w-2xl text-lg leading-8 text-white/72">

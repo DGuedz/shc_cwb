@@ -98,7 +98,13 @@ export default async function ArtistProfilePage({ params }: ArtistProfilePagePro
 
   return (
     <AppShell badge="Perfil publico">
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(profileJsonLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{
+        // Escapa < > & para prevenir XSS via JSON-LD com dados do usuário
+        __html: JSON.stringify(profileJsonLd)
+          .replace(/</g, '\\u003c')
+          .replace(/>/g, '\\u003e')
+          .replace(/&/g, '\\u0026'),
+      }} />
       <div className="space-y-12">
         <SectionIntro
           eyebrow="Public dossier"

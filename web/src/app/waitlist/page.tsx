@@ -18,7 +18,7 @@ export default async function Waitlist() {
 							ACESSO RESTRITO
 						</span>
 					</div>
-					<h1 className="font-archivo text-3xl md:text-5xl font-bold uppercase tracking-[0.1em] text-white mb-4 leading-tight">
+					<h1 className="font-archivo text-[clamp(1.75rem,4.5vw,3rem)] font-bold uppercase tracking-[0.1em] text-white mb-4 leading-tight">
 						TORNAR-SE <br className="md:hidden" />
 						ASSOCIADO
 					</h1>
