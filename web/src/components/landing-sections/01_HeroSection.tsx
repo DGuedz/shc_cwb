@@ -1,9 +1,9 @@
 'use client';
 
 import { useEffect, useRef } from 'react';
-import Link from 'next/link';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { ScrollRevealTitle } from '../ui/ScrollRevealTitle';
+import { GlassCTA } from '../ui/GlassCTA';
 
 export function HeroSection() {
   const heroRef = useRef<HTMLDivElement>(null);
@@ -96,12 +96,8 @@ export function HeroSection() {
               O motor tecnológico que transforma a música independente em um ativo de alto impacto para o seu negócio.
             </p>
             <div className="flex flex-col md:flex-row gap-4 justify-center">
-              <Link href="/sign-in" className="bg-[#10B981] text-black px-6 py-3 font-mono text-xs tracking-widest uppercase font-bold hover:bg-white transition-colors border border-[#10B981]">
-                CADASTRO DE ARTISTAS
-              </Link>
-              <Link href="/onboarding/contratante" className="border border-[#393939] bg-transparent text-white px-6 py-3 font-mono text-xs tracking-widest uppercase hover:border-white transition-colors">
-                CADASTRO DE EMPRESAS
-              </Link>
+              <GlassCTA href="/sign-in" variant="primary" size="md">CADASTRO DE ARTISTAS</GlassCTA>
+              <GlassCTA href="/onboarding/contratante" variant="secondary" size="md">CADASTRO DE EMPRESAS</GlassCTA>
             </div>
           </motion.div>
 

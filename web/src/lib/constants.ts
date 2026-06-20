@@ -1,17 +1,15 @@
-import type { UserRole } from "@/types/domain";
-
 export const APP_NAME = "Street Hub Connect";
 
 export type AppRoute =
   | "/"
   | "/catalogo"
-  | "/sign-in"
-  | "/onboarding/artista"
-  | "/onboarding/contratante"
-  | "/dashboard"
   | "/dashboard/matchboard"
   | "/dashboard/acordos"
-  | "/dashboard/dossie";
+  | "/dashboard/dossie"
+  | "/onboarding/artista"
+  | "/onboarding/contratante"
+  | "/oportunidades/criar"
+  | "/sign-in";
 
 export type ShellNavItem = {
   href: AppRoute | `#${string}`;
@@ -38,10 +36,7 @@ export const PROTECTED_MATCHER = [
   "/onboarding/contratante",
 ];
 
-export const DEFAULT_REDIRECT_BY_ROLE: Record<
-  UserRole,
-  "/dashboard/dossie" | "/dashboard/matchboard"
-> = {
+export const DEFAULT_REDIRECT_BY_ROLE: Record<string, AppRoute> = {
   artist: "/dashboard/dossie",
   contractor: "/dashboard/matchboard",
 };

@@ -15,12 +15,12 @@ export default async function MatchboardPage() {
 
   const { activeOpportunity, entries } = await getMatchBoardModel(session);
 
-  if (!entries.length) {
+  if (!activeOpportunity || !entries.length) {
     return (
       <EmptyState
         title="Sem matches para exibir"
         body="Crie ou sincronize uma oportunidade para alimentar o score de compatibilidade com os artistas validados."
-        href="/onboarding/contratante"
+        href="/oportunidades/criar"
         cta="criar oportunidade"
       />
     );

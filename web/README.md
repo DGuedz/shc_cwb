@@ -1,140 +1,82 @@
-# Street Hub Connect
+# SHC // CWB
 
-Aplicacao `Next.js 16 + TypeScript + Tailwind CSS v4 + Zustand + Supabase` criada para consolidar os prototipos do repositório em uma plataforma B2B navegável.
+Street Hub Connect: Infraestrutura digital para conectar a cena artística independente com o mercado corporativo de Curitiba.
 
-## Escopo entregue
+## 🔗 Links Oficiais (Hackathon TRAE + AI Brasil)
 
-- Rotas publicas:
-  - `/`
-  - `/catalogo`
-  - `/sign-in`
-- Rotas protegidas:
-  - `/onboarding/artista`
-  - `/onboarding/contratante`
-  - `/dashboard/matchboard`
-  - `/dashboard/acordos`
-  - `/dashboard/dossie`
-- Redirecionamentos:
-  - `ArtistOnboarding -> /dashboard/dossie`
-  - `OpportunityCreation -> /dashboard/matchboard`
-- Seguranca:
-  - `src/proxy.ts` para gate otimista
-  - `requireSession()` para validacao efetiva no servidor
-  - migration SQL com RLS para `artists`, `opportunities` e `matches`
-- Performance:
-  - `LazyMotion` + `domAnimation`
-  - headers de seguranca em `next.config.ts`
-  - `not-found.tsx`, `error.tsx` e `dashboard/error.tsx`
+- **Aplicação:** [https://shc-cwb.vercel.app](https://shc-cwb.vercel.app)
+- **Repositório:** [https://github.com/seu-usuario/shc-cwb](https://github.com/seu-usuario/shc-cwb)
+- **Vídeo de Apresentação (Pitch):** [Link do YouTube/Loom aqui]
+- **Deploy:** Vercel (Produção)
 
-## Estrutura
+---
 
-```text
-src/
-├── app/
-│   ├── catalogo/
-│   ├── dashboard/
-│   ├── onboarding/
-│   ├── sign-in/
-│   └── actions.ts
-├── components/
-├── lib/
-├── store/
-├── types/
-└── proxy.ts
+## 🎯 O Problema
+A cena artística independente possui muito talento e engajamento, mas sofre com **informalidade, falta de dados estruturados e dificuldade de acesso ao mercado corporativo**. Do outro lado, empresas que buscam impacto cultural têm dificuldade de curadoria e validação de artistas locais para campanhas e eventos.
 
-supabase/
-├── migrations/
-└── tests/
-```
+## 💡 A Solução (SHC_NETWORK)
+O Street Hub Connect é uma plataforma que atua como **agente de curadoria e matchmaking**:
+1. **Para o Artista:** Um dossiê on-chain (mock) validando seu alcance, engajamento e métricas reais de mercado.
+2. **Para a Empresa:** Um fluxo seguro de criação de oportunidades que, através de agentes curadores, faz o "match" automático com os artistas mais aderentes ao budget, região e estilo.
+3. **Tripartite Handshake:** Garantia de segurança e transparência entre Contratante, Artista e a Street Hub na formação do deal.
 
-## Setup local
+## 🚀 Como Avaliar (Roteiro da Banca)
+Para experimentar o fluxo completo do MVP, sugerimos o seguinte caminho:
 
-1. Copie `.env.example` para `.env.local`
-2. Preencha:
+### 1. Visão Empresa (Contratante)
+1. Acesse o **[Portal de Login](/sign-in)** e escolha **Entrar como Contratante (Modo Demo)**.
+2. Você será direcionado para o **Matchboard**.
+3. Clique em **Criar Oportunidade**, preencha os dados (ex: "Festival de Verão 2026") e publique.
+4. O *Agente Curador* processará o pedido e criará o Deal no painel, já cruzando com a base de artistas.
+5. No Matchboard, clique em **Avaliar Dossiê** em algum artista com alta afinidade para abrir o *Tripartite Handshake*.
 
+### 2. Visão Artista (Associado)
+1. Saia da conta (Logout no menu superior direito).
+2. Acesse o **[Portal de Login](/sign-in)** e escolha **Entrar como Artista (Modo Demo)**.
+3. Você cairá no seu **Dossiê Digital** (SHC_ID), vendo suas métricas de mercado.
+4. No menu lateral, acesse **Acordos** para ver os deals fechados ou em negociação.
+
+### 3. Visão Pública
+- **[Catálogo Editorial](/catalogo):** Vitrine pública de artistas já verificados pela Street Hub, consumindo dados do backend.
+- **[Apresentação Institucional](/presentation):** Manifesto e decks da operação.
+
+---
+
+## 🛠️ Tecnologias Utilizadas
+
+- **Framework:** Next.js 15 (App Router, React 19)
+- **Styling:** Tailwind CSS, Framer Motion
+- **Database / Auth:** Supabase (PostgreSQL)
+- **Deploy:** Vercel
+
+## 💻 Como Rodar Localmente
+
+1. Clone o repositório:
 ```bash
-NEXT_PUBLIC_SUPABASE_URL=
-NEXT_PUBLIC_SUPABASE_ANON_KEY=
+git clone https://github.com/seu-usuario/shc-cwb.git
+cd shc-cwb/web
 ```
 
-3. Instale dependencias:
-
+2. Instale as dependências:
 ```bash
 npm install
 ```
 
-4. Rode o app:
+3. Configure as variáveis de ambiente:
+```bash
+cp .env.example .env.local
+```
+*(Para avaliar apenas o front-end em modo demo, as variáveis do Supabase não são obrigatórias).*
 
+4. Inicie o servidor:
 ```bash
 npm run dev
 ```
+O app estará disponível em `http://localhost:3000`.
 
-## Preview publico local
+---
 
-Use URLs distintas para QA em modo dev e para o preview de handoff final:
-
-```text
-dev:qa        -> http://127.0.0.1:3200
-preview:start -> http://127.0.0.1:3201
-```
-
-Para subir a instancia de preview:
-
-```bash
-npm run preview
-```
-
-Esse fluxo recompila o app com `NEXT_PUBLIC_SITE_URL=http://127.0.0.1:3201` e sobe a instancia em:
-
-```text
-http://127.0.0.1:3201
-```
-
-Validacoes minimas recomendadas nessa URL:
-
-- `/`
-- `/catalogo`
-- `/dashboard` para confirmar redirecionamento anonimo e `X-Robots-Tag`
-
-## Fluxo sem credenciais
-
-Se as variaveis do Supabase nao estiverem definidas, o projeto entra em modo demo:
-
-- login controlado por cookie
-- rotas protegidas continuam operando
-- dashboards usam fallback mockado
-- onboarding continua validando UX e redirecionamentos
-
-## Deploy
-
-Deploy principal pensado para Vercel:
-
-- `vercel.json` configurado para `nextjs`
-- regiao `gru1`
-- headers de seguranca no `next.config.ts`
-
-## Banco e RLS
-
-Arquivo principal:
-
-- `supabase/migrations/202606150001_street_hub_connect_core.sql`
-
-Smoke test manual:
-
-- `supabase/tests/rls_smoke.sql`
-
-## Comandos
-
-```bash
-npm run dev
-npm run dev:qa
-npm run lint
-npm run build
-npm run preview
-```
-
-Referencia rapida:
-
-- `npm run dev`: ambiente local padrao do Next.js
-- `npm run dev:qa`: servidor de QA em `http://127.0.0.1:3200`
-- `npm run preview`: build de preview + servidor em `http://127.0.0.1:3201`
+## 🚀 Próximos Passos (Evolução)
+- Integração de Contratos Inteligentes (ZK) para registro imutável do *Tripartite Handshake*.
+- Agente LLM real (via Vercel AI SDK) para gerar a justificativa de *Afinidade (Score)* do Matchmaking.
+- Gateway de pagamento em escrow para segurar o budget até a execução do show.

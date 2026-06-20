@@ -7,19 +7,24 @@ export interface Step {
   id: string;
   title: string;
   subtitle: string;
-  content: React.ReactNode;
+  content: React.ReactElement<{
+    formData?: Record<string, string>;
+    updateData?: (key: string, value: string) => void;
+    onSubmit?: () => void;
+  }>;
 }
 
 interface MultiStepWizardProps {
   type: 'TALENT' | 'PARTNER';
   steps: Step[];
-  onComplete: (data: any) => void;
+  onComplete: (data: Record<string, string>) => void;
+  initialData?: Record<string, string>;
 }
 
-export function MultiStepWizard({ type, steps, onComplete }: MultiStepWizardProps) {
+export function MultiStepWizard({ type, steps, onComplete, initialData = {} }: MultiStepWizardProps) {
   const [currentStep, setCurrentStep] = useState(0);
   const [direction, setDirection] = useState(1);
-  const [formData, setFormData] = useState<Record<string, any>>({});
+  const [formData, setFormData] = useState<Record<string, string>>(initialData);
 
   const nextStep = () => {
     if (currentStep < steps.length - 1) {
@@ -37,7 +42,7 @@ export function MultiStepWizard({ type, steps, onComplete }: MultiStepWizardProp
     }
   };
 
-  const updateData = (key: string, value: any) => {
+  const updateData = (key: string, value: string) => {
     setFormData(prev => ({ ...prev, [key]: value }));
   };
 
@@ -92,7 +97,7 @@ export function MultiStepWizard({ type, steps, onComplete }: MultiStepWizardProp
             className="h-full"
           >
             {/* Clonamos o elemento injetando as props de controle do form */}
-            {React.cloneElement(steps[currentStep].content as React.ReactElement<any>, {
+            {React.cloneElement(steps[currentStep].content, {
               formData,
               updateData,
               onSubmit: nextStep

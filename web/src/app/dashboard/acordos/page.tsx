@@ -1,8 +1,5 @@
 'use client';
 
-import Link from "next/link";
-import { DashboardNav } from "@/components/ui/DashboardNav";
-
 export default function DealsPipeline() {
   const deals = [
     { id: 1, artist: "DJ ALX", status: "PENDING_ZK_PROOF", value: "R$ 4.000", date: "15/06/2026", hash: "0x8f2a...3b9c", block: "14589201" },
@@ -12,11 +9,6 @@ export default function DealsPipeline() {
   ];
   
   return (
-    <div className="bg-black text-[var(--on-background)] min-h-screen flex flex-col">
-      {/* TopNavBar */}
-      <DashboardNav />
-      
-      {/* Main Content Canvas */}
       <div className="flex-grow flex flex-col gap-8 w-full">
         {/* Hero Header */}
         <header className="mt-12 flex flex-col items-start gap-4 relative">
@@ -112,6 +104,5 @@ export default function DealsPipeline() {
           </div>
         </div>
       </div>
-    </div>
   );
 }

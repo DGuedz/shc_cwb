@@ -9,7 +9,6 @@ import type { AppRoute } from "@/lib/constants";
 import { DEFAULT_REDIRECT_BY_ROLE } from "@/lib/constants";
 import { hasSupabaseEnv } from "@/lib/supabase/config";
 import { getSupabaseServerClient } from "@/lib/supabase/server";
-import type { UserRole } from "@/types/domain";
 
 export type FormActionState = {
   success?: boolean;
@@ -52,10 +51,6 @@ function flattenErrors(result: z.ZodError) {
   return result.flatten().fieldErrors;
 }
 
-function demoIdForRole(role: UserRole) {
-  return role === "artist" ? "demo-artist" : "demo-contractor";
-}
-
 export async function signInAction(
   _prevState: FormActionState,
   formData: FormData,
@@ -73,19 +68,10 @@ export async function signInAction(
     };
   }
 
-  const cookieStore = await cookies();
   const { email, password, role } = parsed.data;
-  cookieStore.set("shc-role", role, { httpOnly: true, sameSite: "lax", path: "/" });
 
   if (!hasSupabaseEnv()) {
-    cookieStore.set("shc-demo-role", role, { httpOnly: true, sameSite: "lax", path: "/" });
-    cookieStore.set("shc-demo-email", email, { httpOnly: true, sameSite: "lax", path: "/" });
-    cookieStore.set("shc-demo-user", demoIdForRole(role), {
-      httpOnly: true,
-      sameSite: "lax",
-      path: "/",
-    });
-
+    // Em modo demo, apenas redireciona sem cookies
     redirect(DEFAULT_REDIRECT_BY_ROLE[role]);
   }
 
@@ -115,9 +101,10 @@ export async function signOutAction() {
     await supabase.auth.signOut();
   }
 
-  ["shc-role", "shc-demo-role", "shc-demo-email", "shc-demo-user"].forEach((name) => {
-    cookieStore.delete(name);
-  });
+  cookieStore.delete("shc-demo-role");
+  cookieStore.delete("shc-demo-user");
+  cookieStore.delete("shc-demo-email");
+  cookieStore.delete("shc-role");
 
   redirect("/");
 }

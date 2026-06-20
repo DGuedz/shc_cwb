@@ -4,8 +4,10 @@ import Link from "next/link";
 import { LazyMotion, domAnimation, m } from "framer-motion";
 import { usePathname } from "next/navigation";
 
-import { APP_NAME, DASHBOARD_LINKS, PUBLIC_NAV_LINKS } from "@/lib/constants";
+import { DASHBOARD_LINKS } from "@/lib/constants";
 import type { AppRoute, ShellNavItem } from "@/lib/constants";
+import { Footer } from "@/components/layout/Footer";
+import { DashboardNav } from "@/components/ui/DashboardNav";
 
 type ShellProps = {
   children: React.ReactNode;
@@ -20,57 +22,19 @@ export function MotionProvider({ children }: { children: React.ReactNode }) {
 export function AppShell({
   children,
   badge = "Brutalismo Institucional",
-  navItems = PUBLIC_NAV_LINKS,
 }: ShellProps) {
-  const pathname = usePathname();
-
   return (
     <MotionProvider>
-      <div className="relative min-h-screen bg-[var(--background)] text-[var(--foreground)]">
+      <div className="relative min-h-screen bg-[var(--background)] text-[var(--foreground)] flex flex-col">
         <div className="pointer-events-none fixed inset-0 bg-[linear-gradient(rgba(255,255,255,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.03)_1px,transparent_1px)] bg-[size:32px_32px]" />
-        <header className="sticky top-0 z-40 border-b border-white/10 bg-[color:color-mix(in_srgb,var(--surface)_84%,transparent)] backdrop-blur-xl">
-          <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-4 md:px-8">
-            <div>
-              <Link href="/" className="font-heading text-2xl font-bold uppercase tracking-[-0.04em]">
-                {APP_NAME}
-              </Link>
-              <p className="font-mono text-[10px] uppercase tracking-[0.3em] text-[var(--accent)]">
-                {badge}
-              </p>
-            </div>
-            <nav className="flex max-w-[68vw] flex-wrap items-center justify-end gap-3 md:gap-6">
-              {navItems.map((item) => {
-                const isAnchor = item.href.startsWith("#");
-                const active = !isAnchor && (pathname === item.href || pathname.startsWith(`${item.href}/`));
-
-                return (
-                  isAnchor ? (
-                    <a
-                      key={item.href}
-                      href={item.href}
-                      className="font-mono text-[11px] uppercase tracking-[0.22em] text-white/70 transition-colors hover:text-white"
-                    >
-                      {item.label}
-                    </a>
-                  ) : (
-                    <Link
-                      key={item.href}
-                      href={item.href}
-                      className={`font-mono text-[11px] uppercase tracking-[0.22em] transition-colors ${
-                        active ? "text-white" : "text-white/55 hover:text-white"
-                      }`}
-                    >
-                      {item.label}
-                    </Link>
-                  )
-                );
-              })}
-            </nav>
-          </div>
-        </header>
-        <main className="mx-auto flex w-full max-w-7xl flex-1 flex-col px-4 py-8 md:px-8 md:py-12">
+        <DashboardNav />
+        <main className="mx-auto flex w-full max-w-7xl flex-1 flex-col px-4 pt-24 pb-16 md:px-8">
+          <p className="mb-8 font-mono text-[10px] uppercase tracking-[0.3em] text-[var(--accent)]">
+            {badge}
+          </p>
           {children}
         </main>
+        <Footer />
       </div>
     </MotionProvider>
   );

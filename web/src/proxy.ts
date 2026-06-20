@@ -30,7 +30,7 @@ export function proxy(request: NextRequest) {
     }
   }
 
-  if (pathname.startsWith("/onboarding/contratante") || pathname.startsWith("/dashboard/matchboard")) {
+  if (pathname.startsWith("/onboarding/contratante") || pathname.startsWith("/dashboard/matchboard") || pathname.startsWith("/oportunidades/criar")) {
     if (role !== "contractor") {
       return NextResponse.redirect(new URL("/dashboard/dossie", request.url));
     }
@@ -44,5 +44,6 @@ export const config = {
     "/onboarding/artista",
     "/onboarding/contratante",
     "/dashboard/:path*",
+    "/oportunidades/criar",
   ],
 };

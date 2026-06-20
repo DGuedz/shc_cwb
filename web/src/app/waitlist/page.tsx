@@ -1,9 +1,13 @@
 import { DashboardNav } from "@/components/ui/DashboardNav";
+import { Footer } from "@/components/layout/Footer";
+import { getSessionUser } from "@/lib/auth";
 
-export default function Waitlist() {
+export default async function Waitlist() {
+	const session = await getSessionUser();
+
 	return (
 		<div className="bg-black min-h-screen text-white flex flex-col">
-			<DashboardNav />
+			<DashboardNav session={session} />
 
 			<main className="flex-1 flex flex-col items-center justify-center pt-20 pb-20 px-[var(--spacing-margin-mobile)] md:px-[var(--spacing-margin-desktop)] max-w-[800px] mx-auto w-full">
 				{/* CABEÇALHO */}
@@ -156,6 +160,7 @@ export default function Waitlist() {
 					</form>
 				</div>
 			</main>
+			<Footer />
 		</div>
 	);
 }

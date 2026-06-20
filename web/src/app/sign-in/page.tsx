@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 import { SignInForm } from "@/components/forms";
+import { Footer } from "@/components/layout/Footer";
+import { getSessionUser } from "@/lib/auth";
 import { hasSupabaseEnv } from "@/lib/supabase/config";
 import { DashboardNav } from "@/components/ui/DashboardNav";
 
@@ -14,10 +16,12 @@ export const metadata: Metadata = {
   },
 };
 
-export default function SignInPage() {
+export default async function SignInPage() {
+  const session = await getSessionUser();
+
   return (
     <div className="min-h-screen bg-black text-white flex flex-col">
-      <DashboardNav />
+      <DashboardNav session={session} />
 
       {/* Main Content Area */}
       <main className="flex-1 flex items-center justify-center p-6 md:p-12 relative overflow-hidden">
@@ -60,6 +64,7 @@ export default function SignInPage() {
           </div>
         </div>
       </main>
+      <Footer />
     </div>
   );
 }

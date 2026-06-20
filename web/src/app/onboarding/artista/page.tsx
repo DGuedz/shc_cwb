@@ -4,15 +4,16 @@ import { MultiStepWizard } from '@/components/onboarding/MultiStepWizard';
 import { useRouter } from 'next/navigation';
 
 interface StepProps {
-  formData?: any;
-  updateData?: any;
-  onSubmit?: any;
+  formData?: Record<string, string>;
+  updateData?: (key: string, value: string) => void;
+  onSubmit?: () => void;
 }
 
 // Step 1: Identidade e CNPJ
-function StepIdentity({ formData, updateData }: StepProps) {
+function StepIdentity({ formData = {}, updateData }: StepProps) {
+  const data = formData || {};
   // Inicializa como 'cnpj' se não estiver definido
-  const docType = formData.documentType || 'cnpj';
+  const docType = data.documentType || 'cnpj';
 
   return (
     <div className="flex flex-col gap-6">
@@ -23,13 +24,13 @@ function StepIdentity({ formData, updateData }: StepProps) {
       <div className="grid grid-cols-2 gap-4">
         <div 
           className={`border p-4 flex items-center justify-center cursor-pointer transition-colors ${docType === 'cnpj' ? 'border-[#10B981] bg-[#10B981]/10 text-[#10B981]' : 'border-[#393939] text-[#A3A3A3] hover:border-white'}`}
-          onClick={() => { updateData('documentType', 'cnpj'); updateData('document', ''); }}
+          onClick={() => { updateData?.('documentType', 'cnpj'); updateData?.('document', ''); }}
         >
           <span className="font-mono text-[10px] tracking-widest uppercase">POSSUO CNPJ (MEI/ME)</span>
         </div>
         <div 
           className={`border p-4 flex text-center items-center justify-center cursor-pointer transition-colors ${docType === 'cpf' ? 'border-[#10B981] bg-[#10B981]/10 text-[#10B981]' : 'border-[#393939] text-[#A3A3A3] hover:border-white'}`}
-          onClick={() => { updateData('documentType', 'cpf'); updateData('document', ''); }}
+          onClick={() => { updateData?.('documentType', 'cpf'); updateData?.('document', ''); }}
         >
           <span className="font-mono text-[10px] tracking-widest uppercase">SOU PESSOA FÍSICA (CPF)</span>
         </div>
@@ -42,7 +43,7 @@ function StepIdentity({ formData, updateData }: StepProps) {
         <input 
           type="text" 
           value={formData.nome || ''}
-          onChange={e => updateData('nome', e.target.value)}
+          onChange={e => updateData?.('nome', e.target.value)}
           placeholder={docType === 'cnpj' ? "Ex: SILVA PRODUCOES LTDA" : "Ex: João da Silva"} 
           className="bg-transparent border-b border-[#393939] focus:border-[#10B981] outline-none py-3 text-white font-mono placeholder:text-[#393939] transition-colors"
         />
@@ -55,7 +56,7 @@ function StepIdentity({ formData, updateData }: StepProps) {
         <input 
           type="text" 
           value={formData.document || ''}
-          onChange={e => updateData('document', e.target.value)}
+          onChange={e => updateData?.('document', e.target.value)}
           placeholder={docType === 'cnpj' ? "00.000.000/0000-00" : "000.000.000-00"} 
           className="bg-transparent border-b border-[#393939] focus:border-[#10B981] outline-none py-3 text-white font-mono placeholder:text-[#393939] transition-colors"
         />
@@ -74,7 +75,7 @@ function StepIdentity({ formData, updateData }: StepProps) {
 }
 
 // Step 2: Portfólio
-function StepPortfolio({ formData, updateData }: StepProps) {
+function StepPortfolio({ formData = {}, updateData }: StepProps) {
   return (
     <div className="flex flex-col gap-6">
       <p className="font-mono text-sm text-[#A3A3A3] mb-4">
@@ -86,7 +87,7 @@ function StepPortfolio({ formData, updateData }: StepProps) {
         <input 
           type="url" 
           value={formData.spotify || ''}
-          onChange={e => updateData('spotify', e.target.value)}
+          onChange={e => updateData?.('spotify', e.target.value)}
           placeholder="https://open.spotify.com/artist/..." 
           className="bg-transparent border-b border-[#393939] focus:border-[#10B981] outline-none py-3 text-white font-mono placeholder:text-[#393939] transition-colors"
         />
@@ -97,7 +98,7 @@ function StepPortfolio({ formData, updateData }: StepProps) {
         <input 
           type="url" 
           value={formData.images || ''}
-          onChange={e => updateData('images', e.target.value)}
+          onChange={e => updateData?.('images', e.target.value)}
           placeholder="Drive, Dropbox com fotos em alta" 
           className="bg-transparent border-b border-[#393939] focus:border-[#10B981] outline-none py-3 text-white font-mono placeholder:text-[#393939] transition-colors"
         />
@@ -108,7 +109,7 @@ function StepPortfolio({ formData, updateData }: StepProps) {
         <input 
           type="url" 
           value={formData.clipping || ''}
-          onChange={e => updateData('clipping', e.target.value)}
+          onChange={e => updateData?.('clipping', e.target.value)}
           placeholder="Notícias, Matérias, Entrevistas" 
           className="bg-transparent border-b border-[#393939] focus:border-[#10B981] outline-none py-3 text-white font-mono placeholder:text-[#393939] transition-colors"
         />
@@ -118,7 +119,7 @@ function StepPortfolio({ formData, updateData }: StepProps) {
 }
 
 // Step 3: Custos
-function StepCosts({ formData, updateData }: StepProps) {
+function StepCosts({ formData = {}, updateData }: StepProps) {
   return (
     <div className="flex flex-col gap-6">
       <p className="font-mono text-sm text-[#A3A3A3] mb-4">
@@ -130,7 +131,7 @@ function StepCosts({ formData, updateData }: StepProps) {
         <input 
           type="number" 
           value={formData.cache || ''}
-          onChange={e => updateData('cache', e.target.value)}
+          onChange={e => updateData?.('cache', e.target.value)}
           placeholder="Ex: 5000" 
           className="bg-transparent border-b border-[#393939] focus:border-[#10B981] outline-none py-3 text-white font-mono placeholder:text-[#393939] transition-colors"
         />
@@ -141,7 +142,7 @@ function StepCosts({ formData, updateData }: StepProps) {
         <input 
           type="number" 
           value={formData.logistica || ''}
-          onChange={e => updateData('logistica', e.target.value)}
+          onChange={e => updateData?.('logistica', e.target.value)}
           placeholder="Ex: 2000" 
           className="bg-transparent border-b border-[#393939] focus:border-[#10B981] outline-none py-3 text-white font-mono placeholder:text-[#393939] transition-colors"
         />
@@ -151,16 +152,19 @@ function StepCosts({ formData, updateData }: StepProps) {
 }
 
 // Step 4: Compliance
-function StepCompliance({ formData, updateData }: StepProps) {
+function StepCompliance({ formData = {}, updateData }: StepProps) {
+  const hasCertidoes = formData.certidoes === 'true';
+  const hasTripartite = formData.tripartite === 'true';
+
   return (
     <div className="flex flex-col gap-6">
       <p className="font-mono text-sm text-[#A3A3A3] mb-4">
         Ateste sua conformidade para estar elegível aos repasses de patrocínio do Terceiro Setor.
       </p>
       
-      <div className="flex items-start gap-4 mt-4 border border-[#393939] p-4 bg-[#131313] hover:border-[#10B981] transition-colors cursor-pointer" onClick={() => updateData('certidoes', !formData.certidoes)}>
-        <div className={`w-5 h-5 border flex items-center justify-center mt-0.5 ${formData.certidoes ? 'border-[#10B981] bg-[#10B981]' : 'border-[#393939]'}`}>
-           {formData.certidoes && <span className="text-black text-xs">✓</span>}
+      <div className="flex items-start gap-4 mt-4 border border-[#393939] p-4 bg-[#131313] hover:border-[#10B981] transition-colors cursor-pointer" onClick={() => updateData?.('certidoes', String(!hasCertidoes))}>
+        <div className={`w-5 h-5 border flex items-center justify-center mt-0.5 ${hasCertidoes ? 'border-[#10B981] bg-[#10B981]' : 'border-[#393939]'}`}>
+           {hasCertidoes && <span className="text-black text-xs">✓</span>}
         </div>
         <div>
           <span className="font-mono text-xs text-white uppercase tracking-widest block mb-1">REGULARIDADE FISCAL</span>
@@ -168,9 +172,9 @@ function StepCompliance({ formData, updateData }: StepProps) {
         </div>
       </div>
 
-      <div className="flex items-start gap-4 border border-[#393939] p-4 bg-[#131313] hover:border-[#10B981] transition-colors cursor-pointer" onClick={() => updateData('tripartite', !formData.tripartite)}>
-        <div className={`w-5 h-5 border flex items-center justify-center mt-0.5 ${formData.tripartite ? 'border-[#10B981] bg-[#10B981]' : 'border-[#393939]'}`}>
-           {formData.tripartite && <span className="text-black text-xs">✓</span>}
+      <div className="flex items-start gap-4 border border-[#393939] p-4 bg-[#131313] hover:border-[#10B981] transition-colors cursor-pointer" onClick={() => updateData?.('tripartite', String(!hasTripartite))}>
+        <div className={`w-5 h-5 border flex items-center justify-center mt-0.5 ${hasTripartite ? 'border-[#10B981] bg-[#10B981]' : 'border-[#393939]'}`}>
+           {hasTripartite && <span className="text-black text-xs">✓</span>}
         </div>
         <div>
           <span className="font-mono text-xs text-white uppercase tracking-widest block mb-1">TERMO TRIPARTITE</span>
@@ -182,6 +186,19 @@ function StepCompliance({ formData, updateData }: StepProps) {
 }
 
 export default function OnboardingArtista() {
+  const initialData = {
+    documentType: 'cnpj',
+    nome: 'Aurora Producoes Artisticas LTDA',
+    document: '48.221.990/0001-12',
+    spotify: 'https://open.spotify.com/artist/mock-aurora',
+    images: 'https://drive.google.com/mock/aurora-presskit',
+    clipping: 'https://notion.site/mock/aurora-clipping',
+    cache: '5000',
+    logistica: '1800',
+    certidoes: 'true',
+    tripartite: 'true',
+  };
+
   const steps = [
     {
       id: 'identity',
@@ -211,7 +228,7 @@ export default function OnboardingArtista() {
 
   const router = useRouter();
 
-  const handleComplete = (data: any) => {
+  const handleComplete = () => {
     // No ambiente real, faríamos um POST para a API / Supabase
     // Como estamos no MVP, gravamos na Store e redirecionamos para o terminal (Dossiê)
     
@@ -227,6 +244,7 @@ export default function OnboardingArtista() {
     <MultiStepWizard 
       type="TALENT" 
       steps={steps} 
+      initialData={initialData}
       onComplete={handleComplete} 
     />
   );

@@ -53,6 +53,20 @@ export function SignInForm({ supabaseEnabled }: { supabaseEnabled: boolean }) {
   const [isGovBrLoading, setIsGovBrLoading] = useState(false);
   const [mockLevel, setMockLevel] = useState<GovBrLevel>("bronze");
 
+  const getRouteByRole = (currentRole: UserRole) =>
+    currentRole === "contractor" ? "/onboarding/contratante" : "/onboarding/artista";
+
+  const setDemoSessionCookies = (currentRole: UserRole, email: string) => {
+    const maxAge = 60 * 60 * 8;
+    const safeEmail = email || `demo+${currentRole}@streethub.connect`;
+    const demoUser = currentRole === "artist" ? "demo-artist" : "demo-contractor";
+
+    document.cookie = `shc-demo-role=${currentRole}; path=/; max-age=${maxAge}; samesite=lax`;
+    document.cookie = `shc-demo-email=${encodeURIComponent(safeEmail)}; path=/; max-age=${maxAge}; samesite=lax`;
+    document.cookie = `shc-demo-user=${demoUser}; path=/; max-age=${maxAge}; samesite=lax`;
+    document.cookie = `shc-role=${currentRole}; path=/; max-age=${maxAge}; samesite=lax`;
+  };
+
   const handleGovBrLogin = async () => {
     setIsGovBrLoading(true);
     try {
@@ -60,20 +74,35 @@ export function SignInForm({ supabaseEnabled }: { supabaseEnabled: boolean }) {
       const response = await GovBrMockService.simulateAuthCallback(currentRole, mockLevel as "bronze" | "prata" | "ouro");
       setGovBrLevel(response.level);
       setRole(currentRole);
+      setDemoSessionCookies(currentRole, `govbr+${currentRole}@streethub.connect`);
       
-      // Simula roteamento do gateway
-      if (currentRole === "contractor") {
-        router.push("/onboarding/contratante");
-      } else {
-        router.push("/onboarding/artista");
-      }
+      router.push(getRouteByRole(currentRole));
     } finally {
       setIsGovBrLoading(false);
     }
   };
 
+  const handleDemoAuth = (e: React.FormEvent<HTMLFormElement>) => {
+    if (!supabaseEnabled) {
+      e.preventDefault();
+
+      const formData = new FormData(e.currentTarget);
+      const currentRole = (formData.get("role") as UserRole) ?? role ?? "artist";
+      const email = String(formData.get("email") || "");
+
+      setRole(currentRole);
+      setGovBrLevel("ouro");
+      setDemoSessionCookies(currentRole, email);
+      router.push(getRouteByRole(currentRole));
+    }
+  };
+
   return (
-    <form action={action} className="bg-[#0E0E0E] border border-[#393939] p-6 flex flex-col gap-6 rounded-none w-full">
+    <form
+      action={action}
+      onSubmit={handleDemoAuth}
+      className="bg-[#0E0E0E] border border-[#393939] p-6 flex flex-col gap-6 rounded-none w-full"
+    >
       <div className="flex justify-between items-center border-b border-[#393939] pb-4">
         <h3 className="font-archivo uppercase font-bold text-white tracking-tight">Credenciais de Acesso</h3>
         <span className="font-mono text-xs text-[#10B981]">GATEWAY: {supabaseEnabled ? 'SECURE' : 'DEMO'}</span>
@@ -88,6 +117,7 @@ export function SignInForm({ supabaseEnabled }: { supabaseEnabled: boolean }) {
             placeholder="gov.br/cpf ou ops@streethub.connect" 
             type="text" 
             required 
+            defaultValue={!supabaseEnabled ? "demo@streethub.connect" : ""}
           />
           <FieldError state={state} name="email" />
         </label>
@@ -100,6 +130,7 @@ export function SignInForm({ supabaseEnabled }: { supabaseEnabled: boolean }) {
             placeholder="••••••••" 
             type="password" 
             required 
+            defaultValue={!supabaseEnabled ? "demo1234" : ""}
           />
           <FieldError state={state} name="password" />
         </label>

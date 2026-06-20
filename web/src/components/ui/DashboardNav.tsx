@@ -1,6 +1,7 @@
 'use client';
 
 import Link from "next/link";
+import type { Route } from "next";
 import { usePathname } from "next/navigation";
 import { useState, useTransition } from "react";
 import { AnimatePresence, motion } from "framer-motion";
@@ -8,7 +9,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import { signOutAction } from "@/app/actions";
 import type { SessionUser } from "@/types/domain";
 
-type NavLink = { href: string; label: string };
+type NavLink = { href: Route; label: string };
 
 const publicLinks: NavLink[] = [
   { href: "/quem-somos", label: "Quem Somos" },
@@ -18,6 +19,8 @@ const publicLinks: NavLink[] = [
 ];
 
 const artistLinks: NavLink[] = [
+  { href: "/quem-somos", label: "Quem Somos" },
+  { href: "/pitchdeck", label: "Pitchdeck" },
   { href: "/dashboard/dossie", label: "Meu Dossiê" },
   { href: "/dashboard/acordos", label: "Acordos" },
   { href: "/catalogo", label: "Artistas" },
@@ -25,6 +28,8 @@ const artistLinks: NavLink[] = [
 ];
 
 const contractorLinks: NavLink[] = [
+  { href: "/quem-somos", label: "Quem Somos" },
+  { href: "/pitchdeck", label: "Pitchdeck" },
   { href: "/catalogo", label: "Artistas" },
   { href: "/oportunidades/criar", label: "Oportunidades" },
   { href: "/dashboard/matchboard", label: "Matchboard" },
@@ -34,16 +39,19 @@ const contractorLinks: NavLink[] = [
 function LogoutButton({ onDone }: { onDone?: () => void }) {
   const [isPending, startTransition] = useTransition();
   return (
-    <form action={() => startTransition(() => signOutAction())}>
-      <button
-        type="submit"
-        disabled={isPending}
-        onClick={onDone}
-        className="font-mono text-[9px] uppercase tracking-widest text-neutral-500 hover:text-white transition-colors disabled:opacity-40"
-      >
-        {isPending ? "saindo..." : "sair"}
-      </button>
-    </form>
+    <button
+      type="button"
+      disabled={isPending}
+      onClick={() => {
+        onDone?.();
+        startTransition(() => {
+          void signOutAction();
+        });
+      }}
+      className="font-mono text-[9px] uppercase tracking-widest text-neutral-500 hover:text-white transition-colors disabled:opacity-40"
+    >
+      {isPending ? "saindo..." : "sair"}
+    </button>
   );
 }
 
@@ -75,34 +83,36 @@ export function DashboardNav({ session }: { session?: SessionUser | null }) {
   return (
     <>
       <nav className="fixed top-0 w-full z-50 border-b border-[#1A1A1A] bg-[#0A0A0A]/95 backdrop-blur-md h-14">
-        <div className="max-w-[var(--spacing-container-max,1400px)] mx-auto px-4 md:px-8 h-full flex justify-between items-center">
-        {/* Left: logo + links */}
-        <div className="flex items-center h-full gap-0">
+        <div className="relative max-w-[var(--spacing-container-max,1400px)] mx-auto px-4 md:px-8 h-full flex items-center justify-between">
+        {/* Left: logo */}
+        <div className="lg:absolute lg:left-8 flex items-center h-full">
           <Link
             href="/"
-            className="font-archivo text-base font-bold tracking-tighter text-white uppercase leading-[0.9] mr-10 whitespace-nowrap hover:text-[#10B981] transition-colors"
+            className="font-archivo text-base font-bold tracking-tighter text-white uppercase leading-[0.9] whitespace-nowrap hover:text-[#10B981] transition-colors"
           >
             STREET HUB CONNECT
           </Link>
-          <div className="hidden md:flex h-full items-center font-mono text-[9px] text-neutral-500 uppercase tracking-widest">
-            {links.map((link) => (
-              <Link
-                key={link.href}
-                href={link.href as any}
-                className={`h-full flex items-center px-4 transition-colors ${
-                  isActive(link.href)
-                    ? "text-white border-b border-white"
-                    : "hover:text-white"
-                }`}
-              >
-                {link.label}
-              </Link>
-            ))}
-          </div>
+        </div>
+
+        {/* Center: context links */}
+        <div className="hidden lg:flex absolute left-1/2 top-0 h-full -translate-x-1/2 items-center justify-center font-mono text-[8px] xl:text-[9px] text-neutral-500 uppercase tracking-widest">
+          {links.map((link) => (
+            <Link
+              key={link.href}
+              href={link.href}
+              className={`h-full flex items-center px-2.5 xl:px-4 transition-colors whitespace-nowrap ${
+                isActive(link.href)
+                  ? "text-white border-b border-white"
+                  : "hover:text-white"
+              }`}
+            >
+              {link.label}
+            </Link>
+          ))}
         </div>
 
         {/* Right: auth area */}
-        <div className="hidden md:flex items-center gap-3">
+        <div className="hidden lg:flex lg:absolute lg:right-8 items-center gap-3">
           {session ? (
             <div className="flex items-center gap-3 border-l border-[#1A1A1A] pl-4">
               <span className="font-mono text-[9px] uppercase tracking-widest text-[#10B981] border border-[#10B981]/30 bg-[#10B981]/10 px-2 py-1">
@@ -135,13 +145,16 @@ export function DashboardNav({ session }: { session?: SessionUser | null }) {
 
         {/* Mobile toggle */}
         <button
-          className="md:hidden flex flex-col justify-center items-center w-8 h-8 gap-[5px]"
+          className="lg:hidden flex items-center gap-3 font-mono text-[10px] uppercase tracking-widest text-neutral-400 hover:text-white transition-colors"
           onClick={() => setIsOpen(!isOpen)}
           aria-label="Toggle menu"
         >
-          <span className={`block w-6 h-[1px] bg-white transition-transform duration-300 ${isOpen ? "rotate-45 translate-y-[6px]" : ""}`} />
-          <span className={`block w-6 h-[1px] bg-white transition-opacity duration-300 ${isOpen ? "opacity-0" : ""}`} />
-          <span className={`block w-6 h-[1px] bg-white transition-transform duration-300 ${isOpen ? "-rotate-45 -translate-y-[6px]" : ""}`} />
+          <span>Menu</span>
+          <span className="flex flex-col justify-center items-center w-8 h-8 gap-[5px]" aria-hidden="true">
+            <span className={`block w-6 h-[1px] bg-white transition-transform duration-300 ${isOpen ? "rotate-45 translate-y-[6px]" : ""}`} />
+            <span className={`block w-6 h-[1px] bg-white transition-opacity duration-300 ${isOpen ? "opacity-0" : ""}`} />
+            <span className={`block w-6 h-[1px] bg-white transition-transform duration-300 ${isOpen ? "-rotate-45 -translate-y-[6px]" : ""}`} />
+          </span>
         </button>
         </div>
       </nav>
@@ -154,13 +167,13 @@ export function DashboardNav({ session }: { session?: SessionUser | null }) {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.2 }}
-            className="fixed inset-0 z-40 bg-[#0A0A0A] pt-20 px-6 flex flex-col gap-8 md:hidden border-b border-[#1A1A1A]"
+            className="fixed inset-0 z-40 bg-[#0A0A0A] pt-20 px-6 flex flex-col gap-8 lg:hidden border-b border-[#1A1A1A]"
           >
             <div className="flex flex-col gap-6 border-b border-[#393939] pb-8">
               {links.map((link, i) => (
                 <Link
                   key={link.href}
-                  href={link.href as any}
+                  href={link.href}
                   onClick={() => setIsOpen(false)}
                   className="font-mono text-sm text-white hover:text-[#10B981] transition-colors uppercase tracking-widest"
                 >
