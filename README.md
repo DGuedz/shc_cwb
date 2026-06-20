@@ -15,12 +15,11 @@
 [![Playwright](https://img.shields.io/badge/Playwright-1.61-45BA4B?style=flat-square&logo=playwright&logoColor=white)](https://playwright.dev/)
 [![Vercel](https://img.shields.io/badge/Deploy-Vercel-000000?style=flat-square&logo=vercel&logoColor=white)](https://vercel.com/)
 
-[![Aplicação](https://img.shields.io/badge/🌐%20Aplicação%20ao%20Vivo-shc--cwb.vercel.app-10B981?style=for-the-badge)](https://shc-cwb.vercel.app)
-[![Repositório](https://img.shields.io/badge/📦%20Repositório-GitHub-181717?style=for-the-badge&logo=github)](https://github.com/DGuedz/shc_cwb)
+[![Aplicação](https://img.shields.io/badge/Aplicação%20ao%20Vivo-shc--cwb.vercel.app-10B981?style=for-the-badge)](https://shc-cwb.vercel.app)
+[![Repositório](https://img.shields.io/badge/Repositório-GitHub-181717?style=for-the-badge&logo=github)](https://github.com/DGuedz/shc_cwb)
 
-[![Hackathon](https://img.shields.io/badge/🏆%20TRAE%20+%20AI%20Brasil-Hackathon%202025-FF6B35?style=for-the-badge)](https://trae.aibrasil.ai)
+[![Hackathon](https://img.shields.io/badge/TRAE%20+%20AI%20Brasil-Hackathon%202026-FF6B35?style=for-the-badge)](https://trae.aibrasil.ai)
 [![Status](https://img.shields.io/badge/Status-MVP%20em%20Produção-10B981?style=flat-square)]()
-[![License](https://img.shields.io/badge/Licença-MIT-blue?style=flat-square)]()
 
 </div>
 
@@ -58,8 +57,8 @@ Acesse a aplicação e explore os dois fluxos sem criar conta:
 
 | Papel | Link de Demo | Destino |
 |---|---|---|
-| 🎤 Artista | [/demo?role=artist](https://shc-cwb.vercel.app/demo?role=artist) | Dashboard · Dossiê · Acordos |
-| 🏢 Contratante | [/demo?role=contractor](https://shc-cwb.vercel.app/demo?role=contractor) | Dashboard · Matchboard · Oportunidades |
+| Artista | [/demo?role=artist](https://shc-cwb.vercel.app/demo?role=artist) | Dashboard · Dossiê · Acordos |
+| Contratante | [/demo?role=contractor](https://shc-cwb.vercel.app/demo?role=contractor) | Dashboard · Matchboard · Oportunidades |
 
 > Os links de demo setam uma sessão segura com 1 clique e redirecionam direto para o painel do papel escolhido.
 
@@ -237,17 +236,17 @@ O Street Hub Connect nasceu da experiência direta de 25 anos navegando o mercad
 
 ---
 
-## Hackathon TRAE + AI Brasil 2025
+## Hackathon TRAE + AI Brasil 2026
 
-Este projeto foi desenvolvido como parte do **Desafio TRAE + AI Brasil**, realizado entre 17 e 20 de junho de 2025.
+Este projeto foi desenvolvido como parte do **Desafio TRAE + AI Brasil**, realizado entre 17 e 20 de junho de 2026.
 
-[![Hackathon](https://img.shields.io/badge/🏆%20Submissão-TRAE%20+%20AI%20Brasil-FF6B35?style=for-the-badge)](https://trae.papodesysadmin.org/)
+[![Hackathon](https://img.shields.io/badge/TRAE%20+%20AI%20Brasil-Hackathon%202026-FF6B35?style=for-the-badge)](https://trae.papodesysadmin.org/)
 
 | Entregável | Link |
 |---|---|
-| 🌐 Aplicação | [shc-cwb.vercel.app](https://shc-cwb.vercel.app) |
-| 📦 Repositório | [github.com/DGuedz/shc_cwb](https://github.com/DGuedz/shc_cwb) |
-| 🎬 Vídeo de Apresentação | [youtube.com/watch?v=OMFsVcebzLQ](https://www.youtube.com/watch?v=OMFsVcebzLQ) |
+| Aplicação | [shc-cwb.vercel.app](https://shc-cwb.vercel.app) |
+| Repositório | [github.com/DGuedz/shc_cwb](https://github.com/DGuedz/shc_cwb) |
+| Vídeo de Apresentação | [youtube.com/watch?v=OMFsVcebzLQ](https://www.youtube.com/watch?v=OMFsVcebzLQ) |
 
 ---
 
@@ -256,6 +255,6 @@ Este projeto foi desenvolvido como parte do **Desafio TRAE + AI Brasil**, realiz
 **Street Hub Connect**
 *Curadoria, booking e governança para a economia criativa brasileira.*
 
-Construído com ♪ por [DGuedz](https://instagram.com/dguedz) · Powered by [TRAE IDE](https://trae.ai) + Claude
+Construído por [DGuedz](https://instagram.com/dguedz) · Powered by [TRAE IDE](https://trae.ai) + Claude
 
 </div>
