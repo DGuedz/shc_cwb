@@ -284,18 +284,6 @@ function Slide4() {
 			className="min-h-[80vh] flex flex-col justify-center px-6 md:px-16 border-b border-[#393939] bg-[#0A0A0A] py-32"
 		>
 			<motion.div style={{ opacity, y }} className="max-w-5xl relative">
-				<motion.div
-					className="absolute top-0 right-0 w-96 h-96 opacity-10 pointer-events-none mix-blend-screen"
-					style={{
-						backgroundImage: "url('/images/artists/06.jpg')",
-						backgroundSize: "cover",
-						backgroundPosition: "center",
-						filter: "grayscale(100%) contrast(1.5)",
-						maskImage: "linear-gradient(to bottom, black 0%, transparent 100%)",
-						WebkitMaskImage:
-							"linear-gradient(to bottom, black 0%, transparent 100%)",
-					}}
-				/>
 				<span className="font-mono text-[#393939] text-xs uppercase tracking-widest block mb-6 relative z-10">
 					SLIDE 04 {/* MERCADO */}
 				</span>

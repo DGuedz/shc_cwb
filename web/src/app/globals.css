@@ -62,3 +62,81 @@ body {
   background-clip: text;
   color: transparent;
 }
+
+/* ─── SHC TYPE SCALE ─────────────────────────────────────────────────────── */
+/* Usar em conjunto com font-archivo e uppercase.                              */
+
+@utility shc-hero {
+  font-size: clamp(2.5rem, 6.5vw, 4.5rem);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: -0.04em;
+  line-height: 0.85;
+}
+
+@utility shc-section {
+  font-size: clamp(1.6rem, 3.5vw, 3rem);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: -0.03em;
+  line-height: 0.9;
+}
+
+@utility shc-block {
+  font-size: clamp(1.1rem, 2vw, 1.5rem);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: -0.02em;
+  line-height: 1;
+}
+
+/* ─── HERO TITLE CSS ANIMATION ───────────────────────────────────────────── */
+/* Para títulos above-the-fold: clip-in imediato + metallic sweep.            */
+
+@keyframes shc-clip-in {
+  from { clip-path: inset(0 100% 0 0); }
+  to   { clip-path: inset(0 0%   0 0); }
+}
+
+@keyframes shc-metallic {
+  0%   { background-position: 180% center; }
+  60%  { background-position: -180% center; }
+  100% { background-position: -180% center; }
+}
+
+@utility title-reveal {
+  animation: shc-clip-in 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@utility title-metallic {
+  background-image: linear-gradient(
+    105deg,
+    #4a4a4a 10%,
+    #9a9a9a 30%,
+    #ffffff 50%,
+    #9a9a9a 70%,
+    #4a4a4a 90%
+  );
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation:
+    shc-clip-in  0.7s  cubic-bezier(0.22, 1, 0.36, 1) both,
+    shc-metallic 1.4s  0.4s ease-in-out both;
+}
+
+/* Staggered delay helpers */
+@utility reveal-delay-1 { animation-delay: 0.05s; }
+@utility reveal-delay-2 { animation-delay: 0.15s; }
+@utility reveal-delay-3 { animation-delay: 0.25s; }
+
+/* Respect reduced-motion */
+@media (prefers-reduced-motion: reduce) {
+  .title-reveal, .title-metallic {
+    animation: none;
+    clip-path: none;
+    background: none;
+    -webkit-text-fill-color: currentColor;
+  }
+}

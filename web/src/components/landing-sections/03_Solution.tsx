@@ -18,7 +18,7 @@ export function Solution() {
           <span className="font-mono text-[#10B981] text-[10px] uppercase tracking-widest block mb-4">
             PHASE_04 // VALUE_PROPOSITION
           </span>
-          <ScrollRevealTitle className="font-archivo text-3xl md:text-5xl font-bold uppercase tracking-tight max-w-2xl">
+          <ScrollRevealTitle className="font-archivo shc-section max-w-2xl">
             <span className="text-gradient">COMPLIANCE.</span>
           </ScrollRevealTitle>
         </motion.div>
