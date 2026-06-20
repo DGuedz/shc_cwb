@@ -1,11 +1,11 @@
-import { Navbar } from "@/components/layout/Navbar";
+import { DashboardNav } from "@/components/ui/DashboardNav";
 
 export default function Waitlist() {
 	return (
-		<div className="bg-[#0E0E0E] min-h-screen text-white font-sans selection:bg-[#10B981] selection:text-black flex flex-col">
-			<Navbar />
+		<div className="bg-black min-h-screen text-white flex flex-col">
+			<DashboardNav />
 
-			<main className="flex-1 flex flex-col items-center justify-center pt-32 pb-24 px-6 md:px-12 max-w-[800px] mx-auto w-full">
+			<main className="flex-1 flex flex-col items-center justify-center pt-20 pb-20 px-[var(--spacing-margin-mobile)] md:px-[var(--spacing-margin-desktop)] max-w-[800px] mx-auto w-full">
 				{/* CABEÇALHO */}
 				<header className="mb-12 w-full text-center">
 					<div className="flex items-center justify-center gap-3 mb-6">

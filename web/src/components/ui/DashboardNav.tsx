@@ -11,20 +11,24 @@ import type { SessionUser } from "@/types/domain";
 type NavLink = { href: string; label: string };
 
 const publicLinks: NavLink[] = [
+  { href: "/quem-somos", label: "Quem Somos" },
   { href: "/pitchdeck", label: "Pitchdeck" },
   { href: "/catalogo", label: "Artistas" },
+  { href: "/news", label: "News" },
 ];
 
 const artistLinks: NavLink[] = [
   { href: "/dashboard/dossie", label: "Meu Dossiê" },
   { href: "/dashboard/acordos", label: "Acordos" },
   { href: "/catalogo", label: "Artistas" },
+  { href: "/news", label: "News" },
 ];
 
 const contractorLinks: NavLink[] = [
   { href: "/catalogo", label: "Artistas" },
   { href: "/oportunidades/criar", label: "Oportunidades" },
   { href: "/dashboard/matchboard", label: "Matchboard" },
+  { href: "/news", label: "News" },
 ];
 
 function LogoutButton({ onDone }: { onDone?: () => void }) {
